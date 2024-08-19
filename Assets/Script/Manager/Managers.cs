@@ -35,6 +35,7 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             s_instance = gameObject.GetComponent<Managers>();
+            s_instance._networkManager.Init();
         }
     }
 }
