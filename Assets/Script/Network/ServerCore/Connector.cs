@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace ServerCore
 {
@@ -12,6 +13,8 @@ namespace ServerCore
     {
 
         Func<Session> _session;
+        public Action OnConnectedAction { get; set; }
+        public Action OnFailedAction { get; set; }
 
         public void Connect(IPEndPoint endPoint, Func<Session> session)
         {
@@ -46,10 +49,12 @@ namespace ServerCore
                 Session session = _session.Invoke();
                 session.Start(args.ConnectSocket);
                 session.OnConnected();
+                CallbackQueue.Instance.Push(OnConnectedAction);
             }
             else
             {
-                Console.WriteLine("Connect Failed");
+                Debug.Log("Failed Connect");
+                CallbackQueue.Instance.Push(OnFailedAction);
                 StartConnect(args);
             }
         }

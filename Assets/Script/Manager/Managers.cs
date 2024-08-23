@@ -7,16 +7,20 @@ using UnityEngine.SceneManagement;
 
 public class Managers : MonoBehaviour
 {
-    private static Managers s_instance;
+    private static Managers _instance;
 
     private static Managers Instance
     {
-        get { MainInit(); return s_instance; }
+        get { MainInit(); return _instance; }
     }
 
     private NetworkManager _networkManager = new NetworkManager();
+    private SceneManagerEx _sceneManager = new SceneManagerEx();
+    private ResourceManager _resourceManager = new ResourceManager();
 
     public static NetworkManager NetworkManager { get { return Instance._networkManager; } }
+    public static SceneManagerEx SceneManagerEx { get { return Instance._sceneManager; } }
+    public static ResourceManager ResourceManager { get { return Instance._resourceManager; } }
 
     private void Awake()
     {
@@ -24,7 +28,7 @@ public class Managers : MonoBehaviour
     }
     private static void MainInit()
     {
-        if (s_instance == null)
+        if (_instance == null)
         {
             GameObject gameObject = GameObject.Find("Managers");
             if (gameObject == null)
@@ -34,8 +38,12 @@ public class Managers : MonoBehaviour
             }
             DontDestroyOnLoad(gameObject);
 
-            s_instance = gameObject.GetComponent<Managers>();
-            s_instance._networkManager.Init();
+            _instance = gameObject.GetComponent<Managers>();
         }
+    }
+
+    private void Update()
+    {
+        _networkManager.Update();
     }
 }

@@ -8,10 +8,14 @@ using UnityEngine;
 
 public class PacketHandler
 {
-    public static void S_TestHandler(IMessage packet)
+    public static void ConnectToCHandler(IMessage packet)
     {
-        S_Test test = packet as S_Test;
+        ConnectToC connectPacket = (ConnectToC)packet;
+        Debug.Log("Sever와의 연결 셩공");
+    }
 
-        Debug.Log(test.Name);
+    public static void LoginToCHandler(IMessage packet)
+    {
+
     }
 }

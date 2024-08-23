@@ -24,7 +24,10 @@ public class ServerSession : PacketSession
     }
     public override void OnConnected()
     {
-        Debug.Log("hhh");
+        PacketManager.Instance.ClientHandler = (id, packet) =>
+        {
+            PacketQueue.Instance.Push(id, packet);
+        };
     }
 
     public override void OnDisconnected()
@@ -33,7 +36,6 @@ public class ServerSession : PacketSession
 
     public override void OnRecvPacket(ArraySegment<byte> segment)
     {
-        Debug.Log("heloo");
         PacketManager.Instance.ReceivePacket(segment);
     }
 

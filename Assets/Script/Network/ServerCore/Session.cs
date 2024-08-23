@@ -84,6 +84,21 @@ namespace ServerCore
             }
         }
 
+        public void CloseSocket()
+        {
+            OnDisconnected();
+            // close the socket associated with the client
+            try
+            {
+                _socket.Shutdown(SocketShutdown.Both);
+            }
+            // throws if client process has already closed
+            catch (Exception e) { Console.WriteLine(e); }
+            _socket.Close();
+            Clear();
+
+        }
+
         private void ProcessSend()
         {
             while (_sendQueue.Count > 0)
@@ -114,7 +129,7 @@ namespace ServerCore
                 }
                 else
                 {
-                    CloseClientSocket();
+                    CloseSocket();
                 }
             }
         }
@@ -139,7 +154,7 @@ namespace ServerCore
             {
                 if (_buffManager.CheckAndWrite(args.BytesTransferred) == false)
                 {
-                    CloseClientSocket();
+                    CloseSocket();
                     return;
                 }
 
@@ -149,14 +164,14 @@ namespace ServerCore
                 int numOfProcess = OnRecv(_buffManager.GetSegmentFromReadToWrite());
                 if (numOfProcess < 0 || numOfProcess > _buffManager.SizeOfReadToWrite)
                 {
-                    CloseClientSocket();
+                    CloseSocket();
                     return;
                 }
                 else
                 {
                     if (_buffManager.CheckAndRead(numOfProcess) == false)
                     {
-                        CloseClientSocket();
+                        CloseSocket();
                         return;
                     }
                 }
@@ -165,23 +180,8 @@ namespace ServerCore
             }
             else
             {
-                CloseClientSocket();
+                CloseSocket();
             }
-        }
-
-        private void CloseClientSocket()
-        {
-            OnDisconnected();
-            // close the socket associated with the client
-            try
-            {
-                _socket.Shutdown(SocketShutdown.Both);
-            }
-            // throws if client process has already closed
-            catch (Exception e) { Console.WriteLine(e); }
-            _socket.Close();
-            Clear();
-
         }
     }
 }
