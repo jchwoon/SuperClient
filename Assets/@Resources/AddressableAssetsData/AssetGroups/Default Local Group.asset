@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 35c21e6a36a7dda449deae7015300177
+  m_SerializeEntries:
+  - m_GUID: 698aa764f655a5d4a8ff7af087c2bb02
+    m_Address: LoginCanvas
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - login
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4388aef250b6ba24882eddb8351b8473
+    m_Address: Assets/@Resources/Prefab/UI/TestObj.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - lobby
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: ddddc73012247774a97359e9af8f24c1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 522e87d203e1a8e4ea77ac16385b7c2c, type: 2}
+    - {fileID: 11400000, guid: f366fd0a4f2750c40bc158fa96bd9a5f, type: 2}
