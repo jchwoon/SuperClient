@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Utils
 {
+    public static int GetAccountId()
+    {
+        int deviceIdHash = SystemInfo.deviceUniqueIdentifier.GetHashCode();
+        return deviceIdHash;
+    }
     public static GameObject FindChild(GameObject go, string name = null, bool recursive = false)
     {
         Transform transform = FindChild<Transform>(go, name, recursive);

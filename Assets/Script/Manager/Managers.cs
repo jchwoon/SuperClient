@@ -17,10 +17,12 @@ public class Managers : MonoBehaviour
     private NetworkManager _networkManager = new NetworkManager();
     private SceneManagerEx _sceneManager = new SceneManagerEx();
     private ResourceManager _resourceManager = new ResourceManager();
+    private UIManager _uiManager = new UIManager();
 
     public static NetworkManager NetworkManager { get { return Instance._networkManager; } }
     public static SceneManagerEx SceneManagerEx { get { return Instance._sceneManager; } }
     public static ResourceManager ResourceManager { get { return Instance._resourceManager; } }
+    public static UIManager UIManager { get { return Instance._uiManager; } }
 
     private void Awake()
     {

@@ -1,15 +1,17 @@
 
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
-using ServerCore;
 using System;
 using System.Collections.Generic;
+using ServerCore;
 
 public enum PacketId
 {
   ConnectToC = 1,
-  LoginToC = 2,
-  LoginToS = 3,
+  ReqHeroListToS = 2,
+  ResHeroListToC = 3,
+  ReqCreateHeroToS = 4,
+  ResCreateHeroToC = 5,
 
 }
 
@@ -31,9 +33,9 @@ class PacketManager
     }
 
     //들어온 패킷 파싱
-    Dictionary<ushort, Action<ArraySegment<byte>, ushort>> _parseHandler = new();
+    Dictionary<ushort, Action<PacketSession, ArraySegment<byte>, ushort>> _parseHandler = new();
     //파싱된 패킷 핸들
-    Dictionary<ushort, Action<IMessage>> _handler = new();
+    Dictionary<ushort, Action<PacketSession, IMessage>> _handler = new();
 
     public Action<ushort, IMessage> ClientHandler { get; set; } = null;
 
@@ -46,12 +48,14 @@ class PacketManager
     {
         _parseHandler.Add((ushort)PacketId.ConnectToC, ParsePacket<ConnectToC>);
         _handler.Add((ushort)PacketId.ConnectToC, PacketHandler.ConnectToCHandler);
-_parseHandler.Add((ushort)PacketId.LoginToC, ParsePacket<LoginToC>);
-        _handler.Add((ushort)PacketId.LoginToC, PacketHandler.LoginToCHandler);
-
+        _parseHandler.Add((ushort)PacketId.ResHeroListToC, ParsePacket<ResHeroListToC>);
+        _handler.Add((ushort)PacketId.ResHeroListToC, PacketHandler.ResHeroListToCHandler);
+        _parseHandler.Add((ushort)PacketId.ResCreateHeroToC, ParsePacket<ResCreateHeroToC>);
+        _handler.Add((ushort)PacketId.ResCreateHeroToC, PacketHandler.ResCreateHeroToCHandler);
+    
     }
 
-    public void ReceivePacket(ArraySegment<byte> segment)
+    public void ReceivePacket(PacketSession session, ArraySegment<byte> segment)
     {
         ushort count = 0;
         ushort packetSize = BitConverter.ToUInt16(segment.Array, segment.Offset);
@@ -59,20 +63,20 @@ _parseHandler.Add((ushort)PacketId.LoginToC, ParsePacket<LoginToC>);
         ushort packetId = BitConverter.ToUInt16(segment.Array, segment.Offset + count);
         count += 2;
 
-        Action<ArraySegment<byte>, ushort> action = null;
+        Action<PacketSession, ArraySegment<byte>, ushort> action = null;
         if (_parseHandler.TryGetValue(packetId, out action) == true)
         {
-            action.Invoke(segment, packetId);
+            action.Invoke(session, segment, packetId);
         }
 
     }
 
-    private void ParsePacket<T>(ArraySegment<byte> segment, ushort id) where T : IMessage, new()
+    private void ParsePacket<T>(PacketSession session, ArraySegment<byte> segment, ushort id) where T : IMessage, new()
     {
         T packet = new T();
         packet.MergeFrom(segment.Array, segment.Offset + 4, segment.Count - 4);
 
-        Action<IMessage> action = null;
+        Action<PacketSession, IMessage> action = null;
 
         if (ClientHandler != null)
         {
@@ -80,13 +84,13 @@ _parseHandler.Add((ushort)PacketId.LoginToC, ParsePacket<LoginToC>);
         }
         else if (_handler.TryGetValue(id, out action) == true)
         {
-            action.Invoke(packet);
+            action.Invoke(session, packet);
         }
     }
 
-    public Action<IMessage> GetPacketHandler(ushort id)
+    public Action<PacketSession, IMessage> GetPacketHandler(ushort id)
     {
-        Action<IMessage> action = null;
+        Action<PacketSession, IMessage> action = null;
 
         if (_handler.TryGetValue(id, out action) == true)
         {

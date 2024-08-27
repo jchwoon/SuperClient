@@ -8,13 +8,5 @@ public class LoginScene : BaseScene
     {
         base.Awake();
 
-        Managers.ResourceManager.LoadAllAsync<Object>("login", (key, currentCount, totalCount) =>
-        {
-            if (currentCount == totalCount)
-            {
-                Managers.ResourceManager.Instantiate("LoginCanvas");
-            }
-        });
-
     }
 }

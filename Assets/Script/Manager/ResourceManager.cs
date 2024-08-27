@@ -34,15 +34,15 @@ public class ResourceManager
     }
     public void LoadAsync<T>(string key, Action<T> action = null) where T : UnityEngine.Object
     {
+        if (_resources.TryGetValue(key, out UnityEngine.Object resource))
+        {
+            action?.Invoke(resource as T);
+            return;
+        }
+
         AsyncOperationHandle<T> asyncOperation = Addressables.LoadAssetAsync<T>(key);
         asyncOperation.Completed += (op) =>
         {
-            if (_resources.TryGetValue(key, out UnityEngine.Object resource))
-            {
-                action?.Invoke(op.Result);
-                return;
-            }
-
             _resources.Add(key, op.Result);
             action?.Invoke(op.Result);
         };

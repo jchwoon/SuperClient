@@ -1,3 +1,4 @@
+using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -40,7 +41,7 @@ public class LoginSceneUI : SceneUI
     }
     private void SetData()
     {
-        _startTxt.text = "Go to Lobby";
+        _startTxt.text = "Start";
         _stateTxt.text = "";
         BindEvent(_startBtn.gameObject, OnStartBtnClicked);
     }
@@ -48,7 +49,7 @@ public class LoginSceneUI : SceneUI
     private void OnStartBtnClicked(PointerEventData eventData)
     {
         //서버와의 연결이 필요
-        Managers.ResourceManager.LoadAllAsync<Object>("lobby", (key, currentCount, totalCount) =>
+        Managers.ResourceManager.LoadAllAsync<Object>("preLoad", (key, currentCount, totalCount) =>
         {
             _stateTxt.text = $"데이타 로딩중... : {key} {currentCount} / {totalCount}";
             if (currentCount == totalCount)
@@ -57,6 +58,8 @@ public class LoginSceneUI : SceneUI
                 OnDataLoaded();
             }
         });
+
+
     }
 
     private void OnDataLoaded()

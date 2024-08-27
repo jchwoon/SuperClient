@@ -8,8 +8,9 @@ public class Enums
     {
         Login,
         Lobby,
-        CreateHero,
-        Game
+        Game,
+        Loading,
+        None
     }
 
     public enum TouchEvent

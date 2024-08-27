@@ -46,6 +46,7 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 9deb3ffd6288de24dbf73ad9d57d946c, type: 2}
   - {fileID: 11400000, guid: 2cbf26e2ae9be0040bed8204eb9511e2, type: 2}
+  - {fileID: 11400000, guid: 38750bffc92664e488379b6195884de4, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -87,8 +88,7 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
-    - lobby
-    - login
+    - preLoad
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 5e22688e89261024a9c02f82e11ccc06, type: 2}

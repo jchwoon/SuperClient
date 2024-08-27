@@ -6,6 +6,6 @@ public class BaseScene : MonoBehaviour
 {
     protected virtual void Awake()
     {
-        
+        Managers.SceneManagerEx.CurrentScene = this;
     }
 }
