@@ -10,13 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Packed Assets
+  m_Name: Sprites
   m_EditorClassIdentifier: 
-  m_GroupName: Packed Assets
+  m_GroupName: Sprites
   m_Data:
     m_SerializedData: []
   m_GUID: 02154be3e6226164cbbe60753cff7254
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: a29a5b7116853654498b2c631da445b6
+    m_Address: Archer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09fa17c19aae92f4b8180bfdaace66f9
+    m_Address: Mage
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 521427e5fa6df7e44aefdb8491bbd29f
+    m_Address: Warrior
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ddddc73012247774a97359e9af8f24c1, type: 2}
   m_SchemaSet:

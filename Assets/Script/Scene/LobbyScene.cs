@@ -1,6 +1,7 @@
 using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LobbyScene : BaseScene
@@ -23,11 +24,12 @@ public class LobbyScene : BaseScene
     {
         if (packet.Lobbyheros.Count == 0)
         {
-            Managers.UIManager.ShowSceneUI<CreateHeroSceneUI>("CreateHeroScene");
+            Managers.UIManager.ShowSceneUI<CreateHeroSceneUI>();
         }
         else
         {
-
+            LobbySceneUI lobby = Managers.UIManager.ShowSceneUI<LobbySceneUI>();
+            lobby.SetCharacterSlotInfo(packet.Lobbyheros.ToList());
         }
         //lobbyData.SetHeroInfo(lobbyData.LobbyHeroInfos);
     }

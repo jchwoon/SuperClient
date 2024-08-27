@@ -42,7 +42,7 @@ public abstract class BaseUI : MonoBehaviour
         return null;
     }
 
-    public static void BindEvent(GameObject go, Action<PointerEventData> action = null, Enums.TouchEvent type = Enums.TouchEvent.Click)
+    public void BindEvent(GameObject go, Action<PointerEventData> action = null, Enums.TouchEvent type = Enums.TouchEvent.Click)
     {
         UIEventHandler handler = go.GetComponent<UIEventHandler>();
         if (handler == null)

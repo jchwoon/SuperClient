@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIManager
@@ -39,14 +40,33 @@ public class UIManager
         return popup as T;
     }
 
-    public T ShowSceneUI<T>(string name) where T : SceneUI
+    public T ShowSceneUI<T>(string name = null) where T : SceneUI
     {
         if (name == null)
-            return null;
+        {
+            name = typeof(T).Name;
+        }
 
         T sceneUI = Parent.Find(name).gameObject.GetComponent<T>();
         sceneUI.gameObject.SetActive(true);
 
         return sceneUI;
+    }
+
+    public T CloseSceneUI<T>(string name) where T : SceneUI
+    {
+        if (name == null)
+            return null;
+
+        T sceneUI = Parent.Find(name).gameObject.GetComponent<T>();
+        sceneUI.gameObject.SetActive(false);
+
+        return sceneUI;
+    }
+
+    public void ShowAlertPopup(string message)
+    {
+        GameObject go = Managers.ResourceManager.Instantiate("AlertPopup");
+        go.GetComponent<TMP_Text>().text = message;
     }
 }
