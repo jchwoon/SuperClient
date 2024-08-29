@@ -12,7 +12,7 @@ public class LobbySceneUI : SceneUI
 {
     enum GameObjects
     {
-        CharacterSlot
+        CharacterSlotLayout
     }
     enum Buttons
     {
@@ -39,7 +39,7 @@ public class LobbySceneUI : SceneUI
         Bind<GameObject>(typeof(GameObjects));
 
         _currentCharacterSlotTxt = Get<TMP_Text>((int)Texts.CurrentSlotNumTxt);
-        _characterSlotLayout = Get<GameObject>((int)GameObjects.CharacterSlot);
+        _characterSlotLayout = Get<GameObject>((int)GameObjects.CharacterSlotLayout);
 
         BindEvent(Get<Button>((int)Buttons.BackBtn).gameObject, OnBackBtnClicked);
         BindEvent(Get<Button>((int)Buttons.CreateBtn).gameObject, OnCreateBtnClicked);
@@ -54,15 +54,20 @@ public class LobbySceneUI : SceneUI
 
     private void Refresh()
     {
-        HorizontalLayoutGroup layout = _characterSlotLayout.GetComponent<HorizontalLayoutGroup>();
-        _characterSlotLayout.transform.position = new Vector3((layout.minWidth - layout.spacing) / 2, _characterSlotLayout.transform.position.y, _characterSlotLayout.transform.position.z);
+        float slotSize = 0;
         for (int i = 0; i < _heroInfos.Count; i++)
         {
             //매번 Instantiate 수정
             GameObject go = Managers.ResourceManager.Instantiate("CharacterSlot", _characterSlotLayout.transform);
             go.name = $"Slot{i+1}";
             go.GetComponent<CharacterSlot>().SetSlotInfo(_heroInfos[i], ChangeSelectSlot);
+            slotSize += go.GetComponent<RectTransform>().rect.width;
         }
+
+        if (_heroInfos.Count == 1)
+            slotSize -= _characterSlotLayout.GetComponent<HorizontalLayoutGroup>().spacing;
+        RectTransform layoutRect = _characterSlotLayout.GetComponent<RectTransform>();
+        layoutRect.localPosition = new Vector3(- (slotSize / 2), layoutRect.localPosition.y, layoutRect.localPosition.z);
     }
     private void ChangeSelectSlot(GameObject newSlot)
     {

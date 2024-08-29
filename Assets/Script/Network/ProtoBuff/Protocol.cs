@@ -27,19 +27,18 @@ namespace Google.Protobuf.Protocol {
             "Cg5Qcm90b2NvbC5wcm90bxIIUHJvdG9jb2waCkVudW0ucHJvdG8aDFN0cnVj",
             "dC5wcm90byIMCgpDb25uZWN0VG9DIiMKDlJlcUhlcm9MaXN0VG9TEhEKCWFj",
             "Y291bnRJZBgBIAEoBSI9Cg5SZXNIZXJvTGlzdFRvQxIrCgpsb2JieWhlcm9z",
-            "GAEgAygLMhcuUHJvdG9jb2wuTG9iYnlIZXJvSW5mbyJ4ChBSZXFDcmVhdGVI",
-            "ZXJvVG9TEhAKCG5pY2tuYW1lGAEgASgJEiUKBmdlbmRlchgCIAEoDjIVLlBy",
-            "b3RvY29sLkVIZXJvR2VuZGVyEisKCWNsYXNzVHlwZRgDIAEoDjIYLlByb3Rv",
-            "Y29sLkVIZXJvQ2xhc3NUeXBlIj8KEFJlc0NyZWF0ZUhlcm9Ub0MSKwoGcmVz",
-            "dWx0GAEgASgOMhsuUHJvdG9jb2wuRUNyZWF0ZUhlcm9SZXN1bHRCG6oCGEdv",
-            "b2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
+            "GAEgAygLMhcuUHJvdG9jb2wuTG9iYnlIZXJvSW5mbyJRChBSZXFDcmVhdGVI",
+            "ZXJvVG9TEhAKCG5pY2tuYW1lGAEgASgJEisKCWNsYXNzVHlwZRgCIAEoDjIY",
+            "LlByb3RvY29sLkVIZXJvQ2xhc3NUeXBlIj8KEFJlc0NyZWF0ZUhlcm9Ub0MS",
+            "KwoGcmVzdWx0GAEgASgOMhsuUHJvdG9jb2wuRUNyZWF0ZUhlcm9SZXN1bHRC",
+            "G6oCGEdvb2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, global::Google.Protobuf.Struct.StructReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ConnectToC), global::Google.Protobuf.Protocol.ConnectToC.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ReqHeroListToS), global::Google.Protobuf.Protocol.ReqHeroListToS.Parser, new[]{ "AccountId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ResHeroListToC), global::Google.Protobuf.Protocol.ResHeroListToC.Parser, new[]{ "Lobbyheros" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ReqCreateHeroToS), global::Google.Protobuf.Protocol.ReqCreateHeroToS.Parser, new[]{ "Nickname", "Gender", "ClassType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ReqCreateHeroToS), global::Google.Protobuf.Protocol.ReqCreateHeroToS.Parser, new[]{ "Nickname", "ClassType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ResCreateHeroToC), global::Google.Protobuf.Protocol.ResCreateHeroToC.Parser, new[]{ "Result" }, null, null, null, null)
           }));
     }
@@ -629,7 +628,6 @@ namespace Google.Protobuf.Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ReqCreateHeroToS(ReqCreateHeroToS other) : this() {
       nickname_ = other.nickname_;
-      gender_ = other.gender_;
       classType_ = other.classType_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -652,20 +650,8 @@ namespace Google.Protobuf.Protocol {
       }
     }
 
-    /// <summary>Field number for the "gender" field.</summary>
-    public const int GenderFieldNumber = 2;
-    private global::Google.Protobuf.Enum.EHeroGender gender_ = global::Google.Protobuf.Enum.EHeroGender.None;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Google.Protobuf.Enum.EHeroGender Gender {
-      get { return gender_; }
-      set {
-        gender_ = value;
-      }
-    }
-
     /// <summary>Field number for the "classType" field.</summary>
-    public const int ClassTypeFieldNumber = 3;
+    public const int ClassTypeFieldNumber = 2;
     private global::Google.Protobuf.Enum.EHeroClassType classType_ = global::Google.Protobuf.Enum.EHeroClassType.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -692,7 +678,6 @@ namespace Google.Protobuf.Protocol {
         return true;
       }
       if (Nickname != other.Nickname) return false;
-      if (Gender != other.Gender) return false;
       if (ClassType != other.ClassType) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -702,7 +687,6 @@ namespace Google.Protobuf.Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (Nickname.Length != 0) hash ^= Nickname.GetHashCode();
-      if (Gender != global::Google.Protobuf.Enum.EHeroGender.None) hash ^= Gender.GetHashCode();
       if (ClassType != global::Google.Protobuf.Enum.EHeroClassType.None) hash ^= ClassType.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -726,12 +710,8 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(10);
         output.WriteString(Nickname);
       }
-      if (Gender != global::Google.Protobuf.Enum.EHeroGender.None) {
-        output.WriteRawTag(16);
-        output.WriteEnum((int) Gender);
-      }
       if (ClassType != global::Google.Protobuf.Enum.EHeroClassType.None) {
-        output.WriteRawTag(24);
+        output.WriteRawTag(16);
         output.WriteEnum((int) ClassType);
       }
       if (_unknownFields != null) {
@@ -748,12 +728,8 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(10);
         output.WriteString(Nickname);
       }
-      if (Gender != global::Google.Protobuf.Enum.EHeroGender.None) {
-        output.WriteRawTag(16);
-        output.WriteEnum((int) Gender);
-      }
       if (ClassType != global::Google.Protobuf.Enum.EHeroClassType.None) {
-        output.WriteRawTag(24);
+        output.WriteRawTag(16);
         output.WriteEnum((int) ClassType);
       }
       if (_unknownFields != null) {
@@ -768,9 +744,6 @@ namespace Google.Protobuf.Protocol {
       int size = 0;
       if (Nickname.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Nickname);
-      }
-      if (Gender != global::Google.Protobuf.Enum.EHeroGender.None) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Gender);
       }
       if (ClassType != global::Google.Protobuf.Enum.EHeroClassType.None) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ClassType);
@@ -789,9 +762,6 @@ namespace Google.Protobuf.Protocol {
       }
       if (other.Nickname.Length != 0) {
         Nickname = other.Nickname;
-      }
-      if (other.Gender != global::Google.Protobuf.Enum.EHeroGender.None) {
-        Gender = other.Gender;
       }
       if (other.ClassType != global::Google.Protobuf.Enum.EHeroClassType.None) {
         ClassType = other.ClassType;
@@ -820,10 +790,6 @@ namespace Google.Protobuf.Protocol {
             break;
           }
           case 16: {
-            Gender = (global::Google.Protobuf.Enum.EHeroGender) input.ReadEnum();
-            break;
-          }
-          case 24: {
             ClassType = (global::Google.Protobuf.Enum.EHeroClassType) input.ReadEnum();
             break;
           }
@@ -851,10 +817,6 @@ namespace Google.Protobuf.Protocol {
             break;
           }
           case 16: {
-            Gender = (global::Google.Protobuf.Enum.EHeroGender) input.ReadEnum();
-            break;
-          }
-          case 24: {
             ClassType = (global::Google.Protobuf.Enum.EHeroClassType) input.ReadEnum();
             break;
           }

@@ -24,30 +24,22 @@ namespace Google.Protobuf.Enum {
     static EnumReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgpFbnVtLnByb3RvEghQcm90b2NvbCpUCgtFSGVyb0dlbmRlchIVChFFSEVS",
-            "T19HRU5ERVJfTk9ORRAAEhUKEUVIRVJPX0dFTkRFUl9NQUlMEAESFwoTRUhF",
-            "Uk9fR0VOREVSX0ZFTUFJTBACKoEBCg5FSGVyb0NsYXNzVHlwZRIZChVFSEVS",
-            "T19DTEFTU19UWVBFX05PTkUQABIcChhFSEVST19DTEFTU19UWVBFX1dBUlJJ",
-            "T1IQARIbChdFSEVST19DTEFTU19UWVBFX0FSQ0hFUhACEhkKFUVIRVJPX0NM",
-            "QVNTX1RZUEVfTUFHRRADKp0BChFFQ3JlYXRlSGVyb1Jlc3VsdBIcChhFQ1JF",
-            "QVRFX0hFUk9fUkVTVUxUX05PTkUQABIfChtFQ1JFQVRFX0hFUk9fUkVTVUxU",
-            "X1NVQ0NFU1MQARIkCiBFQ1JFQVRFX0hFUk9fUkVTVUxUX0ZBSUxfT1ZFUkxB",
-            "UBACEiMKH0VDUkVBVEVfSEVST19SRVNVTFRfRkFJTF9NSU5NQVgQA0IXqgIU",
-            "R29vZ2xlLlByb3RvYnVmLkVudW1iBnByb3RvMw=="));
+            "CgpFbnVtLnByb3RvEghQcm90b2NvbCqBAQoORUhlcm9DbGFzc1R5cGUSGQoV",
+            "RUhFUk9fQ0xBU1NfVFlQRV9OT05FEAASHAoYRUhFUk9fQ0xBU1NfVFlQRV9X",
+            "QVJSSU9SEAESGwoXRUhFUk9fQ0xBU1NfVFlQRV9BUkNIRVIQAhIZChVFSEVS",
+            "T19DTEFTU19UWVBFX01BR0UQAyqdAQoRRUNyZWF0ZUhlcm9SZXN1bHQSHAoY",
+            "RUNSRUFURV9IRVJPX1JFU1VMVF9OT05FEAASHwobRUNSRUFURV9IRVJPX1JF",
+            "U1VMVF9TVUNDRVNTEAESJAogRUNSRUFURV9IRVJPX1JFU1VMVF9GQUlMX09W",
+            "RVJMQVAQAhIjCh9FQ1JFQVRFX0hFUk9fUkVTVUxUX0ZBSUxfTUlOTUFYEANC",
+            "F6oCFEdvb2dsZS5Qcm90b2J1Zi5FbnVtYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroGender), typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), }, null, null));
     }
     #endregion
 
   }
   #region Enums
-  public enum EHeroGender {
-    [pbr::OriginalName("EHERO_GENDER_NONE")] None = 0,
-    [pbr::OriginalName("EHERO_GENDER_MAIL")] Mail = 1,
-    [pbr::OriginalName("EHERO_GENDER_FEMAIL")] Femail = 2,
-  }
-
   public enum EHeroClassType {
     [pbr::OriginalName("EHERO_CLASS_TYPE_NONE")] None = 0,
     [pbr::OriginalName("EHERO_CLASS_TYPE_WARRIOR")] Warrior = 1,

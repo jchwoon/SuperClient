@@ -77,7 +77,6 @@ class PacketManager
         packet.MergeFrom(segment.Array, segment.Offset + 4, segment.Count - 4);
 
         Action<PacketSession, IMessage> action = null;
-
         if (ClientHandler != null)
         {
             ClientHandler.Invoke(id, packet);

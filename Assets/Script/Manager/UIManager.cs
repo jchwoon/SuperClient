@@ -43,9 +43,7 @@ public class UIManager
     public T ShowSceneUI<T>(string name = null) where T : SceneUI
     {
         if (name == null)
-        {
             name = typeof(T).Name;
-        }
 
         T sceneUI = Parent.Find(name).gameObject.GetComponent<T>();
         sceneUI.gameObject.SetActive(true);
@@ -53,10 +51,10 @@ public class UIManager
         return sceneUI;
     }
 
-    public T CloseSceneUI<T>(string name) where T : SceneUI
+    public T CloseSceneUI<T>(string name = null) where T : SceneUI
     {
         if (name == null)
-            return null;
+            name = typeof(T).Name;
 
         T sceneUI = Parent.Find(name).gameObject.GetComponent<T>();
         sceneUI.gameObject.SetActive(false);

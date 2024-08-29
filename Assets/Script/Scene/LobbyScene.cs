@@ -1,4 +1,5 @@
 using Google.Protobuf.Protocol;
+using Google.Protobuf.Struct;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

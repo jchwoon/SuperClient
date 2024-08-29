@@ -41,14 +41,13 @@ public class CharacterSlot : BaseUI
     {
         _refreshSlotAction = action;
 
-        _levelTxt.text = heroInfo.Level.ToString();
+        _levelTxt.text = $"{heroInfo.Level} LV";
         _nickname.text = heroInfo.Nickname;
         SetClassIcon(heroInfo.ClassType);
     }
 
     private void OnSlotClicked(PointerEventData eventData)
     {
-        Debug.Log("Clicked");
         _refreshSlotAction?.Invoke(gameObject);
     }
 

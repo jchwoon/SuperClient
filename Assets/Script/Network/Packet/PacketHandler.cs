@@ -23,6 +23,11 @@ public partial class PacketHandler
     }
     public static void ResCreateHeroToCHandler(PacketSession session, IMessage packet)
     {
-
+        ResCreateHeroToC resCreateHeroPacket = (ResCreateHeroToC)packet;
+        CreateHeroSceneUI ui = Managers.UIManager.ShowSceneUI<CreateHeroSceneUI>();
+        if (ui != null)
+        {
+            ui.OnReceiveServerData(resCreateHeroPacket);
+        }
     }
 }

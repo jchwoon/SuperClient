@@ -34,13 +34,19 @@ public class ResourceManager
     }
     public void LoadAsync<T>(string key, Action<T> action = null) where T : UnityEngine.Object
     {
+        string loadKey = key;
+
+        if (typeof(T) == typeof(Sprite))
+        {
+            loadKey = $"{key}[{key}]";
+        }
         if (_resources.TryGetValue(key, out UnityEngine.Object resource))
         {
             action?.Invoke(resource as T);
             return;
         }
 
-        AsyncOperationHandle<T> asyncOperation = Addressables.LoadAssetAsync<T>(key);
+        AsyncOperationHandle<T> asyncOperation = Addressables.LoadAssetAsync<T>(loadKey);
         asyncOperation.Completed += (op) =>
         {
             _resources.Add(key, op.Result);

@@ -55,15 +55,23 @@ public class LoginSceneUI : SceneUI
             if (currentCount == totalCount)
             {
                 _stateTxt.text = $"데이타 로드 완료";
-                OnDataLoaded();
             }
         });
 
-
+        Managers.ResourceManager.LoadAllAsync<Sprite>("sPreLoad", (key, currentCount, totalCount) =>
+        {
+            _stateTxt.text = $"스프라이트 로딩중... : {key} {currentCount} / {totalCount}";
+            if (currentCount == totalCount)
+            {
+                _stateTxt.text = $"스프라이트 로드 완료";
+                OnDataLoaded();
+            }
+        });
     }
 
     private void OnDataLoaded()
     {
+        Managers.DataManager.Init();
         _stateTxt.text = $"게임 서버에 연결 중...";
         Managers.NetworkManager.OnConnectedAction = OnConnected;
         Managers.NetworkManager.OnFailedAction = OnFailed;
