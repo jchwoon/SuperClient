@@ -1,5 +1,6 @@
 using Google.Protobuf.Protocol;
 using Google.Protobuf.Struct;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using UnityEngine;
 
 public class LobbyScene : BaseScene
 {
+    private Action _receiveHeroListAction;
     protected override void Awake()
     {
         base.Awake();
@@ -14,8 +16,9 @@ public class LobbyScene : BaseScene
         SendReqHeroListPacket();
     }
 
-    private void SendReqHeroListPacket()
+    public void SendReqHeroListPacket(Action action = null)
     {
+        _receiveHeroListAction = action;
         ReqHeroListToS reqHeroList = new ReqHeroListToS();
         reqHeroList.AccountId = Utils.GetAccountId();
         Managers.NetworkManager.Send(reqHeroList);
@@ -23,6 +26,7 @@ public class LobbyScene : BaseScene
 
     public void OnReceiveServerData(ResHeroListToC packet)
     {
+        _receiveHeroListAction?.Invoke();
         if (packet.Lobbyheros.Count == 0)
         {
             Managers.UIManager.ShowSceneUI<CreateHeroSceneUI>();

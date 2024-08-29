@@ -54,7 +54,12 @@ public class CreateHeroSceneUI : SceneUI
         switch (result)
         {
             case Google.Protobuf.Enum.ECreateHeroResult.Success:
-                Managers.UIManager.CloseSceneUI<CreateHeroSceneUI>();
+                //로비 인포 정보를 다시 req하고 응답이 오면 close
+                LobbyScene lobby = (LobbyScene)Managers.SceneManagerEx.CurrentScene;
+                lobby.SendReqHeroListPacket(()=>
+                {
+                    Managers.UIManager.CloseSceneUI<CreateHeroSceneUI>();
+                });
                 break;
             case Google.Protobuf.Enum.ECreateHeroResult.FailMinmax:
                 Debug.Log("닉네임 최소 최대 안맞음");

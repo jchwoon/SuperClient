@@ -586,17 +586,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: LobbySceneUI
       objectReference: {fileID: 0}
-    - target: {fileID: 8013249727622772800, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_ChildAlignment
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8013249727622772800, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_ChildControlWidth
-      value: 0
+    - target: {fileID: 7618168925141584040, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
+      propertyPath: _fadeTime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8232530207271220836, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8357855915862050100, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

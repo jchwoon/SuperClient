@@ -32,6 +32,7 @@ public class ServerSession : PacketSession
 
     public override void OnDisconnected()
     {
+        Debug.Log("Disconnected");
     }
 
     public override void OnRecvPacket(ArraySegment<byte> segment)

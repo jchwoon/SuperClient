@@ -12,7 +12,8 @@ public class LobbySceneUI : SceneUI
 {
     enum GameObjects
     {
-        CharacterSlotLayout
+        CharacterSlotLayout,
+        FadeEffect
     }
     enum Buttons
     {
@@ -22,14 +23,18 @@ public class LobbySceneUI : SceneUI
     }
     enum Texts
     {
-        CurrentSlotNumTxt
+        CurrentSlotNumTxt,
     }
 
     static readonly int MAX_SLOT_COUNT = 5;
     List<LobbyHeroInfo> _heroInfos = new List<LobbyHeroInfo>(MAX_SLOT_COUNT);
+    List<GameObject> _slots = new List<GameObject>(MAX_SLOT_COUNT);
     TMP_Text _currentCharacterSlotTxt;
     GameObject _characterSlotLayout;
     GameObject _selectedSlot;
+    GameObject _fadeEffect;
+
+    float _slotSpacing;
     protected override void Awake()
     {
         base.Awake();
@@ -40,34 +45,57 @@ public class LobbySceneUI : SceneUI
 
         _currentCharacterSlotTxt = Get<TMP_Text>((int)Texts.CurrentSlotNumTxt);
         _characterSlotLayout = Get<GameObject>((int)GameObjects.CharacterSlotLayout);
+        _fadeEffect = Get<GameObject>((int)GameObjects.FadeEffect);
+        _slotSpacing = _characterSlotLayout.GetComponent<HorizontalLayoutGroup>().spacing;
 
         BindEvent(Get<Button>((int)Buttons.BackBtn).gameObject, OnBackBtnClicked);
         BindEvent(Get<Button>((int)Buttons.CreateBtn).gameObject, OnCreateBtnClicked);
+
+        PreCreateSlot();
+    }
+
+    public void PreCreateSlot()
+    {
+        for (int i = 0; i < MAX_SLOT_COUNT; i++)
+        {
+            GameObject go = Managers.ResourceManager.Instantiate("CharacterSlot", _characterSlotLayout.transform);
+            go.name = $"Slot{i + 1}";
+            go.SetActive(false);
+            _slots.Add(go);
+        }
     }
 
     public void SetCharacterSlotInfo(List<LobbyHeroInfo> heroInfos)
     {
+        _fadeEffect.GetComponent<FadeEffect>().FadeInOut();
         _heroInfos = heroInfos;
-        _currentCharacterSlotTxt.text = _heroInfos.Count.ToString();
         Refresh();
     }
 
     private void Refresh()
     {
+        _currentCharacterSlotTxt.text = _heroInfos.Count.ToString();
         float slotSize = 0;
-        for (int i = 0; i < _heroInfos.Count; i++)
+        for (int i = 0; i < MAX_SLOT_COUNT; i++)
         {
-            //매번 Instantiate 수정
-            GameObject go = Managers.ResourceManager.Instantiate("CharacterSlot", _characterSlotLayout.transform);
-            go.name = $"Slot{i+1}";
-            go.GetComponent<CharacterSlot>().SetSlotInfo(_heroInfos[i], ChangeSelectSlot);
-            slotSize += go.GetComponent<RectTransform>().rect.width;
+            if (i < _heroInfos.Count)
+            {
+                _slots[i].GetComponent<CharacterSlot>().SetSlotInfo(_heroInfos[i], ChangeSelectSlot);
+                _slots[i].SetActive(true);
+                slotSize += _slots[i].GetComponent<RectTransform>().rect.width;
+            }
+            else
+            {
+                _slots[i].SetActive(false);
+            }
         }
 
         if (_heroInfos.Count == 1)
-            slotSize -= _characterSlotLayout.GetComponent<HorizontalLayoutGroup>().spacing;
+            slotSize -= _slotSpacing;
+        else
+            slotSize += (_slotSpacing * (_heroInfos.Count - 2));
         RectTransform layoutRect = _characterSlotLayout.GetComponent<RectTransform>();
-        layoutRect.localPosition = new Vector3(- (slotSize / 2), layoutRect.localPosition.y, layoutRect.localPosition.z);
+        layoutRect.localPosition = new Vector3(-(slotSize / 2), layoutRect.localPosition.y, layoutRect.localPosition.z);
     }
     private void ChangeSelectSlot(GameObject newSlot)
     {
@@ -82,6 +110,7 @@ public class LobbySceneUI : SceneUI
     private void OnBackBtnClicked(PointerEventData eventData)
     {
         Managers.SceneManagerEx.ChangeScene(Enums.SceneType.Login);
+        Managers.NetworkManager.Disconnect();
     }
 
     private void OnCreateBtnClicked(PointerEventData eventData)

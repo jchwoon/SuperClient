@@ -10,6 +10,7 @@ public class ResourceManager
 {
     private Dictionary<string, UnityEngine.Object> _resources = new Dictionary<string, UnityEngine.Object>();
 
+
     public T GetResource<T> (string key) where T: UnityEngine.Object
     {
         if (_resources.TryGetValue(key, out UnityEngine.Object obj))
