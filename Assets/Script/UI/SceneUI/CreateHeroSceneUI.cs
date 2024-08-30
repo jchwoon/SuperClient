@@ -16,10 +16,17 @@ public class CreateHeroSceneUI : SceneUI
     }
     enum Texts
     {
-        NicknameTxt
+        Placeholder
+    }
+    enum GameObjects
+    {
+        Alert,
+        Nickname
     }
 
-    TMP_Text _nicknameTxt;
+    TMP_InputField _nicknameField;
+    TMP_Text _placeHolder;
+    AlertUI _alertPopup;
 
     protected override void Awake()
     {
@@ -27,8 +34,11 @@ public class CreateHeroSceneUI : SceneUI
 
         Bind<Button>(typeof(Buttons));
         Bind<TMP_Text>(typeof(Texts));
+        Bind<GameObject>(typeof(GameObjects));
 
-        _nicknameTxt = Get<TMP_Text>((int)Texts.NicknameTxt);
+        _alertPopup = Get<GameObject>((int)GameObjects.Alert).GetComponent<AlertUI>();
+        _nicknameField = Get<GameObject>((int)GameObjects.Nickname).GetComponent<TMP_InputField>();
+        Get<TMP_Text>((int)Texts.Placeholder).text = "2~8 사이 닉네임";
 
         BindEvent(Get<Button>((int)Buttons.BackBtn).gameObject, OnBackBtnClicked);
         BindEvent(Get<Button>((int)Buttons.CreateBtn).gameObject, OnCreateBtnClicked);
@@ -43,9 +53,10 @@ public class CreateHeroSceneUI : SceneUI
     {
 
         ReqCreateHeroToS reqCreateHeroPacket = new ReqCreateHeroToS();
-        reqCreateHeroPacket.Nickname = _nicknameTxt.text;
+        reqCreateHeroPacket.Nickname = _nicknameField.text;
         reqCreateHeroPacket.ClassType = Google.Protobuf.Enum.EHeroClassType.Warrior;
         Managers.NetworkManager.Send(reqCreateHeroPacket);
+        Clear();
     }
 
     public void OnReceiveServerData(ResCreateHeroToC packet)
@@ -62,13 +73,22 @@ public class CreateHeroSceneUI : SceneUI
                 });
                 break;
             case Google.Protobuf.Enum.ECreateHeroResult.FailMinmax:
-                Debug.Log("닉네임 최소 최대 안맞음");
+                _alertPopup.gameObject.SetActive(true);
+                _alertPopup.SetAlert("닉네임의 형식이 올바르지 않습니다.", Enums.AlertBtnNum.One);
                 break;
             case Google.Protobuf.Enum.ECreateHeroResult.FailOverlap:
-                Debug.Log("닉네임 중복");
+                _alertPopup.gameObject.SetActive(true);
+                _alertPopup.SetAlert("중복된 닉네임입니다.", Enums.AlertBtnNum.One);
                 break;
             default:
+                _alertPopup.gameObject.SetActive(true);
+                _alertPopup.SetAlert("알 수 없는 오류", Enums.AlertBtnNum.One);
                 break;
         }
+    }
+
+    private void Clear()
+    {
+        _nicknameField.text = "";
     }
 }

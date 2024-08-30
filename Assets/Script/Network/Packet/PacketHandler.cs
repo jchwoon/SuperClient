@@ -26,8 +26,14 @@ public partial class PacketHandler
         ResCreateHeroToC resCreateHeroPacket = (ResCreateHeroToC)packet;
         CreateHeroSceneUI ui = Managers.UIManager.ShowSceneUI<CreateHeroSceneUI>();
         if (ui != null)
-        {
             ui.OnReceiveServerData(resCreateHeroPacket);
-        }
+    }
+
+    public static void ResDeleteHeroToCHandler(PacketSession session, IMessage packet)
+    {
+        ResDeleteHeroToC resDeleteHeroPacket = (ResDeleteHeroToC)packet;
+        LobbySceneUI ui = Managers.UIManager.ShowSceneUI<LobbySceneUI>();
+        if (ui != null)
+            ui.OnReceiveServerData(resDeleteHeroPacket);
     }
 }

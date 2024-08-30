@@ -62,9 +62,8 @@ public class UIManager
         return sceneUI;
     }
 
-    public void ShowAlertPopup(string message)
+    public AlertUI ShowAlertPopup(Transform parent)
     {
-        GameObject go = Managers.ResourceManager.Instantiate("AlertPopup");
-        go.GetComponent<TMP_Text>().text = message;
+        return Managers.ResourceManager.Instantiate("Alert", parent).GetComponent<AlertUI>();
     }
 }

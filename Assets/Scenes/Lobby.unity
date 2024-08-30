@@ -542,61 +542,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3876900791667314044, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3876900791667314044, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3876900791667314044, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3876900791667314044, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3876900791667314044, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6349443224526295210, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6349443224526295210, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6349443224526295210, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6349443224526295210, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6349443224526295210, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7228496279794287697, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
       propertyPath: m_Name
       value: LobbySceneUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 7618168925141584040, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: _fadeTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8232530207271220836, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8357855915862050100, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -694,10 +642,6 @@ PrefabInstance:
     - target: {fileID: 4027731696015312535, guid: 2dfa62476c1594043b9dd2f4a41b48e3, type: 3}
       propertyPath: m_Name
       value: CreateHeroSceneUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4027731696015312535, guid: 2dfa62476c1594043b9dd2f4a41b48e3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -20,7 +20,8 @@ public class CharacterSlot : BaseUI
         Level
     }
 
-    Action<GameObject> _refreshSlotAction;
+    Action<GameObject, int> _refreshSlotAction;
+    int _slotIdx;
     TMP_Text _levelTxt;
     TMP_Text _nickname;
     Image _classIcon;
@@ -37,9 +38,10 @@ public class CharacterSlot : BaseUI
 
         BindEvent(gameObject, OnSlotClicked);
     }
-    public void SetSlotInfo(LobbyHeroInfo heroInfo, Action<GameObject> action)
+    public void SetSlotInfo(LobbyHeroInfo heroInfo, Action<GameObject, int> action, int idx)
     {
         _refreshSlotAction = action;
+        _slotIdx = idx;
 
         _levelTxt.text = $"{heroInfo.Level} LV";
         _nickname.text = heroInfo.Nickname;
@@ -48,7 +50,7 @@ public class CharacterSlot : BaseUI
 
     private void OnSlotClicked(PointerEventData eventData)
     {
-        _refreshSlotAction?.Invoke(gameObject);
+        _refreshSlotAction?.Invoke(gameObject, _slotIdx);
     }
 
     private void SetClassIcon(EHeroClassType classType)
