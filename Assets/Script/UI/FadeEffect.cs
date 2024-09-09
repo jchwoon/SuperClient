@@ -21,12 +21,12 @@ public class FadeEffect : MonoBehaviour
     {
         _isFadeIn = isFadeIn;
         if (_isFadeIn == true)
-            _fadeCoroutine = StartCoroutine(FadeInOut(1, 0));
+            _fadeCoroutine = StartCoroutine(FadeInRoutine(1, 0));
         else
-            _fadeCoroutine = StartCoroutine(FadeInOut(0, 1));
+            _fadeCoroutine = StartCoroutine(FadeInRoutine(0, 1));
     }
 
-    IEnumerator FadeInOut(float start, float end)
+    IEnumerator FadeInRoutine(float start, float end)
     {
         Color color = _fadeImg.color;
         float currentTime = 0.0f;

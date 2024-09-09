@@ -5,14 +5,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LobbyScene : BaseScene
 {
+    GameObject _fadeEffect;
     private Action _receiveHeroListAction;
     protected override void Awake()
     {
         base.Awake();
-
+        _fadeEffect = Managers.UIManager.Parent.Find("AlertCanvas").Find("FadeEffect").gameObject;
         SendReqHeroListPacket();
     }
 
@@ -24,9 +26,18 @@ public class LobbyScene : BaseScene
         Managers.NetworkManager.Send(reqHeroList);
     }
 
-    public void OnReceiveServerData(ResHeroListToC packet)
+    protected override void OnApplicationQuit()
+    {
+        base.OnApplicationQuit();
+    }
+
+    #region Receive
+    public void OnReceiveHeroList(ResHeroListToC packet)
     {
         _receiveHeroListAction?.Invoke();
+
+        _fadeEffect.GetComponent<FadeEffect>().FadeInOut();
+        _fadeEffect.GetComponent<Image>().raycastTarget = false;
         if (packet.Lobbyheros.Count == 0)
         {
             Managers.UIManager.ShowSceneUI<CreateHeroSceneUI>();
@@ -38,4 +49,5 @@ public class LobbyScene : BaseScene
         }
         //lobbyData.SetHeroInfo(lobbyData.LobbyHeroInfos);
     }
+    #endregion
 }

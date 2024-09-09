@@ -13,8 +13,6 @@ public class LobbySceneUI : SceneUI
     enum GameObjects
     {
         CharacterSlotLayout,
-        FadeEffect,
-        Alert
     }
     enum Buttons
     {
@@ -28,6 +26,8 @@ public class LobbySceneUI : SceneUI
         CurrentSlotNumTxt,
     }
 
+    [SerializeField]
+    AlertUI _alertPopup;
     static readonly int MAX_SLOT_COUNT = 5;
     List<LobbyHeroInfo> _heroInfos = new List<LobbyHeroInfo>(MAX_SLOT_COUNT);
     List<GameObject> _slots = new List<GameObject>(MAX_SLOT_COUNT);
@@ -35,8 +35,7 @@ public class LobbySceneUI : SceneUI
     GameObject _characterSlotLayout;
     GameObject _selectedSlot;
     int _selectSlotIdx;
-    GameObject _fadeEffect;
-    AlertUI _alertPopup;
+
 
     float _slotSpacing;
     protected override void Awake()
@@ -49,13 +48,12 @@ public class LobbySceneUI : SceneUI
 
         _currentCharacterSlotTxt = Get<TMP_Text>((int)Texts.CurrentSlotNumTxt);
         _characterSlotLayout = Get<GameObject>((int)GameObjects.CharacterSlotLayout);
-        _fadeEffect = Get<GameObject>((int)GameObjects.FadeEffect);
         _slotSpacing = _characterSlotLayout.GetComponent<HorizontalLayoutGroup>().spacing;
-        _alertPopup = Get<GameObject>((int)GameObjects.Alert).GetComponent<AlertUI>();
 
         BindEvent(Get<Button>((int)Buttons.BackBtn).gameObject, OnBackBtnClicked);
         BindEvent(Get<Button>((int)Buttons.CreateBtn).gameObject, OnCreateBtnClicked);
         BindEvent(Get<Button>((int)Buttons.DeleteBtn).gameObject, OnDeleteBtnClicked);
+        BindEvent(Get<Button>((int)Buttons.StartBtn).gameObject, OnStartBtnClicked);
 
         PreCreateSlot();
     }
@@ -74,8 +72,6 @@ public class LobbySceneUI : SceneUI
     public void SetCharacterSlotInfo(List<LobbyHeroInfo> heroInfos)
     {
         _heroInfos = heroInfos;
-        _fadeEffect.GetComponent<FadeEffect>().FadeInOut();
-        _fadeEffect.GetComponent<Image>().raycastTarget = false;
         Refresh();
     }
 
@@ -134,6 +130,7 @@ public class LobbySceneUI : SceneUI
             return;
         }
 
+        gameObject.SetActive(false);
         Managers.UIManager.ShowSceneUI<CreateHeroSceneUI>();
         Clear();
     }
@@ -157,14 +154,26 @@ public class LobbySceneUI : SceneUI
 
     }
 
+    private void OnStartBtnClicked(PointerEventData eventData)
+    {
+        if (_selectedSlot == null)
+        {
+            _alertPopup.gameObject.SetActive(true);
+            _alertPopup.GetComponent<AlertUI>().SetAlert("선택된 영웅이 없습니다.", Enums.AlertBtnNum.One);
+            return;
+        }
+        Managers.GameManager.SelectHeroIdx = _selectSlotIdx;
+        Managers.SceneManagerEx.ChangeScene(Enums.SceneType.Game);
+    }
+
     private void Clear()
     {
         _selectedSlot?.transform.Find("SelectEffect").gameObject.SetActive(false);
         _selectedSlot = null;
     }
 
-    #region Network Callback
-    public void OnReceiveServerData(ResDeleteHeroToC packet)
+    #region Receive Packet
+    public void OnReceiveDeleteHero(ResDeleteHeroToC packet)
     {
         if (packet.IsSuccess == false)
         {
@@ -173,7 +182,7 @@ public class LobbySceneUI : SceneUI
             return;
         }
         // slot delete
-        _heroInfos.Remove(_heroInfos[_selectSlotIdx]);
+        _heroInfos.Remove(_heroInfos[packet.HeroIdx]);
         Refresh();
     }
     #endregion

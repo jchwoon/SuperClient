@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: ObjectPrefab
+  m_EditorClassIdentifier: 
+  m_GroupName: ObjectPrefab
+  m_Data:
+    m_SerializedData: []
+  m_GUID: be905cce12f85014aa17722544911499
+  m_SerializeEntries:
+  - m_GUID: 11df8a3e1fe95314b86018cc945e5a2e
+    m_Address: Warrior_Init
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: ddddc73012247774a97359e9af8f24c1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 96716885a0623ac4c8808b9902d552fd, type: 2}
+    - {fileID: 11400000, guid: b31a7f8d2ad5d4240a0f750a0cb5412c, type: 2}

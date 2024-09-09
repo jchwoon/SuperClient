@@ -9,4 +9,9 @@ public class LoginScene : BaseScene
         base.Awake();
 
     }
+
+    protected override void OnApplicationQuit()
+    {
+        base.OnApplicationQuit();
+    }
 }

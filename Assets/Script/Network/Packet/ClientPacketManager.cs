@@ -14,6 +14,10 @@ public enum PacketId
   ResCreateHeroToC = 5,
   ReqDeleteHeroToS = 6,
   ResDeleteHeroToC = 7,
+  ReqEnterRoomToS = 8,
+  ResEnterRoomToC = 9,
+  SpawnToC = 10,
+  ReqLeaveGameToS = 11,
 
 }
 
@@ -56,6 +60,10 @@ class PacketManager
         _handler.Add((ushort)PacketId.ResCreateHeroToC, PacketHandler.ResCreateHeroToCHandler);
         _parseHandler.Add((ushort)PacketId.ResDeleteHeroToC, ParsePacket<ResDeleteHeroToC>);
         _handler.Add((ushort)PacketId.ResDeleteHeroToC, PacketHandler.ResDeleteHeroToCHandler);
+        _parseHandler.Add((ushort)PacketId.ResEnterRoomToC, ParsePacket<ResEnterRoomToC>);
+        _handler.Add((ushort)PacketId.ResEnterRoomToC, PacketHandler.ResEnterRoomToCHandler);
+        _parseHandler.Add((ushort)PacketId.SpawnToC, ParsePacket<SpawnToC>);
+        _handler.Add((ushort)PacketId.SpawnToC, PacketHandler.SpawnToCHandler);
     
     }
 

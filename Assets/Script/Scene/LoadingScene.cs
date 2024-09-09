@@ -47,4 +47,9 @@ public class LoadingScene : BaseScene
             yield return null;
         }
     }
+
+    protected override void OnApplicationQuit()
+    {
+        base.OnApplicationQuit();
+    }
 }

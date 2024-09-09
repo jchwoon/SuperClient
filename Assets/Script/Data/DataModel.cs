@@ -9,6 +9,9 @@ using UnityEngine;
 
 namespace Data
 {
+    ///////////////////////////////
+    ///////////STAT////////////////
+    ///////////////////////////////
     public class HeroStat
     {
         public int Level;
@@ -36,11 +39,29 @@ namespace Data
         }
     }
 
-    public class HeroData
-    {
-        public EHeroClassType ClassType;
-        public HeroStat HeroStat;
+    ///////////////////////////////
+    ///////////TEXT////////////////
+    ///////////////////////////////
+    //public class TextData
+    //{
+    //    public string TemplateId;
+    //    public string Ko;
+    //    public string En;
+    //}
 
-    }
+    //[Serializable]
+    //public class TextDataLoader : ILoader<string, TextData>
+    //{
+    //    public List<TextData> heroStats = new List<TextData>();
+
+    //    public Dictionary<string, TextData> MakeDict()
+    //    {
+    //        Dictionary<string, TextData> dict = new Dictionary<string, TextData>();
+    //        foreach (TextData text in heroStats)
+    //            dict.Add(text.TemplateId, text);
+
+    //        return dict;
+    //    }
+    //}
 }
 

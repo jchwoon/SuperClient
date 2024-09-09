@@ -20,13 +20,13 @@ public class CreateHeroSceneUI : SceneUI
     }
     enum GameObjects
     {
-        Alert,
         Nickname
     }
 
+    [SerializeField]
+    AlertUI _alertPopup;
     TMP_InputField _nicknameField;
     TMP_Text _placeHolder;
-    AlertUI _alertPopup;
 
     protected override void Awake()
     {
@@ -36,7 +36,6 @@ public class CreateHeroSceneUI : SceneUI
         Bind<TMP_Text>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
 
-        _alertPopup = Get<GameObject>((int)GameObjects.Alert).GetComponent<AlertUI>();
         _nicknameField = Get<GameObject>((int)GameObjects.Nickname).GetComponent<TMP_InputField>();
         Get<TMP_Text>((int)Texts.Placeholder).text = "2~8 사이 닉네임";
 
@@ -46,7 +45,7 @@ public class CreateHeroSceneUI : SceneUI
 
     private void OnBackBtnClicked(PointerEventData eventData)
     {
-        Managers.UIManager.CloseSceneUI<CreateHeroSceneUI>();
+        ShowAndClose();
     }
 
     private void OnCreateBtnClicked(PointerEventData eventData)
@@ -59,7 +58,18 @@ public class CreateHeroSceneUI : SceneUI
         Clear();
     }
 
-    public void OnReceiveServerData(ResCreateHeroToC packet)
+    private void Clear()
+    {
+        _nicknameField.text = "";
+    }
+    private void ShowAndClose()
+    {
+        Managers.UIManager.ShowSceneUI<LobbySceneUI>();
+        Managers.UIManager.CloseSceneUI<CreateHeroSceneUI>();
+    }
+
+    #region Network
+    public void OnReceiveCreateHero(ResCreateHeroToC packet)
     {
         Google.Protobuf.Enum.ECreateHeroResult result = packet.Result;
         switch (result)
@@ -67,9 +77,9 @@ public class CreateHeroSceneUI : SceneUI
             case Google.Protobuf.Enum.ECreateHeroResult.Success:
                 //로비 인포 정보를 다시 req하고 응답이 오면 close
                 LobbyScene lobby = (LobbyScene)Managers.SceneManagerEx.CurrentScene;
-                lobby.SendReqHeroListPacket(()=>
+                lobby.SendReqHeroListPacket(() =>
                 {
-                    Managers.UIManager.CloseSceneUI<CreateHeroSceneUI>();
+                    ShowAndClose();
                 });
                 break;
             case Google.Protobuf.Enum.ECreateHeroResult.FailMinmax:
@@ -86,9 +96,5 @@ public class CreateHeroSceneUI : SceneUI
                 break;
         }
     }
-
-    private void Clear()
-    {
-        _nicknameField.text = "";
-    }
+    #endregion
 }

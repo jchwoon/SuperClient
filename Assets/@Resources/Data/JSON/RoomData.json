@@ -1,0 +1,24 @@
+{
+  "rooms": [
+     {
+        "roomId": 1,
+        "name": "home"
+     },
+     {
+        "roomId": 2,
+        "name": "springDungeon"
+     },
+    {
+      "roomId": 3,
+      "name": "summerDungeon"
+    },
+    {
+      "roomId": 4,
+      "name": "fallDungeon"
+    },
+    {
+      "roomId": 5,
+      "name": "winterDungeon"
+    }
+  ]
+}

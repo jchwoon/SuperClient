@@ -17,16 +17,15 @@ public partial class PacketHandler
     public static void ResHeroListToCHandler(PacketSession session, IMessage packet)
     {
         ResHeroListToC heroListPacket = (ResHeroListToC)packet;
-
         LobbyScene lobbyScene = (LobbyScene)Managers.SceneManagerEx.CurrentScene;
-        lobbyScene.OnReceiveServerData(heroListPacket);
+        lobbyScene.OnReceiveHeroList(heroListPacket);
     }
     public static void ResCreateHeroToCHandler(PacketSession session, IMessage packet)
     {
         ResCreateHeroToC resCreateHeroPacket = (ResCreateHeroToC)packet;
         CreateHeroSceneUI ui = Managers.UIManager.ShowSceneUI<CreateHeroSceneUI>();
         if (ui != null)
-            ui.OnReceiveServerData(resCreateHeroPacket);
+            ui.OnReceiveCreateHero(resCreateHeroPacket);
     }
 
     public static void ResDeleteHeroToCHandler(PacketSession session, IMessage packet)
@@ -34,6 +33,12 @@ public partial class PacketHandler
         ResDeleteHeroToC resDeleteHeroPacket = (ResDeleteHeroToC)packet;
         LobbySceneUI ui = Managers.UIManager.ShowSceneUI<LobbySceneUI>();
         if (ui != null)
-            ui.OnReceiveServerData(resDeleteHeroPacket);
+            ui.OnReceiveDeleteHero(resDeleteHeroPacket);
+    }
+    public static void ResEnterRoomToCHandler(PacketSession session, IMessage packet)
+    {
+        ResEnterRoomToC resEnterPacket = (ResEnterRoomToC)packet;
+        GameScene gameScene = (GameScene)Managers.SceneManagerEx.CurrentScene;
+        gameScene.OnReceiveEnterRoom(resEnterPacket);
     }
 }
