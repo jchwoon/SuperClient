@@ -19,8 +19,8 @@ namespace Data
         public int MaxHp;
         public int MaxMp;
         public int Defence;
-        public int AtkSpeed;
-        public int MoveSpeed;
+        public float AtkSpeed;
+        public float MoveSpeed;
         public int Exp;
     }
 

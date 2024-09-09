@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HeroState
+namespace MyHeroState
 {
     public class BaseState : IState
     {
-        protected HeroStateMachine _heroMachine;
-        public BaseState(HeroStateMachine heroMachine)
+        protected MyHeroStateMachine _heroMachine;
+        public BaseState(MyHeroStateMachine heroMachine)
         {
             _heroMachine = heroMachine;
         }
@@ -25,14 +25,14 @@ namespace HeroState
 
         }
 
-        protected virtual void StartAnim(int hashId)
+        protected virtual void SetAnimParameter(int hashId, bool value)
         {
-            _heroMachine.Hero.Animator.SetBool(hashId, true);
+            _heroMachine.MyHero.Animator.SetBool(hashId, value);
         }
 
-        protected virtual void StopAnim(int hashId)
+        protected virtual void SetAnimParameter(int hashId, float value)
         {
-            _heroMachine.Hero.Animator.SetBool(hashId, false);
+            _heroMachine.MyHero.Animator.SetFloat(hashId, value);
         }
     }
 }

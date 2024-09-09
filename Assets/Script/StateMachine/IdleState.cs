@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HeroState
+namespace MyHeroState
 {
     public class IdleState : BaseState
     {
-        public IdleState(HeroStateMachine heroMachine) : base(heroMachine)
+        public IdleState(MyHeroStateMachine heroMachine) : base(heroMachine)
         {
         }
 
@@ -14,13 +14,13 @@ namespace HeroState
         {
             base.Exit();
 
-            StopAnim(_heroMachine.Hero.AnimData.IdleHash);
+            SetAnimParameter(_heroMachine.MyHero.AnimData.IdleHash, false);
         }
         public override void Enter()
         {
             base.Enter();
 
-            StartAnim(_heroMachine.Hero.AnimData.IdleHash);
+            SetAnimParameter(_heroMachine.MyHero.AnimData.IdleHash, true);
         }
 
         public override void Update()
