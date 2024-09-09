@@ -1,3 +1,4 @@
+using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -18,9 +19,10 @@ public class LoginSceneUI : SceneUI
         StartBtn
     }
 
-    private TMP_Text _startTxt;
-    private TMP_Text _stateTxt;
-    private Button _startBtn;
+    TMP_Text _startTxt;
+    TMP_Text _stateTxt;
+    Button _startBtn;
+    bool _isStartState;
 
     protected override void Awake()
     {
@@ -40,7 +42,7 @@ public class LoginSceneUI : SceneUI
     }
     private void SetData()
     {
-        _startTxt.text = "Go to Lobby";
+        _startTxt.text = "Start";
         _stateTxt.text = "";
         BindEvent(_startBtn.gameObject, OnStartBtnClicked);
     }
@@ -48,12 +50,23 @@ public class LoginSceneUI : SceneUI
     private void OnStartBtnClicked(PointerEventData eventData)
     {
         //서버와의 연결이 필요
-        Managers.ResourceManager.LoadAllAsync<Object>("lobby", (key, currentCount, totalCount) =>
+        if (CheckStartState() == false)
+            return;
+        Managers.ResourceManager.LoadAllAsync<Object>("preLoad", (key, currentCount, totalCount) =>
         {
             _stateTxt.text = $"데이타 로딩중... : {key} {currentCount} / {totalCount}";
             if (currentCount == totalCount)
             {
                 _stateTxt.text = $"데이타 로드 완료";
+            }
+        });
+
+        Managers.ResourceManager.LoadAllAsync<Sprite>("sPreLoad", (key, currentCount, totalCount) =>
+        {
+            _stateTxt.text = $"스프라이트 로딩중... : {key} {currentCount} / {totalCount}";
+            if (currentCount == totalCount)
+            {
+                _stateTxt.text = $"스프라이트 로드 완료";
                 OnDataLoaded();
             }
         });
@@ -61,6 +74,7 @@ public class LoginSceneUI : SceneUI
 
     private void OnDataLoaded()
     {
+        Managers.DataManager.Init();
         _stateTxt.text = $"게임 서버에 연결 중...";
         Managers.NetworkManager.OnConnectedAction = OnConnected;
         Managers.NetworkManager.OnFailedAction = OnFailed;
@@ -71,9 +85,25 @@ public class LoginSceneUI : SceneUI
     private void OnConnected()
     {
         Managers.SceneManagerEx.ChangeScene(Enums.SceneType.Lobby);
+        Clear();
     }
     private void OnFailed()
     {
+        Clear();
         //
+    }
+
+    private bool CheckStartState()
+    {
+        if (_isStartState == true)
+            return false;
+        _isStartState = true;
+        _startBtn.interactable = false;
+        return true;
+    }
+    private void Clear()
+    {
+        _isStartState = false;
+        _startBtn.interactable = true;
     }
 }

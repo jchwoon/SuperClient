@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PopupUI : MonoBehaviour
+public class PopupUI : BaseUI
 {
-    private void Start()
+    public Canvas Canvas { get; set; }
+    protected override void Awake()
     {
-        
-    }
+        base.Awake();
 
-    private void Update()
-    {
-        
+        Canvas = GetComponent<Canvas>();
     }
 }

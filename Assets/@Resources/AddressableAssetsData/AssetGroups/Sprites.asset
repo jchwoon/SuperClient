@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Sprites
+  m_EditorClassIdentifier: 
+  m_GroupName: Sprites
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 02154be3e6226164cbbe60753cff7254
+  m_SerializeEntries:
+  - m_GUID: a29a5b7116853654498b2c631da445b6
+    m_Address: Archer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sPreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09fa17c19aae92f4b8180bfdaace66f9
+    m_Address: Mage
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sPreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 521427e5fa6df7e44aefdb8491bbd29f
+    m_Address: Warrior
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sPreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: ddddc73012247774a97359e9af8f24c1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bcaa58ba8d2ced4409488c3f3a462684, type: 2}
+    - {fileID: 11400000, guid: e63dc9919ddab954fb3a4d55d7f14304, type: 2}

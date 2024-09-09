@@ -18,16 +18,34 @@ MonoBehaviour:
   m_GUID: 35c21e6a36a7dda449deae7015300177
   m_SerializeEntries:
   - m_GUID: 698aa764f655a5d4a8ff7af087c2bb02
-    m_Address: LoginCanvas
+    m_Address: LoginScene
     m_ReadOnly: 0
     m_SerializedLabels:
-    - login
+    - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4388aef250b6ba24882eddb8351b8473
-    m_Address: Assets/@Resources/Prefab/UI/TestObj.prefab
+  - m_GUID: 4069d55cab1f8844f945d15d1f8b7529
+    m_Address: LobbySceneUI
     m_ReadOnly: 0
     m_SerializedLabels:
-    - lobby
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2dfa62476c1594043b9dd2f4a41b48e3
+    m_Address: CreateHeroSceneUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 769ad1845a1a8bf449b72771c0df98bf
+    m_Address: CharacterSlot
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 451c77189bf3bc74ba479f5bf11d029c
+    m_Address: Alert
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ddddc73012247774a97359e9af8f24c1, type: 2}

@@ -32,11 +32,12 @@ public class ServerSession : PacketSession
 
     public override void OnDisconnected()
     {
+        Debug.Log("Disconnected");
     }
 
     public override void OnRecvPacket(ArraySegment<byte> segment)
     {
-        PacketManager.Instance.ReceivePacket(segment);
+        PacketManager.Instance.ReceivePacket(this, segment);
     }
 
     public override void OnSend()

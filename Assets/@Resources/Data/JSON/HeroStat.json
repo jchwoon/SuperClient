@@ -1,0 +1,54 @@
+{
+  "stats": [
+    {
+      "level": 1,
+      "maxHp": 200,
+      "maxMp": 100,
+      "moveSpeed": 5,
+      "atkDamage": 25,
+      "defence": 5,
+      "atkSpeed": 1,
+      "exp": 50
+    },
+    {
+      "level": 2,
+      "maxHp": 250,
+      "maxMp": 120,
+      "moveSpeed": 5,
+      "atkDamage": 30,
+      "defence": 6,
+      "atkSpeed": 1,
+      "exp": 100
+    },
+    {
+      "level": 3,
+      "maxHp": 300,
+      "maxMp": 150,
+      "moveSpeed": 5,
+      "atkDamage": 35,
+      "defence": 7,
+      "atkSpeed": 1,
+      "exp": 200
+    },
+    {
+      "level": 4,
+      "maxHp": 350,
+      "maxMp": 180,
+      "moveSpeed": 5,
+      "atkDamage": 40,
+      "defence": 8,
+      "atkSpeed": 1,
+      "exp": 400
+    },
+    {
+      "level": 5,
+      "maxHp": 400,
+      "maxMp": 210,
+      "moveSpeed": 5,
+      "atkDamage": 45,
+      "defence": 9,
+      "atkSpeed": 1,
+      "exp": 800
+    }
+  ]
+}

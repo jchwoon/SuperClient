@@ -8,8 +8,9 @@ public class Enums
     {
         Login,
         Lobby,
-        CreateHero,
-        Game
+        Game,
+        Loading,
+        None
     }
 
     public enum TouchEvent
@@ -21,5 +22,13 @@ public class Enums
         BeginDrag,
         Drag,
         EndDrag,
+    }
+
+    public enum AlertBtnNum
+    {
+        None,
+        One,
+        Two,
+        Three,
     }
 }

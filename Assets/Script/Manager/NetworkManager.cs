@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class NetworkManager
 {
-    Session _session = null;
+    ServerSession _session = null;
     public Action OnConnectedAction { get; set; }
     public Action OnFailedAction { get; set; }
     public void Connect()
@@ -23,10 +23,10 @@ public class NetworkManager
         connector.Connect(endPoint, () => { return _session; });
     }
 
-    public void Send(ArraySegment<byte> segment)
+    public void Send(IMessage packet)
     {
         if (_session != null )
-            _session.Send(segment);
+            _session.Send(_session.Send(packet));
     }
 
     public void Disconnect()
@@ -51,8 +51,8 @@ public class NetworkManager
 
             foreach (Packet packet in packetList)
             {
-                Action<IMessage> action = PacketManager.Instance.GetPacketHandler(packet.id);
-                action?.Invoke(packet.packet);
+                Action<PacketSession, IMessage> action = PacketManager.Instance.GetPacketHandler(packet.id);
+                action?.Invoke(_session, packet.packet);
             }
         }
     }
