@@ -6,17 +6,15 @@ using UnityEngine;
 public class Hero : Creature
 {
     private HeroStateMachine _heroMachine;
-
-
-
+    protected HeroStatData _statData;
 
     protected override void Awake()
     {
         base.Awake();
 
         _heroMachine = new HeroStateMachine(this);
-
-        //_heroMachine.ChangeState(_heroMachine.IdleState);
+        _statData = new HeroStatData();
+        _heroMachine.ChangeState(_heroMachine.IdleState);
     }
     protected override void Update()
     {
@@ -25,4 +23,8 @@ public class Hero : Creature
         _heroMachine.Update();
     }
 
+    public void SetInfo(HeroInfo heroInfo)
+    {
+        _statData.SetStat(heroInfo.StatInfo);
+    }
 }

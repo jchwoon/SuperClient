@@ -14,13 +14,13 @@ namespace MyHeroState
         {
             base.Exit();
 
-            SetAnimParameter(_heroMachine.MyHero.AnimData.IdleHash, false);
+            //SetAnimParameter(_heroMachine.MyHero.AnimData.IdleHash, false);
         }
         public override void Enter()
         {
             base.Enter();
-
-            SetAnimParameter(_heroMachine.MyHero.AnimData.IdleHash, true);
+            SetAnimParameter(_heroMachine.MyHero.AnimData.MoveSpeedHash, 0);
+            //SetAnimParameter(_heroMachine.MyHero.AnimData.IdleHash, true);
         }
 
         public override void Update()

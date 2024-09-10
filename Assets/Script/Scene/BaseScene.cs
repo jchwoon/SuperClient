@@ -8,6 +8,7 @@ public class BaseScene : MonoBehaviour
 {
     protected virtual void Awake()
     {
+        Screen.SetResolution(540, 390, false);
         Managers.SceneManagerEx.CurrentScene = this;
     }
 

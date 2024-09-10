@@ -39,6 +39,27 @@ namespace Data
         }
     }
 
+    public class RoomData
+    {
+        public int RoomId;
+        public string Name;
+    }
+
+    [Serializable]
+    public class RoomDataLoader : ILoader<int, RoomData>
+    {
+        public List<RoomData> rooms = new List<RoomData>();
+
+        public Dictionary<int, RoomData> MakeDict()
+        {
+            Dictionary<int, RoomData> dict = new Dictionary<int, RoomData>();
+            foreach (RoomData room in rooms)
+                dict.Add(room.RoomId, room);
+
+            return dict;
+        }
+    }
+
     ///////////////////////////////
     ///////////TEXT////////////////
     ///////////////////////////////

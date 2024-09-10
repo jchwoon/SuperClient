@@ -30,11 +30,13 @@ namespace Google.Protobuf.Enum {
             "T19DTEFTU19UWVBFX01BR0UQAyqdAQoRRUNyZWF0ZUhlcm9SZXN1bHQSHAoY",
             "RUNSRUFURV9IRVJPX1JFU1VMVF9OT05FEAASHwobRUNSRUFURV9IRVJPX1JF",
             "U1VMVF9TVUNDRVNTEAESJAogRUNSRUFURV9IRVJPX1JFU1VMVF9GQUlMX09W",
-            "RVJMQVAQAhIjCh9FQ1JFQVRFX0hFUk9fUkVTVUxUX0ZBSUxfTUlOTUFYEANC",
-            "F6oCFEdvb2dsZS5Qcm90b2J1Zi5FbnVtYgZwcm90bzM="));
+            "RVJMQVAQAhIjCh9FQ1JFQVRFX0hFUk9fUkVTVUxUX0ZBSUxfTUlOTUFYEAMq",
+            "VQoLRU9iamVjdFR5cGUSFQoRRU9CSkVDVF9UWVBFX05PTkUQABIVChFFT0JK",
+            "RUNUX1RZUEVfSEVSTxABEhgKFEVPQkpFQ1RfVFlQRV9NT05TVEVSEAJCF6oC",
+            "FEdvb2dsZS5Qcm90b2J1Zi5FbnVtYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), }, null, null));
     }
     #endregion
 
@@ -52,6 +54,12 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("ECREATE_HERO_RESULT_SUCCESS")] Success = 1,
     [pbr::OriginalName("ECREATE_HERO_RESULT_FAIL_OVERLAP")] FailOverlap = 2,
     [pbr::OriginalName("ECREATE_HERO_RESULT_FAIL_MINMAX")] FailMinmax = 3,
+  }
+
+  public enum EObjectType {
+    [pbr::OriginalName("EOBJECT_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EOBJECT_TYPE_HERO")] Hero = 1,
+    [pbr::OriginalName("EOBJECT_TYPE_MONSTER")] Monster = 2,
   }
 
   #endregion

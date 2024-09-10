@@ -10,21 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Json
+  m_Name: Map
   m_EditorClassIdentifier: 
-  m_GroupName: Json
+  m_GroupName: Map
   m_Data:
     m_SerializedData: []
-  m_GUID: 33870d3108d741144b6fa9d70740006b
+  m_GUID: aa198abee2c0b8b4ba1f1a3c290e1aa8
   m_SerializeEntries:
-  - m_GUID: 24377c9bf2c62aa458c4afd42618f6ee
-    m_Address: HeroStat
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6973c8b1e1fd4e344ba313be484cac85
-    m_Address: RoomData
+  - m_GUID: 1b8cbc02fc884f54c894d1052ac6f94d
+    m_Address: Village
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
@@ -33,5 +27,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: ddddc73012247774a97359e9af8f24c1, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 8aee618c461ea044783f5ae3511f0fb8, type: 2}
-    - {fileID: 11400000, guid: bb90c5d6f7553ec48b03b9ba9f4c2a51, type: 2}
+    - {fileID: 11400000, guid: 257a7df12e0e5b84b9175cc7264e57a6, type: 2}
+    - {fileID: 11400000, guid: 425a7fee7173ba44cb754846370daf9b, type: 2}

@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace MyHeroState
 {
-    public class WalkState : BaseState
+    public class MoveState : BaseState
     {
         Vector2 _moveInput = Vector2.zero;
         MyHero _myHero;
 
-        public WalkState(MyHeroStateMachine heroMachine) : base(heroMachine)
+        public MoveState(MyHeroStateMachine heroMachine) : base(heroMachine)
         {
         }
 
@@ -18,7 +19,7 @@ namespace MyHeroState
         {
             base.Exit();
 
-            SetAnimParameter(_heroMachine.MyHero.AnimData.WalkHash, false);
+            //SetAnimParameter(_heroMachine.MyHero.AnimData.WalkHash, false);
         }
         public override void Enter()
         {
@@ -26,7 +27,7 @@ namespace MyHeroState
 
             _myHero = _heroMachine.MyHero;
 
-            SetAnimParameter(_heroMachine.MyHero.AnimData.WalkHash, true);
+            //SetAnimParameter(_heroMachine.MyHero.AnimData.WalkHash, true);
         }
 
         public override void Update()

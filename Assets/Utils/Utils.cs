@@ -6,6 +6,7 @@ public class Utils
 {
     public static int GetAccountId()
     {
+        //return 5;
         int deviceIdHash = SystemInfo.deviceUniqueIdentifier.GetHashCode();
         return deviceIdHash;
     }

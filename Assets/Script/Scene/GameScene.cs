@@ -1,3 +1,4 @@
+using Data;
 using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,6 +6,8 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
+    [SerializeField]
+    Transform _mapParent;
     protected override void Awake()
     {
         base.Awake();
@@ -14,11 +17,18 @@ public class GameScene : BaseScene
     }
     public void OnReceiveEnterRoom(ResEnterRoomToC packet)
     {
-        Debug.Log(packet.MyHero);
+        RoomData room;
+        if (Managers.DataManager.RoomDict.TryGetValue(packet.MyHero.HeroInfo.ObjectInfo.PosInfo.RoomId, out room) == false)
+            return;
+
+        string key = room.Name;
+        Managers.ResourceManager.Instantiate(key, _mapParent);
         //hero setting
         Managers.ObjectManager.Spawn(packet.MyHero);
         //ui setting
         Managers.UIManager.ShowSceneUI<GameSceneUI>()?.SetUI();
+
+        //Todo fadein
     }
 
     protected override void OnApplicationQuit()

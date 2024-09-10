@@ -35,9 +35,9 @@ namespace Google.Protobuf.Protocol {
             "bGV0ZUhlcm9Ub0MSEQoJaXNTdWNjZXNzGAEgASgIEg8KB2hlcm9JZHgYAiAB",
             "KAUiIgoPUmVxRW50ZXJSb29tVG9TEg8KB2hlcm9JZHgYASABKAUiNwoPUmVz",
             "RW50ZXJSb29tVG9DEiQKBm15SGVybxgBIAEoCzIULlByb3RvY29sLk15SGVy",
-            "b0luZm8iLAoIU3Bhd25Ub0MSIAoEaGVybxgBIAMoCzISLlByb3RvY29sLkhl",
-            "cm9JbmZvIhEKD1JlcUxlYXZlR2FtZVRvU0IbqgIYR29vZ2xlLlByb3RvYnVm",
-            "LlByb3RvY29sYgZwcm90bzM="));
+            "b0luZm8iLgoIU3Bhd25Ub0MSIgoGaGVyb2VzGAEgAygLMhIuUHJvdG9jb2wu",
+            "SGVyb0luZm8iEQoPUmVxTGVhdmVHYW1lVG9TQhuqAhhHb29nbGUuUHJvdG9i",
+            "dWYuUHJvdG9jb2xiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, global::Google.Protobuf.Struct.StructReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -50,7 +50,7 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ResDeleteHeroToC), global::Google.Protobuf.Protocol.ResDeleteHeroToC.Parser, new[]{ "IsSuccess", "HeroIdx" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ReqEnterRoomToS), global::Google.Protobuf.Protocol.ReqEnterRoomToS.Parser, new[]{ "HeroIdx" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ResEnterRoomToC), global::Google.Protobuf.Protocol.ResEnterRoomToC.Parser, new[]{ "MyHero" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.SpawnToC), global::Google.Protobuf.Protocol.SpawnToC.Parser, new[]{ "Hero" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.SpawnToC), global::Google.Protobuf.Protocol.SpawnToC.Parser, new[]{ "Heroes" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ReqLeaveGameToS), global::Google.Protobuf.Protocol.ReqLeaveGameToS.Parser, null, null, null, null, null)
           }));
     }
@@ -1910,7 +1910,7 @@ namespace Google.Protobuf.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public SpawnToC(SpawnToC other) : this() {
-      hero_ = other.hero_.Clone();
+      heroes_ = other.heroes_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1920,15 +1920,15 @@ namespace Google.Protobuf.Protocol {
       return new SpawnToC(this);
     }
 
-    /// <summary>Field number for the "hero" field.</summary>
-    public const int HeroFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Google.Protobuf.Struct.HeroInfo> _repeated_hero_codec
+    /// <summary>Field number for the "heroes" field.</summary>
+    public const int HeroesFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Google.Protobuf.Struct.HeroInfo> _repeated_heroes_codec
         = pb::FieldCodec.ForMessage(10, global::Google.Protobuf.Struct.HeroInfo.Parser);
-    private readonly pbc::RepeatedField<global::Google.Protobuf.Struct.HeroInfo> hero_ = new pbc::RepeatedField<global::Google.Protobuf.Struct.HeroInfo>();
+    private readonly pbc::RepeatedField<global::Google.Protobuf.Struct.HeroInfo> heroes_ = new pbc::RepeatedField<global::Google.Protobuf.Struct.HeroInfo>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::Google.Protobuf.Struct.HeroInfo> Hero {
-      get { return hero_; }
+    public pbc::RepeatedField<global::Google.Protobuf.Struct.HeroInfo> Heroes {
+      get { return heroes_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1946,7 +1946,7 @@ namespace Google.Protobuf.Protocol {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!hero_.Equals(other.hero_)) return false;
+      if(!heroes_.Equals(other.heroes_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1954,7 +1954,7 @@ namespace Google.Protobuf.Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= hero_.GetHashCode();
+      hash ^= heroes_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1973,7 +1973,7 @@ namespace Google.Protobuf.Protocol {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      hero_.WriteTo(output, _repeated_hero_codec);
+      heroes_.WriteTo(output, _repeated_heroes_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1984,7 +1984,7 @@ namespace Google.Protobuf.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      hero_.WriteTo(ref output, _repeated_hero_codec);
+      heroes_.WriteTo(ref output, _repeated_heroes_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1995,7 +1995,7 @@ namespace Google.Protobuf.Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      size += hero_.CalculateSize(_repeated_hero_codec);
+      size += heroes_.CalculateSize(_repeated_heroes_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -2008,7 +2008,7 @@ namespace Google.Protobuf.Protocol {
       if (other == null) {
         return;
       }
-      hero_.Add(other.hero_);
+      heroes_.Add(other.heroes_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -2029,7 +2029,7 @@ namespace Google.Protobuf.Protocol {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            hero_.AddEntriesFrom(input, _repeated_hero_codec);
+            heroes_.AddEntriesFrom(input, _repeated_heroes_codec);
             break;
           }
         }
@@ -2052,7 +2052,7 @@ namespace Google.Protobuf.Protocol {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            hero_.AddEntriesFrom(ref input, _repeated_hero_codec);
+            heroes_.AddEntriesFrom(ref input, _repeated_heroes_codec);
             break;
           }
         }
