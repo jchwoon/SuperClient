@@ -7,6 +7,14 @@ public class Hero : Creature
 {
     private HeroStateMachine _heroMachine;
     protected HeroStatData _statData;
+    public HeroStatData StatData
+    {
+        get { return _statData; }
+    }
+    public HeroStateMachine HeroMachine
+    { 
+        get { return _heroMachine; }
+    }
 
     protected override void Awake()
     {

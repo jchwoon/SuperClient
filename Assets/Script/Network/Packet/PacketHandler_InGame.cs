@@ -11,14 +11,22 @@ public partial class PacketHandler
     public static void SpawnToCHandler(PacketSession session, IMessage packet)
     {
         SpawnToC spawnPacket = (SpawnToC)packet;
-        Debug.Log("hi");
 
         foreach (HeroInfo hero in spawnPacket.Heroes)
         {
-            Debug.Log(hero);
             Managers.ObjectManager.Spawn(hero);
         }
     }
 
+    public static void MoveToCHandler(PacketSession session, IMessage packet)
+    {
+        MoveToC movePacket = (MoveToC)packet;
 
+        Hero hero = Managers.ObjectManager.Find(movePacket.ObjectId);
+
+        if (hero == null)
+            return;
+
+        hero.HeroMachine.UpdatePosInput(movePacket.PosInfo);
+    }
 }

@@ -1,3 +1,4 @@
+using Google.Protobuf.Enum;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,15 @@ public interface IState
     public void Exit();
     public void Enter();
     public void Update();
+    public ECreatureState GetCreatureState();
 }
 
 public class StateMachine
 {
-    protected IState CurrentState { get; private set; }
-    public void ChangeState(IState changeState)
+    public IState CurrentState { get; private set; }
+    protected ECreatureState CreatureState { get; private set; }
+
+    public virtual void ChangeState(IState changeState)
     {
         if (CurrentState != null)
         {

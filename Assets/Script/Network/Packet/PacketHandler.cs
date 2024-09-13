@@ -39,4 +39,10 @@ public partial class PacketHandler
         GameScene gameScene = (GameScene)Managers.SceneManagerEx.CurrentScene;
         gameScene.OnReceiveEnterRoom(resEnterPacket);
     }
+
+    public static void PingCheckToCHandler(PacketSession session, IMessage packet)
+    {
+        PingCheckToS pingPacket = new PingCheckToS();
+        Managers.NetworkManager.Send(pingPacket);
+    }
 }

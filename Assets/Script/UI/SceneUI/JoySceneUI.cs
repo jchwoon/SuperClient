@@ -1,3 +1,4 @@
+using Google.Protobuf.Enum;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,6 @@ public class JoySceneUI : SceneUI
 
     RectTransform _joystickRect;
     RectTransform _joyHandleRect;
-    Vector2 _initPos;
     private bool _isPress;
     private Vector2 _moveInput = Vector2.zero;
 
@@ -51,7 +51,7 @@ public class JoySceneUI : SceneUI
 
     private void OnHandlePointerDown(PointerEventData eventData)
     {
-        _initPos = eventData.position - _joystickRect.anchoredPosition;
+        SetJoyPos(eventData);
         _isPress = true;
     }
 
@@ -64,6 +64,11 @@ public class JoySceneUI : SceneUI
 
     private void OnHandleDrag(PointerEventData eventData)
     {
+        SetJoyPos(eventData);
+    }
+
+    private void SetJoyPos(PointerEventData eventData)
+    {
         Vector2 touchPos = Vector2.zero;
         bool inner = RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystickRect, eventData.position, eventData.pressEventCamera, out touchPos);
         if (inner == true)
@@ -73,10 +78,16 @@ public class JoySceneUI : SceneUI
             //[-1, 1]
             touchPos *= 2;
             float dist = Mathf.Min(touchPos.magnitude, 1);
-            _moveInput = touchPos.normalized * dist;
-            touchPos = _moveInput;
+            Vector2 handleDir = touchPos.normalized;
+            touchPos = handleDir * dist;
+            UpdateMoveInput(touchPos);
         }
-
         _joyHandleRect.anchoredPosition = touchPos * (_joystickRect.anchoredPosition * 0.5f);
     }
+
+    private void UpdateMoveInput(Vector2 input)
+    {
+        _moveInput = input;
+    }
+
 }

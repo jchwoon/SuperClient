@@ -1,3 +1,5 @@
+using Google.Protobuf.Enum;
+using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ namespace MyHeroState
     {
         Vector2 _moveInput = Vector2.zero;
         MyHero _myHero;
+        Coroutine sendRoutine;
 
         public MoveState(MyHeroStateMachine heroMachine) : base(heroMachine)
         {
@@ -19,15 +22,15 @@ namespace MyHeroState
         {
             base.Exit();
 
-            //SetAnimParameter(_heroMachine.MyHero.AnimData.WalkHash, false);
+            CoroutineHelper.Instance.StopHelperCoroutine(sendRoutine);
         }
         public override void Enter()
         {
             base.Enter();
 
             _myHero = _heroMachine.MyHero;
-
-            //SetAnimParameter(_heroMachine.MyHero.AnimData.WalkHash, true);
+            _moveInput = _heroMachine.MoveInput;
+            sendRoutine = CoroutineHelper.Instance.StartHelperCoroutine(SendMyPos());
         }
 
         public override void Update()
@@ -42,7 +45,12 @@ namespace MyHeroState
 
             SetAnimParameter(_myHero.AnimData.MoveSpeedHash, _moveInput.magnitude * GetModifiedSpeed());
             MoveToMoveDir();
-            RotateToMoveDir(_moveInput);
+            RotateToMoveDir();
+        }
+
+        public override ECreatureState GetCreatureState()
+        {
+            return ECreatureState.Move;
         }
 
         private void MoveToMoveDir()
@@ -56,21 +64,33 @@ namespace MyHeroState
 
             moveDir *= (GetModifiedSpeed() * Time.deltaTime);
 
-
             _myHero.transform.position += moveDir;
         }
 
-        private void RotateToMoveDir(Vector2 moveInput)
+        private void RotateToMoveDir()
         {
-            Vector3 targetDir = new Vector3(moveInput.x, 0, moveInput.y);
+            Vector3 targetDir = new Vector3(_moveInput.x, 0, _moveInput.y);
             Quaternion targetRotation = Quaternion.LookRotation(targetDir);
             _myHero.transform.rotation = Quaternion.Slerp(_myHero.transform.rotation, targetRotation, 10 * Time.deltaTime);
         }
 
         private float GetModifiedSpeed()
         {
-            return _myHero.StatData.MoveSpeed * _heroMachine.MoveRatio;
+            return 20 * _heroMachine.MoveRatio;
+        }
+
+        IEnumerator SendMyPos()
+        {
+            while (true)
+            {
+                _heroMachine.MovePacket.PosInfo.PosX = _myHero.transform.position.x;
+                _heroMachine.MovePacket.PosInfo.PosY = _myHero.transform.position.y;
+                _heroMachine.MovePacket.PosInfo.PosZ = _myHero.transform.position.z;
+                _heroMachine.MovePacket.PosInfo.RotY = _myHero.transform.eulerAngles.y;
+                _heroMachine.MovePacket.PosInfo.Speed = _moveInput.magnitude * GetModifiedSpeed();
+                Managers.NetworkManager.Send(_heroMachine.MovePacket);
+                yield return new WaitForSeconds(0.5f);
+            }
         }
     }
-
 }

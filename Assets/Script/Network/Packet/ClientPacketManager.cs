@@ -18,6 +18,10 @@ public enum PacketId
   ResEnterRoomToC = 9,
   SpawnToC = 10,
   ReqLeaveGameToS = 11,
+  MoveToS = 12,
+  MoveToC = 13,
+  PingCheckToC = 14,
+  PingCheckToS = 15,
 
 }
 
@@ -64,6 +68,10 @@ class PacketManager
         _handler.Add((ushort)PacketId.ResEnterRoomToC, PacketHandler.ResEnterRoomToCHandler);
         _parseHandler.Add((ushort)PacketId.SpawnToC, ParsePacket<SpawnToC>);
         _handler.Add((ushort)PacketId.SpawnToC, PacketHandler.SpawnToCHandler);
+        _parseHandler.Add((ushort)PacketId.MoveToC, ParsePacket<MoveToC>);
+        _handler.Add((ushort)PacketId.MoveToC, PacketHandler.MoveToCHandler);
+        _parseHandler.Add((ushort)PacketId.PingCheckToC, ParsePacket<PingCheckToC>);
+        _handler.Add((ushort)PacketId.PingCheckToC, PacketHandler.PingCheckToCHandler);
     
     }
 

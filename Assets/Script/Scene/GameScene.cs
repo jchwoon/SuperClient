@@ -18,7 +18,7 @@ public class GameScene : BaseScene
     public void OnReceiveEnterRoom(ResEnterRoomToC packet)
     {
         RoomData room;
-        if (Managers.DataManager.RoomDict.TryGetValue(packet.MyHero.HeroInfo.ObjectInfo.PosInfo.RoomId, out room) == false)
+        if (Managers.DataManager.RoomDict.TryGetValue(packet.MyHero.HeroInfo.ObjectInfo.RoomId, out room) == false)
             return;
 
         string key = room.Name;

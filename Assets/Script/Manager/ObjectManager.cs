@@ -31,4 +31,13 @@ public class ObjectManager
 
         return hero;
     }
+
+    public Hero Find(int objectId)
+    {
+        Hero hero = null;
+        if (_heroes.TryGetValue(objectId, out hero) == false)
+            return null;
+
+        return hero;
+    }
 }
