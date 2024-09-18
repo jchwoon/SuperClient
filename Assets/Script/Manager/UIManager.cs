@@ -20,6 +20,8 @@ public class UIManager
         }
     }
 
+
+
     public T ShowPopup<T>(string name = null) where T : PopupUI
     {
         if (name == null)
@@ -32,12 +34,31 @@ public class UIManager
             popup = go.GetComponent<T>();
             _popups.Add(name, popup);
         }
-        _popupList.AddLast(popup);
+        LinkedListNode<PopupUI> node = _popupList.Find(popup);
+        if (node == null)
+            _popupList.AddLast(popup);
+        else
+        {
+            _popupList.AddLast(popup);
+            _popupList.Remove(node);
+        }
+
 
         popup.gameObject.SetActive(true);
         popup.Canvas.sortingOrder = _popupOrder++;
 
         return popup as T;
+    }
+
+    public T ClosePopupUI<T>(string name = null) where T : PopupUI
+    {
+        if (name == null)
+            name = typeof(T).Name;
+
+        T popupUI = Parent.Find(name).gameObject.GetComponent<T>();
+        popupUI.gameObject.SetActive(false);
+
+        return popupUI;
     }
 
     public T ShowSceneUI<T>(string name = null) where T : SceneUI
