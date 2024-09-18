@@ -31,4 +31,9 @@ public class Enums
         Two,
         Three,
     }
+
+    public enum Layers
+    {
+        Wall = 6,
+    }
 }

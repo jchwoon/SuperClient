@@ -20,10 +20,10 @@ public class UIManager
         }
     }
 
-    public T ShowPopup<T>(string name) where T : PopupUI
+    public T ShowPopup<T>(string name = null) where T : PopupUI
     {
         if (name == null)
-            return null;
+            name = typeof(T).Name;
 
         PopupUI popup;
         if (_popups.TryGetValue(name, out popup) == false)

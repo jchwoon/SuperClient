@@ -22,11 +22,18 @@ public partial class PacketHandler
     {
         MoveToC movePacket = (MoveToC)packet;
 
-        Hero hero = Managers.ObjectManager.Find(movePacket.ObjectId);
+        Hero hero = Managers.ObjectManager.Find<Hero>(movePacket.ObjectId);
 
         if (hero == null)
             return;
 
         hero.HeroMachine.UpdatePosInput(movePacket.PosInfo);
+    }
+
+    public static void DeSpawnToCHandler(PacketSession session, IMessage packet)
+    {
+        DeSpawnToC deSpawnPacket = (DeSpawnToC)packet;
+        Debug.Log(deSpawnPacket.ObjectType);
+        Managers.ObjectManager.DeSpawn(deSpawnPacket.ObjectId, deSpawnPacket.ObjectType);
     }
 }

@@ -13,7 +13,7 @@ public class Creature : BaseObject
     {
         base.Awake();
 
-        Animator = GetComponent<Animator>();
+        Animator = transform.GetComponent<Animator>();
         AnimData = new AnimationData();
     }
 }

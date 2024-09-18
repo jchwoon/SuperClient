@@ -64,7 +64,8 @@ namespace MyHeroState
 
             moveDir *= (GetModifiedSpeed() * Time.deltaTime);
 
-            _myHero.transform.position += moveDir;
+            _myHero.Agent.Move(moveDir);
+            //_myHero.transform.position += moveDir;
         }
 
         private void RotateToMoveDir()

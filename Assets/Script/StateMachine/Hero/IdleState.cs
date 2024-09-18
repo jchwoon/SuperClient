@@ -25,7 +25,7 @@ namespace HeroState
         {
             base.Update();
 
-            if ((_heroMachine.Hero.transform.position - _heroMachine.PosInput).sqrMagnitude > 0.01f)
+            if ((_heroMachine.Hero.transform.position - _heroMachine.PosInput).sqrMagnitude > 0.001f)
             {
                 _heroMachine.ChangeState(_heroMachine.MoveState);
                 return;
