@@ -6,8 +6,9 @@ public class Utils
 {
     public static int GetAccountId()
     {
-        int deviceIdHash = SystemInfo.deviceUniqueIdentifier.GetHashCode();
-        return deviceIdHash;
+        return 5;
+        //int deviceIdHash = SystemInfo.deviceUniqueIdentifier.GetHashCode();
+        //return deviceIdHash;
     }
     public static GameObject FindChild(GameObject go, string name = null, bool recursive = false)
     {

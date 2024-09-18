@@ -8,11 +8,19 @@ public class BaseScene : MonoBehaviour
 {
     protected virtual void Awake()
     {
+        Screen.SetResolution(540, 390, false);
         Managers.SceneManagerEx.CurrentScene = this;
     }
 
     protected virtual void OnApplicationQuit()
     {
+        SendLeavePacket();
         Managers.NetworkManager.Disconnect();
+    }
+
+    private void SendLeavePacket()
+    {
+        ReqLeaveGameToS leavePacket = new ReqLeaveGameToS();
+        Managers.NetworkManager.Send(leavePacket);
     }
 }

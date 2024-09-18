@@ -26,24 +26,30 @@ namespace Google.Protobuf.Struct {
           string.Concat(
             "CgxTdHJ1Y3QucHJvdG8SCFByb3RvY29sGgpFbnVtLnByb3RvIl0KDUxvYmJ5",
             "SGVyb0luZm8SDQoFbGV2ZWwYASABKAUSEAoIbmlja25hbWUYAiABKAkSKwoJ",
-            "Y2xhc3NUeXBlGAMgASgOMhguUHJvdG9jb2wuRUhlcm9DbGFzc1R5cGUiYAoI",
-            "SGVyb0luZm8SLgoNbG9iYnlIZXJvSW5mbxgBIAEoCzIXLlByb3RvY29sLkxv",
-            "YmJ5SGVyb0luZm8SJAoIc3RhdEluZm8YAiABKAsyEi5Qcm90b2NvbC5TdGF0",
-            "SW5mbyI/CgpNeUhlcm9JbmZvEiQKCGhlcm9JbmZvGAEgASgLMhIuUHJvdG9j",
-            "b2wuSGVyb0luZm8SCwoDZXhwGAIgASgCIokBCghTdGF0SW5mbxIKCgJocBgB",
-            "IAEoAhINCgVtYXhIcBgCIAEoAhIRCgltb3ZlU3BlZWQYAyABKAISEQoJYXRr",
-            "RGFtYWdlGAQgASgCEhAKCGF0a1NwZWVkGAUgASgCEg8KB2RlZmVuY2UYBiAB",
-            "KAISCgoCbXAYByABKAISDQoFbWF4TXAYCCABKAIiMwoHUG9zSW5mbxIMCgRw",
-            "b3NYGAEgASgCEgwKBHBvc1kYAiABKAISDAoEcG9zWhgDIAEoAkIZqgIWR29v",
-            "Z2xlLlByb3RvYnVmLlN0cnVjdGIGcHJvdG8z"));
+            "Y2xhc3NUeXBlGAMgASgOMhguUHJvdG9jb2wuRUhlcm9DbGFzc1R5cGUiigEK",
+            "CEhlcm9JbmZvEi4KDWxvYmJ5SGVyb0luZm8YASABKAsyFy5Qcm90b2NvbC5M",
+            "b2JieUhlcm9JbmZvEiQKCHN0YXRJbmZvGAIgASgLMhIuUHJvdG9jb2wuU3Rh",
+            "dEluZm8SKAoKb2JqZWN0SW5mbxgDIAEoCzIULlByb3RvY29sLk9iamVjdElu",
+            "Zm8iPwoKTXlIZXJvSW5mbxIkCghoZXJvSW5mbxgBIAEoCzISLlByb3RvY29s",
+            "Lkhlcm9JbmZvEgsKA2V4cBgCIAEoAiKJAQoIU3RhdEluZm8SCgoCaHAYASAB",
+            "KAISDQoFbWF4SHAYAiABKAISEQoJbW92ZVNwZWVkGAMgASgCEhEKCWF0a0Rh",
+            "bWFnZRgEIAEoAhIQCghhdGtTcGVlZBgFIAEoAhIPCgdkZWZlbmNlGAYgASgC",
+            "EgoKAm1wGAcgASgCEg0KBW1heE1wGAggASgCIlAKB1Bvc0luZm8SDAoEcG9z",
+            "WBgBIAEoAhIMCgRwb3NZGAIgASgCEgwKBHBvc1oYAyABKAISDAoEcm90WRgE",
+            "IAEoAhINCgVzcGVlZBgFIAEoAiJ9CgpPYmplY3RJbmZvEhAKCG9iamVjdElk",
+            "GAEgASgFEikKCm9iamVjdFR5cGUYAiABKA4yFS5Qcm90b2NvbC5FT2JqZWN0",
+            "VHlwZRIOCgZyb29tSWQYAyABKAUSIgoHcG9zSW5mbxgEIAEoCzIRLlByb3Rv",
+            "Y29sLlBvc0luZm9CGaoCFkdvb2dsZS5Qcm90b2J1Zi5TdHJ1Y3RiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.LobbyHeroInfo), global::Google.Protobuf.Struct.LobbyHeroInfo.Parser, new[]{ "Level", "Nickname", "ClassType" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.HeroInfo), global::Google.Protobuf.Struct.HeroInfo.Parser, new[]{ "LobbyHeroInfo", "StatInfo" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.HeroInfo), global::Google.Protobuf.Struct.HeroInfo.Parser, new[]{ "LobbyHeroInfo", "StatInfo", "ObjectInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.MyHeroInfo), global::Google.Protobuf.Struct.MyHeroInfo.Parser, new[]{ "HeroInfo", "Exp" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.StatInfo), global::Google.Protobuf.Struct.StatInfo.Parser, new[]{ "Hp", "MaxHp", "MoveSpeed", "AtkDamage", "AtkSpeed", "Defence", "Mp", "MaxMp" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.PosInfo), global::Google.Protobuf.Struct.PosInfo.Parser, new[]{ "PosX", "PosY", "PosZ" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.PosInfo), global::Google.Protobuf.Struct.PosInfo.Parser, new[]{ "PosX", "PosY", "PosZ", "RotY", "Speed" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ObjectInfo), global::Google.Protobuf.Struct.ObjectInfo.Parser, new[]{ "ObjectId", "ObjectType", "RoomId", "PosInfo" }, null, null, null, null)
           }));
     }
     #endregion
@@ -359,6 +365,7 @@ namespace Google.Protobuf.Struct {
     public HeroInfo(HeroInfo other) : this() {
       lobbyHeroInfo_ = other.lobbyHeroInfo_ != null ? other.lobbyHeroInfo_.Clone() : null;
       statInfo_ = other.statInfo_ != null ? other.statInfo_.Clone() : null;
+      objectInfo_ = other.objectInfo_ != null ? other.objectInfo_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -392,6 +399,18 @@ namespace Google.Protobuf.Struct {
       }
     }
 
+    /// <summary>Field number for the "objectInfo" field.</summary>
+    public const int ObjectInfoFieldNumber = 3;
+    private global::Google.Protobuf.Struct.ObjectInfo objectInfo_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.Struct.ObjectInfo ObjectInfo {
+      get { return objectInfo_; }
+      set {
+        objectInfo_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -409,6 +428,7 @@ namespace Google.Protobuf.Struct {
       }
       if (!object.Equals(LobbyHeroInfo, other.LobbyHeroInfo)) return false;
       if (!object.Equals(StatInfo, other.StatInfo)) return false;
+      if (!object.Equals(ObjectInfo, other.ObjectInfo)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -418,6 +438,7 @@ namespace Google.Protobuf.Struct {
       int hash = 1;
       if (lobbyHeroInfo_ != null) hash ^= LobbyHeroInfo.GetHashCode();
       if (statInfo_ != null) hash ^= StatInfo.GetHashCode();
+      if (objectInfo_ != null) hash ^= ObjectInfo.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -444,6 +465,10 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(18);
         output.WriteMessage(StatInfo);
       }
+      if (objectInfo_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(ObjectInfo);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -462,6 +487,10 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(18);
         output.WriteMessage(StatInfo);
       }
+      if (objectInfo_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(ObjectInfo);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -477,6 +506,9 @@ namespace Google.Protobuf.Struct {
       }
       if (statInfo_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(StatInfo);
+      }
+      if (objectInfo_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ObjectInfo);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -501,6 +533,12 @@ namespace Google.Protobuf.Struct {
           StatInfo = new global::Google.Protobuf.Struct.StatInfo();
         }
         StatInfo.MergeFrom(other.StatInfo);
+      }
+      if (other.objectInfo_ != null) {
+        if (objectInfo_ == null) {
+          ObjectInfo = new global::Google.Protobuf.Struct.ObjectInfo();
+        }
+        ObjectInfo.MergeFrom(other.ObjectInfo);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -535,6 +573,13 @@ namespace Google.Protobuf.Struct {
             input.ReadMessage(StatInfo);
             break;
           }
+          case 26: {
+            if (objectInfo_ == null) {
+              ObjectInfo = new global::Google.Protobuf.Struct.ObjectInfo();
+            }
+            input.ReadMessage(ObjectInfo);
+            break;
+          }
         }
       }
     #endif
@@ -566,6 +611,13 @@ namespace Google.Protobuf.Struct {
               StatInfo = new global::Google.Protobuf.Struct.StatInfo();
             }
             input.ReadMessage(StatInfo);
+            break;
+          }
+          case 26: {
+            if (objectInfo_ == null) {
+              ObjectInfo = new global::Google.Protobuf.Struct.ObjectInfo();
+            }
+            input.ReadMessage(ObjectInfo);
             break;
           }
         }
@@ -1314,6 +1366,8 @@ namespace Google.Protobuf.Struct {
       posX_ = other.posX_;
       posY_ = other.posY_;
       posZ_ = other.posZ_;
+      rotY_ = other.rotY_;
+      speed_ = other.speed_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1359,6 +1413,30 @@ namespace Google.Protobuf.Struct {
       }
     }
 
+    /// <summary>Field number for the "rotY" field.</summary>
+    public const int RotYFieldNumber = 4;
+    private float rotY_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float RotY {
+      get { return rotY_; }
+      set {
+        rotY_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "speed" field.</summary>
+    public const int SpeedFieldNumber = 5;
+    private float speed_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float Speed {
+      get { return speed_; }
+      set {
+        speed_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1377,6 +1455,8 @@ namespace Google.Protobuf.Struct {
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PosX, other.PosX)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PosY, other.PosY)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PosZ, other.PosZ)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RotY, other.RotY)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Speed, other.Speed)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1387,6 +1467,8 @@ namespace Google.Protobuf.Struct {
       if (PosX != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PosX);
       if (PosY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PosY);
       if (PosZ != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PosZ);
+      if (RotY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RotY);
+      if (Speed != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Speed);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1417,6 +1499,14 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(29);
         output.WriteFloat(PosZ);
       }
+      if (RotY != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(RotY);
+      }
+      if (Speed != 0F) {
+        output.WriteRawTag(45);
+        output.WriteFloat(Speed);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1439,6 +1529,14 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(29);
         output.WriteFloat(PosZ);
       }
+      if (RotY != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(RotY);
+      }
+      if (Speed != 0F) {
+        output.WriteRawTag(45);
+        output.WriteFloat(Speed);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1456,6 +1554,12 @@ namespace Google.Protobuf.Struct {
         size += 1 + 4;
       }
       if (PosZ != 0F) {
+        size += 1 + 4;
+      }
+      if (RotY != 0F) {
+        size += 1 + 4;
+      }
+      if (Speed != 0F) {
         size += 1 + 4;
       }
       if (_unknownFields != null) {
@@ -1478,6 +1582,12 @@ namespace Google.Protobuf.Struct {
       }
       if (other.PosZ != 0F) {
         PosZ = other.PosZ;
+      }
+      if (other.RotY != 0F) {
+        RotY = other.RotY;
+      }
+      if (other.Speed != 0F) {
+        Speed = other.Speed;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1510,6 +1620,14 @@ namespace Google.Protobuf.Struct {
             PosZ = input.ReadFloat();
             break;
           }
+          case 37: {
+            RotY = input.ReadFloat();
+            break;
+          }
+          case 45: {
+            Speed = input.ReadFloat();
+            break;
+          }
         }
       }
     #endif
@@ -1539,6 +1657,332 @@ namespace Google.Protobuf.Struct {
           }
           case 29: {
             PosZ = input.ReadFloat();
+            break;
+          }
+          case 37: {
+            RotY = input.ReadFloat();
+            break;
+          }
+          case 45: {
+            Speed = input.ReadFloat();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class ObjectInfo : pb::IMessage<ObjectInfo>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ObjectInfo> _parser = new pb::MessageParser<ObjectInfo>(() => new ObjectInfo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<ObjectInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Google.Protobuf.Struct.StructReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ObjectInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ObjectInfo(ObjectInfo other) : this() {
+      objectId_ = other.objectId_;
+      objectType_ = other.objectType_;
+      roomId_ = other.roomId_;
+      posInfo_ = other.posInfo_ != null ? other.posInfo_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ObjectInfo Clone() {
+      return new ObjectInfo(this);
+    }
+
+    /// <summary>Field number for the "objectId" field.</summary>
+    public const int ObjectIdFieldNumber = 1;
+    private int objectId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ObjectId {
+      get { return objectId_; }
+      set {
+        objectId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "objectType" field.</summary>
+    public const int ObjectTypeFieldNumber = 2;
+    private global::Google.Protobuf.Enum.EObjectType objectType_ = global::Google.Protobuf.Enum.EObjectType.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.Enum.EObjectType ObjectType {
+      get { return objectType_; }
+      set {
+        objectType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "roomId" field.</summary>
+    public const int RoomIdFieldNumber = 3;
+    private int roomId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int RoomId {
+      get { return roomId_; }
+      set {
+        roomId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "posInfo" field.</summary>
+    public const int PosInfoFieldNumber = 4;
+    private global::Google.Protobuf.Struct.PosInfo posInfo_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.Struct.PosInfo PosInfo {
+      get { return posInfo_; }
+      set {
+        posInfo_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as ObjectInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(ObjectInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ObjectId != other.ObjectId) return false;
+      if (ObjectType != other.ObjectType) return false;
+      if (RoomId != other.RoomId) return false;
+      if (!object.Equals(PosInfo, other.PosInfo)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ObjectId != 0) hash ^= ObjectId.GetHashCode();
+      if (ObjectType != global::Google.Protobuf.Enum.EObjectType.None) hash ^= ObjectType.GetHashCode();
+      if (RoomId != 0) hash ^= RoomId.GetHashCode();
+      if (posInfo_ != null) hash ^= PosInfo.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (ObjectId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(ObjectId);
+      }
+      if (ObjectType != global::Google.Protobuf.Enum.EObjectType.None) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) ObjectType);
+      }
+      if (RoomId != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(RoomId);
+      }
+      if (posInfo_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(PosInfo);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (ObjectId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(ObjectId);
+      }
+      if (ObjectType != global::Google.Protobuf.Enum.EObjectType.None) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) ObjectType);
+      }
+      if (RoomId != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(RoomId);
+      }
+      if (posInfo_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(PosInfo);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (ObjectId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ObjectId);
+      }
+      if (ObjectType != global::Google.Protobuf.Enum.EObjectType.None) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ObjectType);
+      }
+      if (RoomId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomId);
+      }
+      if (posInfo_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(PosInfo);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(ObjectInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ObjectId != 0) {
+        ObjectId = other.ObjectId;
+      }
+      if (other.ObjectType != global::Google.Protobuf.Enum.EObjectType.None) {
+        ObjectType = other.ObjectType;
+      }
+      if (other.RoomId != 0) {
+        RoomId = other.RoomId;
+      }
+      if (other.posInfo_ != null) {
+        if (posInfo_ == null) {
+          PosInfo = new global::Google.Protobuf.Struct.PosInfo();
+        }
+        PosInfo.MergeFrom(other.PosInfo);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            ObjectId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            ObjectType = (global::Google.Protobuf.Enum.EObjectType) input.ReadEnum();
+            break;
+          }
+          case 24: {
+            RoomId = input.ReadInt32();
+            break;
+          }
+          case 34: {
+            if (posInfo_ == null) {
+              PosInfo = new global::Google.Protobuf.Struct.PosInfo();
+            }
+            input.ReadMessage(PosInfo);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            ObjectId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            ObjectType = (global::Google.Protobuf.Enum.EObjectType) input.ReadEnum();
+            break;
+          }
+          case 24: {
+            RoomId = input.ReadInt32();
+            break;
+          }
+          case 34: {
+            if (posInfo_ == null) {
+              PosInfo = new global::Google.Protobuf.Struct.PosInfo();
+            }
+            input.ReadMessage(PosInfo);
             break;
           }
         }

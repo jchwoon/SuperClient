@@ -4,8 +4,6 @@ using ServerCore;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
-using UnityEngine;
 
 public partial class PacketHandler
 {
@@ -40,5 +38,11 @@ public partial class PacketHandler
         ResEnterRoomToC resEnterPacket = (ResEnterRoomToC)packet;
         GameScene gameScene = (GameScene)Managers.SceneManagerEx.CurrentScene;
         gameScene.OnReceiveEnterRoom(resEnterPacket);
+    }
+
+    public static void PingCheckToCHandler(PacketSession session, IMessage packet)
+    {
+        PingCheckToS pingPacket = new PingCheckToS();
+        Managers.NetworkManager.Send(pingPacket);
     }
 }

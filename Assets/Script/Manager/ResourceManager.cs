@@ -33,6 +33,15 @@ public class ResourceManager
         go.name = prefab.name;
         return go;
     }
+
+    public void Destroy(GameObject go)
+    {
+        if (go == null)
+            return;
+
+        UnityEngine.Object.Destroy(go);
+    }
+
     public void LoadAsync<T>(string key, Action<T> action = null) where T : UnityEngine.Object
     {
         string loadKey = key;

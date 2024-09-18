@@ -30,11 +30,22 @@ namespace Google.Protobuf.Enum {
             "T19DTEFTU19UWVBFX01BR0UQAyqdAQoRRUNyZWF0ZUhlcm9SZXN1bHQSHAoY",
             "RUNSRUFURV9IRVJPX1JFU1VMVF9OT05FEAASHwobRUNSRUFURV9IRVJPX1JF",
             "U1VMVF9TVUNDRVNTEAESJAogRUNSRUFURV9IRVJPX1JFU1VMVF9GQUlMX09W",
-            "RVJMQVAQAhIjCh9FQ1JFQVRFX0hFUk9fUkVTVUxUX0ZBSUxfTUlOTUFYEANC",
-            "F6oCFEdvb2dsZS5Qcm90b2J1Zi5FbnVtYgZwcm90bzM="));
+            "RVJMQVAQAhIjCh9FQ1JFQVRFX0hFUk9fUkVTVUxUX0ZBSUxfTUlOTUFYEAMq",
+            "VQoLRU9iamVjdFR5cGUSFQoRRU9CSkVDVF9UWVBFX05PTkUQABIVChFFT0JK",
+            "RUNUX1RZUEVfSEVSTxABEhgKFEVPQkpFQ1RfVFlQRV9NT05TVEVSEAIqRAoO",
+            "RUNyZWF0dXJlU3RhdGUSGAoURUNSRUFUVVJFX1NUQVRFX0lETEUQABIYChRF",
+            "Q1JFQVRVUkVfU1RBVEVfTU9WRRABKs8BCghFTW92ZURpchISCg5FTU9WRV9E",
+            "SVJfTk9ORRAAEhAKDEVNT1ZFX0RJUl9VUBABEhYKEkVNT1ZFX0RJUl9VUF9S",
+            "SUdIVBACEhMKD0VNT1ZFX0RJUl9SSUdIVBADEhgKFEVNT1ZFX0RJUl9SSUdI",
+            "VF9ET1dOEAQSEgoORU1PVkVfRElSX0RPV04QBRIXChNFTU9WRV9ESVJfRE9X",
+            "Tl9MRUZUEAYSEgoORU1PVkVfRElSX0xFRlQQBxIVChFFTU9WRV9ESVJfTEVG",
+            "VF9VUBAIKocBCgpFTW92ZUZvcmNlEhQKEEVNT1ZFX0ZPUkNFX05PTkUQABIU",
+            "ChBFTU9WRV9GT1JDRV9XRUFLEAESFgoSRU1PVkVfRk9SQ0VfTk9STUFMEAIS",
+            "HQoZRU1PVkVfRk9SQ0VfU0xJR0hUX1NUUk9ORxADEhYKEkVNT1ZFX0ZPUkNF",
+            "X1NUUk9ORxAEQheqAhRHb29nbGUuUHJvdG9idWYuRW51bWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.EMoveForce), }, null, null));
     }
     #endregion
 
@@ -52,6 +63,37 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("ECREATE_HERO_RESULT_SUCCESS")] Success = 1,
     [pbr::OriginalName("ECREATE_HERO_RESULT_FAIL_OVERLAP")] FailOverlap = 2,
     [pbr::OriginalName("ECREATE_HERO_RESULT_FAIL_MINMAX")] FailMinmax = 3,
+  }
+
+  public enum EObjectType {
+    [pbr::OriginalName("EOBJECT_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EOBJECT_TYPE_HERO")] Hero = 1,
+    [pbr::OriginalName("EOBJECT_TYPE_MONSTER")] Monster = 2,
+  }
+
+  public enum ECreatureState {
+    [pbr::OriginalName("ECREATURE_STATE_IDLE")] Idle = 0,
+    [pbr::OriginalName("ECREATURE_STATE_MOVE")] Move = 1,
+  }
+
+  public enum EMoveDir {
+    [pbr::OriginalName("EMOVE_DIR_NONE")] None = 0,
+    [pbr::OriginalName("EMOVE_DIR_UP")] Up = 1,
+    [pbr::OriginalName("EMOVE_DIR_UP_RIGHT")] UpRight = 2,
+    [pbr::OriginalName("EMOVE_DIR_RIGHT")] Right = 3,
+    [pbr::OriginalName("EMOVE_DIR_RIGHT_DOWN")] RightDown = 4,
+    [pbr::OriginalName("EMOVE_DIR_DOWN")] Down = 5,
+    [pbr::OriginalName("EMOVE_DIR_DOWN_LEFT")] DownLeft = 6,
+    [pbr::OriginalName("EMOVE_DIR_LEFT")] Left = 7,
+    [pbr::OriginalName("EMOVE_DIR_LEFT_UP")] LeftUp = 8,
+  }
+
+  public enum EMoveForce {
+    [pbr::OriginalName("EMOVE_FORCE_NONE")] None = 0,
+    [pbr::OriginalName("EMOVE_FORCE_WEAK")] Weak = 1,
+    [pbr::OriginalName("EMOVE_FORCE_NORMAL")] Normal = 2,
+    [pbr::OriginalName("EMOVE_FORCE_SLIGHT_STRONG")] SlightStrong = 3,
+    [pbr::OriginalName("EMOVE_FORCE_STRONG")] Strong = 4,
   }
 
   #endregion

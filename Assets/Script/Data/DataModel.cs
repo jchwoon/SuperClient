@@ -19,8 +19,8 @@ namespace Data
         public int MaxHp;
         public int MaxMp;
         public int Defence;
-        public int AtkSpeed;
-        public int MoveSpeed;
+        public float AtkSpeed;
+        public float MoveSpeed;
         public int Exp;
     }
 
@@ -34,6 +34,27 @@ namespace Data
             Dictionary<int, HeroStat> dict = new Dictionary<int, HeroStat>();
             foreach (HeroStat stat in heroStats)
                 dict.Add(stat.Level, stat);
+
+            return dict;
+        }
+    }
+
+    public class RoomData
+    {
+        public int RoomId;
+        public string Name;
+    }
+
+    [Serializable]
+    public class RoomDataLoader : ILoader<int, RoomData>
+    {
+        public List<RoomData> rooms = new List<RoomData>();
+
+        public Dictionary<int, RoomData> MakeDict()
+        {
+            Dictionary<int, RoomData> dict = new Dictionary<int, RoomData>();
+            foreach (RoomData room in rooms)
+                dict.Add(room.RoomId, room);
 
             return dict;
         }
