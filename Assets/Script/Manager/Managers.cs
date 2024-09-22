@@ -20,6 +20,7 @@ public class Managers : MonoBehaviour
     private DataManager _dataManager = new DataManager();
     private GameManager _gameManager = new GameManager();
     private ObjectManager _objectManagr = new ObjectManager();
+    private MapManager _mapManager = new MapManager();
 
     public static NetworkManager NetworkManager { get { return Instance._networkManager; } }
     public static SceneManagerEx SceneManagerEx { get { return Instance._sceneManager; } }
@@ -28,6 +29,7 @@ public class Managers : MonoBehaviour
     public static DataManager DataManager { get { return Instance._dataManager; } }
     public static GameManager GameManager { get { return Instance._gameManager; } }
     public static ObjectManager ObjectManager { get { return Instance._objectManagr; } }
+    public static MapManager MapManager { get { return Instance._mapManager; } }
 
     private void Awake()
     {

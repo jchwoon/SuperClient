@@ -4,20 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MyHero : Creature
+public class MyHero : Hero
 {
     private MyHeroStateMachine _myHeroMachine;
     private NavMeshAgent _agent;
-    protected HeroStatData _statData;
     public NavMeshAgent Agent { get { return _agent; } }
-    public HeroStatData StatData { get { return _statData; } }
     public MyHeroStateMachine MyHeroStateMachine { get { return _myHeroMachine; } }
     protected override void Awake()
     {
         base.Awake();
 
         _myHeroMachine = new MyHeroStateMachine(this);
-        _myHeroMachine.ChangeState(_myHeroMachine.IdleState);
+        Machine = _myHeroMachine;
+        Machine.ChangeState(_myHeroMachine.IdleState);
         _statData = new HeroStatData();
         _agent = GetComponent<NavMeshAgent>();
 
@@ -27,10 +26,10 @@ public class MyHero : Creature
     protected override void Update()
     {
         base.Update();
-        _myHeroMachine.Update();
     }
     public void SetInfo(MyHeroInfo myHeroInfo)
     {
         _statData.SetStat(myHeroInfo.HeroInfo.StatInfo);
+        ObjectId = myHeroInfo.HeroInfo.ObjectInfo.ObjectId;
     }
 }

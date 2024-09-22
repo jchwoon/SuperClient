@@ -21,18 +21,19 @@ public class Hero : Creature
         base.Awake();
 
         _heroMachine = new HeroStateMachine(this);
+        Machine = _heroMachine;
+        Machine.ChangeState(_heroMachine.IdleState);
         _statData = new HeroStatData();
-        _heroMachine.ChangeState(_heroMachine.IdleState);
     }
     protected override void Update()
     {
         base.Update();
 
-        _heroMachine.Update();
     }
 
     public void SetInfo(HeroInfo heroInfo)
     {
         _statData.SetStat(heroInfo.StatInfo);
+        ObjectId = heroInfo.ObjectInfo.ObjectId;
     }
 }

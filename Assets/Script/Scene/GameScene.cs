@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
-    [SerializeField]
-    Transform _mapParent;
     protected override void Awake()
     {
         base.Awake();
@@ -22,7 +20,7 @@ public class GameScene : BaseScene
             return;
 
         string key = room.Name;
-        Managers.ResourceManager.Instantiate(key, _mapParent);
+        Managers.MapManager.LoadMap(key);
         //hero setting
         Managers.ObjectManager.Spawn(packet.MyHero);
         //ui setting
