@@ -10,6 +10,7 @@ public class ObjectManager
 {
     public MyHero MyHero { get; private set; }
     Dictionary<int, Hero> _heroes = new Dictionary<int, Hero>(); 
+    Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>(); 
     public MyHero Spawn(MyHeroInfo myHeroInfo)
     {
         HeroInfo heroInfo = myHeroInfo.HeroInfo;
@@ -20,8 +21,8 @@ public class ObjectManager
         SetPos(go, objectInfo.PosInfo);
         MyHero myHero = go.AddComponent<MyHero>();
         myHero.SetInfo(myHeroInfo);
+        _objects.Add(objectInfo.ObjectId, go);
         MyHero = myHero;
-
         return myHero;
     }
 
@@ -34,7 +35,7 @@ public class ObjectManager
         SetPos(go, objectInfo.PosInfo);
         Hero hero = go.AddComponent<Hero>();
         hero.SetInfo(heroInfo);
-        Debug.Log(objectInfo.ObjectId);
+        _objects.Add(objectInfo.ObjectId, go);
         _heroes.Add(heroInfo.ObjectInfo.ObjectId, hero);
 
         return hero;
@@ -43,32 +44,22 @@ public class ObjectManager
     public void DeSpawn(int objectId, EObjectType objType)
     {
         //MyHero를 삭제할 일이 있을 경우 만들어주기 Todo
+        GameObject go = FindById(objectId);
+        if (go == null)
+            return;
+        _objects.Remove(objectId);
+        _heroes.Remove(objectId);
 
-        GameObject go = null;
-        switch(objType)
-        {
-            case EObjectType.Hero:
-                go = Find<Hero>(objectId).gameObject;
-                _heroes.Remove(objectId); 
-                break;
-        }
-        Debug.Log(go);
         Managers.ResourceManager.Destroy(go);
     }
 
-    public T Find<T>(int objectId) where T : BaseObject
+    public GameObject FindById(int objectId)
     {
-        T obj = null;
-        if (typeof(T) == typeof(Hero))
-        {
-            Hero hero = null;
-            if (_heroes.TryGetValue(objectId, out hero) == false)
-                return null;
-            obj = hero as T;
-        }
-
-        return obj;
+        GameObject go = null;
+        _objects.TryGetValue(objectId, out go);
+        return go;
     }
+
     private void SetPos(GameObject go, PosInfo posInfo)
     {
         go.transform.position = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);

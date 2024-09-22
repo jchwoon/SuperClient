@@ -1,4 +1,5 @@
 using Google.Protobuf.Enum;
+using Google.Protobuf.Struct;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class StateMachine
 {
     public IState CurrentState { get; private set; }
     protected ECreatureState CreatureState { get; private set; }
+    public Vector3 PosInput { get; private set; } = Vector3.zero;
+    public float InputSpeed { get; private set; }
 
     public virtual void ChangeState(IState changeState)
     {
@@ -34,5 +37,11 @@ public class StateMachine
             return;
 
         CurrentState.Update();
+    }
+
+    public void UpdatePosInput(PosInfo pos)
+    {
+        PosInput = new Vector3(pos.PosX, pos.PosY, pos.PosZ);
+        InputSpeed = pos.Speed;
     }
 }

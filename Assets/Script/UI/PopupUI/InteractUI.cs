@@ -55,8 +55,4 @@ public class InteractUI : PopupUI
 
         }
     }
-    private void OnInterBtnClicked(PointerEventData eventData)
-    {
-        Debug.Log("gd");
-    }
 }

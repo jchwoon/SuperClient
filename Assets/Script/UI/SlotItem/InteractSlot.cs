@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,6 +12,7 @@ public class InteractSlot : BaseUI
     }
 
     TMP_Text _interactTxt;
+    public Action SlotBtnClicked { get; set; }
     protected override void Awake()
     {
         base.Awake();
