@@ -16,6 +16,10 @@ public partial class PacketHandler
         {
             Managers.ObjectManager.Spawn(hero);
         }
+        foreach (CreatureInfo creature in spawnPacket.Creatures)
+        {
+            Managers.ObjectManager.Spawn(creature);
+        }
     }
 
     public static void MoveToCHandler(PacketSession session, IMessage packet)

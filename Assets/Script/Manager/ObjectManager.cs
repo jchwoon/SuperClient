@@ -1,3 +1,4 @@
+using Data;
 using Google.Protobuf.Enum;
 using Google.Protobuf.Struct;
 using System;
@@ -10,11 +11,12 @@ public class ObjectManager
 {
     public MyHero MyHero { get; private set; }
     Dictionary<int, Hero> _heroes = new Dictionary<int, Hero>(); 
+    Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>(); 
     Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>(); 
     public MyHero Spawn(MyHeroInfo myHeroInfo)
     {
         HeroInfo heroInfo = myHeroInfo.HeroInfo;
-        ObjectInfo objectInfo = heroInfo.ObjectInfo;
+        ObjectInfo objectInfo = heroInfo.CreatureInfo.ObjectInfo;
 
         GameObject go = Managers.ResourceManager.Instantiate($"{heroInfo.LobbyHeroInfo.ClassType}_Init");
         go.name = "MyHero";
@@ -28,7 +30,7 @@ public class ObjectManager
 
     public Hero Spawn(HeroInfo heroInfo)
     {
-        ObjectInfo objectInfo = heroInfo.ObjectInfo;
+        ObjectInfo objectInfo = heroInfo.CreatureInfo.ObjectInfo;
 
         GameObject go = Managers.ResourceManager.Instantiate($"{heroInfo.LobbyHeroInfo.ClassType}_Init");
         go.name = $"{heroInfo.LobbyHeroInfo.Nickname}";
@@ -36,11 +38,17 @@ public class ObjectManager
         Hero hero = go.AddComponent<Hero>();
         hero.SetInfo(heroInfo);
         _objects.Add(objectInfo.ObjectId, go);
-        _heroes.Add(heroInfo.ObjectInfo.ObjectId, hero);
+        _heroes.Add(objectInfo.ObjectId, hero);
 
         return hero;
     }
 
+    public void Spawn(CreatureInfo creatureInfo)
+    {
+        EObjectType type = creatureInfo.ObjectInfo.ObjectType;
+        if (type == EObjectType.Monster)
+            MonsterSpawn(creatureInfo);
+    }
     public void DeSpawn(int objectId, EObjectType objType)
     {
         //MyHero를 삭제할 일이 있을 경우 만들어주기 Todo
@@ -59,7 +67,23 @@ public class ObjectManager
         _objects.TryGetValue(objectId, out go);
         return go;
     }
+    private Monster MonsterSpawn(CreatureInfo creatureInfo)
+    {
+        ObjectInfo objectInfo = creatureInfo.ObjectInfo;
 
+        MonsterData monsterData;
+        if (Managers.DataManager.MonsterDict.TryGetValue(creatureInfo.ObjectInfo.TemplateId, out monsterData) == false)
+            return null;
+
+        GameObject go = Managers.ResourceManager.Instantiate(monsterData.PrefabName);
+        go.name = $"{monsterData.Name}";
+        SetPos(go, objectInfo.PosInfo);
+        Monster monster = go.AddComponent<Monster>();
+        _objects.Add(objectInfo.ObjectId, go);
+        _monsters.Add(objectInfo.ObjectId, monster);
+
+        return monster;
+    }
     private void SetPos(GameObject go, PosInfo posInfo)
     {
         go.transform.position = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);

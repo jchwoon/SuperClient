@@ -60,6 +60,37 @@ namespace Data
         }
     }
 
+    public class MonsterData
+    {
+        public int MonsterId;
+        public int RoomId;
+        public string Name;
+        public string PrefabName;
+        public int Level;
+        public int MaxHp;
+        public float MoveSpeed;
+        public int AttackDamage;
+        public int Defence;
+        public float AttackSpeed;
+        public int Exp;
+        public int Gold;
+    }
+
+    [Serializable]
+    public class MonsterDataLoader : ILoader<int, MonsterData>
+    {
+        public List<MonsterData> monsters = new List<MonsterData>();
+
+        public Dictionary<int, MonsterData> MakeDict()
+        {
+            Dictionary<int, MonsterData> dict = new Dictionary<int, MonsterData>();
+            foreach (MonsterData monster in monsters)
+                dict.Add(monster.MonsterId, monster);
+
+            return dict;
+        }
+    }
+
     ///////////////////////////////
     ///////////TEXT////////////////
     ///////////////////////////////

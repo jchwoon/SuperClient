@@ -16,7 +16,7 @@ public class StateMachine
 {
     public IState CurrentState { get; private set; }
     protected ECreatureState CreatureState { get; private set; }
-    public Vector3 PosInput { get; private set; } = Vector3.zero;
+    public Vector3? PosInput { get; private set; } = null;
     public float InputSpeed { get; private set; }
 
     public virtual void ChangeState(IState changeState)

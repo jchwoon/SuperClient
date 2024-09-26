@@ -64,8 +64,12 @@ namespace MyHeroState
 
             moveDir *= (GetModifiedSpeed() * Time.deltaTime);
 
+
+            Vector3 pos = _myHero.transform.position + moveDir;
+            bool canGo = Managers.MapManager.CanGo(pos.z, pos.x);
+            if (canGo == false)
+                return;
             _myHero.Agent.Move(moveDir);
-            //_myHero.transform.position += moveDir;
         }
 
         private void RotateToMoveDir()

@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class MultiplayersBuildAndRun
 {
+#if UNITY_EDITOR
     [MenuItem("Tools/Run Multiplayer/1 Players")]
     static void PerformWin64Build1()
     {
@@ -46,4 +50,5 @@ public class MultiplayersBuildAndRun
 
         return scenes;
     }
+#endif
 }

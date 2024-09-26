@@ -24,8 +24,10 @@ namespace HeroState
         public override void Update()
         {
             base.Update();
+            if (_heroMachine.PosInput.HasValue == false)
+                return;
 
-            if ((_heroMachine.Hero.transform.position - _heroMachine.PosInput).sqrMagnitude > 0.001f)
+            if ((_heroMachine.Hero.transform.position - _heroMachine.PosInput.Value).sqrMagnitude > 0.001f)
             {
                 _heroMachine.ChangeState(_heroMachine.MoveState);
                 return;
