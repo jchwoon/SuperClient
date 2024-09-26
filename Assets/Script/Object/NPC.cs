@@ -8,9 +8,10 @@ public class NPC : BaseObject
     GameObject _slot;
     private void OnTriggerEnter(Collider other)
     {
-        _interUI = Managers.UIManager.ShowPopup<InteractUI>();
-        _slot = _interUI.AddSlot($"대화하기");
-        _slot.GetComponent<InteractSlot>().SlotBtnClicked = StartDialogue;
+        //ToDo: 내 캐릭터만 로직 실행되게 하기
+        //_interUI = Managers.UIManager.ShowPopup<InteractUI>();
+        //_slot = _interUI.AddSlot($"대화하기");
+        //_slot.GetComponent<InteractSlot>().SlotBtnClicked = StartDialogue;
     }
 
     private void OnTriggerExit(Collider other)

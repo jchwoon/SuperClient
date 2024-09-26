@@ -33,7 +33,7 @@ public class Hero : Creature
 
     public void SetInfo(HeroInfo heroInfo)
     {
-        _statData.SetStat(heroInfo.StatInfo);
-        ObjectId = heroInfo.ObjectInfo.ObjectId;
+        _statData.SetStat(heroInfo.CreatureInfo.StatInfo);
+        ObjectId = heroInfo.CreatureInfo.ObjectInfo.ObjectId;
     }
 }

@@ -29,7 +29,7 @@ public class MyHero : Hero
     }
     public void SetInfo(MyHeroInfo myHeroInfo)
     {
-        _statData.SetStat(myHeroInfo.HeroInfo.StatInfo);
-        ObjectId = myHeroInfo.HeroInfo.ObjectInfo.ObjectId;
+        _statData.SetStat(myHeroInfo.HeroInfo.CreatureInfo.StatInfo);
+        ObjectId = myHeroInfo.HeroInfo.CreatureInfo.ObjectInfo.ObjectId;
     }
 }

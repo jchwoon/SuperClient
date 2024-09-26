@@ -1,14 +1,15 @@
-using Data;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapManager
 {
-    Dictionary<(int, int), float> _mapCollision = new Dictionary<(int, int), float>();
+    public int MinX { get; set; }
+    public int MaxX { get; set; }
+    public int MinZ { get; set; }
+    public int MaxZ { get; set; }
+    float[,] _mapCollision;
     public GameObject Map { get; private set; }
     public Transform Parent
     {
@@ -30,11 +31,27 @@ public class MapManager
 
         Map = map;
 
-        //TextAsset txt = Managers.ResourceManager.GetResource<TextAsset>($"{mapName}Data");
-        //StringReader reader = new StringReader(txt.text);
-
-        //CoroutineHelper.Instance.StartCoroutine(ReadFile(reader));
+        CoroutineHelper.Instance.StartCoroutine(ReadFile($"Assets/@Resources/Data/Map/{mapName}Data.bin"));
     }
+    public bool CanGo(float z, float x)
+    {
+        //해당 포인트가 (0.9xx, 0.1xxx)라면 (1, 0)을 좌표를 검사
+        int roundZ = (int)MathF.Round(z);
+        int roundX = (int)MathF.Round(x);
+
+        if (roundZ < MinZ || roundZ > MaxZ)
+            return false;
+        if (roundX < MinX || roundX > MaxX)
+            return false;
+
+        int applyZ = roundZ - MinZ;
+        int applyX = roundX - MinX;
+        if (_mapCollision[applyZ, applyX] != 0)
+            return false;
+
+        return true;
+    }
+
 
     private void DestroyMap()
     {
@@ -45,37 +62,31 @@ public class MapManager
         }
     }
 
-    //public bool CanGo(float x, float z)
-    //{
-    //    float value = 0.0f;
-    //    //해당 포인트가 (0.9xx, 0.1xxx)라면 (1, 0)을 좌표를 검사
-    //    int roundX = (int)MathF.Round(x);
-    //    int roundZ = (int)MathF.Round(z);
-    //    if (_mapCollision.TryGetValue((roundX, roundZ), out value) == false)
-    //        return false;
+    IEnumerator ReadFile(string path)
+    {
+        using (BinaryReader reader = new BinaryReader(File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read)))
+        {
+            MinX = reader.ReadInt32();
+            MaxX = reader.ReadInt32();
+            MinZ = reader.ReadInt32();
+            MaxZ = reader.ReadInt32();
 
-    //    if (value == -1)
-    //        return false;
+            int zCount = MaxZ - MinZ + 1;
+            int xCount = MaxX - MinX + 1;
+            _mapCollision = new float[zCount, xCount];
+            while (reader.BaseStream.Position != reader.BaseStream.Length)
+            {
+                int x = reader.ReadInt32();
+                int z = reader.ReadInt32();
 
-    //    return true;
-    //}
+                int applyX = x - MinX;
+                int applyZ = z - MinZ;
 
-    //IEnumerator ReadFile(StringReader reader)
-    //{
-    //    while (true)
-    //    {
-    //        string line = reader.ReadLine();
-    //        if (string.IsNullOrEmpty(line) == true)
-    //            break;
+                float height = reader.ReadSingle();
+                _mapCollision[applyZ, applyX] = height;
+                yield return null;
+            }
+        };
 
-    //        string[] pos = line.Split(',');
-
-    //        int posX = int.Parse(pos[0]);
-    //        int posZ = int.Parse(pos[1]);
-    //        float posY = float.Parse(pos[2]);
-
-    //        _mapCollision.Add((posX, posZ), posY);
-    //        yield return null;
-    //    }    
-    //}
+    }
 }

@@ -1,0 +1,21 @@
+{
+  "monsters": [
+    {
+      "monsterId": 1,
+      "roomId": 1,
+      "maxHp": 100,
+      "maxMp": 0,
+      "moveSpeed": 10,
+      "atkDamage": 10,
+      "defence": 3,
+      "atkSpeed": 1,
+      "name": "토끼",
+      "prefabName": "Rabbit",
+      "level": 1,
+      "exp": 50,
+      "gold": 50,
+      "sight": 5,
+      "atkRange": 1
+    }
+  ]
+}

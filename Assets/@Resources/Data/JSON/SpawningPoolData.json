@@ -1,0 +1,19 @@
+{
+  "spawningPools": [
+    {
+      "roomId": 1,
+      "poolDatas": [
+        {
+          "spawnId": 1,
+          "maxEntityCount": 10,
+          "monsterId": 1,
+          "respawnTime": 5,
+          "posX": 0,
+          "posY": 0,
+          "posZ": -45,
+          "spawnRange": 10
+        }
+      ]
+    }
+  ]
+}

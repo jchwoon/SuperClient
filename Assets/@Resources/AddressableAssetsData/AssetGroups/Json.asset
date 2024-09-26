@@ -17,14 +17,14 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 33870d3108d741144b6fa9d70740006b
   m_SerializeEntries:
-  - m_GUID: 24377c9bf2c62aa458c4afd42618f6ee
-    m_Address: HeroStat
+  - m_GUID: 6973c8b1e1fd4e344ba313be484cac85
+    m_Address: RoomData
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6973c8b1e1fd4e344ba313be484cac85
-    m_Address: RoomData
+  - m_GUID: 43e9ce8722fec9a4a925534059cfe1e7
+    m_Address: MonsterData
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
