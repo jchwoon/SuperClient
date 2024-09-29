@@ -49,6 +49,24 @@ public class ObjectManager
         if (type == EObjectType.Monster)
             MonsterSpawn(creatureInfo);
     }
+    private Monster MonsterSpawn(CreatureInfo creatureInfo)
+    {
+        ObjectInfo objectInfo = creatureInfo.ObjectInfo;
+
+        MonsterData monsterData;
+        if (Managers.DataManager.MonsterDict.TryGetValue(creatureInfo.ObjectInfo.TemplateId, out monsterData) == false)
+            return null;
+
+        GameObject go = Managers.ResourceManager.Instantiate(monsterData.PrefabName);
+        go.name = $"{monsterData.Name}";
+        SetPos(go, objectInfo.PosInfo);
+        Monster monster = go.AddComponent<Monster>();
+        monster.SetInfo(creatureInfo);
+        _objects.Add(objectInfo.ObjectId, go);
+        _monsters.Add(objectInfo.ObjectId, monster);
+
+        return monster;
+    }
     public void DeSpawn(int objectId, EObjectType objType)
     {
         //MyHero를 삭제할 일이 있을 경우 만들어주기 Todo
@@ -66,23 +84,6 @@ public class ObjectManager
         GameObject go = null;
         _objects.TryGetValue(objectId, out go);
         return go;
-    }
-    private Monster MonsterSpawn(CreatureInfo creatureInfo)
-    {
-        ObjectInfo objectInfo = creatureInfo.ObjectInfo;
-
-        MonsterData monsterData;
-        if (Managers.DataManager.MonsterDict.TryGetValue(creatureInfo.ObjectInfo.TemplateId, out monsterData) == false)
-            return null;
-
-        GameObject go = Managers.ResourceManager.Instantiate(monsterData.PrefabName);
-        go.name = $"{monsterData.Name}";
-        SetPos(go, objectInfo.PosInfo);
-        Monster monster = go.AddComponent<Monster>();
-        _objects.Add(objectInfo.ObjectId, go);
-        _monsters.Add(objectInfo.ObjectId, monster);
-
-        return monster;
     }
     private void SetPos(GameObject go, PosInfo posInfo)
     {

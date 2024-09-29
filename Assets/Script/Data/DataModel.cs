@@ -12,28 +12,31 @@ namespace Data
     ///////////////////////////////
     ///////////STAT////////////////
     ///////////////////////////////
-    public class HeroStat
+    public class HeroStatData
     {
         public int Level;
-        public int AD;
+        public float Exp;
         public int MaxHp;
         public int MaxMp;
+        public float MoveSpeed;
+        public int AtkDamage;
         public int Defence;
         public float AtkSpeed;
-        public float MoveSpeed;
-        public int Exp;
     }
 
     [Serializable]
-    public class HeroStatDataLoader : ILoader<int, HeroStat>
+    public class HeroStatDataLoader : ILoader<int, HeroStatData>
     {
-        public List<HeroStat> heroStats = new List<HeroStat>();
+        public List<HeroStatData> stats = new List<HeroStatData>();
 
-        public Dictionary<int, HeroStat> MakeDict()
+        public Dictionary<int, HeroStatData> MakeDict()
         {
-            Dictionary<int, HeroStat> dict = new Dictionary<int, HeroStat>();
-            foreach (HeroStat stat in heroStats)
+            Dictionary<int, HeroStatData> dict = new Dictionary<int, HeroStatData>();
+            foreach (HeroStatData stat in stats)
+            {
                 dict.Add(stat.Level, stat);
+            }
+
 
             return dict;
         }
@@ -54,26 +57,35 @@ namespace Data
         {
             Dictionary<int, RoomData> dict = new Dictionary<int, RoomData>();
             foreach (RoomData room in rooms)
+            {
                 dict.Add(room.RoomId, room);
+            }
+
 
             return dict;
         }
     }
+    public class BaseData
+    {
+        public string PrefabName;
+    }
 
-    public class MonsterData
+    public class MonsterData : BaseData
     {
         public int MonsterId;
         public int RoomId;
         public string Name;
-        public string PrefabName;
         public int Level;
-        public int MaxHp;
-        public float MoveSpeed;
-        public int AttackDamage;
-        public int Defence;
-        public float AttackSpeed;
         public int Exp;
         public int Gold;
+        public int MaxHp;
+        public int MaxMp;
+        public float MoveSpeed;
+        public int AtkDamage;
+        public int Defence;
+        public float AtkSpeed;
+        public float Sight;
+        public float AtkRange;
     }
 
     [Serializable]
@@ -85,7 +97,29 @@ namespace Data
         {
             Dictionary<int, MonsterData> dict = new Dictionary<int, MonsterData>();
             foreach (MonsterData monster in monsters)
+            {
                 dict.Add(monster.MonsterId, monster);
+            }
+
+            return dict;
+        }
+    }
+    public class HeroData : BaseData
+    {
+        public EHeroClassType HeroClassId;
+        public float ComboExitTime;
+    }
+    [Serializable]
+    public class HeroDataLoader : ILoader<EHeroClassType, HeroData>
+    {
+        public List<HeroData> heroes = new List<HeroData>();
+        public Dictionary<EHeroClassType, HeroData> MakeDict()
+        {
+            Dictionary<EHeroClassType, HeroData> dict = new Dictionary<EHeroClassType, HeroData>();
+            foreach (HeroData hero in heroes)
+            {
+                dict.Add(hero.HeroClassId, hero);
+            }
 
             return dict;
         }

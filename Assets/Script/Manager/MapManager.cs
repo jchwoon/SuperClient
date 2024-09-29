@@ -31,7 +31,7 @@ public class MapManager
 
         Map = map;
 
-        CoroutineHelper.Instance.StartCoroutine(ReadFile($"Assets/@Resources/Data/Map/{mapName}Data.bin"));
+        CoroutineHelper.Instance.StartHelperCoroutine(ReadFile($"Assets/@Resources/Data/Map/{mapName}Data.bin"));
     }
     public bool CanGo(float z, float x)
     {
@@ -44,10 +44,10 @@ public class MapManager
         if (roundX < MinX || roundX > MaxX)
             return false;
 
-        int applyZ = roundZ - MinZ;
-        int applyX = roundX - MinX;
-        if (_mapCollision[applyZ, applyX] != 0)
-            return false;
+        //int applyZ = roundZ - MinZ;
+        //int applyX = roundX - MinX;
+        //if (_mapCollision[applyZ, applyX] != 0)
+        //    return false;
 
         return true;
     }

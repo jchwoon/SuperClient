@@ -33,7 +33,11 @@ public partial class PacketHandler
         BaseObject bo = go.GetComponent<BaseObject>();
 
         if (bo != null && bo.Machine != null)
+        {
             bo.Machine.UpdatePosInput(movePacket.PosInfo);
+            Debug.Log(movePacket.PosInfo.PosZ);
+        }
+
     }
 
     public static void DeSpawnToCHandler(PacketSession session, IMessage packet)

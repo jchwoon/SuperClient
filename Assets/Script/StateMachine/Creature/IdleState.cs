@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MyHeroState
+namespace CreatureState
 {
     public class IdleState : BaseState
     {
-        public IdleState(MyHeroStateMachine heroMachine) : base(heroMachine)
+        public IdleState(CreatureMachine creatureMachine) : base(creatureMachine)
         {
         }
-
         public override void Exit()
         {
             base.Exit();
@@ -18,18 +17,20 @@ namespace MyHeroState
         public override void Enter()
         {
             base.Enter();
-
-            _heroMachine.SetAnimParameter(_heroMachine.MyHero.AnimData.MoveSpeedHash, 0.0f);
         }
 
         public override void Update()
         {
             base.Update();
-            if (_heroMachine.MoveInput != Vector2.zero)
-            {
+            if (_creatureMachine.PosInput.HasValue == false)
+                return;
 
-                _heroMachine.ChangeState(_heroMachine.MoveState);
+            if ((_creatureMachine.Creature.transform.position - _creatureMachine.PosInput.Value).sqrMagnitude > 0.001f)
+            {
+                _creatureMachine.ChangeState(_creatureMachine.MoveState);
+                return;
             }
+
         }
 
         public override ECreatureState GetCreatureState()
@@ -37,5 +38,4 @@ namespace MyHeroState
             return ECreatureState.Idle;
         }
     }
-
 }

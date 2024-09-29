@@ -16,4 +16,9 @@ public class Creature : BaseObject
         Animator = transform.GetComponent<Animator>();
         AnimData = new AnimationData();
     }
+
+    public virtual void SetInfo(CreatureInfo info)
+    {
+        ObjectId = info.ObjectInfo.ObjectId;
+    }
 }

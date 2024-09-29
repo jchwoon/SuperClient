@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class JoySceneUI : SceneUI
 {
@@ -23,11 +22,14 @@ public class JoySceneUI : SceneUI
         base.Awake();
 
         Bind<GameObject>(typeof(GameObjects));
-        Bind<UnityEngine.UI.Button>(typeof(Buttons));
+        Bind<Button>(typeof(Buttons));
 
         GameObject movestick = Get<GameObject>((int)GameObjects.Movestick);
+        Button attackBtn = Get<Button>((int)Buttons.AttackBtn);
         _joyMoveController = movestick.GetComponent<JoyMoveController>();
 
+
+        BindEvent(attackBtn.gameObject, OnAttackBtnClicked);
         BindEvent(movestick, OnMovestickPointerDown, Enums.TouchEvent.PointerDown);
         BindEvent(movestick, OnMovestickPointerUp, Enums.TouchEvent.PointerUp);
         BindEvent(movestick, OnMovestickDrag, Enums.TouchEvent.Drag);
@@ -51,5 +53,11 @@ public class JoySceneUI : SceneUI
     private void OnMovestickDrag(PointerEventData eventData)
     {
         _joyMoveController.OnHandleDrag(eventData);
+    }
+
+    private void OnAttackBtnClicked(PointerEventData eventData)
+    {
+        MyHeroStateMachine machine = Managers.ObjectManager.MyHero.MyHeroStateMachine;
+        machine.OnAttack();
     }
 }
