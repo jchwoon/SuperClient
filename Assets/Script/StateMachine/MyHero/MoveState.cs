@@ -43,7 +43,7 @@ namespace MyHeroState
                 return;
             }
 
-            SetAnimParameter(_myHero.AnimData.MoveSpeedHash, _moveInput.magnitude * GetModifiedSpeed());
+            _heroMachine.SetAnimParameter(_myHero.AnimData.MoveSpeedHash, _moveInput.magnitude * GetModifiedSpeed());
             MoveToMoveDir();
             RotateToMoveDir();
         }

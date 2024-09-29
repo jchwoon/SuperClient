@@ -1,4 +1,5 @@
 using Data;
+using Google.Protobuf.Enum;
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,12 +15,13 @@ public class DataManager
     //public Dictionary<int, HeroStat> HeroDict { get; private set; } = new Dictionary<int, HeroStat>();
     public Dictionary<int, RoomData> RoomDict { get; private set; } = new Dictionary<int, RoomData>();
     public Dictionary<int, MonsterData> MonsterDict { get; private set; } = new Dictionary<int, MonsterData>();
+    public Dictionary<EHeroClassType, HeroData> HeroDict { get; private set; } = new Dictionary<EHeroClassType, HeroData>();
     //public Dictionary<string, TextData> TextDict { get; private set; } = new Dictionary<string, TextData>();
 
 
     public  void Init()
     {
-        //HeroDict = LoadJson<HeroStatDataLoader, int, HeroStat>("HeroStat").MakeDict();
+        HeroDict = LoadJson<HeroDataLoader, EHeroClassType, HeroData>("HeroData").MakeDict();
         RoomDict = LoadJson<RoomDataLoader, int, RoomData>("RoomData").MakeDict();
         MonsterDict = LoadJson<MonsterDataLoader, int, MonsterData>("MonsterData").MakeDict();
         //TextDict = LoadJson<TextDataLoader, string, TextData>("TextData").MakeDict();

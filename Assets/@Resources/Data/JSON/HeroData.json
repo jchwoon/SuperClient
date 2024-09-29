@@ -1,0 +1,9 @@
+{
+  "heroes": [
+    {
+      "heroClassId": 1,
+      "prefabName": "Warrior",
+      "comboExitTime": 0.6
+    }
+  ]
+}

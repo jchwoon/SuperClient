@@ -3,33 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MyHeroState
+namespace CreatureState
 {
     public class BaseState : IState
     {
-        protected MyHeroStateMachine _heroMachine;
-
-        public BaseState(MyHeroStateMachine heroMachine)
+        protected CreatureMachine _creatureMachine;
+        public BaseState(CreatureMachine creatureMachine)
         {
-            _heroMachine = heroMachine;
+            _creatureMachine = creatureMachine;
         }
-        public virtual void Exit()
-        {
 
-        }
         public virtual void Enter()
         {
+        }
 
+        public virtual void Exit()
+        {
+        }
+
+        public virtual ECreatureState GetCreatureState()
+        {
+            return ECreatureState.Idle;    
         }
 
         public virtual void Update()
         {
-
-        }
-        public virtual ECreatureState GetCreatureState()
-        {
-            return ECreatureState.Idle;
         }
     }
 }
-
