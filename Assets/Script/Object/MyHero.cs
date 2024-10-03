@@ -6,19 +6,14 @@ using UnityEngine.AI;
 
 public class MyHero : Hero
 {
-    private MyHeroStateMachine _myHeroMachine;
-    private NavMeshAgent _agent;
-    public NavMeshAgent Agent { get { return _agent; } }
-    public MyHeroStateMachine MyHeroStateMachine { get { return _myHeroMachine; } }
+    public MyHeroStateMachine MyHeroStateMachine { get; set; }
     protected override void Awake()
     {
+        isMachineInit = true;
         base.Awake();
-
-        _myHeroMachine = new MyHeroStateMachine(this);
-        Machine = _myHeroMachine;
-        Machine.ChangeState(_myHeroMachine.IdleState);
+        MyHeroStateMachine = new MyHeroStateMachine(this);
+        Machine = MyHeroStateMachine;
         _statData = new HeroStatData();
-        _agent = GetComponent<NavMeshAgent>();
 
         CameraController cameraController = Camera.main.GetComponent<CameraController>();
         cameraController.TargetTransform = transform;

@@ -21,19 +21,19 @@ namespace MyHeroState {
         public override void Exit()
         {
             base.Exit();
-            _heroMachine.SetAnimParameter(_heroMachine.MyHero.AnimData.AttackHash, false);
+            _heroMachine.SetAnimParameter(_owner, _owner.AnimData.AttackHash, false);
         }
         public override void Enter()
         {
             base.Enter();
-            _heroMachine.SetAnimParameter(_heroMachine.MyHero.AnimData.AttackHash, true);
+            _heroMachine.SetAnimParameter(_owner, _owner.AnimData.AttackHash, true);
 
             if (_heroMachine.Target != null)
             {
-                float dist = (_heroMachine.Target.transform.position - _heroMachine.MyHero.transform.position).magnitude;
+                float dist = (_heroMachine.Target.transform.position - _owner.transform.position).magnitude;
                 if (dist > 1)
                 {
-                    _heroMachine.MyHero.Animator.SetLayerWeight((int)Enums.AnimLayer.LowerBody, 1);
+                    _owner.Animator.SetLayerWeight((int)Enums.AnimLayer.LowerBody, 1);
                     CoroutineHelper.Instance.StartHelperCoroutine(Dash());
                 }
             }
@@ -64,12 +64,12 @@ namespace MyHeroState {
 
         IEnumerator Dash()
         {
-            while (Vector3.Distance(_heroMachine.MyHero.transform.position, _heroMachine.Target.transform.position) > 1)
+            while (Vector3.Distance(_heroMachine.Owner.transform.position, _heroMachine.Target.transform.position) > 1)
             {
-                _heroMachine.MyHero.Agent.Move(_heroMachine.MyHero.transform.forward * 10 * Time.deltaTime);
+                _owner.Agent.Move(_owner.transform.forward * 10 * Time.deltaTime);
                 yield return null;
             }
-            _heroMachine.MyHero.Animator.SetLayerWeight((int)Enums.AnimLayer.LowerBody, 0);
+            _owner.Animator.SetLayerWeight((int)Enums.AnimLayer.LowerBody, 0);
         }
     }
 }

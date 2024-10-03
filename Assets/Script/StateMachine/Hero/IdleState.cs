@@ -1,44 +1,32 @@
+using CreatureState;
 using Google.Protobuf.Enum;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HeroState
+public class HeroIdleState : IdleState
 {
-    public class IdleState : BaseState
+    public HeroIdleState(HeroStateMachine heroMachine) : base(heroMachine)
     {
-        public IdleState(HeroStateMachine heroMachine) : base(heroMachine)
-        {
-        }
+    }
 
-        public override void Exit()
-        {
-            base.Exit();
-        }
-        public override void Enter()
-        {
-            base.Enter();
-            SetAnimParameter(_heroMachine.Hero.AnimData.MoveSpeedHash, 0);
-        }
+    public override void Exit()
+    {
+        base.Exit();
+    }
+    public override void Enter()
+    {
+        _machine.SetAnimParameter(_owner, _owner.AnimData.MoveSpeedHash, 0);
+    }
 
-        public override void Update()
-        {
-            base.Update();
-            if (_heroMachine.PosInput.HasValue == false)
-                return;
+    public override void Update()
+    {
+        base.Update();
+    }
 
-            if ((_heroMachine.Hero.transform.position - _heroMachine.PosInput.Value).sqrMagnitude > 0.001f)
-            {
-                _heroMachine.ChangeState(_heroMachine.MoveState);
-                return;
-            }
-
-        }
-
-        public override ECreatureState GetCreatureState()
-        {
-            return ECreatureState.Idle;
-        }
+    public override ECreatureState GetCreatureState()
+    {
+        return ECreatureState.Idle;
     }
 }
 

@@ -8,10 +8,12 @@ namespace MyHeroState
     public class BaseState : IState
     {
         protected MyHeroStateMachine _heroMachine;
+        protected Creature _owner;
 
         public BaseState(MyHeroStateMachine heroMachine)
         {
             _heroMachine = heroMachine;
+            _owner = heroMachine.Owner;
         }
         public virtual void Exit()
         {

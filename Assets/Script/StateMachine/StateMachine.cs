@@ -18,6 +18,7 @@ public class StateMachine
     protected ECreatureState CreatureState { get; private set; }
     public Vector3? PosInput { get; private set; } = null;
     public float InputSpeed { get; private set; }
+    public Creature Owner { get; protected set; }
 
     public virtual void ChangeState(IState changeState)
     {
@@ -45,4 +46,29 @@ public class StateMachine
         PosInput = new Vector3(pos.PosX, pos.PosY, pos.PosZ);
         InputSpeed = pos.Speed;
     }
+
+    #region AnimParamGetSet
+    public bool GetAnimParameter(Creature creature, int hashId)
+    {
+        return creature.Animator.GetBool(hashId);
+    }
+
+    public void SetAnimParameter(Creature creature, int hashId, bool value)
+    {
+        creature.Animator.SetBool(hashId, value);
+    }
+
+    public void SetAnimParameter(Creature creature, int hashId, float value)
+    {
+        creature.Animator.SetFloat(hashId, value);
+    }
+    public void SetAnimParameter(Creature creature, int hashId, int value)
+    {
+        creature.Animator.SetInteger(hashId, value);
+    }
+    public void SetAnimParameter(Creature creature, int hashId)
+    {
+        creature.Animator.SetTrigger(hashId);
+    }
+    #endregion
 }

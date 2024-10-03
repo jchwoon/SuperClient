@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class BaseObject : MonoBehaviour
 {
-    private StateMachine _stateMachine;
     public int ObjectId { get; set; }
-    public StateMachine Machine
-    {
-        get { return _stateMachine; }
-        protected set { _stateMachine = value; }
-    }
+    public virtual StateMachine Machine { get; set; }
+    protected bool isMachineInit = false;
+
     protected virtual void Awake()
     {
-        //자식 클래스에서 Machine 생성
+        if (isMachineInit == false)
+            Machine = new StateMachine();
     }
     protected virtual void Start()
     {

@@ -35,7 +35,6 @@ public partial class PacketHandler
         if (bo != null && bo.Machine != null)
         {
             bo.Machine.UpdatePosInput(movePacket.PosInfo);
-            Debug.Log(movePacket.PosInfo.PosZ);
         }
 
     }

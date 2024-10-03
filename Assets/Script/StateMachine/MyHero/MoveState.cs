@@ -11,7 +11,6 @@ namespace MyHeroState
     public class MoveState : BaseState
     {
         Vector2 _moveInput = Vector2.zero;
-        MyHero _myHero;
         Coroutine sendRoutine;
 
         public MoveState(MyHeroStateMachine heroMachine) : base(heroMachine)
@@ -28,7 +27,6 @@ namespace MyHeroState
         {
             base.Enter();
 
-            _myHero = _heroMachine.MyHero;
             _moveInput = _heroMachine.MoveInput;
             sendRoutine = CoroutineHelper.Instance.StartHelperCoroutine(SendMyPos());
         }
@@ -43,7 +41,7 @@ namespace MyHeroState
                 return;
             }
 
-            _heroMachine.SetAnimParameter(_myHero.AnimData.MoveSpeedHash, _moveInput.magnitude * GetModifiedSpeed());
+            _heroMachine.SetAnimParameter(_owner, _owner.AnimData.MoveSpeedHash, _moveInput.magnitude * GetModifiedSpeed());
             MoveToMoveDir();
             RotateToMoveDir();
         }
@@ -65,18 +63,18 @@ namespace MyHeroState
             moveDir *= (GetModifiedSpeed() * Time.deltaTime);
 
 
-            Vector3 pos = _myHero.transform.position + moveDir;
+            Vector3 pos = _owner.transform.position + moveDir;
             bool canGo = Managers.MapManager.CanGo(pos.z, pos.x);
             if (canGo == false)
                 return;
-            _myHero.Agent.Move(moveDir);
+            _owner.Agent.Move(moveDir);
         }
 
         private void RotateToMoveDir()
         {
             Vector3 targetDir = new Vector3(_moveInput.x, 0, _moveInput.y);
             Quaternion targetRotation = Quaternion.LookRotation(targetDir);
-            _myHero.transform.rotation = Quaternion.Slerp(_myHero.transform.rotation, targetRotation, 10 * Time.deltaTime);
+            _owner.transform.rotation = Quaternion.Slerp(_owner.transform.rotation, targetRotation, 10 * Time.deltaTime);
         }
 
         private float GetModifiedSpeed()
@@ -88,10 +86,10 @@ namespace MyHeroState
         {
             while (true)
             {
-                _heroMachine.MovePacket.PosInfo.PosX = _myHero.transform.position.x;
-                _heroMachine.MovePacket.PosInfo.PosY = _myHero.transform.position.y;
-                _heroMachine.MovePacket.PosInfo.PosZ = _myHero.transform.position.z;
-                _heroMachine.MovePacket.PosInfo.RotY = _myHero.transform.eulerAngles.y;
+                _heroMachine.MovePacket.PosInfo.PosX = _owner.transform.position.x;
+                _heroMachine.MovePacket.PosInfo.PosY = _owner.transform.position.y;
+                _heroMachine.MovePacket.PosInfo.PosZ = _owner.transform.position.z;
+                _heroMachine.MovePacket.PosInfo.RotY = _owner.transform.eulerAngles.y;
                 _heroMachine.MovePacket.PosInfo.Speed = _moveInput.magnitude * GetModifiedSpeed();
                 Managers.NetworkManager.Send(_heroMachine.MovePacket);
                 yield return new WaitForSeconds(0.5f);
