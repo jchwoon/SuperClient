@@ -9,7 +9,7 @@ public class ComboExitHandler : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         MyHeroStateMachine machine = Managers.ObjectManager.MyHero.MyHeroStateMachine;
-        machine.AttackState.StopComboExitRoutine();
+        machine.SkillState.StopComboExitRoutine();
         machine.Attacking = false;
         machine.ChangeState(machine.IdleState);
 

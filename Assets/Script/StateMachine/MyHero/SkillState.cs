@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace MyHeroState {
-    public class AttackState : BaseState
+    public class SkillState : BaseState
     {
         private float _comboExitTime;
         private Coroutine _coroutine;
-        public AttackState(MyHeroStateMachine heroMachine) : base(heroMachine)
+        public SkillState(MyHeroStateMachine heroMachine) : base(heroMachine)
         {
             HeroData heroData;
             if (Managers.DataManager.HeroDict.TryGetValue(EHeroClassType.Warrior, out heroData)  == true)
@@ -66,7 +66,6 @@ namespace MyHeroState {
         {
             while (Vector3.Distance(_heroMachine.Owner.transform.position, _heroMachine.Target.transform.position) > 1)
             {
-                _owner.Agent.Move(_owner.transform.forward * 10 * Time.deltaTime);
                 yield return null;
             }
             _owner.Animator.SetLayerWeight((int)Enums.AnimLayer.LowerBody, 0);

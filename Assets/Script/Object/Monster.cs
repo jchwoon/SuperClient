@@ -14,4 +14,10 @@ public class Monster : Creature
         base.Update();
 
     }
+
+    public void Init(CreatureInfo info)
+    {
+        SetPos(gameObject, info.ObjectInfo.PosInfo);
+        SetInfo(info);
+    }
 }

@@ -1,5 +1,6 @@
 using Google.Protobuf.Enum;
 using Google.Protobuf.Protocol;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,6 @@ namespace MyHeroState
 {
     public class MoveState : BaseState
     {
-        Vector2 _moveInput = Vector2.zero;
         Coroutine sendRoutine;
 
         public MoveState(MyHeroStateMachine heroMachine) : base(heroMachine)
@@ -26,24 +26,29 @@ namespace MyHeroState
         public override void Enter()
         {
             base.Enter();
-
-            _moveInput = _heroMachine.MoveInput;
             sendRoutine = CoroutineHelper.Instance.StartHelperCoroutine(SendMyPos());
         }
 
         public override void Update()
         {
             base.Update();
-            _moveInput = _heroMachine.MoveInput;
-            if (_heroMachine.MoveInput == Vector2.zero)
+
+            if (_heroMachine.MoveInput == Vector2.zero && _heroMachine.TargetMode == false)
             {
+                //attacking이면
+                //if (_heroMachine.Attacking)
+                //{
+                //    //스킬 거리 내에 타겟이 있다면 
+                //    float dist = _heroMachine.GetDistToTarget();
+                //    //현재 선택된 스킬의 정보
+                //    _heroMachine.ChangeState(_heroMachine.SkillState);
+                //}
                 _heroMachine.ChangeState(_heroMachine.IdleState);
                 return;
             }
 
-            _heroMachine.SetAnimParameter(_owner, _owner.AnimData.MoveSpeedHash, _moveInput.magnitude * GetModifiedSpeed());
-            MoveToMoveDir();
-            RotateToMoveDir();
+            _heroMachine.SetAnimParameter(_owner, _owner.AnimData.MoveSpeedHash, GetModifiedSpeed());
+            MoveToInputDirOrTarget();
         }
 
         public override ECreatureState GetCreatureState()
@@ -51,28 +56,38 @@ namespace MyHeroState
             return ECreatureState.Move;
         }
 
-        private void MoveToMoveDir()
+        private void MoveToInputDirOrTarget()
         {
-            Vector3 moveDir;
-            //최소 속도제한
-            if (_moveInput.magnitude < 0.3)
-                moveDir = new Vector3(_moveInput.normalized.x * 0.3f, 0, _moveInput.normalized.y * 0.3f);
+            if (_heroMachine.TargetMode == true)
+                MoveToTarget();
             else
-                moveDir = new Vector3(_moveInput.x, 0, _moveInput.y);
+                MoveToInputDir();
 
-            moveDir *= (GetModifiedSpeed() * Time.deltaTime);
-
-
-            Vector3 pos = _owner.transform.position + moveDir;
-            bool canGo = Managers.MapManager.CanGo(pos.z, pos.x);
-            if (canGo == false)
+        }
+        private void MoveToTarget()
+        {
+            if (_heroMachine.Target == null)
                 return;
-            _owner.Agent.Move(moveDir);
+            Vector3 targetPos = _heroMachine.Target.transform.position;
+            _owner.transform.position = Vector3.MoveTowards(_owner.transform.position, targetPos, GetModifiedSpeed() * Time.deltaTime);
+            RotateToMoveDir(targetPos);
         }
 
-        private void RotateToMoveDir()
+        private void MoveToInputDir()
         {
-            Vector3 targetDir = new Vector3(_moveInput.x, 0, _moveInput.y);
+            Vector2 inputDir = _heroMachine.MoveInput.normalized;
+            Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.y);
+
+            Vector3 pos = _owner.transform.position + moveDir;
+            if (Managers.MapManager.CanGo(pos.z, pos.x) == false)
+                return;
+            _owner.transform.position = Vector3.MoveTowards(_owner.transform.position, pos, GetModifiedSpeed() * Time.deltaTime);
+            RotateToMoveDir(pos);
+        }
+
+        private void RotateToMoveDir(Vector3 target)
+        {
+            Vector3 targetDir = (target - _owner.transform.position).normalized;
             Quaternion targetRotation = Quaternion.LookRotation(targetDir);
             _owner.transform.rotation = Quaternion.Slerp(_owner.transform.rotation, targetRotation, 10 * Time.deltaTime);
         }
@@ -80,6 +95,15 @@ namespace MyHeroState
         private float GetModifiedSpeed()
         {
             return 20 * _heroMachine.MoveRatio;
+        }
+
+        private void CheckChangeState()
+        {
+            if (_heroMachine.MoveInput == Vector2.zero && _heroMachine.Attacking == false)
+            {
+                _heroMachine.ChangeState(_heroMachine.IdleState);
+                return;
+            }
         }
 
         IEnumerator SendMyPos()
@@ -90,7 +114,7 @@ namespace MyHeroState
                 _heroMachine.MovePacket.PosInfo.PosY = _owner.transform.position.y;
                 _heroMachine.MovePacket.PosInfo.PosZ = _owner.transform.position.z;
                 _heroMachine.MovePacket.PosInfo.RotY = _owner.transform.eulerAngles.y;
-                _heroMachine.MovePacket.PosInfo.Speed = _moveInput.magnitude * GetModifiedSpeed();
+                _heroMachine.MovePacket.PosInfo.Speed = _heroMachine.MoveInput.magnitude * GetModifiedSpeed();
                 Managers.NetworkManager.Send(_heroMachine.MovePacket);
                 yield return new WaitForSeconds(0.5f);
             }

@@ -20,8 +20,6 @@ public class UIManager
         }
     }
 
-
-
     public T ShowPopup<T>(string name = null) where T : PopupUI
     {
         if (name == null)
@@ -81,6 +79,15 @@ public class UIManager
         sceneUI.gameObject.SetActive(false);
 
         return sceneUI;
+    }
+
+    public void ShowToasUI(string text, float duration = 2)
+    {
+        ToastUI toast = Parent.Find("ToastUI")?.GetComponent<ToastUI>();
+        if (toast == null)
+            toast = Managers.ResourceManager.Instantiate("ToastUI", Parent).GetComponent<ToastUI>();
+
+        toast.ShowToast(text, duration);
     }
 
     public AlertUI ShowAlertPopup(Transform parent)

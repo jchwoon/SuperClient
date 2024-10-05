@@ -17,13 +17,14 @@ public class DataManager
     public Dictionary<int, MonsterData> MonsterDict { get; private set; } = new Dictionary<int, MonsterData>();
     public Dictionary<EHeroClassType, HeroData> HeroDict { get; private set; } = new Dictionary<EHeroClassType, HeroData>();
     //public Dictionary<string, TextData> TextDict { get; private set; } = new Dictionary<string, TextData>();
-
+    public Dictionary<int, SkillData> SkillDict { get; private set; } = new Dictionary<int, SkillData>();
 
     public  void Init()
     {
         HeroDict = LoadJson<HeroDataLoader, EHeroClassType, HeroData>("HeroData").MakeDict();
         RoomDict = LoadJson<RoomDataLoader, int, RoomData>("RoomData").MakeDict();
         MonsterDict = LoadJson<MonsterDataLoader, int, MonsterData>("MonsterData").MakeDict();
+        SkillDict = LoadJson<SkillDataLoader, int, SkillData>("SkillData").MakeDict();
         //TextDict = LoadJson<TextDataLoader, string, TextData>("TextData").MakeDict();
     }
 

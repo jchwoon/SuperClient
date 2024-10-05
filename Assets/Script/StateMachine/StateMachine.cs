@@ -1,8 +1,11 @@
+using Data;
 using Google.Protobuf.Enum;
 using Google.Protobuf.Struct;
+using MyHeroState;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public interface IState
 {
@@ -45,6 +48,15 @@ public class StateMachine
     {
         PosInput = new Vector3(pos.PosX, pos.PosY, pos.PosZ);
         InputSpeed = pos.Speed;
+    }
+
+    public virtual void FindTargetAndAttack()
+    {
+
+    }
+
+    public virtual void UseSkill(SkillData skillData, Creature target)
+    {
     }
 
     #region AnimParamGetSet

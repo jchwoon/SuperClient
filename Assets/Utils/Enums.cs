@@ -43,11 +43,10 @@ public class Enums
         BaseLayer = 0,
         LowerBody = 1,
     }
-    public enum StatePriority
+
+    public enum EventType
     {
-        None = 0,
-        First = 1,
-        Second = 2,
-        Third = 3
+        None,
+        AtkBtnClick,
     }
 }

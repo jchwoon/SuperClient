@@ -1,3 +1,4 @@
+using Data;
 using Google.Protobuf.Struct;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ public class Hero : Creature
     {
         get { return _statData; }
     }
+    public HeroData HeroData { get; protected set; }
 
     protected override void Awake()
     {
@@ -28,9 +30,11 @@ public class Hero : Creature
 
     }
 
-    public void SetInfo(HeroInfo heroInfo)
+    public void Init(HeroInfo info, HeroData heroData)
     {
-        _statData.SetStat(heroInfo.CreatureInfo.StatInfo);
-        ObjectId = heroInfo.CreatureInfo.ObjectInfo.ObjectId;
+        HeroData = heroData;
+        _statData.SetStat(info.CreatureInfo.StatInfo);
+        SetInfo(info.CreatureInfo);
+        SetPos(gameObject, info.CreatureInfo.ObjectInfo.PosInfo);
     }
 }

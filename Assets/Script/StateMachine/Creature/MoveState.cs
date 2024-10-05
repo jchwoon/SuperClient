@@ -46,8 +46,8 @@ namespace CreatureState
 
         private void MoveToMoveDir()
         {
-            _owner.Agent.SetDestination(_posInput);
-            //_owner.transform.position = Vector3.MoveTowards(_owner.transform.position, _posInput, _machine.InputSpeed * Time.deltaTime);
+            //_owner.Agent.SetDestination(_posInput);
+            _owner.transform.position = Vector3.MoveTowards(_owner.transform.position, _posInput, 1 * Time.deltaTime);
         }
 
         private void RotateToMoveDir()

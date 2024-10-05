@@ -6,17 +6,21 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class MyHeroStateMachine : StateMachine
 {
     public IdleState IdleState { get; set; }
     public MoveState MoveState { get; set; }
-    public AttackState AttackState { get; set; }
+    public SkillState SkillState { get; set; }
     public Vector2 MoveInput { get; set; } = Vector2.zero;
+    public Vector3 DestPos { get; set; } = Vector3.zero;
     public float MoveRatio { get; private set; } = 0.2f;
     public MoveToS MovePacket { get; set; }
     public Creature Target { get; set; }
     public bool Attacking { get; set; } = false;
+    //Target을 기준으로 움직일지 Input을 기준으로 움직일지
+    public bool TargetMode { get; set; } = false;
     public MyHeroStateMachine(MyHero myHero)
     {
         MovePacket = new MoveToS() { PosInfo = new PosInfo()};
@@ -26,59 +30,72 @@ public class MyHeroStateMachine : StateMachine
         Managers.GameManager.OnJoystickChanged += UpdateMoveInput;
     }
 
-    public void OnAttack()
+    public override void FindTargetAndAttack()
     {
-        if (CurrentState == AttackState)
+        if (Attacking == false)
         {
-            AttackState.StopComboExitRoutine();
-            SetAnimParameter(Owner, Owner.AnimData.AttackComboHash, true);
+            if (Target == null)
+                Target = FindTarget();
+            if (Target == null)
+            {
+                Managers.UIManager.ShowToasUI("주위에 지정할 타겟이 없습니다.");
+                return;
+            }
+            TargetMode = true;
+        }
+        else
+        {
+            TargetMode = false;
         }
 
-        Target = FindTarget();
-        if (Target != null)
-            Owner.transform.LookAt(Target.transform);
-        ChangeState(AttackState);
+        ToggleAttacking();
     }
 
     public Creature FindTarget()
     {
-        if (Target != null)
-        {
-            float targetDist = Vector3.Distance(Target.transform.position, Owner.transform.position);
-            if (targetDist > 4f)
-                Target = null;
-            else
-                return Target;
-        }
+        List<Creature> creatures = Managers.ObjectManager.GetAllCreatures();
         Creature target = null;
-        int mask = 1 << (int)Enums.Layers.Monster;
-        Collider[] colliders = Physics.OverlapSphere(Owner.transform.position, 4f, mask);
         float closestDist = float.MaxValue;
-        foreach(Collider collider in colliders)
+        foreach(Creature creature in creatures)
         {
-            float dist = (collider.gameObject.transform.position - Owner.transform.position).sqrMagnitude;
+            float dist = (creature.gameObject.transform.position - Owner.transform.position).sqrMagnitude;
             if (dist < closestDist)
-                target = collider.gameObject.GetComponent<Creature>();
+                target = creature.gameObject.GetComponent<Creature>();
         }
         return target;
     }
 
     public override void ChangeState(IState changeState)
     {
-        if (Attacking == true) return;
         base.ChangeState(changeState);
+    }
+
+    public float GetDistToTarget()
+    {
+        if (Target == null)
+            return 0;
+
+        return (Target.transform.position - Owner.transform.position).magnitude;
     }
 
     private void SetState()
     {
         IdleState = new IdleState(this);
         MoveState = new MoveState(this);
-        AttackState = new AttackState(this);
+        SkillState = new SkillState(this);
     }
 
     private void UpdateMoveInput(Vector2 moveInput)
     {
         MoveInput = moveInput;
+        if (moveInput != Vector2.zero)
+            TargetMode = false;
+        else if (Attacking == true)
+            TargetMode = true;
     }
 
+    private void ToggleAttacking()
+    {
+        Attacking = Attacking == true ? false : true;
+    }
 }
