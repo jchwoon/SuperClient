@@ -42,10 +42,17 @@ namespace Google.Protobuf.Enum {
             "VF9VUBAIKocBCgpFTW92ZUZvcmNlEhQKEEVNT1ZFX0ZPUkNFX05PTkUQABIU",
             "ChBFTU9WRV9GT1JDRV9XRUFLEAESFgoSRU1PVkVfRk9SQ0VfTk9STUFMEAIS",
             "HQoZRU1PVkVfRk9SQ0VfU0xJR0hUX1NUUk9ORxADEhYKEkVNT1ZFX0ZPUkNF",
-            "X1NUUk9ORxAEQheqAhRHb29nbGUuUHJvdG9idWYuRW51bWIGcHJvdG8z"));
+            "X1NUUk9ORxAEKmsKCkVTa2lsbFR5cGUSFAoQRVNLSUxMX1RZUEVfTk9ORRAA",
+            "EhYKEkVTS0lMTF9UWVBFX05PUk1BTBABEhYKEkVTS0lMTF9UWVBFX0FDVElW",
+            "RRACEhcKE0VTS0lMTF9UWVBFX1BBU1NJVkUQAyqjAQoQRVNraWxsRmFpbFJl",
+            "YXNvbhIbChdFU0tJTExfRkFJTF9SRUFTT05fTk9ORRAAEhsKF0VTS0lMTF9G",
+            "QUlMX1JFQVNPTl9TVFVOEAESGwoXRVNLSUxMX0ZBSUxfUkVBU09OX0RJU1QQ",
+            "AhIbChdFU0tJTExfRkFJTF9SRUFTT05fQ09TVBADEhsKF0VTS0lMTF9GQUlM",
+            "X1JFQVNPTl9DT09MEARCF6oCFEdvb2dsZS5Qcm90b2J1Zi5FbnVtYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.EMoveForce), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.EMoveForce), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillFailReason), }, null, null));
     }
     #endregion
 
@@ -94,6 +101,21 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("EMOVE_FORCE_NORMAL")] Normal = 2,
     [pbr::OriginalName("EMOVE_FORCE_SLIGHT_STRONG")] SlightStrong = 3,
     [pbr::OriginalName("EMOVE_FORCE_STRONG")] Strong = 4,
+  }
+
+  public enum ESkillType {
+    [pbr::OriginalName("ESKILL_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ESKILL_TYPE_NORMAL")] Normal = 1,
+    [pbr::OriginalName("ESKILL_TYPE_ACTIVE")] Active = 2,
+    [pbr::OriginalName("ESKILL_TYPE_PASSIVE")] Passive = 3,
+  }
+
+  public enum ESkillFailReason {
+    [pbr::OriginalName("ESKILL_FAIL_REASON_NONE")] None = 0,
+    [pbr::OriginalName("ESKILL_FAIL_REASON_STUN")] Stun = 1,
+    [pbr::OriginalName("ESKILL_FAIL_REASON_DIST")] Dist = 2,
+    [pbr::OriginalName("ESKILL_FAIL_REASON_COST")] Cost = 3,
+    [pbr::OriginalName("ESKILL_FAIL_REASON_COOL")] Cool = 4,
   }
 
   #endregion

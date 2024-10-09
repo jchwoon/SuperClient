@@ -18,13 +18,16 @@ public class ObjectManager
         HeroInfo heroInfo = myHeroInfo.HeroInfo;
         ObjectInfo objectInfo = heroInfo.CreatureInfo.ObjectInfo;
 
+        HeroData heroData;
+        if (Managers.DataManager.HeroDict.TryGetValue(heroInfo.LobbyHeroInfo.ClassType, out heroData) == false)
+            return null;
+
         GameObject go = Managers.ResourceManager.Instantiate($"{heroInfo.LobbyHeroInfo.ClassType}_Init");
         go.name = "MyHero";
-        SetPos(go, objectInfo.PosInfo);
         MyHero myHero = go.AddComponent<MyHero>();
-        myHero.SetInfo(myHeroInfo);
-        _objects.Add(objectInfo.ObjectId, go);
         MyHero = myHero;
+        myHero.Init(myHeroInfo, heroData);
+        _objects.Add(objectInfo.ObjectId, go);
         return myHero;
     }
 
@@ -32,11 +35,14 @@ public class ObjectManager
     {
         ObjectInfo objectInfo = heroInfo.CreatureInfo.ObjectInfo;
 
+        HeroData heroData;
+        if (Managers.DataManager.HeroDict.TryGetValue(heroInfo.LobbyHeroInfo.ClassType, out heroData) == false)
+            return null;
+
         GameObject go = Managers.ResourceManager.Instantiate($"{heroInfo.LobbyHeroInfo.ClassType}_Init");
         go.name = $"{heroInfo.LobbyHeroInfo.Nickname}";
-        SetPos(go, objectInfo.PosInfo);
         Hero hero = go.AddComponent<Hero>();
-        hero.SetInfo(heroInfo);
+        hero.Init(heroInfo, heroData);
         _objects.Add(objectInfo.ObjectId, go);
         _heroes.Add(objectInfo.ObjectId, hero);
 
@@ -59,15 +65,14 @@ public class ObjectManager
 
         GameObject go = Managers.ResourceManager.Instantiate(monsterData.PrefabName);
         go.name = $"{monsterData.Name}";
-        SetPos(go, objectInfo.PosInfo);
         Monster monster = go.AddComponent<Monster>();
-        monster.SetInfo(creatureInfo);
+        monster.Init(creatureInfo);
         _objects.Add(objectInfo.ObjectId, go);
         _monsters.Add(objectInfo.ObjectId, monster);
 
         return monster;
     }
-    public void DeSpawn(int objectId, EObjectType objType)
+    public void DeSpawn(int objectId)
     {
         //MyHero를 삭제할 일이 있을 경우 만들어주기 Todo
         GameObject go = FindById(objectId);
@@ -75,6 +80,7 @@ public class ObjectManager
             return;
         _objects.Remove(objectId);
         _heroes.Remove(objectId);
+        _monsters.Remove(objectId);
 
         Managers.ResourceManager.Destroy(go);
     }
@@ -85,9 +91,15 @@ public class ObjectManager
         _objects.TryGetValue(objectId, out go);
         return go;
     }
-    private void SetPos(GameObject go, PosInfo posInfo)
+
+    public List<Creature> GetAllCreatures()
     {
-        go.transform.position = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);
-        go.transform.eulerAngles = new Vector3(0, posInfo.RotY, 0);
+        List<Creature> creatures = new List<Creature>();
+
+        foreach(Creature creature in _monsters.Values)
+        {
+            creatures.Add(creature);
+        }
+        return creatures;
     }
 }

@@ -13,24 +13,25 @@ namespace CreatureState
         public override void Exit()
         {
             base.Exit();
+            _machine.SetAnimParameter(_owner, _owner.AnimData.IdleHash, false);
         }
         public override void Enter()
         {
             base.Enter();
+            _machine.SetAnimParameter(_owner, _owner.AnimData.IdleHash, true);
         }
 
         public override void Update()
         {
             base.Update();
-            if (_creatureMachine.PosInput.HasValue == false)
+            if (_machine.PosInput.HasValue == false)
                 return;
 
-            if ((_creatureMachine.Creature.transform.position - _creatureMachine.PosInput.Value).sqrMagnitude > 0.001f)
+            if ((_owner.transform.position - _machine.PosInput.Value).sqrMagnitude > 0.001f)
             {
-                _creatureMachine.ChangeState(_creatureMachine.MoveState);
+                _machine.ChangeState(_machine.MoveState);
                 return;
             }
-
         }
 
         public override ECreatureState GetCreatureState()

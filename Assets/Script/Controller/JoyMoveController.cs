@@ -7,34 +7,25 @@ public class JoyMoveController : MonoBehaviour
 {
     RectTransform _joyMoveRect;
     RectTransform _joyMoveHandleRect;
-    //private Vector2 _moveInput = Vector2.zero;
-    private bool _isPress;
+    //private bool _isPress;
     float _camRotY;
-    Vector3 _dir3;
+    Vector2 _prevInput = Vector2.zero;
     private void Start()
     {
         _joyMoveRect = GetComponent<RectTransform>();
         _joyMoveHandleRect = transform.GetChild(0).GetComponent<RectTransform>();
     }
-    public void UpdateInput()
-    {
-        if (_isPress == false)
-            return;
 
-        Vector3 camDir = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * _dir3;
-        Vector2 input = new Vector2(camDir.x, camDir.z);
-        Managers.GameManager.MoveInput = input;
-    }
     public void OnHandlePointerDown(PointerEventData eventData)
     {
         SetJoyPos(eventData);
-        _isPress = true;
+        //_isPress = true;
     }
     public void OnHandlePointerUp(PointerEventData eventData)
     {
         Managers.GameManager.MoveInput = Vector2.zero;
         _joyMoveHandleRect.anchoredPosition = Vector2.zero;
-        _isPress = false;
+        //_isPress = false;
     }
     public void OnHandleDrag(PointerEventData eventData)
     {
@@ -61,6 +52,8 @@ public class JoyMoveController : MonoBehaviour
 
     private void SetMoveInput(Vector2 dir)
     {
-        _dir3 = new Vector3(dir.x, 0, dir.y);
+        Vector3 camDir = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0) * new Vector3(dir.x, 0, dir.y);
+        Vector2 input = new Vector2(camDir.x, camDir.z);
+        Managers.GameManager.MoveInput = input;
     }
 }

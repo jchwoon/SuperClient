@@ -9,13 +9,16 @@
       "atkDamage": 10,
       "defence": 3,
       "atkSpeed": 1,
-      "name": "토끼",
-      "prefabName": "Rabbit",
+      "name": "Vornix",
+      "prefabName": "Vornix",
       "level": 1,
       "exp": 50,
       "gold": 50,
       "sight": 5,
-      "atkRange": 1
+      "atkRange": 1,
+      "skillIds": [
+        2
+      ]
     }
   ]
 }

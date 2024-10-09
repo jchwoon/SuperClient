@@ -8,29 +8,29 @@ namespace CreatureState
     public class MoveState : BaseState
     {
         Vector3 _posInput = Vector3.zero;
-        Creature _creature;
         public MoveState(CreatureMachine creatureMachine) : base(creatureMachine)
         {
         }
         public override void Exit()
         {
             base.Exit();
+            _machine.SetAnimParameter(_owner, _owner.AnimData.MoveHash, false);
         }
         public override void Enter()
         {
             base.Enter();
-            _creature = _creatureMachine.Creature;
+            _machine.SetAnimParameter(_owner, _owner.AnimData.MoveHash, true);
         }
         public override void Update()
         {
             base.Update();
-            if (_creatureMachine.PosInput.HasValue == false)
+            if (_machine.PosInput.HasValue == false)
                 return;
 
-            _posInput = _creatureMachine.PosInput.Value;
-            if ((_posInput - _creature.transform.position).sqrMagnitude <= 0.001f)
+            _posInput = _machine.PosInput.Value;
+            if ((_posInput - _owner.transform.position).sqrMagnitude <= 0.001f)
             {
-                _creatureMachine.ChangeState(_creatureMachine.IdleState);
+                _machine.ChangeState(_machine.IdleState);
                 return;
             }
 
@@ -46,14 +46,15 @@ namespace CreatureState
 
         private void MoveToMoveDir()
         {
-            _creature.transform.position = Vector3.MoveTowards(_creature.transform.position, _posInput, 3 * Time.deltaTime);
+            //_owner.Agent.SetDestination(_posInput);
+            _owner.transform.position = Vector3.MoveTowards(_owner.transform.position, _posInput, 1 * Time.deltaTime);
         }
 
         private void RotateToMoveDir()
         {
-            Vector3 targetDir = _posInput - _creature.transform.position;
+            Vector3 targetDir = _posInput - _owner.transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(targetDir);
-            _creature.transform.rotation = Quaternion.Slerp(_creature.transform.rotation, targetRotation, 10 * Time.deltaTime);
+            _owner.transform.rotation = Quaternion.Slerp(_owner.transform.rotation, targetRotation, 10 * Time.deltaTime);
         }
     }
 }

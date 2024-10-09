@@ -10,8 +10,8 @@
           "respawnTime": 5,
           "posX": 0,
           "posY": 0,
-          "posZ": -45,
-          "spawnRange": 10
+          "posZ": -55,
+          "spawnRange": 20
         }
       ]
     }

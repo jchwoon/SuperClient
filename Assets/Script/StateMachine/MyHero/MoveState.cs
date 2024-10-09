@@ -1,17 +1,19 @@
 using Google.Protobuf.Enum;
 using Google.Protobuf.Protocol;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.PlayerSettings;
+using static UnityEngine.UI.GridLayoutGroup;
 
 namespace MyHeroState
 {
     public class MoveState : BaseState
     {
-        Vector2 _moveInput = Vector2.zero;
-        MyHero _myHero;
         Coroutine sendRoutine;
 
         public MoveState(MyHeroStateMachine heroMachine) : base(heroMachine)
@@ -27,25 +29,19 @@ namespace MyHeroState
         public override void Enter()
         {
             base.Enter();
-
-            _myHero = _heroMachine.MyHero;
-            _moveInput = _heroMachine.MoveInput;
             sendRoutine = CoroutineHelper.Instance.StartHelperCoroutine(SendMyPos());
+            MyHero owner = _heroMachine.Owner;
+            _heroMachine.SetAnimParameter(owner, owner.AnimData.MoveSpeedHash, _heroMachine.GetModifiedSpeed());
         }
 
         public override void Update()
         {
             base.Update();
-            _moveInput = _heroMachine.MoveInput;
-            if (_heroMachine.MoveInput == Vector2.zero)
-            {
-                _heroMachine.ChangeState(_heroMachine.IdleState);
-                return;
-            }
 
-            _heroMachine.SetAnimParameter(_myHero.AnimData.MoveSpeedHash, _moveInput.magnitude * GetModifiedSpeed());
-            MoveToMoveDir();
-            RotateToMoveDir();
+            if (CheckChangeState() == true)
+                return;
+
+            MoveToInputDirOrTarget();
         }
 
         public override ECreatureState GetCreatureState()
@@ -53,46 +49,71 @@ namespace MyHeroState
             return ECreatureState.Move;
         }
 
-        private void MoveToMoveDir()
+        private void MoveToInputDirOrTarget()
         {
-            Vector3 moveDir;
-            //최소 속도제한
-            if (_moveInput.magnitude < 0.3)
-                moveDir = new Vector3(_moveInput.normalized.x * 0.3f, 0, _moveInput.normalized.y * 0.3f);
+            if (_heroMachine.TargetMode == true)
+                MoveToTarget();
             else
-                moveDir = new Vector3(_moveInput.x, 0, _moveInput.y);
+                MoveToInputDir();
 
-            moveDir *= (GetModifiedSpeed() * Time.deltaTime);
-
-
-            Vector3 pos = _myHero.transform.position + moveDir;
-            bool canGo = Managers.MapManager.CanGo(pos.z, pos.x);
-            if (canGo == false)
+        }
+        private void MoveToTarget()
+        {
+            if (_heroMachine.Target == null)
                 return;
-            _myHero.Agent.Move(moveDir);
+            Vector3 dir = (_heroMachine.Target.transform.position - _heroMachine.Owner.transform.position).normalized;
+            Vector3 targetPos = _heroMachine.Target.transform.position;
+            ToMove(targetPos);
+            RotateToMoveDir(targetPos);
         }
 
-        private void RotateToMoveDir()
+        private void MoveToInputDir()
         {
-            Vector3 targetDir = new Vector3(_moveInput.x, 0, _moveInput.y);
+            Vector2 inputDir = _heroMachine.MoveInput.normalized;
+            Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.y);
+
+            Vector3 destPos = _owner.transform.position + moveDir;
+            if (Managers.MapManager.CanGo(destPos.z, destPos.x) == false)
+                return;
+            ToMove(destPos);
+            RotateToMoveDir(destPos);
+        }
+
+        private void ToMove(Vector3 destPos)
+        {
+            _owner.transform.position = Vector3.MoveTowards(_owner.transform.position, destPos, _heroMachine.GetModifiedSpeed() * Time.deltaTime);
+        }
+        private void RotateToMoveDir(Vector3 target)
+        {
+            Vector3 targetDir = (target - _owner.transform.position).normalized;
             Quaternion targetRotation = Quaternion.LookRotation(targetDir);
-            _myHero.transform.rotation = Quaternion.Slerp(_myHero.transform.rotation, targetRotation, 10 * Time.deltaTime);
+            _owner.transform.rotation = Quaternion.Slerp(_owner.transform.rotation, targetRotation, 10 * Time.deltaTime);
         }
 
-        private float GetModifiedSpeed()
+        private bool CheckChangeState()
         {
-            return 20 * _heroMachine.MoveRatio;
+            if (_heroMachine.TargetMode == true)
+            {
+                return MoveToTargetOrUseSkill(); 
+            }
+            else if (_heroMachine.MoveInput == Vector2.zero)
+            {
+                _heroMachine.ChangeState(_heroMachine.IdleState);
+                return true;
+            }
+
+            return false;
         }
 
         IEnumerator SendMyPos()
         {
             while (true)
             {
-                _heroMachine.MovePacket.PosInfo.PosX = _myHero.transform.position.x;
-                _heroMachine.MovePacket.PosInfo.PosY = _myHero.transform.position.y;
-                _heroMachine.MovePacket.PosInfo.PosZ = _myHero.transform.position.z;
-                _heroMachine.MovePacket.PosInfo.RotY = _myHero.transform.eulerAngles.y;
-                _heroMachine.MovePacket.PosInfo.Speed = _moveInput.magnitude * GetModifiedSpeed();
+                _heroMachine.MovePacket.PosInfo.PosX = _owner.transform.position.x;
+                _heroMachine.MovePacket.PosInfo.PosY = _owner.transform.position.y;
+                _heroMachine.MovePacket.PosInfo.PosZ = _owner.transform.position.z;
+                _heroMachine.MovePacket.PosInfo.RotY = _owner.transform.eulerAngles.y;
+                _heroMachine.MovePacket.PosInfo.Speed = _heroMachine.MoveInput.magnitude * _heroMachine.GetModifiedSpeed();
                 Managers.NetworkManager.Send(_heroMachine.MovePacket);
                 yield return new WaitForSeconds(0.5f);
             }

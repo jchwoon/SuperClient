@@ -1,26 +1,26 @@
+using CreatureState;
 using Google.Protobuf.Enum;
 using Google.Protobuf.Struct;
-using HeroState;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class HeroStateMachine : StateMachine
+public class HeroStateMachine : CreatureMachine
 {
-    public IdleState IdleState { get; set; }
-    public MoveState MoveState { get; set; }
-    public Hero Hero { get; private set; }
-    public float MoveRatio { get; private set; } = 0.2f;
-    public HeroStateMachine(Hero hero)
+    public override IdleState IdleState { get; set; }
+    public override MoveState MoveState { get; set; }
+
+    public HeroStateMachine(Creature creature) : base(creature)
     {
-        Hero = hero;
+        Owner = creature;
         SetState();
     }
 
+
     private void SetState()
     {
-        IdleState = new IdleState(this);
-        MoveState = new MoveState(this);
+        IdleState = new HeroIdleState(this);
+        MoveState = new HeroMoveState(this);
     }
 }

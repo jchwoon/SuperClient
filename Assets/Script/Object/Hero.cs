@@ -1,3 +1,4 @@
+using Data;
 using Google.Protobuf.Struct;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,24 +6,22 @@ using UnityEngine;
 
 public class Hero : Creature
 {
-    private HeroStateMachine _heroMachine;
     protected HeroStatData _statData;
     public HeroStatData StatData
     {
         get { return _statData; }
     }
-    public HeroStateMachine HeroMachine
-    { 
-        get { return _heroMachine; }
-    }
+    public HeroData HeroData { get; protected set; }
 
     protected override void Awake()
     {
         base.Awake();
+        if (isMachineInit == false)
+        {
+            Machine = new HeroStateMachine(this);
+            isMachineInit = true;
+        }
 
-        _heroMachine = new HeroStateMachine(this);
-        Machine = _heroMachine;
-        Machine.ChangeState(_heroMachine.IdleState);
         _statData = new HeroStatData();
     }
     protected override void Update()
@@ -31,9 +30,11 @@ public class Hero : Creature
 
     }
 
-    public void SetInfo(HeroInfo heroInfo)
+    public void Init(HeroInfo info, HeroData heroData)
     {
-        _statData.SetStat(heroInfo.CreatureInfo.StatInfo);
-        ObjectId = heroInfo.CreatureInfo.ObjectInfo.ObjectId;
+        HeroData = heroData;
+        _statData.SetStat(info.CreatureInfo.StatInfo);
+        SetInfo(info.CreatureInfo);
+        SetPos(gameObject, info.CreatureInfo.ObjectInfo.PosInfo);
     }
 }

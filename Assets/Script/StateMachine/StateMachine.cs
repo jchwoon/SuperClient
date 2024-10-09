@@ -1,5 +1,8 @@
+using Data;
 using Google.Protobuf.Enum;
 using Google.Protobuf.Struct;
+using Google.Protobuf.WellKnownTypes;
+using MyHeroState;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,4 +48,56 @@ public class StateMachine
         PosInput = new Vector3(pos.PosX, pos.PosY, pos.PosZ);
         InputSpeed = pos.Speed;
     }
+
+    public virtual void FindTargetAndAttack()
+    {
+
+    }
+
+    public virtual void UseSkill(SkillData skillData, Creature target)
+    {
+    }
+
+    #region AnimParamGetSet
+    public bool GetAnimParameter(Creature creature, int hashId)
+    {
+        return creature.Animator.GetBool(hashId);
+    }
+
+    public void SetAnimParameter(Creature creature, int hashId, bool value)
+    {
+        creature.Animator.SetBool(hashId, value);
+    }
+
+    public void SetAnimParameter(Creature creature, int hashId, float value)
+    {
+        creature.Animator.SetFloat(hashId, value);
+    }
+    public void SetAnimParameter(Creature creature, int hashId, int value)
+    {
+        creature.Animator.SetInteger(hashId, value);
+    }
+    public void SetAnimParameter(Creature creature, int hashId)
+    {
+        creature.Animator.SetTrigger(hashId);
+    }
+
+    public void SetAnimParameter(Creature creature, string hashName, bool value)
+    {
+        SetAnimParameter(creature, Animator.StringToHash(hashName), value);
+    }
+
+    public void SetAnimParameter(Creature creature, string hashName, float value)
+    {
+        SetAnimParameter(creature, Animator.StringToHash(hashName), value);
+    }
+    public void SetAnimParameter(Creature creature, string hashName, int value)
+    {
+        SetAnimParameter(creature, Animator.StringToHash(hashName), value);
+    }
+    public void SetAnimParameter(Creature creature, string hashName)
+    {
+        SetAnimParameter(creature, Animator.StringToHash(hashName));
+    }
+    #endregion
 }

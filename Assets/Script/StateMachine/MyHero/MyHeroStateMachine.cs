@@ -1,3 +1,4 @@
+using Data;
 using Google.Protobuf.Enum;
 using Google.Protobuf.Protocol;
 using Google.Protobuf.Struct;
@@ -6,103 +7,110 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class MyHeroStateMachine : StateMachine
 {
     public IdleState IdleState { get; set; }
     public MoveState MoveState { get; set; }
-    public AttackState AttackState { get; set; }
-    public MyHero MyHero { get; private set; }
+    public SkillState SkillState { get; set; }
     public Vector2 MoveInput { get; set; } = Vector2.zero;
     public float MoveRatio { get; private set; } = 0.2f;
     public MoveToS MovePacket { get; set; }
     public Creature Target { get; set; }
-    public bool Attacking { get; set; }
+    public MyHero Owner { get; set; }
+    //어택모드가 활성화 되어있는지 아닌지
+    public bool Attacking { get; set; } = false;
+    //Target을 기준으로 움직일지 Input을 기준으로 움직일지
+    public bool TargetMode { get; set; } = false;
+    //스킬 요청에 대한 응답을 대기중인지
+    public bool isWaitSkillRes { get; set; } = false;
+    public int? CurrentActiveSkillHash { get; set; }
     public MyHeroStateMachine(MyHero myHero)
     {
         MovePacket = new MoveToS() { PosInfo = new PosInfo()};
-        MyHero = myHero;
+        Owner = myHero;
         SetState();
+        ChangeState(IdleState);
         Managers.GameManager.OnJoystickChanged += UpdateMoveInput;
     }
-
-    public void OnAttack()
+    public override void FindTargetAndAttack()
     {
-        if (CurrentState == AttackState)
+        if (Attacking == false)
         {
-            AttackState.StopComboExitRoutine();
-            SetAnimParameter(MyHero.AnimData.AttackComboHash, true);
+            if (Target == null)
+                Target = FindTarget();
+            if (Target == null)
+            {
+                Managers.UIManager.ShowToasUI("주위에 지정할 타겟이 없습니다.");
+                return;
+            }
+            TargetMode = true;
+        }
+        else
+        {
+            TargetMode = false;
         }
 
-        Target = FindTarget();
-        if (Target != null)
-            MyHero.transform.LookAt(Target.transform);
-        ChangeState(AttackState);
+        ToggleAttacking();
     }
 
     public Creature FindTarget()
     {
-        if (Target != null)
-        {
-            float targetDist = Vector3.Distance(Target.transform.position, MyHero.transform.position);
-            if (targetDist > 4f)
-                Target = null;
-            else
-                return Target;
-        }
+        List<Creature> creatures = Managers.ObjectManager.GetAllCreatures();
         Creature target = null;
-        int mask = 1 << (int)Enums.Layers.Monster;
-        Collider[] colliders = Physics.OverlapSphere(MyHero.transform.position, 4f, mask);
         float closestDist = float.MaxValue;
-        foreach(Collider collider in colliders)
+        foreach(Creature creature in creatures)
         {
-            float dist = (collider.gameObject.transform.position - MyHero.transform.position).sqrMagnitude;
+            float dist = (creature.gameObject.transform.position - Owner.transform.position).sqrMagnitude;
             if (dist < closestDist)
-                target = collider.gameObject.GetComponent<Creature>();
+                target = creature.gameObject.GetComponent<Creature>();
         }
         return target;
     }
 
     public override void ChangeState(IState changeState)
     {
-        if (Attacking == true) return;
         base.ChangeState(changeState);
+    }
+
+    public override void UseSkill(SkillData skillData, Creature target)
+    {
+        if (skillData == null || target == null)
+            return;
+
+        BaseSkill skill = Owner.SkillComponent.GetSkillById(skillData.SkillId);
+        skill.UseSkill();
+        SetAnimParameter(Owner, Owner.AnimData.SkillHash, true);
+        ChangeState(SkillState);
+        Owner.transform.LookAt(target.transform);
+
+        //target에게 데미지 입히기
+    }
+
+    public float GetModifiedSpeed()
+    {
+        return 20 * MoveRatio;
     }
 
     private void SetState()
     {
         IdleState = new IdleState(this);
         MoveState = new MoveState(this);
-        AttackState = new AttackState(this);
+        SkillState = new SkillState(this);
     }
 
     private void UpdateMoveInput(Vector2 moveInput)
     {
         MoveInput = moveInput;
-    }
-    #region AnimParamGetSet
-    public bool GetAnimParameter(int hashId)
-    {
-        return MyHero.Animator.GetBool(hashId);
-    }
-
-    public void SetAnimParameter(int hashId, bool value)
-    {
-        MyHero.Animator.SetBool(hashId, value);
+        if (moveInput != Vector2.zero)
+            TargetMode = false;
+        else if (Attacking == true)
+            TargetMode = true;
     }
 
-    public void SetAnimParameter(int hashId, float value)
+    private void ToggleAttacking()
     {
-        MyHero.Animator.SetFloat(hashId, value);
+        Attacking = Attacking == true ? false : true;
     }
-    public void SetAnimParameter(int hashId, int value)
-    {
-        MyHero.Animator.SetInteger(hashId, value);
-    }
-    public void SetAnimParameter(int hashId)
-    {
-        MyHero.Animator.SetTrigger(hashId);
-    }
-    #endregion
-
 }

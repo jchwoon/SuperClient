@@ -86,6 +86,7 @@ namespace Data
         public float AtkSpeed;
         public float Sight;
         public float AtkRange;
+        public List<int> SkillIds; 
     }
 
     [Serializable]
@@ -108,6 +109,7 @@ namespace Data
     {
         public EHeroClassType HeroClassId;
         public float ComboExitTime;
+        public List<int> SkillIds;
     }
     [Serializable]
     public class HeroDataLoader : ILoader<EHeroClassType, HeroData>
@@ -119,6 +121,35 @@ namespace Data
             foreach (HeroData hero in heroes)
             {
                 dict.Add(hero.HeroClassId, hero);
+            }
+
+            return dict;
+        }
+    }
+
+    public class SkillData
+    {
+        public int SkillId;
+        public ESkillType SkillType;
+        public string SkillName;
+        public string AnimName;
+        public int SkillRange;
+        public int CostMp;
+        public float CoolTime;
+        public float AnimTime;
+        public string AnimParamName;
+    }
+
+    [Serializable]
+    public class SkillDataLoader : ILoader<int, SkillData>
+    {
+        public List<SkillData> skills = new List<SkillData>();
+        public Dictionary<int, SkillData> MakeDict()
+        {
+            Dictionary<int, SkillData> dict = new Dictionary<int, SkillData>();
+            foreach(SkillData skill in skills)
+            {
+                dict.Add(skill.SkillId, skill);
             }
 
             return dict;

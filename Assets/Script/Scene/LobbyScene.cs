@@ -34,6 +34,7 @@ public class LobbyScene : BaseScene
     #region Receive
     public void OnReceiveHeroList(ResHeroListToC packet)
     {
+        Debug.Log(packet.Lobbyheros);
         _receiveHeroListAction?.Invoke();
 
         _fadeEffect.GetComponent<FadeEffect>().FadeInOut();

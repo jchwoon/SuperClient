@@ -21,6 +21,7 @@ public class Managers : MonoBehaviour
     private GameManager _gameManager = new GameManager();
     private ObjectManager _objectManagr = new ObjectManager();
     private MapManager _mapManager = new MapManager();
+    private EventBusManager _eventBus = new EventBusManager();
 
     public static NetworkManager NetworkManager { get { return Instance._networkManager; } }
     public static SceneManagerEx SceneManagerEx { get { return Instance._sceneManager; } }
@@ -30,6 +31,8 @@ public class Managers : MonoBehaviour
     public static GameManager GameManager { get { return Instance._gameManager; } }
     public static ObjectManager ObjectManager { get { return Instance._objectManagr; } }
     public static MapManager MapManager { get { return Instance._mapManager; } }
+    public static EventBusManager EventBus { get { return Instance._eventBus; } }
+
 
     private void Awake()
     {

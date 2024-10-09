@@ -35,11 +35,6 @@ public class JoySceneUI : SceneUI
         BindEvent(movestick, OnMovestickDrag, Enums.TouchEvent.Drag);
     }
 
-    protected override void Update()
-    {
-        _joyMoveController.UpdateInput();
-    }
-
     private void OnMovestickPointerDown(PointerEventData eventData)
     {
         _joyMoveController.OnHandlePointerDown(eventData);
@@ -57,7 +52,6 @@ public class JoySceneUI : SceneUI
 
     private void OnAttackBtnClicked(PointerEventData eventData)
     {
-        MyHeroStateMachine machine = Managers.ObjectManager.MyHero.MyHeroStateMachine;
-        machine.OnAttack();
+        Managers.EventBus.InvokeEvent(Enums.EventType.AtkBtnClick);
     }
 }

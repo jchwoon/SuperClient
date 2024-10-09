@@ -7,10 +7,12 @@ namespace CreatureState
 {
     public class BaseState : IState
     {
-        protected CreatureMachine _creatureMachine;
+        protected CreatureMachine _machine;
+        protected Creature _owner;
         public BaseState(CreatureMachine creatureMachine)
         {
-            _creatureMachine = creatureMachine;
+            _machine = creatureMachine;
+            _owner = _machine.Owner;
         }
 
         public virtual void Enter()

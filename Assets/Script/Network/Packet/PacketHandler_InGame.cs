@@ -32,17 +32,35 @@ public partial class PacketHandler
             return;
         BaseObject bo = go.GetComponent<BaseObject>();
 
-        if (bo != null && bo.Machine != null)
-        {
-            bo.Machine.UpdatePosInput(movePacket.PosInfo);
-            Debug.Log(movePacket.PosInfo.PosZ);
-        }
+        if (bo == null)
+            return;
 
+        bo.ReceivePosInfo(movePacket);
     }
 
     public static void DeSpawnToCHandler(PacketSession session, IMessage packet)
     {
         DeSpawnToC deSpawnPacket = (DeSpawnToC)packet;
-        Managers.ObjectManager.DeSpawn(deSpawnPacket.ObjectId, deSpawnPacket.ObjectType);
+        foreach(int id in deSpawnPacket.ObjectIds)
+        {
+            Managers.ObjectManager.DeSpawn(id);
+        }
+
+    }
+
+    public static void ResUseSkillToCHandler(PacketSession session, IMessage packet)
+    {
+        ResUseSkillToC skillPacket = (ResUseSkillToC)packet;
+        GameObject go = Managers.ObjectManager.FindById(skillPacket.ObjectId);
+
+        if (go == null) 
+            return;
+
+        Creature creature = go.GetComponent<Creature>();
+
+        if (creature == null)
+            return;
+
+        creature.ReceiveResUseSkill(creature, skillPacket);
     }
 }

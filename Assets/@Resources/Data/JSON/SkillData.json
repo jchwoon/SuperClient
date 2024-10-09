@@ -1,0 +1,15 @@
+{
+  "skills": [
+    {
+      "skillId": 1,
+      "skillType": 1,
+      "skillName": "기사 기본 공격",
+      "animName": "NormalAttack",
+      "skillRange": 1,
+      "costMp": 0,
+      "coolTime": 0,
+      "animTime": 1,
+      "animParamName": "SkillA"
+    }
+  ]
+}
