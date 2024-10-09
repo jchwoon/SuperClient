@@ -8,6 +8,7 @@ public class CreatureMachine : StateMachine
 {
     public virtual IdleState IdleState { get; set; }
     public virtual MoveState MoveState { get; set; }
+    public Creature Owner { get; set; }
     public CreatureMachine (Creature creature)
     {
         Owner = creature;

@@ -1,11 +1,11 @@
 using Data;
 using Google.Protobuf.Enum;
 using Google.Protobuf.Struct;
+using Google.Protobuf.WellKnownTypes;
 using MyHeroState;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public interface IState
 {
@@ -21,7 +21,6 @@ public class StateMachine
     protected ECreatureState CreatureState { get; private set; }
     public Vector3? PosInput { get; private set; } = null;
     public float InputSpeed { get; private set; }
-    public Creature Owner { get; protected set; }
 
     public virtual void ChangeState(IState changeState)
     {
@@ -81,6 +80,24 @@ public class StateMachine
     public void SetAnimParameter(Creature creature, int hashId)
     {
         creature.Animator.SetTrigger(hashId);
+    }
+
+    public void SetAnimParameter(Creature creature, string hashName, bool value)
+    {
+        SetAnimParameter(creature, Animator.StringToHash(hashName), value);
+    }
+
+    public void SetAnimParameter(Creature creature, string hashName, float value)
+    {
+        SetAnimParameter(creature, Animator.StringToHash(hashName), value);
+    }
+    public void SetAnimParameter(Creature creature, string hashName, int value)
+    {
+        SetAnimParameter(creature, Animator.StringToHash(hashName), value);
+    }
+    public void SetAnimParameter(Creature creature, string hashName)
+    {
+        SetAnimParameter(creature, Animator.StringToHash(hashName));
     }
     #endregion
 }

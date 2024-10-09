@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseObject : MonoBehaviour
+public class BaseObject : MonoBehaviour 
 {
     protected bool isMachineInit = false;
     public int ObjectId { get; set; }

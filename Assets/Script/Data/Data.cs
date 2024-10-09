@@ -133,12 +133,17 @@ namespace Data
         public ESkillType SkillType;
         public string SkillName;
         public string AnimName;
-        public float SkillRange;
+        public int SkillRange;
+        public int CostMp;
+        public float CoolTime;
+        public float AnimTime;
+        public string AnimParamName;
     }
 
+    [Serializable]
     public class SkillDataLoader : ILoader<int, SkillData>
     {
-        List<SkillData> skills = new List<SkillData>();
+        public List<SkillData> skills = new List<SkillData>();
         public Dictionary<int, SkillData> MakeDict()
         {
             Dictionary<int, SkillData> dict = new Dictionary<int, SkillData>();

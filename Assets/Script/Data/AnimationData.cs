@@ -8,7 +8,7 @@ public class AnimationData
     private string moveSpeedParameterName = "MoveSpeed";
     private string attackComboParameterName = "AttackCombo";
     private string attackComboIdxParameterName = "ComboIdx";
-    private string attackParameterName = "IsAttack";
+    private string skillParameterName = "IsSkill";
     private string moveParameterName = "IsMove";
     private string idleParameterName = "IsIdle";
     private string hitParameterName = "IsHit";
@@ -17,7 +17,7 @@ public class AnimationData
     public int MoveSpeedHash { get; private set; }
     public int AttackComboHash { get; private set; }
     public int AttackComboIdxHash { get; private set; }
-    public int AttackHash { get; private set; }
+    public int SkillHash { get; private set; }
     public int IdleHash { get; private set; }
     public int MoveHash { get; private set; }
     public int DieHash { get; private set; }
@@ -26,7 +26,7 @@ public class AnimationData
     public AnimationData()
     {
         MoveSpeedHash = Animator.StringToHash(moveSpeedParameterName);
-        AttackHash = Animator.StringToHash(attackParameterName);
+        SkillHash = Animator.StringToHash(skillParameterName);
         AttackComboHash = Animator.StringToHash(attackComboParameterName);
         AttackComboIdxHash = Animator.StringToHash(attackComboIdxParameterName);
         IdleHash = Animator.StringToHash(idleParameterName);
@@ -34,5 +34,6 @@ public class AnimationData
         DieHash = Animator.StringToHash(dieParameterName);
         HitHash = Animator.StringToHash(hitParameterName);
     }
+
 
 }

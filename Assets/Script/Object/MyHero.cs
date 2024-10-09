@@ -11,7 +11,6 @@ public class MyHero : Hero
 {
     public MyHeroInfo Info { get; private set; }
     public MyHeroStateMachine MyHeroStateMachine { get; private set; }
-    public Creature Target { get; set; }
     public SkillComponent SkillComponent { get; set; }
 
     protected override void Awake()

@@ -1,3 +1,4 @@
+using Data;
 using Google.Protobuf.Enum;
 using Google.Protobuf.Protocol;
 using Google.Protobuf.Struct;
@@ -14,13 +15,17 @@ public class MyHeroStateMachine : StateMachine
     public MoveState MoveState { get; set; }
     public SkillState SkillState { get; set; }
     public Vector2 MoveInput { get; set; } = Vector2.zero;
-    public Vector3 DestPos { get; set; } = Vector3.zero;
     public float MoveRatio { get; private set; } = 0.2f;
     public MoveToS MovePacket { get; set; }
     public Creature Target { get; set; }
+    public MyHero Owner { get; set; }
+    //어택모드가 활성화 되어있는지 아닌지
     public bool Attacking { get; set; } = false;
     //Target을 기준으로 움직일지 Input을 기준으로 움직일지
     public bool TargetMode { get; set; } = false;
+    //스킬 요청에 대한 응답을 대기중인지
+    public bool isWaitSkillRes { get; set; } = false;
+    public int? CurrentActiveSkillHash { get; set; }
     public MyHeroStateMachine(MyHero myHero)
     {
         MovePacket = new MoveToS() { PosInfo = new PosInfo()};
@@ -29,7 +34,6 @@ public class MyHeroStateMachine : StateMachine
         ChangeState(IdleState);
         Managers.GameManager.OnJoystickChanged += UpdateMoveInput;
     }
-
     public override void FindTargetAndAttack()
     {
         if (Attacking == false)
@@ -70,12 +74,23 @@ public class MyHeroStateMachine : StateMachine
         base.ChangeState(changeState);
     }
 
-    public float GetDistToTarget()
+    public override void UseSkill(SkillData skillData, Creature target)
     {
-        if (Target == null)
-            return 0;
+        if (skillData == null || target == null)
+            return;
 
-        return (Target.transform.position - Owner.transform.position).magnitude;
+        BaseSkill skill = Owner.SkillComponent.GetSkillById(skillData.SkillId);
+        skill.UseSkill();
+        SetAnimParameter(Owner, Owner.AnimData.SkillHash, true);
+        ChangeState(SkillState);
+        Owner.transform.LookAt(target.transform);
+
+        //target에게 데미지 입히기
+    }
+
+    public float GetModifiedSpeed()
+    {
+        return 20 * MoveRatio;
     }
 
     private void SetState()

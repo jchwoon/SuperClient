@@ -7,7 +7,7 @@ public class JoyMoveController : MonoBehaviour
 {
     RectTransform _joyMoveRect;
     RectTransform _joyMoveHandleRect;
-    private bool _isPress;
+    //private bool _isPress;
     float _camRotY;
     Vector2 _prevInput = Vector2.zero;
     private void Start()
@@ -19,13 +19,13 @@ public class JoyMoveController : MonoBehaviour
     public void OnHandlePointerDown(PointerEventData eventData)
     {
         SetJoyPos(eventData);
-        _isPress = true;
+        //_isPress = true;
     }
     public void OnHandlePointerUp(PointerEventData eventData)
     {
         Managers.GameManager.MoveInput = Vector2.zero;
         _joyMoveHandleRect.anchoredPosition = Vector2.zero;
-        _isPress = false;
+        //_isPress = false;
     }
     public void OnHandleDrag(PointerEventData eventData)
     {

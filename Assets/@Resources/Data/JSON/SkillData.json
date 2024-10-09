@@ -4,36 +4,12 @@
       "skillId": 1,
       "skillType": 1,
       "skillName": "기사 기본 공격",
-      "animName": "AttackCombo01",
-      "skillRange" : 1
-    },
-    {
-      "skillId": 2,
-      "skillType": 1,
-      "skillName": "기사 기본 공격",
-      "animName": "AttackCombo02",
-      "skillRange": 1
-    },
-    {
-      "skillId": 3,
-      "skillType": 1,
-      "skillName": "기사 기본 공격",
-      "animName": "AttackCombo03",
-      "skillRange": 1
-    },
-    {
-      "skillId": 4,
-      "skillType": 1,
-      "skillName": "기사 기본 공격",
-      "animName": "AttackCombo04",
-      "skillRange": 1
-    },
-    {
-      "skillId": 5,
-      "skillType": 1,
-      "skillName": "기사 기본 공격",
-      "animName": "AttackCombo05",
-      "skillRange": 1
+      "animName": "NormalAttack",
+      "skillRange": 1,
+      "costMp": 0,
+      "coolTime": 0,
+      "animTime": 1,
+      "animParamName": "SkillA"
     }
   ]
 }

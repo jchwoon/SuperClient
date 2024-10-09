@@ -25,9 +25,9 @@ public class ObjectManager
         GameObject go = Managers.ResourceManager.Instantiate($"{heroInfo.LobbyHeroInfo.ClassType}_Init");
         go.name = "MyHero";
         MyHero myHero = go.AddComponent<MyHero>();
+        MyHero = myHero;
         myHero.Init(myHeroInfo, heroData);
         _objects.Add(objectInfo.ObjectId, go);
-        MyHero = myHero;
         return myHero;
     }
 

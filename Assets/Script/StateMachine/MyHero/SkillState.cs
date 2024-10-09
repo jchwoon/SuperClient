@@ -3,72 +3,72 @@ using Google.Protobuf.Enum;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace MyHeroState {
     public class SkillState : BaseState
     {
-        private float _comboExitTime;
-        private Coroutine _coroutine;
         public SkillState(MyHeroStateMachine heroMachine) : base(heroMachine)
         {
-            HeroData heroData;
-            if (Managers.DataManager.HeroDict.TryGetValue(EHeroClassType.Warrior, out heroData)  == true)
-            {
-                _comboExitTime = heroData.ComboExitTime;
-            }
+
         }
 
         public override void Exit()
         {
             base.Exit();
-            _heroMachine.SetAnimParameter(_owner, _owner.AnimData.AttackHash, false);
+            _heroMachine.SetAnimParameter(_heroMachine.Owner, _heroMachine.Owner.AnimData.SkillHash, false);
+            if (_heroMachine.CurrentActiveSkillHash.HasValue)
+                _heroMachine.SetAnimParameter(_heroMachine.Owner, _heroMachine.CurrentActiveSkillHash.Value, false);
         }
         public override void Enter()
         {
             base.Enter();
-            _heroMachine.SetAnimParameter(_owner, _owner.AnimData.AttackHash, true);
-
-            if (_heroMachine.Target != null)
-            {
-                float dist = (_heroMachine.Target.transform.position - _owner.transform.position).magnitude;
-                if (dist > 1)
-                {
-                    _owner.Animator.SetLayerWeight((int)Enums.AnimLayer.LowerBody, 1);
-                    CoroutineHelper.Instance.StartHelperCoroutine(Dash());
-                }
-            }
         }
         public override void Update()
         {
             base.Update();
+            if (_heroMachine.Owner.SkillComponent.isUseSkill == true)
+                return;
 
-        }
-
-        public void StartComboExitRoutine()
-        {
-            StopComboExitRoutine();
-            _coroutine = CoroutineHelper.Instance.StartHelperCoroutine(ComboExitRoutine());
-        }
-        public void StopComboExitRoutine()
-        {
-            if (_coroutine != null)
-                CoroutineHelper.Instance.StopHelperCoroutine(_coroutine);
-        }
-
-        IEnumerator ComboExitRoutine()
-        {
-            yield return new WaitForSeconds(_comboExitTime);
-            _heroMachine.ChangeState(_heroMachine.IdleState);
-            _heroMachine.Attacking = false;
-        }
-
-        IEnumerator Dash()
-        {
-            while (Vector3.Distance(_heroMachine.Owner.transform.position, _heroMachine.Target.transform.position) > 1)
+            if (_heroMachine.MoveInput != Vector2.zero)
             {
+                _heroMachine.ChangeState(_heroMachine.MoveState);
+                return;
+            }
+
+            if (_heroMachine.Target == null)
+            {
+                _heroMachine.ChangeState(_heroMachine.IdleState);
+                return;
+            }
+
+            MyHero owner = _heroMachine.Owner;
+            BaseSkill skill = owner.SkillComponent.GetCanUseSkillAtReservedSkills(_heroMachine.Target);
+            if (skill != null)
+            {
+                if (_heroMachine.isWaitSkillRes == true)
+                    return;
+                CoroutineHelper.Instance.StartHelperCoroutine(CoWailSkill());
+                owner.SendReqUseSkill(skill.SkillId, _heroMachine.Target.ObjectId);
+                return;
+            }
+
+            if (MoveToTargetOrUseSkill() == true)
+                return;
+        }
+
+        //서버 부하를 줄이기 위해
+        IEnumerator CoWailSkill()
+        {
+            _heroMachine.isWaitSkillRes = true;
+            float time = 0.1f;
+            float process = 0.0f;
+            while (process < time)
+            {
+                process += Time.deltaTime;
                 yield return null;
             }
-            _owner.Animator.SetLayerWeight((int)Enums.AnimLayer.LowerBody, 0);
+            _heroMachine.isWaitSkillRes = false;
         }
     }
 }

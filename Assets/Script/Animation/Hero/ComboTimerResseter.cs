@@ -8,10 +8,6 @@ public class ComboTimerResseter : StateMachineBehaviour
     {
         MyHero hero = Managers.ObjectManager.MyHero;
         MyHeroStateMachine machine = hero.MyHeroStateMachine;
-        if (machine.CurrentState == machine.SkillState)
-        {
-            machine.SkillState.StartComboExitRoutine();
-            machine.SetAnimParameter(hero, hero.AnimData.AttackComboHash, false);
-        }
+        machine.SetAnimParameter(hero, hero.AnimData.AttackComboHash, false);
     }
 }   
