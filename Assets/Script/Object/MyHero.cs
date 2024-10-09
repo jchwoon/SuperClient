@@ -25,12 +25,19 @@ public class MyHero : Hero
 
         CameraController cameraController = Camera.main.GetComponent<CameraController>();
         cameraController.TargetTransform = transform;
+        cameraController.transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z + 5);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
+        Managers.EventBus.RemoveEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
         Managers.EventBus.AddEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+
     }
     protected override void Update()
     {

@@ -23,6 +23,10 @@ public class BaseObject : MonoBehaviour
     {
 
     }
+    protected virtual void OnDisable()
+    {
+
+    }
     protected virtual void Start()
     {
         

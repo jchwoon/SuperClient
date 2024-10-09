@@ -21,9 +21,11 @@ public class MapManager
             return map.transform;
         }
     }
-    public void LoadMap(string mapName)
+    private Action _loadedMapAction;
+    public void LoadMap(string mapName, Action action)
     {
         DestroyMap();
+        _loadedMapAction = action;
 
         GameObject map = Managers.ResourceManager.Instantiate(mapName, Parent);
         map.transform.position = Vector3.zero;
@@ -86,6 +88,7 @@ public class MapManager
                 _mapCollision[applyZ, applyX] = height;
                 yield return null;
             }
+            _loadedMapAction?.Invoke();
         };
 
     }

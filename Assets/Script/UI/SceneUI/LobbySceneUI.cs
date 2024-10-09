@@ -26,8 +26,6 @@ public class LobbySceneUI : SceneUI
         CurrentSlotNumTxt,
     }
 
-    [SerializeField]
-    AlertUI _alertPopup;
     static readonly int MAX_SLOT_COUNT = 5;
     List<LobbyHeroInfo> _heroInfos = new List<LobbyHeroInfo>(MAX_SLOT_COUNT);
     List<GameObject> _slots = new List<GameObject>(MAX_SLOT_COUNT);
@@ -125,8 +123,7 @@ public class LobbySceneUI : SceneUI
     {
         if (MAX_SLOT_COUNT <= _heroInfos.Count)
         {
-            _alertPopup.gameObject.SetActive(true);
-            _alertPopup.SetAlert("더 이상 영웅을 생성할 수 없습니다.", Enums.AlertBtnNum.One);
+            Managers.UIManager.ShowAlertPopup("더 이상 영웅을 생성할 수 없습니다.", Enums.AlertBtnNum.One);
             return;
         }
 
@@ -139,27 +136,24 @@ public class LobbySceneUI : SceneUI
     {
         if (_selectedSlot == null)
         {
-            _alertPopup.gameObject.SetActive(true);
-            _alertPopup.GetComponent<AlertUI>().SetAlert("선택된 영웅이 없습니다.", Enums.AlertBtnNum.One);
+            Managers.UIManager.ShowAlertPopup("선택된 영웅이 없습니다.", Enums.AlertBtnNum.One);
             return;
         }
 
-        _alertPopup.gameObject.SetActive(true);
-        _alertPopup.SetAlert("정말로 삭제하시겠습니까?", Enums.AlertBtnNum.Two, () =>
+        Managers.UIManager.ShowAlertPopup("정말로 삭제하시겠습니까?", Enums.AlertBtnNum.Two, 
+        () =>
         {
             ReqDeleteHeroToS reqDeleteHeroPacket = new ReqDeleteHeroToS();
             reqDeleteHeroPacket.HeroIdx = _selectSlotIdx;
             Managers.NetworkManager.Send(reqDeleteHeroPacket);
         });
-
     }
 
     private void OnStartBtnClicked(PointerEventData eventData)
     {
         if (_selectedSlot == null)
         {
-            _alertPopup.gameObject.SetActive(true);
-            _alertPopup.GetComponent<AlertUI>().SetAlert("선택된 영웅이 없습니다.", Enums.AlertBtnNum.One);
+            Managers.UIManager.ShowAlertPopup("선택된 영웅이 없습니다.", Enums.AlertBtnNum.One);
             return;
         }
         Managers.GameManager.SelectHeroIdx = _selectSlotIdx;
@@ -177,8 +171,7 @@ public class LobbySceneUI : SceneUI
     {
         if (packet.IsSuccess == false)
         {
-            _alertPopup.SetAlert("삭제에 실패했습니다.", Enums.AlertBtnNum.One);
-            _alertPopup.gameObject.SetActive(true);
+            Managers.UIManager.ShowAlertPopup("삭제에 실패했습니다.", Enums.AlertBtnNum.One);
             return;
         }
         // slot delete

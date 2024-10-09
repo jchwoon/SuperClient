@@ -1,4 +1,5 @@
 using Google.Protobuf.Enum;
+using Google.Protobuf.Protocol;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,5 +20,12 @@ public class GameManager
             _moveInput = value;
             OnJoystickChanged?.Invoke(MoveInput);
         }
+    }
+
+    public void LeaveGame()
+    {
+        ReqLeaveGameToS leavePacket = new ReqLeaveGameToS();
+        Managers.NetworkManager.Send(leavePacket);
+        Managers.Clear();
     }
 }

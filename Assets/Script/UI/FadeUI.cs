@@ -3,25 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FadeEffect : MonoBehaviour
+public class FadeUI : BaseUI
 {
+    enum Images
+    {
+        FadeEffect
+    }
     Image _fadeImg;
     Coroutine _fadeCoroutine;
     [SerializeField]
     float _fadeTime;
 
-    bool _isFadeIn;
-
-    private void Awake()
+    protected override void Awake()
     {
-        _fadeImg = GetComponent<Image>();
+        Bind<Image>(typeof(Images));
+
+        _fadeImg = Get<Image>((int)Images.FadeEffect);
     }
 
     public void FadeInOut(bool isFadeIn = true)
     {
-        _isFadeIn = isFadeIn;
-        if (_isFadeIn == true)
+        if (isFadeIn == true)
+        {
+            _fadeImg.raycastTarget = false;
             _fadeCoroutine = StartCoroutine(FadeRoutine(1, 0));
+        }
         else
             _fadeCoroutine = StartCoroutine(FadeRoutine(0, 1));
     }

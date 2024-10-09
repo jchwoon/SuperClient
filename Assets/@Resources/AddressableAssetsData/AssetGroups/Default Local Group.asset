@@ -41,8 +41,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 451c77189bf3bc74ba479f5bf11d029c
-    m_Address: Alert
+  - m_GUID: 98cf62ff7d7737646be2760f671bfc2d
+    m_Address: AlertUI
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
@@ -61,6 +61,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 401e8e55082ed0142b7374254b71b0ea
     m_Address: ToastUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d183911805325944790dea890cef4818
+    m_Address: FadeUI
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad

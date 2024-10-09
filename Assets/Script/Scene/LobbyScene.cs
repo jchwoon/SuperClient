@@ -9,12 +9,10 @@ using UnityEngine.UI;
 
 public class LobbyScene : BaseScene
 {
-    GameObject _fadeEffect;
     private Action _receiveHeroListAction;
     protected override void Awake()
     {
         base.Awake();
-        _fadeEffect = Managers.UIManager.Parent.Find("AlertCanvas").Find("FadeEffect").gameObject;
         SendReqHeroListPacket();
     }
 
@@ -37,8 +35,8 @@ public class LobbyScene : BaseScene
         Debug.Log(packet.Lobbyheros);
         _receiveHeroListAction?.Invoke();
 
-        _fadeEffect.GetComponent<FadeEffect>().FadeInOut();
-        _fadeEffect.GetComponent<Image>().raycastTarget = false;
+        Managers.UIManager.ShowFadeUI();
+
         if (packet.Lobbyheros.Count == 0)
         {
             Managers.UIManager.ShowSceneUI<CreateHeroSceneUI>();

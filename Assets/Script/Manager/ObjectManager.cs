@@ -102,4 +102,14 @@ public class ObjectManager
         }
         return creatures;
     }
+
+    public void Clear()
+    {
+        if (MyHero != null)
+            MyHero = null;
+        
+        _objects.Clear();
+        _monsters.Clear();
+        _heroes.Clear();
+    }
 }

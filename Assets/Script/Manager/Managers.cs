@@ -59,4 +59,9 @@ public class Managers : MonoBehaviour
     {
         _networkManager.Update();
     }
+
+    public static void Clear()
+    {
+        ObjectManager.Clear();
+    }
 }

@@ -8,7 +8,7 @@ using UnityEngine.TextCore.Text;
 public class CameraController : MonoBehaviour
 {
     public Transform TargetTransform { get; set; }
-    float _targetDist = 13.0f;
+    float _targetDist = 12.0f;
     float _smoothTime = 0.3f;
     Vector3 _velocity = Vector3.zero;
     Vector3 TargetPos = Vector3.zero;

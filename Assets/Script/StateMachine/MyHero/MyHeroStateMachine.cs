@@ -64,7 +64,10 @@ public class MyHeroStateMachine : StateMachine
         {
             float dist = (creature.gameObject.transform.position - Owner.transform.position).sqrMagnitude;
             if (dist < closestDist)
+            {
+                closestDist = dist;
                 target = creature.gameObject.GetComponent<Creature>();
+            }
         }
         return target;
     }

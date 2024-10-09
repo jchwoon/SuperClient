@@ -14,13 +14,7 @@ public class BaseScene : MonoBehaviour
 
     protected virtual void OnApplicationQuit()
     {
-        SendLeavePacket();
+        Managers.GameManager.LeaveGame();
         Managers.NetworkManager.Disconnect();
-    }
-
-    private void SendLeavePacket()
-    {
-        ReqLeaveGameToS leavePacket = new ReqLeaveGameToS();
-        Managers.NetworkManager.Send(leavePacket);
     }
 }

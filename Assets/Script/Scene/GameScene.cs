@@ -20,13 +20,17 @@ public class GameScene : BaseScene
             return;
 
         string key = room.Name;
-        Managers.MapManager.LoadMap(key);
+        Managers.MapManager.LoadMap(key, OnLoadedMap);
         //hero setting
         Managers.ObjectManager.Spawn(packet.MyHero);
         //ui setting
         Managers.UIManager.ShowSceneUI<GameSceneUI>()?.SetUI();
+        Managers.UIManager.ShowFadeUI();
+    }
 
-        //Todo fadein
+    private void OnLoadedMap()
+    {
+        Debug.Log("LoadedMap");
     }
 
     protected override void OnApplicationQuit()

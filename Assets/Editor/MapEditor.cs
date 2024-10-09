@@ -14,7 +14,7 @@ public class MapEditor
     private static void CastRays()
     {
         int mapSizeX = 80;
-        int mapSizeZ = 100;
+        int mapSizeZ = 110;
         int gridSpacing = 1;
         GameObject go = GameObject.Find("MapTool");
         Terrain terrain = go.GetComponent<Terrain>();
@@ -36,8 +36,8 @@ public class MapEditor
                     Vector3 rayStartPos = new Vector3(posX, terrainPosition.y, posZ);
 
 
-                    int mask = LayerMask.GetMask("CanMove") | LayerMask.GetMask("Wall");
-                    
+                    int mask = LayerMask.GetMask("Wall");
+                    //갈 수 없는 지역만 Write
                     if (Physics.Raycast(rayStartPos, Vector3.down, out RaycastHit hit, Mathf.Infinity, mask))
                     {
 

@@ -12,7 +12,6 @@ public class NormalSkill : BaseSkill
     public override void UseSkill()
     {
         base.UseSkill();
-        Debug.Log(Owner.StatData.AtkSpeed);
         if (Owner.MyHeroStateMachine.CurrentActiveSkillHash.HasValue && Owner.MyHeroStateMachine.CurrentActiveSkillHash.Value == AnimParamHash)
             Owner.MyHeroStateMachine.SetAnimParameter(Owner, Owner.AnimData.AttackComboHash, true);
     }
