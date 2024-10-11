@@ -36,7 +36,7 @@ namespace MyHeroState {
                 return;
             }
 
-            if (_heroMachine.Target == null)
+            if (_heroMachine.Attacking == false || _heroMachine.Target == null)
             {
                 _heroMachine.ChangeState(_heroMachine.IdleState);
                 return;

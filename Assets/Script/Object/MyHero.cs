@@ -17,10 +17,7 @@ public class MyHero : Hero
     {
         isMachineInit = true;
         base.Awake();
-        MyHeroStateMachine = new MyHeroStateMachine(this);
-        SkillComponent = new SkillComponent();
-        Machine = MyHeroStateMachine;
-        _statData = new HeroStatData();
+
 
 
         CameraController cameraController = Camera.main.GetComponent<CameraController>();
@@ -31,13 +28,13 @@ public class MyHero : Hero
     protected override void OnEnable()
     {
         base.OnEnable();
-        Managers.EventBus.RemoveEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
+
         Managers.EventBus.AddEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
     }
     protected override void OnDisable()
     {
         base.OnDisable();
-
+        Managers.EventBus.RemoveEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
     }
     protected override void Update()
     {
@@ -50,6 +47,9 @@ public class MyHero : Hero
 
     public void Init(MyHeroInfo info, HeroData heroData)
     {
+        MyHeroStateMachine = new MyHeroStateMachine(this);
+        SkillComponent = new SkillComponent();
+        Machine = MyHeroStateMachine;
         Info = info;
         HeroData = heroData;
         _statData.SetStat(info.HeroInfo.CreatureInfo.StatInfo);

@@ -115,5 +115,7 @@ public class MyHeroStateMachine : StateMachine
     private void ToggleAttacking()
     {
         Attacking = Attacking == true ? false : true;
+        JoySceneUI ui = Managers.UIManager.ShowSceneUI<JoySceneUI>();
+        ui.ChangeAtkBtnActivation(Attacking);
     }
 }
