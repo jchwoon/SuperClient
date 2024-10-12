@@ -11,7 +11,7 @@ public class SkillComponent
     public int NormalSkillId { get; private set; }
     public bool isUseSkill { get; set; }
 
-    public void RegisterSkill(HeroData heroData)
+    public void InitSkill(HeroData heroData)
     {
         foreach (int id in heroData.SkillIds)
         {

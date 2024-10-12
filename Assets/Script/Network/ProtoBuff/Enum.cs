@@ -48,11 +48,15 @@ namespace Google.Protobuf.Enum {
             "YXNvbhIbChdFU0tJTExfRkFJTF9SRUFTT05fTk9ORRAAEhsKF0VTS0lMTF9G",
             "QUlMX1JFQVNPTl9TVFVOEAESGwoXRVNLSUxMX0ZBSUxfUkVBU09OX0RJU1QQ",
             "AhIbChdFU0tJTExfRkFJTF9SRUFTT05fQ09TVBADEhsKF0VTS0lMTF9GQUlM",
-            "X1JFQVNPTl9DT09MEARCF6oCFEdvb2dsZS5Qcm90b2J1Zi5FbnVtYgZwcm90",
-            "bzM="));
+            "X1JFQVNPTl9DT09MEAQq1QEKCUVTdGF0VHlwZRITCg9FU1RBVF9UWVBFX05P",
+            "TkUQABIVChFFU1RBVF9UWVBFX01BWF9IUBABEhUKEUVTVEFUX1RZUEVfTUFY",
+            "X01QEAISEQoNRVNUQVRfVFlQRV9IUBADEhEKDUVTVEFUX1RZUEVfTVAQBBIS",
+            "Cg5FU1RBVF9UWVBFX0FUSxAFEhYKEkVTVEFUX1RZUEVfREVGRU5DRRAGEhkK",
+            "FUVTVEFUX1RZUEVfTU9WRV9TUEVFRBAHEhgKFEVTVEFUX1RZUEVfQVRLX1NQ",
+            "RUVEEAhCF6oCFEdvb2dsZS5Qcm90b2J1Zi5FbnVtYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.EMoveForce), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillFailReason), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.EMoveForce), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), }, null, null));
     }
     #endregion
 
@@ -116,6 +120,18 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("ESKILL_FAIL_REASON_DIST")] Dist = 2,
     [pbr::OriginalName("ESKILL_FAIL_REASON_COST")] Cost = 3,
     [pbr::OriginalName("ESKILL_FAIL_REASON_COOL")] Cool = 4,
+  }
+
+  public enum EStatType {
+    [pbr::OriginalName("ESTAT_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ESTAT_TYPE_MAX_HP")] MaxHp = 1,
+    [pbr::OriginalName("ESTAT_TYPE_MAX_MP")] MaxMp = 2,
+    [pbr::OriginalName("ESTAT_TYPE_HP")] Hp = 3,
+    [pbr::OriginalName("ESTAT_TYPE_MP")] Mp = 4,
+    [pbr::OriginalName("ESTAT_TYPE_ATK")] Atk = 5,
+    [pbr::OriginalName("ESTAT_TYPE_DEFENCE")] Defence = 6,
+    [pbr::OriginalName("ESTAT_TYPE_MOVE_SPEED")] MoveSpeed = 7,
+    [pbr::OriginalName("ESTAT_TYPE_ATK_SPEED")] AtkSpeed = 8,
   }
 
   #endregion

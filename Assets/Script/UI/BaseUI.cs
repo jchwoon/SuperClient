@@ -19,7 +19,10 @@ public abstract class BaseUI : MonoBehaviour
     protected virtual void OnEnable()
     {
     }
+    protected virtual void OnDisable()
+    {
 
+    }
     protected virtual void Update()
     {
 

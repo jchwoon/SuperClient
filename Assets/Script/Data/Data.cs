@@ -9,13 +9,10 @@ using UnityEngine;
 
 namespace Data
 {
-    ///////////////////////////////
-    ///////////STAT////////////////
-    ///////////////////////////////
     public class HeroStatData
     {
         public int Level;
-        public float Exp;
+        public int Exp;
         public int MaxHp;
         public int MaxMp;
         public float MoveSpeed;

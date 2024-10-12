@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Managers : MonoBehaviour
 {
+    public static bool Initialized { get; set; }
     private static Managers _instance;
 
     private static Managers Instance
@@ -41,8 +42,9 @@ public class Managers : MonoBehaviour
     }
     private static void MainInit()
     {
-        if (_instance == null)
+        if (_instance == null && Initialized == false)
         {
+            Initialized = true;
             GameObject gameObject = GameObject.Find("Managers");
             if (gameObject == null)
             {

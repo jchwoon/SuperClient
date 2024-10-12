@@ -13,10 +13,6 @@ public class JoySceneUI : SceneUI
         AttackBtn
     }
 
-    enum Buttons
-    {
-
-    }
     JoyMoveController _joyMoveController;
     Image _atkBtnImg;
     [SerializeField]
@@ -40,9 +36,25 @@ public class JoySceneUI : SceneUI
         BindEvent(movestick, OnMovestickPointerUp, Enums.TouchEvent.PointerUp);
         BindEvent(movestick, OnMovestickDrag, Enums.TouchEvent.Drag);
     }
-
-    public void ChangeAtkBtnActivation(bool attacking)
+    protected override void OnEnable()
     {
+        base.OnEnable();
+        Managers.EventBus.AddEvent(Enums.EventType.ChangeAttackMode, ChangeAtkBtnActivation);
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Managers.EventBus.RemoveEvent(Enums.EventType.ChangeAttackMode, ChangeAtkBtnActivation);
+    }
+
+    public void ChangeAtkBtnActivation()
+    {
+        MyHero hero = Managers.ObjectManager.MyHero;
+        if (hero == null)
+            return;
+
+        bool attacking = hero.MyHeroStateMachine.AttackMode;
+
         _atkBtnImg.color = (attacking ? AtkActivationColor : AtkDeActivationColor);
     }
 

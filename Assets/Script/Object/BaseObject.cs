@@ -44,7 +44,7 @@ public class BaseObject : MonoBehaviour
         go.transform.position = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);
         go.transform.eulerAngles = new Vector3(0, posInfo.RotY, 0);
     }
-    protected virtual void SetInfo(CreatureInfo info)
+    protected virtual void SetObjInfo(CreatureInfo info)
     {
         ObjectId = info.ObjectInfo.ObjectId;
         ObjectType = info.ObjectInfo.ObjectType;

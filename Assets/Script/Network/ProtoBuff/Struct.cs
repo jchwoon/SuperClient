@@ -31,24 +31,25 @@ namespace Google.Protobuf.Struct {
             "YmJ5SGVyb0luZm8SLAoMY3JlYXR1cmVJbmZvGAIgASgLMhYuUHJvdG9jb2wu",
             "Q3JlYXR1cmVJbmZvIl4KDENyZWF0dXJlSW5mbxIoCgpvYmplY3RJbmZvGAEg",
             "ASgLMhQuUHJvdG9jb2wuT2JqZWN0SW5mbxIkCghzdGF0SW5mbxgCIAEoCzIS",
-            "LlByb3RvY29sLlN0YXRJbmZvIj8KCk15SGVyb0luZm8SJAoIaGVyb0luZm8Y",
-            "ASABKAsyEi5Qcm90b2NvbC5IZXJvSW5mbxILCgNleHAYAiABKAIiiQEKCFN0",
-            "YXRJbmZvEgoKAmhwGAEgASgFEg0KBW1heEhwGAIgASgFEhEKCW1vdmVTcGVl",
-            "ZBgDIAEoAhIRCglhdGtEYW1hZ2UYBCABKAUSEAoIYXRrU3BlZWQYBSABKAIS",
-            "DwoHZGVmZW5jZRgGIAEoBRIKCgJtcBgHIAEoBRINCgVtYXhNcBgIIAEoBSJQ",
-            "CgdQb3NJbmZvEgwKBHBvc1gYASABKAISDAoEcG9zWRgCIAEoAhIMCgRwb3Na",
-            "GAMgASgCEgwKBHJvdFkYBCABKAISDQoFc3BlZWQYBSABKAIikQEKCk9iamVj",
-            "dEluZm8SEAoIb2JqZWN0SWQYASABKAUSEgoKdGVtcGxhdGVJZBgCIAEoBRIp",
-            "CgpvYmplY3RUeXBlGAMgASgOMhUuUHJvdG9jb2wuRU9iamVjdFR5cGUSDgoG",
-            "cm9vbUlkGAQgASgFEiIKB3Bvc0luZm8YBSABKAsyES5Qcm90b2NvbC5Qb3NJ",
-            "bmZvQhmqAhZHb29nbGUuUHJvdG9idWYuU3RydWN0YgZwcm90bzM="));
+            "LlByb3RvY29sLlN0YXRJbmZvIk0KCk15SGVyb0luZm8SJAoIaGVyb0luZm8Y",
+            "ASABKAsyEi5Qcm90b2NvbC5IZXJvSW5mbxILCgNleHAYAiABKAUSDAoEZ29s",
+            "ZBgDIAEoBSKJAQoIU3RhdEluZm8SCgoCaHAYASABKAUSDQoFbWF4SHAYAiAB",
+            "KAUSEQoJbW92ZVNwZWVkGAMgASgCEhEKCWF0a0RhbWFnZRgEIAEoBRIQCghh",
+            "dGtTcGVlZBgFIAEoAhIPCgdkZWZlbmNlGAYgASgFEgoKAm1wGAcgASgFEg0K",
+            "BW1heE1wGAggASgFIlAKB1Bvc0luZm8SDAoEcG9zWBgBIAEoAhIMCgRwb3NZ",
+            "GAIgASgCEgwKBHBvc1oYAyABKAISDAoEcm90WRgEIAEoAhINCgVzcGVlZBgF",
+            "IAEoAiKRAQoKT2JqZWN0SW5mbxIQCghvYmplY3RJZBgBIAEoBRISCgp0ZW1w",
+            "bGF0ZUlkGAIgASgFEikKCm9iamVjdFR5cGUYAyABKA4yFS5Qcm90b2NvbC5F",
+            "T2JqZWN0VHlwZRIOCgZyb29tSWQYBCABKAUSIgoHcG9zSW5mbxgFIAEoCzIR",
+            "LlByb3RvY29sLlBvc0luZm9CGaoCFkdvb2dsZS5Qcm90b2J1Zi5TdHJ1Y3Ri",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.LobbyHeroInfo), global::Google.Protobuf.Struct.LobbyHeroInfo.Parser, new[]{ "Level", "Nickname", "ClassType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.HeroInfo), global::Google.Protobuf.Struct.HeroInfo.Parser, new[]{ "LobbyHeroInfo", "CreatureInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.CreatureInfo), global::Google.Protobuf.Struct.CreatureInfo.Parser, new[]{ "ObjectInfo", "StatInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.MyHeroInfo), global::Google.Protobuf.Struct.MyHeroInfo.Parser, new[]{ "HeroInfo", "Exp" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.MyHeroInfo), global::Google.Protobuf.Struct.MyHeroInfo.Parser, new[]{ "HeroInfo", "Exp", "Gold" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.StatInfo), global::Google.Protobuf.Struct.StatInfo.Parser, new[]{ "Hp", "MaxHp", "MoveSpeed", "AtkDamage", "AtkSpeed", "Defence", "Mp", "MaxMp" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.PosInfo), global::Google.Protobuf.Struct.PosInfo.Parser, new[]{ "PosX", "PosY", "PosZ", "RotY", "Speed" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ObjectInfo), global::Google.Protobuf.Struct.ObjectInfo.Parser, new[]{ "ObjectId", "TemplateId", "ObjectType", "RoomId", "PosInfo" }, null, null, null, null)
@@ -873,6 +874,7 @@ namespace Google.Protobuf.Struct {
     public MyHeroInfo(MyHeroInfo other) : this() {
       heroInfo_ = other.heroInfo_ != null ? other.heroInfo_.Clone() : null;
       exp_ = other.exp_;
+      gold_ = other.gold_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -896,13 +898,25 @@ namespace Google.Protobuf.Struct {
 
     /// <summary>Field number for the "exp" field.</summary>
     public const int ExpFieldNumber = 2;
-    private float exp_;
+    private int exp_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float Exp {
+    public int Exp {
       get { return exp_; }
       set {
         exp_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "gold" field.</summary>
+    public const int GoldFieldNumber = 3;
+    private int gold_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Gold {
+      get { return gold_; }
+      set {
+        gold_ = value;
       }
     }
 
@@ -922,7 +936,8 @@ namespace Google.Protobuf.Struct {
         return true;
       }
       if (!object.Equals(HeroInfo, other.HeroInfo)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Exp, other.Exp)) return false;
+      if (Exp != other.Exp) return false;
+      if (Gold != other.Gold) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -931,7 +946,8 @@ namespace Google.Protobuf.Struct {
     public override int GetHashCode() {
       int hash = 1;
       if (heroInfo_ != null) hash ^= HeroInfo.GetHashCode();
-      if (Exp != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Exp);
+      if (Exp != 0) hash ^= Exp.GetHashCode();
+      if (Gold != 0) hash ^= Gold.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -954,9 +970,13 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(10);
         output.WriteMessage(HeroInfo);
       }
-      if (Exp != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(Exp);
+      if (Exp != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Exp);
+      }
+      if (Gold != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Gold);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -972,9 +992,13 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(10);
         output.WriteMessage(HeroInfo);
       }
-      if (Exp != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(Exp);
+      if (Exp != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Exp);
+      }
+      if (Gold != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Gold);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -989,8 +1013,11 @@ namespace Google.Protobuf.Struct {
       if (heroInfo_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(HeroInfo);
       }
-      if (Exp != 0F) {
-        size += 1 + 4;
+      if (Exp != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Exp);
+      }
+      if (Gold != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Gold);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1010,8 +1037,11 @@ namespace Google.Protobuf.Struct {
         }
         HeroInfo.MergeFrom(other.HeroInfo);
       }
-      if (other.Exp != 0F) {
+      if (other.Exp != 0) {
         Exp = other.Exp;
+      }
+      if (other.Gold != 0) {
+        Gold = other.Gold;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1039,8 +1069,12 @@ namespace Google.Protobuf.Struct {
             input.ReadMessage(HeroInfo);
             break;
           }
-          case 21: {
-            Exp = input.ReadFloat();
+          case 16: {
+            Exp = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Gold = input.ReadInt32();
             break;
           }
         }
@@ -1069,8 +1103,12 @@ namespace Google.Protobuf.Struct {
             input.ReadMessage(HeroInfo);
             break;
           }
-          case 21: {
-            Exp = input.ReadFloat();
+          case 16: {
+            Exp = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Gold = input.ReadInt32();
             break;
           }
         }

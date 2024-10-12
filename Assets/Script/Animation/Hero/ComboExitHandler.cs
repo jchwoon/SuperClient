@@ -10,7 +10,7 @@ public class ComboExitHandler : StateMachineBehaviour
     //{
     //    MyHeroStateMachine machine = Managers.ObjectManager.MyHero.MyHeroStateMachine;
     //    machine.SkillState.StopComboExitRoutine();
-    //    machine.Attacking = false;
+    //    machine.AttackMode = false;
     //    machine.ChangeState(machine.IdleState);
 
     //}

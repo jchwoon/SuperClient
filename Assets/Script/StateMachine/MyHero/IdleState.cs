@@ -43,7 +43,7 @@ namespace MyHeroState
                 return true;    
             }
 
-            if (_heroMachine.Attacking == true && _heroMachine.Target)
+            if (_heroMachine.AttackMode == true && _heroMachine.Target)
             {
 
                 MoveToTargetOrUseSkill();

@@ -9,16 +9,14 @@ using Data;
 
 public class MyHero : Hero
 {
-    public MyHeroInfo Info { get; private set; }
     public MyHeroStateMachine MyHeroStateMachine { get; private set; }
-    public SkillComponent SkillComponent { get; set; }
+    public SkillComponent SkillComponent { get; private set; }
+    public CurrencyComponent CurrencyComponent { get; private set; }
 
     protected override void Awake()
     {
         isMachineInit = true;
         base.Awake();
-
-
 
         CameraController cameraController = Camera.main.GetComponent<CameraController>();
         cameraController.TargetTransform = transform;
@@ -42,19 +40,26 @@ public class MyHero : Hero
     }
     private void OnAttackBtnClicked()
     {
-        MyHeroStateMachine.FindTargetAndAttack();
+        if (MyHeroStateMachine.AttackMode == true)
+            MyHeroStateMachine.OffAttackMode();
+        else
+            MyHeroStateMachine.FindTargetAndAttack();
     }
 
     public void Init(MyHeroInfo info, HeroData heroData)
     {
         MyHeroStateMachine = new MyHeroStateMachine(this);
         SkillComponent = new SkillComponent();
+        CurrencyComponent = new CurrencyComponent();
+
         Machine = MyHeroStateMachine;
-        Info = info;
         HeroData = heroData;
-        _statData.SetStat(info.HeroInfo.CreatureInfo.StatInfo);
-        SetInfo(info.HeroInfo.CreatureInfo);
+
+        GrowthInfo.InitGrowth(info.HeroInfo.LobbyHeroInfo.Level, info.Exp);
+        CurrencyComponent.InitCurrency(info.Gold);
+        Stat.InitStat(info.HeroInfo.CreatureInfo.StatInfo);
+        SkillComponent.InitSkill(heroData);
+        SetObjInfo(info.HeroInfo.CreatureInfo);
         SetPos(gameObject, info.HeroInfo.CreatureInfo.ObjectInfo.PosInfo);
-        SkillComponent.RegisterSkill(heroData);
     }
 }

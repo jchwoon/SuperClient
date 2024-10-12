@@ -48,5 +48,9 @@ public class Enums
     {
         None,
         AtkBtnClick,
+        ChangeAttackMode,
+        ChangeStat,
+        ChangeCurrency,
+        ChangeGrowth
     }
 }

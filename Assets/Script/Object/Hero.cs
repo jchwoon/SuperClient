@@ -6,11 +6,6 @@ using UnityEngine;
 
 public class Hero : Creature
 {
-    protected HeroStatData _statData;
-    public HeroStatData StatData
-    {
-        get { return _statData; }
-    }
     public HeroData HeroData { get; protected set; }
 
     protected override void Awake()
@@ -21,8 +16,6 @@ public class Hero : Creature
             Machine = new HeroStateMachine(this);
             isMachineInit = true;
         }
-
-        _statData = new HeroStatData();
     }
     protected override void Update()
     {
@@ -33,8 +26,8 @@ public class Hero : Creature
     public void Init(HeroInfo info, HeroData heroData)
     {
         HeroData = heroData;
-        _statData.SetStat(info.CreatureInfo.StatInfo);
-        SetInfo(info.CreatureInfo);
+        Stat.InitStat(info.CreatureInfo.StatInfo);
+        SetObjInfo(info.CreatureInfo);
         SetPos(gameObject, info.CreatureInfo.ObjectInfo.PosInfo);
     }
 }

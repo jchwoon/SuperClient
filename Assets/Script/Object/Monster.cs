@@ -18,6 +18,6 @@ public class Monster : Creature
     public void Init(CreatureInfo info)
     {
         SetPos(gameObject, info.ObjectInfo.PosInfo);
-        SetInfo(info);
+        SetObjInfo(info);
     }
 }

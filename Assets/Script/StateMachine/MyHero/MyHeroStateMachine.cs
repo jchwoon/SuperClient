@@ -3,24 +3,39 @@ using Google.Protobuf.Enum;
 using Google.Protobuf.Protocol;
 using Google.Protobuf.Struct;
 using MyHeroState;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.UI.GridLayoutGroup;
 
 public class MyHeroStateMachine : StateMachine
 {
+    private Creature _target;
+    public Creature Target
+    {
+        get { return _target; }
+        set
+        {
+            if (value == null)
+                OffAttackMode();
+            else
+            {
+                if (_target != null)
+                    _target.IsTargetted = false;
+                value.IsTargetted = true;
+            }
+            _target = value;
+        }
+    }
     public IdleState IdleState { get; set; }
     public MoveState MoveState { get; set; }
     public SkillState SkillState { get; set; }
     public Vector2 MoveInput { get; set; } = Vector2.zero;
-    public float MoveRatio { get; private set; } = 0.2f;
     public MoveToS MovePacket { get; set; }
-    public Creature Target { get; set; }
     public MyHero Owner { get; set; }
     //어택모드가 활성화 되어있는지 아닌지
-    public bool Attacking { get; set; } = false;
+    public bool AttackMode { get; set; } = false;
     //Target을 기준으로 움직일지 Input을 기준으로 움직일지
     public bool TargetMode { get; set; } = false;
     //스킬 요청에 대한 응답을 대기중인지
@@ -36,23 +51,21 @@ public class MyHeroStateMachine : StateMachine
     }
     public override void FindTargetAndAttack()
     {
-        if (Attacking == false)
+        if (Target == null)
+            Target = FindTarget();
+        if (Target == null)
         {
-            if (Target == null)
-                Target = FindTarget();
-            if (Target == null)
-            {
-                Managers.UIManager.ShowToasUI("주위에 지정할 타겟이 없습니다.");
-                return;
-            }
-            TargetMode = true;
+            Managers.UIManager.ShowToasUI("주위에 지정할 타겟이 없습니다.");
+            return;
         }
-        else
-        {
-            TargetMode = false;
-        }
+        TargetMode = true;
+        ChangeAttackMode(true);
+    }
 
-        ToggleAttacking();
+    public void OffAttackMode()
+    {
+        TargetMode = false;
+        ChangeAttackMode(false);
     }
 
     public Creature FindTarget()
@@ -72,11 +85,6 @@ public class MyHeroStateMachine : StateMachine
         return target;
     }
 
-    public override void ChangeState(IState changeState)
-    {
-        base.ChangeState(changeState);
-    }
-
     public override void UseSkill(SkillData skillData, Creature target)
     {
         if (skillData == null || target == null)
@@ -93,7 +101,7 @@ public class MyHeroStateMachine : StateMachine
 
     public float GetModifiedSpeed()
     {
-        return 20 * MoveRatio;
+        return 20 * 0.2f;
     }
 
     private void SetState()
@@ -108,14 +116,13 @@ public class MyHeroStateMachine : StateMachine
         MoveInput = moveInput;
         if (moveInput != Vector2.zero)
             TargetMode = false;
-        else if (Attacking == true)
+        else if (AttackMode == true)
             TargetMode = true;
     }
 
-    private void ToggleAttacking()
+    private void ChangeAttackMode(bool mode)
     {
-        Attacking = Attacking == true ? false : true;
-        JoySceneUI ui = Managers.UIManager.ShowSceneUI<JoySceneUI>();
-        ui.ChangeAtkBtnActivation(Attacking);
+        AttackMode = mode;
+        Managers.EventBus.InvokeEvent(Enums.EventType.ChangeAttackMode);
     }
 }

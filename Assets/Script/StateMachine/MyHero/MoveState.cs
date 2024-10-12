@@ -107,8 +107,12 @@ namespace MyHeroState
 
         IEnumerator SendMyPos()
         {
+            
             while (true)
             {
+                if (_owner == null)
+                    yield break;
+
                 _heroMachine.MovePacket.PosInfo.PosX = _owner.transform.position.x;
                 _heroMachine.MovePacket.PosInfo.PosY = _owner.transform.position.y;
                 _heroMachine.MovePacket.PosInfo.PosZ = _owner.transform.position.z;

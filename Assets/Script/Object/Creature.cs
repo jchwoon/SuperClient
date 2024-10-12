@@ -9,6 +9,15 @@ using Google.Protobuf.Enum;
 
 public class Creature : BaseObject
 {
+    private bool _isTargetted;
+    public bool IsTargetted
+    {
+        get { return _isTargetted; }
+        set { _isTargetted = value; }
+    }
+
+    public GrowthComponent GrowthInfo { get; protected set; } 
+    public StatComponent Stat { get; protected set; }
     public Animator Animator { get; private set; }
     public AnimationData AnimData { get; private set; }
 
@@ -17,6 +26,8 @@ public class Creature : BaseObject
         base.Awake();
         Animator = transform.GetComponent<Animator>();
         AnimData = new AnimationData();
+        Stat = new StatComponent();
+        GrowthInfo = new GrowthComponent();
         if (isMachineInit == false)
         {
             Machine = new CreatureMachine(this);
@@ -26,6 +37,20 @@ public class Creature : BaseObject
     protected override void Update()
     {
         base.Update();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        if (_isTargetted == true && Managers.ObjectManager.MyHero)
+        {
+            Managers.ObjectManager.MyHero.MyHeroStateMachine.Target = null;
+        }
     }
 
     #region Network Send
