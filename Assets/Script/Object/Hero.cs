@@ -7,6 +7,7 @@ using UnityEngine;
 public class Hero : Creature
 {
     public HeroData HeroData { get; protected set; }
+    public HeroInfo HeroInfo { get; protected set; }
 
     protected override void Awake()
     {
@@ -26,7 +27,9 @@ public class Hero : Creature
     public void Init(HeroInfo info, HeroData heroData)
     {
         HeroData = heroData;
-        Stat.InitStat(info.CreatureInfo.StatInfo);
+        HeroInfo = info;
+        StatInfo = info.CreatureInfo.StatInfo;
+        Name = info.LobbyHeroInfo.Nickname;
         SetObjInfo(info.CreatureInfo);
         SetPos(gameObject, info.CreatureInfo.ObjectInfo.PosInfo);
     }

@@ -83,7 +83,7 @@ public class GameSceneUI : SceneUI
         if (myHero == null)
             return;
 
-        StatInfo statInfo = myHero.Stat.StatInfo;
+        StatInfo statInfo = myHero.StatInfo;
 
         Get<TMP_Text>((int)Texts.AtkTxt).text = statInfo.AtkDamage.ToString();
         Get<TMP_Text>((int)Texts.DefenceTxt).text = statInfo.Defence.ToString();

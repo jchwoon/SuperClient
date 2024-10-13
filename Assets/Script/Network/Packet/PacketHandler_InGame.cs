@@ -61,6 +61,6 @@ public partial class PacketHandler
         if (creature == null)
             return;
 
-        creature.ReceiveResUseSkill(creature, skillPacket);
+        creature.HandleResUseSkill(creature, skillPacket);
     }
 }

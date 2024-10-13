@@ -12,6 +12,8 @@ public class MyHero : Hero
     public MyHeroStateMachine MyHeroStateMachine { get; private set; }
     public SkillComponent SkillComponent { get; private set; }
     public CurrencyComponent CurrencyComponent { get; private set; }
+    public GrowthComponent GrowthInfo { get; protected set; }
+    public StatComponent Stat { get; protected set; }
 
     protected override void Awake()
     {
@@ -51,15 +53,21 @@ public class MyHero : Hero
         MyHeroStateMachine = new MyHeroStateMachine(this);
         SkillComponent = new SkillComponent();
         CurrencyComponent = new CurrencyComponent();
+        Stat = new StatComponent(this);
+        GrowthInfo = new GrowthComponent();
 
         Machine = MyHeroStateMachine;
         HeroData = heroData;
+        Name = info.HeroInfo.LobbyHeroInfo.Nickname;
 
         GrowthInfo.InitGrowth(info.HeroInfo.LobbyHeroInfo.Level, info.Exp);
         CurrencyComponent.InitCurrency(info.Gold);
-        Stat.InitStat(info.HeroInfo.CreatureInfo.StatInfo);
+        StatInfo = info.HeroInfo.CreatureInfo.StatInfo;
+        Stat.UpdateStat();
         SkillComponent.InitSkill(heroData);
         SetObjInfo(info.HeroInfo.CreatureInfo);
         SetPos(gameObject, info.HeroInfo.CreatureInfo.ObjectInfo.PosInfo);
+
+        AddHUD();
     }
 }

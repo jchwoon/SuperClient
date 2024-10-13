@@ -51,6 +51,13 @@ public class Enums
         ChangeAttackMode,
         ChangeStat,
         ChangeCurrency,
-        ChangeGrowth
+        ChangeGrowth,
+        ChangeHUDInfo
+    }
+
+    public enum SortingOrderInHUD
+    {
+        HeroHUD,
+        TargetHUD,
     }
 }

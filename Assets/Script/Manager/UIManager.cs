@@ -111,4 +111,18 @@ public class UIManager
 
         //return Managers.ResourceManager.Instantiate("Alert", Parent).GetComponent<AlertUI>();
     }
+
+    public CreatureHUD AddCreatureHUD(Creature owner)
+    {
+        Transform parent = owner.gameObject.transform.Find("HUD");
+        GameObject go = Managers.ResourceManager.Instantiate("CreatureHUD", parent);
+        CreatureHUD hud = go.GetComponent<CreatureHUD>();
+
+        Canvas canvas = go.GetComponent<Canvas>();
+        canvas.renderMode = RenderMode.WorldSpace;
+
+        canvas.worldCamera = Camera.main;
+
+        return hud;
+    }
 }

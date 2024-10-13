@@ -18,7 +18,7 @@ public class NormalSkill : BaseSkill
     protected override IEnumerator CoAnimTime()
     {
         Owner.SkillComponent.isUseSkill = true;
-        float animTime = SkillData.AnimTime * Owner.Stat.AtkSpeed;
+        float animTime = SkillData.AnimTime * Owner.StatInfo.AtkSpeed;
         float process = 0.0f;
         while (process < animTime)
         {

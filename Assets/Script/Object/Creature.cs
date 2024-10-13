@@ -9,25 +9,34 @@ using Google.Protobuf.Enum;
 
 public class Creature : BaseObject
 {
+    CreatureHUD _creatureHUD;
     private bool _isTargetted;
     public bool IsTargetted
     {
         get { return _isTargetted; }
-        set { _isTargetted = value; }
+        set
+        {
+            if (value == true)
+                AddHUD();
+            else
+                RemoveHUD();
+            _isTargetted = value;
+        }
+
     }
 
-    public GrowthComponent GrowthInfo { get; protected set; } 
-    public StatComponent Stat { get; protected set; }
     public Animator Animator { get; private set; }
     public AnimationData AnimData { get; private set; }
+    public StatInfo StatInfo { get; protected set; }
+    public string Name { get; protected set; }
 
     protected override void Awake()
     {
         base.Awake();
         Animator = transform.GetComponent<Animator>();
         AnimData = new AnimationData();
-        Stat = new StatComponent();
-        GrowthInfo = new GrowthComponent();
+
+
         if (isMachineInit == false)
         {
             Machine = new CreatureMachine(this);
@@ -53,6 +62,21 @@ public class Creature : BaseObject
         }
     }
 
+    protected void AddHUD()
+    {
+        if (_creatureHUD == null)
+            _creatureHUD = Managers.UIManager.AddCreatureHUD(this);
+
+        _creatureHUD.SetInfo(this);
+    }
+    protected void RemoveHUD()
+    {
+        if (_creatureHUD == null)
+            return;
+
+        _creatureHUD.RemoveHUD();
+    }
+
     #region Network Send
     public void SendReqUseSkill(int skillId, int targetId = 0)
     {
@@ -64,7 +88,7 @@ public class Creature : BaseObject
     #endregion
 
     #region Network Receive
-    public void ReceiveResUseSkill(Creature owner, ResUseSkillToC skillPacket)
+    public void HandleResUseSkill(Creature owner, ResUseSkillToC skillPacket)
     {
         SkillData skillData;
         if (Managers.DataManager.SkillDict.TryGetValue(skillPacket.SkillId, out skillData) == false)
@@ -73,6 +97,23 @@ public class Creature : BaseObject
         Creature target = Managers.ObjectManager.FindById(skillPacket.TargetId).GetComponent<Creature>();
         if (target != null)
             owner.Machine.UseSkill(skillData, target);
+    }
+
+    public void HandleModifyOneStat(EStatType statType, float value)
+    {
+        switch (statType)
+        {
+            case EStatType.Hp:
+                StatInfo.Hp = (int)value;
+                break;
+            case EStatType.Mp:
+                StatInfo.Mp = (int)value;
+                break;
+            default:
+                break;
+        }
+
+        Managers.EventBus.InvokeEvent(Enums.EventType.ChangeHUDInfo);
     }
     #endregion
 }
