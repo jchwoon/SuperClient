@@ -4,7 +4,7 @@
       "level": 1,
       "maxHp": 200,
       "maxMp": 100,
-      "moveSpeed": 15,
+      "moveSpeed": 4,
       "atkDamage": 25,
       "defence": 5,
       "atkSpeed": 1,

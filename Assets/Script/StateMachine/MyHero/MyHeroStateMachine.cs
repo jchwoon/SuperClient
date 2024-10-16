@@ -99,10 +99,10 @@ public class MyHeroStateMachine : StateMachine
         //target에게 데미지 입히기
     }
 
-    public float GetModifiedSpeed()
-    {
-        return 20 * 0.2f;
-    }
+    //public float GetModifiedSpeed()
+    //{
+    //    return ;
+    //}
 
     private void SetState()
     {

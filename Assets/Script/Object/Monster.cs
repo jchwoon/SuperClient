@@ -14,7 +14,6 @@ public class Monster : Creature
     protected override void Update()
     {
         base.Update();
-
     }
 
     public void Init(CreatureInfo info)

@@ -13,15 +13,14 @@ public class HeroMoveState : MoveState
 
     public override void Exit()
     {
-        base.Exit();
     }
     public override void Enter()
     {
-        base.Enter();
+        Creature owner = _machine.Owner;
+        _machine.SetAnimParameter(owner, owner.AnimData.MoveSpeedHash, _machine.Owner.StatInfo.MoveSpeed);
     }
     public override void Update()
     {
         base.Update();
-        _machine.SetAnimParameter(_owner, _owner.AnimData.MoveSpeedHash, _machine.InputSpeed);
     }
 }

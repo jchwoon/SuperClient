@@ -1,5 +1,6 @@
 using Data;
 using Google.Protobuf.Enum;
+using Google.Protobuf.Protocol;
 using Google.Protobuf.Struct;
 using Google.Protobuf.WellKnownTypes;
 using MyHeroState;
@@ -20,7 +21,6 @@ public class StateMachine
     public IState CurrentState { get; private set; }
     protected ECreatureState CreatureState { get; private set; }
     public Vector3? PosInput { get; private set; } = null;
-    public float InputSpeed { get; private set; }
 
     public virtual void ChangeState(IState changeState)
     {
@@ -43,10 +43,9 @@ public class StateMachine
         CurrentState.Update();
     }
 
-    public void UpdatePosInput(PosInfo pos)
+    public virtual void UpdatePosInput(MoveToC movePacket)
     {
-        PosInput = new Vector3(pos.PosX, pos.PosY, pos.PosZ);
-        InputSpeed = pos.Speed;
+        PosInput = new Vector3(movePacket.PosInfo.PosX, movePacket.PosInfo.PosY, movePacket.PosInfo.PosZ);
     }
 
     public virtual void FindTargetAndAttack()

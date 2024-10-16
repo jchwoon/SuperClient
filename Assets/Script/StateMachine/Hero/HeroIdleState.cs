@@ -12,11 +12,11 @@ public class HeroIdleState : IdleState
 
     public override void Exit()
     {
-        base.Exit();
+
     }
     public override void Enter()
     {
-        _machine.SetAnimParameter(_owner, _owner.AnimData.MoveSpeedHash, 0);
+        _machine.SetAnimParameter(_owner, _owner.AnimData.MoveSpeedHash, 0.0f);
     }
 
     public override void Update()

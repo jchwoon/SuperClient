@@ -53,10 +53,12 @@ namespace Google.Protobuf.Enum {
             "X01QEAISEQoNRVNUQVRfVFlQRV9IUBADEhEKDUVTVEFUX1RZUEVfTVAQBBIS",
             "Cg5FU1RBVF9UWVBFX0FUSxAFEhYKEkVTVEFUX1RZUEVfREVGRU5DRRAGEhkK",
             "FUVTVEFUX1RZUEVfTU9WRV9TUEVFRBAHEhgKFEVTVEFUX1RZUEVfQVRLX1NQ",
-            "RUVEEAhCF6oCFEdvb2dsZS5Qcm90b2J1Zi5FbnVtYgZwcm90bzM="));
+            "RUVEEAgqNgoJRU1vdmVUeXBlEhMKD0VNT1ZFX1RZUEVfTk9ORRAAEhQKEEVN",
+            "T1ZFX1RZUEVfQ0hBU0UQAUIXqgIUR29vZ2xlLlByb3RvYnVmLkVudW1iBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.EMoveForce), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.EMoveForce), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), }, null, null));
     }
     #endregion
 
@@ -132,6 +134,11 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("ESTAT_TYPE_DEFENCE")] Defence = 6,
     [pbr::OriginalName("ESTAT_TYPE_MOVE_SPEED")] MoveSpeed = 7,
     [pbr::OriginalName("ESTAT_TYPE_ATK_SPEED")] AtkSpeed = 8,
+  }
+
+  public enum EMoveType {
+    [pbr::OriginalName("EMOVE_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EMOVE_TYPE_CHASE")] Chase = 1,
   }
 
   #endregion

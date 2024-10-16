@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 public class MapManager
@@ -33,7 +34,11 @@ public class MapManager
 
         Map = map;
 
-        CoroutineHelper.Instance.StartHelperCoroutine(ReadFile($"Assets/@Resources/Data/Map/{mapName}Data.bin"));
+        TextAsset text = Managers.ResourceManager.GetResource<TextAsset>($"{mapName}MapData");
+        Debug.Log(text);
+        Stream s = new MemoryStream(text.bytes);
+
+        CoroutineHelper.Instance.StartHelperCoroutine(ReadFile(new BinaryReader(s)));
     }
     public bool CanGo(float z, float x)
     {
@@ -64,9 +69,9 @@ public class MapManager
         }
     }
 
-    IEnumerator ReadFile(string path)
+    IEnumerator ReadFile(BinaryReader reader)
     {
-        using (BinaryReader reader = new BinaryReader(File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read)))
+        using (reader)
         {
             MinX = reader.ReadInt32();
             MaxX = reader.ReadInt32();

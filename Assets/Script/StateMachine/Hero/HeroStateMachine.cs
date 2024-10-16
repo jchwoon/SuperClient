@@ -8,19 +8,20 @@ using UnityEngine;
 
 public class HeroStateMachine : CreatureMachine
 {
-    public override IdleState IdleState { get; set; }
-    public override MoveState MoveState { get; set; }
+    public HeroIdleState HeroIdleState { get; set; }
+    public HeroMoveState HeroMoveState { get; set; }
 
-    public HeroStateMachine(Creature creature) : base(creature)
+    public HeroStateMachine(Hero hero) : base(hero)
     {
-        Owner = creature;
+        Owner = hero;
         SetState();
+        ChangeState(HeroIdleState);
     }
 
 
     private void SetState()
     {
-        IdleState = new HeroIdleState(this);
-        MoveState = new HeroMoveState(this);
+        HeroIdleState = new HeroIdleState(this);
+        HeroMoveState = new HeroMoveState(this);
     }
 }

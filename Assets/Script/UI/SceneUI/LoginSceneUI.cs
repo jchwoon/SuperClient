@@ -49,24 +49,24 @@ public class LoginSceneUI : SceneUI
 
     private void OnStartBtnClicked(PointerEventData eventData)
     {
-        //서버와의 연결이 필요
         if (CheckStartState() == false)
             return;
+
         Managers.ResourceManager.LoadAllAsync<Object>("preLoad", (key, currentCount, totalCount) =>
         {
             _stateTxt.text = $"데이타 로딩중... : {key} {currentCount} / {totalCount}";
             if (currentCount == totalCount)
             {
-                _stateTxt.text = $"데이타 로드 완료";
+                _stateTxt.text = "";
             }
         });
 
         Managers.ResourceManager.LoadAllAsync<Sprite>("sPreLoad", (key, currentCount, totalCount) =>
         {
-            _stateTxt.text = $"스프라이트 로딩중... : {key} {currentCount} / {totalCount}";
+            _stateTxt.text = $"데이타 로드 완료... : {key} {currentCount} / {totalCount}";
             if (currentCount == totalCount)
             {
-                _stateTxt.text = $"스프라이트 로드 완료";
+                _stateTxt.text = $"데이타 로드 완료";
                 OnDataLoaded();
             }
         });

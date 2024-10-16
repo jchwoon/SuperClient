@@ -25,33 +25,33 @@ namespace Google.Protobuf.Struct {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CgxTdHJ1Y3QucHJvdG8SCFByb3RvY29sGgpFbnVtLnByb3RvIl0KDUxvYmJ5",
-            "SGVyb0luZm8SDQoFbGV2ZWwYASABKAUSEAoIbmlja25hbWUYAiABKAkSKwoJ",
-            "Y2xhc3NUeXBlGAMgASgOMhguUHJvdG9jb2wuRUhlcm9DbGFzc1R5cGUiaAoI",
+            "SGVyb0luZm8SDQoFbGV2ZWwYASABKAUSKwoJY2xhc3NUeXBlGAIgASgOMhgu",
+            "UHJvdG9jb2wuRUhlcm9DbGFzc1R5cGUSEAoIbmlja25hbWUYAyABKAkiaAoI",
             "SGVyb0luZm8SLgoNbG9iYnlIZXJvSW5mbxgBIAEoCzIXLlByb3RvY29sLkxv",
             "YmJ5SGVyb0luZm8SLAoMY3JlYXR1cmVJbmZvGAIgASgLMhYuUHJvdG9jb2wu",
             "Q3JlYXR1cmVJbmZvIl4KDENyZWF0dXJlSW5mbxIoCgpvYmplY3RJbmZvGAEg",
             "ASgLMhQuUHJvdG9jb2wuT2JqZWN0SW5mbxIkCghzdGF0SW5mbxgCIAEoCzIS",
             "LlByb3RvY29sLlN0YXRJbmZvIk0KCk15SGVyb0luZm8SJAoIaGVyb0luZm8Y",
             "ASABKAsyEi5Qcm90b2NvbC5IZXJvSW5mbxILCgNleHAYAiABKAUSDAoEZ29s",
-            "ZBgDIAEoBSKJAQoIU3RhdEluZm8SCgoCaHAYASABKAUSDQoFbWF4SHAYAiAB",
-            "KAUSEQoJbW92ZVNwZWVkGAMgASgCEhEKCWF0a0RhbWFnZRgEIAEoBRIQCghh",
-            "dGtTcGVlZBgFIAEoAhIPCgdkZWZlbmNlGAYgASgFEgoKAm1wGAcgASgFEg0K",
-            "BW1heE1wGAggASgFIlAKB1Bvc0luZm8SDAoEcG9zWBgBIAEoAhIMCgRwb3NZ",
-            "GAIgASgCEgwKBHBvc1oYAyABKAISDAoEcm90WRgEIAEoAhINCgVzcGVlZBgF",
-            "IAEoAiKRAQoKT2JqZWN0SW5mbxIQCghvYmplY3RJZBgBIAEoBRISCgp0ZW1w",
-            "bGF0ZUlkGAIgASgFEikKCm9iamVjdFR5cGUYAyABKA4yFS5Qcm90b2NvbC5F",
-            "T2JqZWN0VHlwZRIOCgZyb29tSWQYBCABKAUSIgoHcG9zSW5mbxgFIAEoCzIR",
-            "LlByb3RvY29sLlBvc0luZm9CGaoCFkdvb2dsZS5Qcm90b2J1Zi5TdHJ1Y3Ri",
-            "BnByb3RvMw=="));
+            "ZBgDIAEoBSKdAQoIU3RhdEluZm8SCgoCaHAYASABKAUSDQoFbWF4SHAYAiAB",
+            "KAUSEQoJbW92ZVNwZWVkGAMgASgCEhIKCmNoYXNlU3BlZWQYBCABKAISEQoJ",
+            "YXRrRGFtYWdlGAUgASgFEhAKCGF0a1NwZWVkGAYgASgCEg8KB2RlZmVuY2UY",
+            "ByABKAUSCgoCbXAYCCABKAUSDQoFbWF4TXAYCSABKAUiQQoHUG9zSW5mbxIM",
+            "CgRwb3NYGAEgASgCEgwKBHBvc1kYAiABKAISDAoEcG9zWhgDIAEoAhIMCgRy",
+            "b3RZGAQgASgCIpEBCgpPYmplY3RJbmZvEhAKCG9iamVjdElkGAEgASgFEhIK",
+            "CnRlbXBsYXRlSWQYAiABKAUSKQoKb2JqZWN0VHlwZRgDIAEoDjIVLlByb3Rv",
+            "Y29sLkVPYmplY3RUeXBlEg4KBnJvb21JZBgEIAEoBRIiCgdwb3NJbmZvGAUg",
+            "ASgLMhEuUHJvdG9jb2wuUG9zSW5mb0IZqgIWR29vZ2xlLlByb3RvYnVmLlN0",
+            "cnVjdGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.LobbyHeroInfo), global::Google.Protobuf.Struct.LobbyHeroInfo.Parser, new[]{ "Level", "Nickname", "ClassType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.LobbyHeroInfo), global::Google.Protobuf.Struct.LobbyHeroInfo.Parser, new[]{ "Level", "ClassType", "Nickname" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.HeroInfo), global::Google.Protobuf.Struct.HeroInfo.Parser, new[]{ "LobbyHeroInfo", "CreatureInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.CreatureInfo), global::Google.Protobuf.Struct.CreatureInfo.Parser, new[]{ "ObjectInfo", "StatInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.MyHeroInfo), global::Google.Protobuf.Struct.MyHeroInfo.Parser, new[]{ "HeroInfo", "Exp", "Gold" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.StatInfo), global::Google.Protobuf.Struct.StatInfo.Parser, new[]{ "Hp", "MaxHp", "MoveSpeed", "AtkDamage", "AtkSpeed", "Defence", "Mp", "MaxMp" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.PosInfo), global::Google.Protobuf.Struct.PosInfo.Parser, new[]{ "PosX", "PosY", "PosZ", "RotY", "Speed" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.StatInfo), global::Google.Protobuf.Struct.StatInfo.Parser, new[]{ "Hp", "MaxHp", "MoveSpeed", "ChaseSpeed", "AtkDamage", "AtkSpeed", "Defence", "Mp", "MaxMp" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.PosInfo), global::Google.Protobuf.Struct.PosInfo.Parser, new[]{ "PosX", "PosY", "PosZ", "RotY" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ObjectInfo), global::Google.Protobuf.Struct.ObjectInfo.Parser, new[]{ "ObjectId", "TemplateId", "ObjectType", "RoomId", "PosInfo" }, null, null, null, null)
           }));
     }
@@ -95,8 +95,8 @@ namespace Google.Protobuf.Struct {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public LobbyHeroInfo(LobbyHeroInfo other) : this() {
       level_ = other.level_;
-      nickname_ = other.nickname_;
       classType_ = other.classType_;
+      nickname_ = other.nickname_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -118,20 +118,8 @@ namespace Google.Protobuf.Struct {
       }
     }
 
-    /// <summary>Field number for the "nickname" field.</summary>
-    public const int NicknameFieldNumber = 2;
-    private string nickname_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Nickname {
-      get { return nickname_; }
-      set {
-        nickname_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
     /// <summary>Field number for the "classType" field.</summary>
-    public const int ClassTypeFieldNumber = 3;
+    public const int ClassTypeFieldNumber = 2;
     private global::Google.Protobuf.Enum.EHeroClassType classType_ = global::Google.Protobuf.Enum.EHeroClassType.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -139,6 +127,18 @@ namespace Google.Protobuf.Struct {
       get { return classType_; }
       set {
         classType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "nickname" field.</summary>
+    public const int NicknameFieldNumber = 3;
+    private string nickname_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Nickname {
+      get { return nickname_; }
+      set {
+        nickname_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -158,8 +158,8 @@ namespace Google.Protobuf.Struct {
         return true;
       }
       if (Level != other.Level) return false;
-      if (Nickname != other.Nickname) return false;
       if (ClassType != other.ClassType) return false;
+      if (Nickname != other.Nickname) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -168,8 +168,8 @@ namespace Google.Protobuf.Struct {
     public override int GetHashCode() {
       int hash = 1;
       if (Level != 0) hash ^= Level.GetHashCode();
-      if (Nickname.Length != 0) hash ^= Nickname.GetHashCode();
       if (ClassType != global::Google.Protobuf.Enum.EHeroClassType.None) hash ^= ClassType.GetHashCode();
+      if (Nickname.Length != 0) hash ^= Nickname.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -192,13 +192,13 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(8);
         output.WriteInt32(Level);
       }
-      if (Nickname.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Nickname);
-      }
       if (ClassType != global::Google.Protobuf.Enum.EHeroClassType.None) {
-        output.WriteRawTag(24);
+        output.WriteRawTag(16);
         output.WriteEnum((int) ClassType);
+      }
+      if (Nickname.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Nickname);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -214,13 +214,13 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(8);
         output.WriteInt32(Level);
       }
-      if (Nickname.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Nickname);
-      }
       if (ClassType != global::Google.Protobuf.Enum.EHeroClassType.None) {
-        output.WriteRawTag(24);
+        output.WriteRawTag(16);
         output.WriteEnum((int) ClassType);
+      }
+      if (Nickname.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Nickname);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -235,11 +235,11 @@ namespace Google.Protobuf.Struct {
       if (Level != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
       }
-      if (Nickname.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Nickname);
-      }
       if (ClassType != global::Google.Protobuf.Enum.EHeroClassType.None) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) ClassType);
+      }
+      if (Nickname.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Nickname);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -256,11 +256,11 @@ namespace Google.Protobuf.Struct {
       if (other.Level != 0) {
         Level = other.Level;
       }
-      if (other.Nickname.Length != 0) {
-        Nickname = other.Nickname;
-      }
       if (other.ClassType != global::Google.Protobuf.Enum.EHeroClassType.None) {
         ClassType = other.ClassType;
+      }
+      if (other.Nickname.Length != 0) {
+        Nickname = other.Nickname;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -285,12 +285,12 @@ namespace Google.Protobuf.Struct {
             Level = input.ReadInt32();
             break;
           }
-          case 18: {
-            Nickname = input.ReadString();
+          case 16: {
+            ClassType = (global::Google.Protobuf.Enum.EHeroClassType) input.ReadEnum();
             break;
           }
-          case 24: {
-            ClassType = (global::Google.Protobuf.Enum.EHeroClassType) input.ReadEnum();
+          case 26: {
+            Nickname = input.ReadString();
             break;
           }
         }
@@ -316,12 +316,12 @@ namespace Google.Protobuf.Struct {
             Level = input.ReadInt32();
             break;
           }
-          case 18: {
-            Nickname = input.ReadString();
+          case 16: {
+            ClassType = (global::Google.Protobuf.Enum.EHeroClassType) input.ReadEnum();
             break;
           }
-          case 24: {
-            ClassType = (global::Google.Protobuf.Enum.EHeroClassType) input.ReadEnum();
+          case 26: {
+            Nickname = input.ReadString();
             break;
           }
         }
@@ -1156,6 +1156,7 @@ namespace Google.Protobuf.Struct {
       hp_ = other.hp_;
       maxHp_ = other.maxHp_;
       moveSpeed_ = other.moveSpeed_;
+      chaseSpeed_ = other.chaseSpeed_;
       atkDamage_ = other.atkDamage_;
       atkSpeed_ = other.atkSpeed_;
       defence_ = other.defence_;
@@ -1206,8 +1207,20 @@ namespace Google.Protobuf.Struct {
       }
     }
 
+    /// <summary>Field number for the "chaseSpeed" field.</summary>
+    public const int ChaseSpeedFieldNumber = 4;
+    private float chaseSpeed_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float ChaseSpeed {
+      get { return chaseSpeed_; }
+      set {
+        chaseSpeed_ = value;
+      }
+    }
+
     /// <summary>Field number for the "atkDamage" field.</summary>
-    public const int AtkDamageFieldNumber = 4;
+    public const int AtkDamageFieldNumber = 5;
     private int atkDamage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1219,7 +1232,7 @@ namespace Google.Protobuf.Struct {
     }
 
     /// <summary>Field number for the "atkSpeed" field.</summary>
-    public const int AtkSpeedFieldNumber = 5;
+    public const int AtkSpeedFieldNumber = 6;
     private float atkSpeed_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1231,7 +1244,7 @@ namespace Google.Protobuf.Struct {
     }
 
     /// <summary>Field number for the "defence" field.</summary>
-    public const int DefenceFieldNumber = 6;
+    public const int DefenceFieldNumber = 7;
     private int defence_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1243,7 +1256,7 @@ namespace Google.Protobuf.Struct {
     }
 
     /// <summary>Field number for the "mp" field.</summary>
-    public const int MpFieldNumber = 7;
+    public const int MpFieldNumber = 8;
     private int mp_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1255,7 +1268,7 @@ namespace Google.Protobuf.Struct {
     }
 
     /// <summary>Field number for the "maxMp" field.</summary>
-    public const int MaxMpFieldNumber = 8;
+    public const int MaxMpFieldNumber = 9;
     private int maxMp_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -1284,6 +1297,7 @@ namespace Google.Protobuf.Struct {
       if (Hp != other.Hp) return false;
       if (MaxHp != other.MaxHp) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(MoveSpeed, other.MoveSpeed)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ChaseSpeed, other.ChaseSpeed)) return false;
       if (AtkDamage != other.AtkDamage) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(AtkSpeed, other.AtkSpeed)) return false;
       if (Defence != other.Defence) return false;
@@ -1299,6 +1313,7 @@ namespace Google.Protobuf.Struct {
       if (Hp != 0) hash ^= Hp.GetHashCode();
       if (MaxHp != 0) hash ^= MaxHp.GetHashCode();
       if (MoveSpeed != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(MoveSpeed);
+      if (ChaseSpeed != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ChaseSpeed);
       if (AtkDamage != 0) hash ^= AtkDamage.GetHashCode();
       if (AtkSpeed != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(AtkSpeed);
       if (Defence != 0) hash ^= Defence.GetHashCode();
@@ -1334,24 +1349,28 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(29);
         output.WriteFloat(MoveSpeed);
       }
+      if (ChaseSpeed != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(ChaseSpeed);
+      }
       if (AtkDamage != 0) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(40);
         output.WriteInt32(AtkDamage);
       }
       if (AtkSpeed != 0F) {
-        output.WriteRawTag(45);
+        output.WriteRawTag(53);
         output.WriteFloat(AtkSpeed);
       }
       if (Defence != 0) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(56);
         output.WriteInt32(Defence);
       }
       if (Mp != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(64);
         output.WriteInt32(Mp);
       }
       if (MaxMp != 0) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(72);
         output.WriteInt32(MaxMp);
       }
       if (_unknownFields != null) {
@@ -1376,24 +1395,28 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(29);
         output.WriteFloat(MoveSpeed);
       }
+      if (ChaseSpeed != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(ChaseSpeed);
+      }
       if (AtkDamage != 0) {
-        output.WriteRawTag(32);
+        output.WriteRawTag(40);
         output.WriteInt32(AtkDamage);
       }
       if (AtkSpeed != 0F) {
-        output.WriteRawTag(45);
+        output.WriteRawTag(53);
         output.WriteFloat(AtkSpeed);
       }
       if (Defence != 0) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(56);
         output.WriteInt32(Defence);
       }
       if (Mp != 0) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(64);
         output.WriteInt32(Mp);
       }
       if (MaxMp != 0) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(72);
         output.WriteInt32(MaxMp);
       }
       if (_unknownFields != null) {
@@ -1413,6 +1436,9 @@ namespace Google.Protobuf.Struct {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxHp);
       }
       if (MoveSpeed != 0F) {
+        size += 1 + 4;
+      }
+      if (ChaseSpeed != 0F) {
         size += 1 + 4;
       }
       if (AtkDamage != 0) {
@@ -1450,6 +1476,9 @@ namespace Google.Protobuf.Struct {
       }
       if (other.MoveSpeed != 0F) {
         MoveSpeed = other.MoveSpeed;
+      }
+      if (other.ChaseSpeed != 0F) {
+        ChaseSpeed = other.ChaseSpeed;
       }
       if (other.AtkDamage != 0) {
         AtkDamage = other.AtkDamage;
@@ -1497,23 +1526,27 @@ namespace Google.Protobuf.Struct {
             MoveSpeed = input.ReadFloat();
             break;
           }
-          case 32: {
+          case 37: {
+            ChaseSpeed = input.ReadFloat();
+            break;
+          }
+          case 40: {
             AtkDamage = input.ReadInt32();
             break;
           }
-          case 45: {
+          case 53: {
             AtkSpeed = input.ReadFloat();
             break;
           }
-          case 48: {
+          case 56: {
             Defence = input.ReadInt32();
             break;
           }
-          case 56: {
+          case 64: {
             Mp = input.ReadInt32();
             break;
           }
-          case 64: {
+          case 72: {
             MaxMp = input.ReadInt32();
             break;
           }
@@ -1548,23 +1581,27 @@ namespace Google.Protobuf.Struct {
             MoveSpeed = input.ReadFloat();
             break;
           }
-          case 32: {
+          case 37: {
+            ChaseSpeed = input.ReadFloat();
+            break;
+          }
+          case 40: {
             AtkDamage = input.ReadInt32();
             break;
           }
-          case 45: {
+          case 53: {
             AtkSpeed = input.ReadFloat();
             break;
           }
-          case 48: {
+          case 56: {
             Defence = input.ReadInt32();
             break;
           }
-          case 56: {
+          case 64: {
             Mp = input.ReadInt32();
             break;
           }
-          case 64: {
+          case 72: {
             MaxMp = input.ReadInt32();
             break;
           }
@@ -1614,7 +1651,6 @@ namespace Google.Protobuf.Struct {
       posY_ = other.posY_;
       posZ_ = other.posZ_;
       rotY_ = other.rotY_;
-      speed_ = other.speed_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1672,18 +1708,6 @@ namespace Google.Protobuf.Struct {
       }
     }
 
-    /// <summary>Field number for the "speed" field.</summary>
-    public const int SpeedFieldNumber = 5;
-    private float speed_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float Speed {
-      get { return speed_; }
-      set {
-        speed_ = value;
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1703,7 +1727,6 @@ namespace Google.Protobuf.Struct {
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PosY, other.PosY)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PosZ, other.PosZ)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RotY, other.RotY)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Speed, other.Speed)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1715,7 +1738,6 @@ namespace Google.Protobuf.Struct {
       if (PosY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PosY);
       if (PosZ != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PosZ);
       if (RotY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RotY);
-      if (Speed != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Speed);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1750,10 +1772,6 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(37);
         output.WriteFloat(RotY);
       }
-      if (Speed != 0F) {
-        output.WriteRawTag(45);
-        output.WriteFloat(Speed);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1780,10 +1798,6 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(37);
         output.WriteFloat(RotY);
       }
-      if (Speed != 0F) {
-        output.WriteRawTag(45);
-        output.WriteFloat(Speed);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1804,9 +1818,6 @@ namespace Google.Protobuf.Struct {
         size += 1 + 4;
       }
       if (RotY != 0F) {
-        size += 1 + 4;
-      }
-      if (Speed != 0F) {
         size += 1 + 4;
       }
       if (_unknownFields != null) {
@@ -1832,9 +1843,6 @@ namespace Google.Protobuf.Struct {
       }
       if (other.RotY != 0F) {
         RotY = other.RotY;
-      }
-      if (other.Speed != 0F) {
-        Speed = other.Speed;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1871,10 +1879,6 @@ namespace Google.Protobuf.Struct {
             RotY = input.ReadFloat();
             break;
           }
-          case 45: {
-            Speed = input.ReadFloat();
-            break;
-          }
         }
       }
     #endif
@@ -1908,10 +1912,6 @@ namespace Google.Protobuf.Struct {
           }
           case 37: {
             RotY = input.ReadFloat();
-            break;
-          }
-          case 45: {
-            Speed = input.ReadFloat();
             break;
           }
         }

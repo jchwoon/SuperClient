@@ -15,8 +15,7 @@ public class BaseObject : MonoBehaviour
 
     protected virtual void Awake()
     {
-        if (isMachineInit == false)
-            Machine = new StateMachine();
+
     }
 
     protected virtual void OnEnable()
@@ -29,7 +28,8 @@ public class BaseObject : MonoBehaviour
     }
     protected virtual void Start()
     {
-        
+        if (isMachineInit == false)
+            Machine = new StateMachine();
     }
 
     protected virtual void Update()
@@ -41,6 +41,7 @@ public class BaseObject : MonoBehaviour
 
     protected virtual void SetPos(GameObject go, PosInfo posInfo)
     {
+        Debug.Log($"x : {posInfo.PosX}, y :{posInfo.PosY}, z : {posInfo.PosZ}");
         go.transform.position = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);
         go.transform.eulerAngles = new Vector3(0, posInfo.RotY, 0);
     }
@@ -56,7 +57,10 @@ public class BaseObject : MonoBehaviour
     #region Network Receive
     public void ReceivePosInfo(MoveToC movePacket)
     {
-        Machine.UpdatePosInput(movePacket.PosInfo);
+        if (Machine == null)
+            return;
+
+        Machine.UpdatePosInput(movePacket);
     }
     #endregion
 }

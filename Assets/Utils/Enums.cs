@@ -52,7 +52,9 @@ public class Enums
         ChangeStat,
         ChangeCurrency,
         ChangeGrowth,
-        ChangeHUDInfo
+        ChangeHUDInfo,
+        OnTarget,
+        OffTarget
     }
 
     public enum SortingOrderInHUD

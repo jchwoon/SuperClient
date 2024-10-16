@@ -78,6 +78,7 @@ namespace Data
         public int MaxHp;
         public int MaxMp;
         public float MoveSpeed;
+        public float ChaseSpeed;
         public int AtkDamage;
         public int Defence;
         public float AtkSpeed;

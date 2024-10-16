@@ -17,9 +17,15 @@ public class Creature : BaseObject
         set
         {
             if (value == true)
+            {
                 AddHUD();
+                GetComponent<TargetOutlineController>().AddOutline(this);
+            }    
             else
+            {
                 RemoveHUD();
+                GetComponent<TargetOutlineController>().BackToOriginMats(this);
+            }
             _isTargetted = value;
         }
 
@@ -35,13 +41,15 @@ public class Creature : BaseObject
         base.Awake();
         Animator = transform.GetComponent<Animator>();
         AnimData = new AnimationData();
-
-
+    }
+    protected override void Start()
+    {
         if (isMachineInit == false)
         {
             Machine = new CreatureMachine(this);
             isMachineInit = true;
         }
+        base.Start();
     }
     protected override void Update()
     {
@@ -59,6 +67,7 @@ public class Creature : BaseObject
         if (_isTargetted == true && Managers.ObjectManager.MyHero)
         {
             Managers.ObjectManager.MyHero.MyHeroStateMachine.Target = null;
+
         }
     }
 

@@ -23,12 +23,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4d78070bc9d771b47b4c433c61633833
-    m_Address: Rabbit
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 75f057b43e0a449dae5f6549f5107474
     m_Address: Vornix
     m_ReadOnly: 0

@@ -12,11 +12,15 @@ public class Hero : Creature
     protected override void Awake()
     {
         base.Awake();
+    }
+    protected override void Start()
+    {
         if (isMachineInit == false)
         {
             Machine = new HeroStateMachine(this);
             isMachineInit = true;
         }
+        base.Start();
     }
     protected override void Update()
     {

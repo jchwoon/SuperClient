@@ -9,7 +9,8 @@
       "costMp": 0,
       "coolTime": 0,
       "animTime": 1,
-      "animParamName": "SkillA"
+      "animParamName": "SkillA",
+      "effectId": 1
     }
   ]
 }
