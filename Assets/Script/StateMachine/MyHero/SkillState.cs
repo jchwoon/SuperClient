@@ -27,7 +27,7 @@ namespace MyHeroState {
         public override void Update()
         {
             base.Update();
-            if (_heroMachine.Owner.SkillComponent.isUseSkill == true)
+            if (_heroMachine.Owner.SkillComponent.isUsingSkill == true)
                 return;
 
             if (_heroMachine.MoveInput != Vector2.zero)
@@ -49,7 +49,7 @@ namespace MyHeroState {
                 if (_heroMachine.isWaitSkillRes == true)
                     return;
                 CoroutineHelper.Instance.StartHelperCoroutine(CoWailSkill());
-                owner.SendReqUseSkill(skill.SkillId, _heroMachine.Target.ObjectId);
+                owner.SendUseSkill(skill.SkillId, _heroMachine.Target.ObjectId);
                 return;
             }
 

@@ -87,7 +87,7 @@ public class Creature : BaseObject
     }
 
     #region Network Send
-    public void SendReqUseSkill(int skillId, int targetId = 0)
+    public void SendUseSkill(int skillId, int targetId = 0)
     {
         ReqUseSkillToS skillPacket = new ReqUseSkillToS();
         skillPacket.SkillId = skillId;
@@ -97,7 +97,7 @@ public class Creature : BaseObject
     #endregion
 
     #region Network Receive
-    public void HandleResUseSkill(Creature owner, ResUseSkillToC skillPacket)
+    public void HandleUseSkill(Creature owner, ResUseSkillToC skillPacket)
     {
         SkillData skillData;
         if (Managers.DataManager.SkillDict.TryGetValue(skillPacket.SkillId, out skillData) == false)
@@ -106,6 +106,14 @@ public class Creature : BaseObject
         Creature target = Managers.ObjectManager.FindById(skillPacket.TargetId).GetComponent<Creature>();
         if (target != null)
             owner.Machine.UseSkill(skillData, target);
+    }
+
+    public void HandleKnockback(Creature target)
+    {
+        if (target == null)
+            return;
+
+        target.Animator.Play("GetHit");
     }
 
     public void HandleModifyOneStat(EStatType statType, float value)

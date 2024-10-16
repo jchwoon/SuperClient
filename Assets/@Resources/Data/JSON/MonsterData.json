@@ -19,7 +19,8 @@
       "atkRange": 1,
       "skillIds": [
         2
-      ]
+      ],
+      "monsterGrade": 1
     }
   ]
 }

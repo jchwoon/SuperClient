@@ -69,7 +69,7 @@ public class BaseSkill
     }
     protected virtual IEnumerator CoAnimTime()
     {
-        Owner.SkillComponent.isUseSkill = true;
+        Owner.SkillComponent.isUsingSkill = true;
         float animTime = SkillData.AnimTime;
         float process = 0.0f;
         while (process < animTime)
@@ -77,7 +77,7 @@ public class BaseSkill
             process += Time.deltaTime;
             yield return null;
         }
-        Owner.SkillComponent.isUseSkill = false;
+        Owner.SkillComponent.isUsingSkill = false;
     }
 }
 

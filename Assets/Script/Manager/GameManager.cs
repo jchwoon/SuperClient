@@ -8,7 +8,6 @@ using UnityEngine;
 public class GameManager
 {
     public int SelectHeroIdx { get; set; }
-
     private Vector2 _moveInput = Vector2.zero;
     public event Action<Vector2> OnJoystickChanged;
 

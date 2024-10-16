@@ -27,6 +27,7 @@ public class CreatureMachine : StateMachine
 
     public override void UseSkill(SkillData skillData, Creature target)
     {
+        Debug.Log("UseSkill");
         Owner.Animator.Play(skillData.AnimName);
 
         if (target != null)

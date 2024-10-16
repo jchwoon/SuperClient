@@ -34,6 +34,14 @@ public class ResourceManager
         return go;
     }
 
+    public GameObject Instantiate(GameObject original,  Transform parent = null)
+    {
+        GameObject go = UnityEngine.Object.Instantiate(original, parent);
+
+        go.name = original.name;
+        return go;
+    }
+
     public void Destroy(GameObject go)
     {
         if (go == null)

@@ -54,11 +54,13 @@ namespace Google.Protobuf.Enum {
             "Cg5FU1RBVF9UWVBFX0FUSxAFEhYKEkVTVEFUX1RZUEVfREVGRU5DRRAGEhkK",
             "FUVTVEFUX1RZUEVfTU9WRV9TUEVFRBAHEhgKFEVTVEFUX1RZUEVfQVRLX1NQ",
             "RUVEEAgqNgoJRU1vdmVUeXBlEhMKD0VNT1ZFX1RZUEVfTk9ORRAAEhQKEEVN",
-            "T1ZFX1RZUEVfQ0hBU0UQAUIXqgIUR29vZ2xlLlByb3RvYnVmLkVudW1iBnBy",
-            "b3RvMw=="));
+            "T1ZFX1RZUEVfQ0hBU0UQASpcCg1FTW9uc3RlckdyYWRlEhcKE0VNT05TVEVS",
+            "X0dSQURFX05PTkUQABIZChVFTU9OU1RFUl9HUkFERV9OT1JNQUwQARIXChNF",
+            "TU9OU1RFUl9HUkFERV9SQVJFEAJCF6oCFEdvb2dsZS5Qcm90b2J1Zi5FbnVt",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.EMoveForce), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.EMoveForce), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), }, null, null));
     }
     #endregion
 
@@ -139,6 +141,12 @@ namespace Google.Protobuf.Enum {
   public enum EMoveType {
     [pbr::OriginalName("EMOVE_TYPE_NONE")] None = 0,
     [pbr::OriginalName("EMOVE_TYPE_CHASE")] Chase = 1,
+  }
+
+  public enum EMonsterGrade {
+    [pbr::OriginalName("EMONSTER_GRADE_NONE")] None = 0,
+    [pbr::OriginalName("EMONSTER_GRADE_NORMAL")] Normal = 1,
+    [pbr::OriginalName("EMONSTER_GRADE_RARE")] Rare = 2,
   }
 
   #endregion

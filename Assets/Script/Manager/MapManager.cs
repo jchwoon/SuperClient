@@ -12,6 +12,7 @@ public class MapManager
     public int MaxZ { get; set; }
     float[,] _mapCollision;
     public GameObject Map { get; private set; }
+    public GameObject LoadedMap { get; private set; }
     public Transform Parent
     {
         get
@@ -28,16 +29,12 @@ public class MapManager
         DestroyMap();
         _loadedMapAction = action;
 
-        GameObject map = Managers.ResourceManager.Instantiate(mapName, Parent);
-        map.transform.position = Vector3.zero;
-        map.name = $"{mapName}";
-
-        Map = map;
-
+        GameObject map = Managers.ResourceManager.GetResource<GameObject>(mapName);
+        map.name = mapName;
+        LoadedMap = map;
+        
         TextAsset text = Managers.ResourceManager.GetResource<TextAsset>($"{mapName}MapData");
-        Debug.Log(text);
         Stream s = new MemoryStream(text.bytes);
-
         CoroutineHelper.Instance.StartHelperCoroutine(ReadFile(new BinaryReader(s)));
     }
     public bool CanGo(float z, float x)
@@ -59,6 +56,12 @@ public class MapManager
         return true;
     }
 
+    public void CreateMap()
+    {
+        GameObject map = Managers.ResourceManager.Instantiate(LoadedMap, Parent);
+        map.transform.position = Vector3.zero;
+        Map = map;
+    }
 
     private void DestroyMap()
     {
@@ -66,6 +69,7 @@ public class MapManager
         {
             Managers.ResourceManager.Destroy(Map);
             Map = null;
+            LoadedMap = null;
         }
     }
 

@@ -11,6 +11,18 @@
       "animTime": 1,
       "animParamName": "SkillA",
       "effectId": 1
+    },
+    {
+      "skillId": 2,
+      "skillType": 1,
+      "skillName": "Vornix 기본 공격",
+      "animName": "NormalAttack",
+      "skillRange": 1,
+      "costMp": 0,
+      "coolTime": 0,
+      "animTime": 1,
+      "animParamName": "SkillA",
+      "effectId": 2
     }
   ]
 }

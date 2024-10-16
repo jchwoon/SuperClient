@@ -61,6 +61,22 @@ public partial class PacketHandler
         if (creature == null)
             return;
 
-        creature.HandleResUseSkill(creature, skillPacket);
+        creature.HandleUseSkill(creature, skillPacket);
+    }
+
+    public static void GetHitToCHandler(PacketSession session, IMessage packet)
+    {
+        GetHitToC hitPacket = (GetHitToC)packet;
+        GameObject go = Managers.ObjectManager.FindById(hitPacket.ObjectId);
+
+        if (go == null)
+            return;
+
+        Creature creature = go.GetComponent<Creature>();
+
+        if (creature == null)
+            return;
+
+        creature.HandleKnockback(creature);
     }
 }

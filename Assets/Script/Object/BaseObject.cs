@@ -41,7 +41,6 @@ public class BaseObject : MonoBehaviour
 
     protected virtual void SetPos(GameObject go, PosInfo posInfo)
     {
-        Debug.Log($"x : {posInfo.PosX}, y :{posInfo.PosY}, z : {posInfo.PosZ}");
         go.transform.position = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);
         go.transform.eulerAngles = new Vector3(0, posInfo.RotY, 0);
     }

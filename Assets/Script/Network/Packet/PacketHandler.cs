@@ -34,12 +34,20 @@ public partial class PacketHandler
         if (ui != null)
             ui.OnReceiveDeleteHero(resDeleteHeroPacket);
     }
+
+    public static void PreEnterRoomToCHandler(PacketSession session, IMessage packet)
+    {
+        PreEnterRoomToC preEnterPacket = (PreEnterRoomToC)packet;
+        LoadingScene loadingScene = (LoadingScene)Managers.SceneManagerEx.CurrentScene;
+        loadingScene.OnReceivePreEnterRoom(preEnterPacket);
+
+    }
+
     public static void ResEnterRoomToCHandler(PacketSession session, IMessage packet)
     {
         ResEnterRoomToC resEnterPacket = (ResEnterRoomToC)packet;
         GameScene gameScene = (GameScene)Managers.SceneManagerEx.CurrentScene;
         gameScene.OnReceiveEnterRoom(resEnterPacket);
-
     }
 
     public static void PingCheckToCHandler(PacketSession session, IMessage packet)
