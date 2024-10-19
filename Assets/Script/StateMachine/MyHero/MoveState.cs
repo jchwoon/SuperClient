@@ -7,6 +7,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.UI.GridLayoutGroup;
 
 namespace MyHeroState
 {
@@ -21,7 +22,8 @@ namespace MyHeroState
         public override void Exit()
         {
             base.Exit();
-
+            MyHero owner = _heroMachine.Owner;
+            _heroMachine.SetAnimParameter(owner, owner.AnimData.MoveSpeedHash, 0.0f);
             CoroutineHelper.Instance.StopHelperCoroutine(_sendRoutine);
         }
         public override void Enter()
@@ -30,6 +32,7 @@ namespace MyHeroState
             _sendRoutine = CoroutineHelper.Instance.StartHelperCoroutine(SendMyPos());
             MyHero owner = _heroMachine.Owner;
             _heroMachine.SetAnimParameter(owner, owner.AnimData.MoveSpeedHash, _heroMachine.Owner.Stat.StatInfo.MoveSpeed);
+            _heroMachine.CreatureState = ECreatureState.Move;
         }
 
         public override void Update()

@@ -97,6 +97,12 @@ public class MyHeroStateMachine : StateMachine
         Owner.transform.LookAt(target.transform);
     }
 
+    public override void OnDie()
+    {
+        SetAnimParameter(Owner, Owner.AnimData.DieHash);
+        CreatureState = ECreatureState.Die;
+    }
+
     private void SetState()
     {
         IdleState = new IdleState(this);

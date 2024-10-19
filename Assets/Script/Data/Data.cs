@@ -106,7 +106,6 @@ namespace Data
     public class HeroData : BaseData
     {
         public EHeroClassType HeroClassId;
-        public float ComboExitTime;
         public List<int> SkillIds;
     }
     [Serializable]
@@ -136,6 +135,9 @@ namespace Data
         public float CoolTime;
         public float AnimTime;
         public string AnimParamName;
+        public float ComboTime;
+        public int MaxComboIdx;
+        public List<string> ComboNames;
     }
 
     [Serializable]

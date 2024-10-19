@@ -11,7 +11,14 @@
       "animTime": 1,
       "animParamName": "SkillA",
       "effectId": 1,
-      "effectDelayRatio" : 0.6
+      "effectDelayRatio": 0.6,
+      "comboTime": 1,
+      "maxComboIdx": 2,
+      "comboNames": [
+        "NormalAttack",
+        "NormalAttack2",
+        "NormalAttack3"
+      ]
     },
     {
       "skillId": 2,

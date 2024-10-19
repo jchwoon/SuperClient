@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Google.Protobuf.Enum;
 
 namespace CreatureState
 {
@@ -13,12 +14,11 @@ namespace CreatureState
         public override void Exit()
         {
             base.Exit();
-            _machine.SetAnimParameter(_owner, _owner.AnimData.SkillHash, false);
         }
         public override void Enter()
         {
             base.Enter();
-            _machine.SetAnimParameter(_owner, _owner.AnimData.SkillHash, true);
+            _machine.CreatureState = ECreatureState.Skill;
         }
     }
 }

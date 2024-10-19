@@ -111,4 +111,20 @@ public partial class PacketHandler
 
         creature.HandleDie(diePacket.KillerId);
     }
+
+    public static void TeleportToCHandler(PacketSession session, IMessage packet)
+    {
+        TeleportToC telpoPacket = (TeleportToC)packet;
+
+        GameObject go = Managers.ObjectManager.FindById(telpoPacket.ObjectId);
+
+        if (go == null)
+            return;
+        BaseObject bo = go.GetComponent<BaseObject>();
+
+        if (bo == null)
+            return;
+
+        bo.HandleTeleport(telpoPacket);
+    }
 }

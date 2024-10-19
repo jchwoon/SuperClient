@@ -17,14 +17,11 @@ namespace MyHeroState {
         public override void Exit()
         {
             base.Exit();
-            _heroMachine.SetAnimParameter(_heroMachine.Owner, _heroMachine.Owner.AnimData.SkillHash, false);
-            if (_heroMachine.CurrentActiveSkillHash.HasValue)
-                _heroMachine.SetAnimParameter(_heroMachine.Owner, _heroMachine.CurrentActiveSkillHash.Value, false);
         }
         public override void Enter()
         {
             base.Enter();
-            _heroMachine.SetAnimParameter(_heroMachine.Owner, _heroMachine.Owner.AnimData.SkillHash, true);
+            _heroMachine.CreatureState = ECreatureState.Skill;
         }
         public override void Update()
         {

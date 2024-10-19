@@ -41,18 +41,8 @@ public class BaseSkill
     public virtual void UseSkill()
     {
         MyHeroStateMachine machine = Owner.MyHeroStateMachine;
-        int? currentHash = machine.CurrentActiveSkillHash;
-        if (currentHash.HasValue && currentHash.Value != AnimParamHash)
-            machine.SetAnimParameter(Owner, currentHash.Value, false);
-        machine.SetAnimParameter(Owner, AnimParamHash, true);
-        machine.CurrentActiveSkillHash = AnimParamHash;
         CoroutineHelper.Instance.StartHelperCoroutine(CoAnimTime());
         CoroutineHelper.Instance.StartHelperCoroutine(CoCoolTime());
-    }
-
-    public virtual void ExitSkill()
-    {
-
     }
 
     IEnumerator CoCoolTime()

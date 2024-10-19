@@ -40,7 +40,6 @@ public class CreatureMachine : StateMachine
     }
     public override void OnDie()
     {
-        CurrentState = null;
         SetAnimParameter(Owner, Owner.AnimData.DieHash);
         CreatureState = ECreatureState.Die;
     }

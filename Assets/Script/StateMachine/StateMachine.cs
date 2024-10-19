@@ -40,6 +40,9 @@ public class StateMachine
         if (CurrentState == null)
             return;
 
+        if (CreatureState == ECreatureState.Die)
+            return;
+
         CurrentState.Update();
     }
 

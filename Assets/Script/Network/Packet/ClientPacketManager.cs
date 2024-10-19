@@ -30,6 +30,7 @@ public enum PacketId
   ModifyStatToC = 21,
   ModifyOneStatToC = 22,
   DieToC = 23,
+  TeleportToC = 24,
 
 }
 
@@ -92,6 +93,8 @@ class PacketManager
         _handler.Add((ushort)PacketId.ModifyOneStatToC, PacketHandler.ModifyOneStatToCHandler);
         _parseHandler.Add((ushort)PacketId.DieToC, ParsePacket<DieToC>);
         _handler.Add((ushort)PacketId.DieToC, PacketHandler.DieToCHandler);
+        _parseHandler.Add((ushort)PacketId.TeleportToC, ParsePacket<TeleportToC>);
+        _handler.Add((ushort)PacketId.TeleportToC, PacketHandler.TeleportToCHandler);
     
     }
 

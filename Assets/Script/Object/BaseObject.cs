@@ -61,5 +61,10 @@ public class BaseObject : MonoBehaviour
 
         Machine.UpdatePosInput(movePacket);
     }
+    public void HandleTeleport(TeleportToC telpoPacket)
+    {
+        Vector3 telpoPos = new Vector3(telpoPacket.PosInfo.PosX, telpoPacket.PosInfo.PosY, telpoPacket.PosInfo.PosZ);
+        gameObject.transform.position = telpoPos;
+    }
     #endregion
 }
