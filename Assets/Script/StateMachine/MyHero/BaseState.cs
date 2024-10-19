@@ -49,7 +49,7 @@ namespace MyHeroState
             BaseSkill skill = _heroMachine.Owner.SkillComponent.GetCanUseSkillAtReservedSkills(_heroMachine.Target);
 
 
-            if (dist > (skill == null ? 1.0f : _heroMachine.Owner.SkillComponent.GetSkillRange(skill)))
+            if (skill == null || dist > _heroMachine.Owner.SkillComponent.GetSkillRange(skill))
             {
                 if (_heroMachine.CurrentState == _heroMachine.MoveState)
                     return false;

@@ -24,7 +24,8 @@ public class Monster : Creature
 
         MonsterData = monsterData;
         Name = MonsterData.Name;
-        StatInfo = info.StatInfo;
+        Stat = new StatComponent(this);
+        Stat.InitStat(info.StatInfo);
         SetPos(gameObject, info.ObjectInfo.PosInfo);
         SetObjInfo(info);
     }

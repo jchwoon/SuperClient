@@ -18,8 +18,8 @@ public interface IState
 
 public class StateMachine
 {
-    public IState CurrentState { get; private set; }
-    protected ECreatureState CreatureState { get; private set; }
+    public IState CurrentState { get; protected set; }
+    public ECreatureState CreatureState { get; set; }
     public Vector3? PosInput { get; private set; } = null;
 
     public virtual void ChangeState(IState changeState)
@@ -55,6 +55,10 @@ public class StateMachine
 
     public virtual void UseSkill(SkillData skillData, Creature target)
     {
+    }
+    public virtual void OnDie()
+    {
+
     }
 
     #region AnimParamGetSet

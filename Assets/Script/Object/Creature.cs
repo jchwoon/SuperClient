@@ -33,7 +33,7 @@ public class Creature : BaseObject
 
     public Animator Animator { get; private set; }
     public AnimationData AnimData { get; private set; }
-    public StatInfo StatInfo { get; protected set; }
+    public StatComponent Stat { get; protected set; }
     public string Name { get; protected set; }
 
     protected override void Awake()
@@ -64,11 +64,21 @@ public class Creature : BaseObject
     protected override void OnDisable()
     {
         base.OnDisable();
+        ClearTarget();
+    }
+
+    private void ClearTarget()
+    {
         if (_isTargetted == true && Managers.ObjectManager.MyHero)
         {
             Managers.ObjectManager.MyHero.MyHeroStateMachine.Target = null;
-
         }
+    }
+
+    private void OnDie()
+    {
+        ClearTarget();
+        _isTargetted = false;
     }
 
     protected void AddHUD()
@@ -108,29 +118,32 @@ public class Creature : BaseObject
             owner.Machine.UseSkill(skillData, target);
     }
 
-    public void HandleKnockback(Creature target)
+    public virtual void HandleModifyStat(StatInfo statInfo)
     {
-        if (target == null)
-            return;
-
-        target.Animator.Play("GetHit");
+        Stat.StatInfo.MergeFrom(statInfo);
     }
 
-    public void HandleModifyOneStat(EStatType statType, float value)
+    public virtual void HandleModifyOneStat(EStatType statType, float changedValue, float gapValue)
     {
-        switch (statType)
-        {
-            case EStatType.Hp:
-                StatInfo.Hp = (int)value;
-                break;
-            case EStatType.Mp:
-                StatInfo.Mp = (int)value;
-                break;
-            default:
-                break;
-        }
+        Stat.SetStat(statType, changedValue);
 
-        Managers.EventBus.InvokeEvent(Enums.EventType.ChangeHUDInfo);
+        if (IsTargetted == true)
+        {
+            switch (statType)
+            {
+                case EStatType.Hp:
+                    Managers.EventBus.InvokeEvent(Enums.EventType.ChangeHUDInfo);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public virtual void HandleDie(int killerId)
+    {
+        Machine.OnDie();
+        OnDie();
     }
     #endregion
 }

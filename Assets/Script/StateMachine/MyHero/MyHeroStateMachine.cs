@@ -17,7 +17,7 @@ public class MyHeroStateMachine : StateMachine
         get { return _target; }
         set
         {
-            if (value == null)
+            if (_target != null && value == null)
                 OffAttackMode();
             else
             {
@@ -75,6 +75,7 @@ public class MyHeroStateMachine : StateMachine
         float closestDist = float.MaxValue;
         foreach(Creature creature in creatures)
         {
+            if (creature.Machine.CreatureState == ECreatureState.Die) continue;
             float dist = (creature.gameObject.transform.position - Owner.transform.position).sqrMagnitude;
             if (dist < closestDist)
             {
@@ -92,17 +93,9 @@ public class MyHeroStateMachine : StateMachine
 
         BaseSkill skill = Owner.SkillComponent.GetSkillById(skillData.SkillId);
         skill.UseSkill();
-        SetAnimParameter(Owner, Owner.AnimData.SkillHash, true);
         ChangeState(SkillState);
         Owner.transform.LookAt(target.transform);
-
-        //target에게 데미지 입히기
     }
-
-    //public float GetModifiedSpeed()
-    //{
-    //    return ;
-    //}
 
     private void SetState()
     {

@@ -64,10 +64,10 @@ public partial class PacketHandler
         creature.HandleUseSkill(creature, skillPacket);
     }
 
-    public static void GetHitToCHandler(PacketSession session, IMessage packet)
+    public static void ModifyStatToCHandler(PacketSession session, IMessage packet)
     {
-        GetHitToC hitPacket = (GetHitToC)packet;
-        GameObject go = Managers.ObjectManager.FindById(hitPacket.ObjectId);
+        ModifyStatToC statPacket = (ModifyStatToC)packet;
+        GameObject go = Managers.ObjectManager.FindById(statPacket.ObjectId);
 
         if (go == null)
             return;
@@ -77,6 +77,38 @@ public partial class PacketHandler
         if (creature == null)
             return;
 
-        creature.HandleKnockback(creature);
+        creature.HandleModifyStat(statPacket.StatInfo);
+    }
+
+    public static void ModifyOneStatToCHandler(PacketSession session, IMessage packet)
+    {
+        ModifyOneStatToC statOnePacket = (ModifyOneStatToC)packet;
+        GameObject go = Managers.ObjectManager.FindById(statOnePacket.ObjectId);
+
+        if (go == null)
+            return;
+
+        Creature creature = go.GetComponent<Creature>();
+
+        if (creature == null)
+            return;
+
+        creature.HandleModifyOneStat(statOnePacket.StatType, statOnePacket.ChangedValue, statOnePacket.GapValue);
+    }
+
+    public static void DieToCHandler(PacketSession session, IMessage packet)
+    {
+        DieToC diePacket = (DieToC)packet;
+        GameObject go = Managers.ObjectManager.FindById(diePacket.ObjectId);
+
+        if (go == null)
+            return;
+
+        Creature creature = go.GetComponent<Creature>();
+
+        if (creature == null)
+            return;
+
+        creature.HandleDie(diePacket.KillerId);
     }
 }

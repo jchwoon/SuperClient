@@ -12,17 +12,17 @@ public class GameScene : BaseScene
 
         ReqEnterRoomToS reqEnterPacket = new ReqEnterRoomToS();
         reqEnterPacket.HeroIdx = Managers.GameManager.SelectHeroIdx;
-        Managers.NetworkManager.Send(reqEnterPacket);
-
         Managers.MapManager.CreateMap();
-
+        Managers.NetworkManager.Send(reqEnterPacket);
     }
 
     public void OnReceiveEnterRoom(ResEnterRoomToC packet)
     {
+        Managers.UIManager.ShowSceneUI<GameSceneUI>();
+        Managers.UIManager.ShowSceneUI<JoySceneUI>();
         Managers.ObjectManager.Spawn(packet.MyHero);
         //ui setting
-        Managers.UIManager.ShowSceneUI<GameSceneUI>()?.SetUI();
+        
         Managers.UIManager.ShowFadeUI();
     }   
 

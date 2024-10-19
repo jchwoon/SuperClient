@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.UI.GridLayoutGroup;
 
 namespace MyHeroState {
     public class SkillState : BaseState
@@ -23,6 +24,7 @@ namespace MyHeroState {
         public override void Enter()
         {
             base.Enter();
+            _heroMachine.SetAnimParameter(_heroMachine.Owner, _heroMachine.Owner.AnimData.SkillHash, true);
         }
         public override void Update()
         {

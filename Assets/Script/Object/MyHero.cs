@@ -10,10 +10,10 @@ using Data;
 public class MyHero : Hero
 {
     public MyHeroStateMachine MyHeroStateMachine { get; private set; }
+    public MyHeroStatComponent MyHeroStat {  get; private set; }
     public SkillComponent SkillComponent { get; private set; }
     public CurrencyComponent CurrencyComponent { get; private set; }
     public GrowthComponent GrowthInfo { get; protected set; }
-    public StatComponent Stat { get; protected set; }
 
     protected override void Awake()
     {
@@ -53,21 +53,50 @@ public class MyHero : Hero
         MyHeroStateMachine = new MyHeroStateMachine(this);
         SkillComponent = new SkillComponent();
         CurrencyComponent = new CurrencyComponent();
-        Stat = new StatComponent(this);
+        MyHeroStat = new MyHeroStatComponent(this);
         GrowthInfo = new GrowthComponent();
 
+        Stat = MyHeroStat;
         Machine = MyHeroStateMachine;
         HeroData = heroData;
         Name = info.HeroInfo.LobbyHeroInfo.Nickname;
 
         GrowthInfo.InitGrowth(info.HeroInfo.LobbyHeroInfo.Level, info.Exp);
         CurrencyComponent.InitCurrency(info.Gold);
-        StatInfo = info.HeroInfo.CreatureInfo.StatInfo;
-        Stat.UpdateStat();
+        Stat.InitStat(info.HeroInfo.CreatureInfo.StatInfo);
         SkillComponent.InitSkill(heroData);
+
         SetObjInfo(info.HeroInfo.CreatureInfo);
         SetPos(gameObject, info.HeroInfo.CreatureInfo.ObjectInfo.PosInfo);
 
         AddHUD();
+    }
+
+    public override void HandleModifyStat(StatInfo statInfo)
+    {
+        base.HandleModifyStat(statInfo);
+        MyHeroStat.UpdateStat();
+    }
+
+    public override void HandleModifyOneStat(EStatType statType, float changedValue, float gapValue)
+    {
+        Stat.SetStat(statType, changedValue);
+
+        switch (statType)
+        {
+            case EStatType.Hp:
+                Managers.EventBus.InvokeEvent(Enums.EventType.ChangeHUDInfo);
+                break;
+            case EStatType.Mp:
+                Managers.EventBus.InvokeEvent(Enums.EventType.ChangeHUDInfo);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public override void HandleDie(int killerId)
+    {
+        //MyHeroStateMachine.ChangeState(MyHeroStateMachine.die)
     }
 }

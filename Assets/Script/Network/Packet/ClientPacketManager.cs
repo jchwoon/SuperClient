@@ -27,7 +27,9 @@ public enum PacketId
   DeSpawnToC = 18,
   ReqUseSkillToS = 19,
   ResUseSkillToC = 20,
-  GetHitToC = 21,
+  ModifyStatToC = 21,
+  ModifyOneStatToC = 22,
+  DieToC = 23,
 
 }
 
@@ -84,8 +86,12 @@ class PacketManager
         _handler.Add((ushort)PacketId.DeSpawnToC, PacketHandler.DeSpawnToCHandler);
         _parseHandler.Add((ushort)PacketId.ResUseSkillToC, ParsePacket<ResUseSkillToC>);
         _handler.Add((ushort)PacketId.ResUseSkillToC, PacketHandler.ResUseSkillToCHandler);
-        _parseHandler.Add((ushort)PacketId.GetHitToC, ParsePacket<GetHitToC>);
-        _handler.Add((ushort)PacketId.GetHitToC, PacketHandler.GetHitToCHandler);
+        _parseHandler.Add((ushort)PacketId.ModifyStatToC, ParsePacket<ModifyStatToC>);
+        _handler.Add((ushort)PacketId.ModifyStatToC, PacketHandler.ModifyStatToCHandler);
+        _parseHandler.Add((ushort)PacketId.ModifyOneStatToC, ParsePacket<ModifyOneStatToC>);
+        _handler.Add((ushort)PacketId.ModifyOneStatToC, PacketHandler.ModifyOneStatToCHandler);
+        _parseHandler.Add((ushort)PacketId.DieToC, ParsePacket<DieToC>);
+        _handler.Add((ushort)PacketId.DieToC, PacketHandler.DieToCHandler);
     
     }
 

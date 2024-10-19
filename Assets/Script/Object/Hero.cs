@@ -32,7 +32,7 @@ public class Hero : Creature
     {
         HeroData = heroData;
         HeroInfo = info;
-        StatInfo = info.CreatureInfo.StatInfo;
+        Stat.StatInfo = info.CreatureInfo.StatInfo;
         Name = info.LobbyHeroInfo.Nickname;
         SetObjInfo(info.CreatureInfo);
         SetPos(gameObject, info.CreatureInfo.ObjectInfo.PosInfo);

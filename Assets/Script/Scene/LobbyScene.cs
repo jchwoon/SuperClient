@@ -16,9 +16,8 @@ public class LobbyScene : BaseScene
         SendReqHeroListPacket();
     }
 
-    public void SendReqHeroListPacket(Action action = null)
+    public void SendReqHeroListPacket()
     {
-        _receiveHeroListAction = action;
         ReqHeroListToS reqHeroList = new ReqHeroListToS();
         reqHeroList.AccountId = Utils.GetAccountId();
         Managers.NetworkManager.Send(reqHeroList);
@@ -33,7 +32,6 @@ public class LobbyScene : BaseScene
     public void OnReceiveHeroList(ResHeroListToC packet)
     {
         Debug.Log(packet.Lobbyheros);
-        _receiveHeroListAction?.Invoke();
 
         Managers.UIManager.ShowFadeUI();
 

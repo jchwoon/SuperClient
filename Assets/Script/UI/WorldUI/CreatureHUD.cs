@@ -85,9 +85,9 @@ public class CreatureHUD : BaseUI
         Get<GameObject>((int)GameObjects.TargetMark).SetActive(false);
         gameObject.GetComponent<Canvas>().sortingOrder = (int)Enums.SortingOrderInHUD.HeroHUD;
 
-        StatInfo statInfo = _owner.StatInfo;
-        float hpValue = statInfo.Hp / statInfo.MaxHp;
-        float mpValue = statInfo.Mp / statInfo.MaxMp;
+        StatInfo statInfo = _owner.Stat.StatInfo;
+        float hpValue = (float)statInfo.Hp / (float)statInfo.MaxHp;
+        float mpValue = (float)statInfo.Mp / (float)statInfo.MaxMp;
 
         Get<Slider>((int)Sliders.HpBar).value = hpValue;
         Get<Slider>((int)Sliders.MpBar).value = mpValue;
@@ -97,8 +97,8 @@ public class CreatureHUD : BaseUI
         Get<Slider>((int)Sliders.MpBar).gameObject.SetActive(false);
         gameObject.GetComponent<Canvas>().sortingOrder = (int)Enums.SortingOrderInHUD.TargetHUD;
 
-        StatInfo statInfo = _owner.StatInfo;
-        float hpValue = statInfo.Hp / statInfo.MaxHp;
+        StatInfo statInfo = _owner.Stat.StatInfo;
+        float hpValue = (float)statInfo.Hp / (float)statInfo.MaxHp;
 
         Get<Slider>((int)Sliders.HpBar).value = hpValue;
     }

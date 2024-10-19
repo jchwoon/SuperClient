@@ -29,7 +29,7 @@ namespace MyHeroState
             base.Enter();
             _sendRoutine = CoroutineHelper.Instance.StartHelperCoroutine(SendMyPos());
             MyHero owner = _heroMachine.Owner;
-            _heroMachine.SetAnimParameter(owner, owner.AnimData.MoveSpeedHash, _heroMachine.Owner.StatInfo.MoveSpeed);
+            _heroMachine.SetAnimParameter(owner, owner.AnimData.MoveSpeedHash, _heroMachine.Owner.Stat.StatInfo.MoveSpeed);
         }
 
         public override void Update()
@@ -83,7 +83,7 @@ namespace MyHeroState
 
         private void ToMove(Vector3 destPos)
         {
-            _owner.transform.position = Vector3.MoveTowards(_owner.transform.position, destPos, _heroMachine.Owner.StatInfo.MoveSpeed * Time.deltaTime);
+            _owner.transform.position = Vector3.MoveTowards(_owner.transform.position, destPos, _heroMachine.Owner.Stat.StatInfo.MoveSpeed * Time.deltaTime);
         }
         private void RotateToMoveDir(Vector3 target)
         {

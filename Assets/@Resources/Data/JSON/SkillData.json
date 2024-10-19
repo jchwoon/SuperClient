@@ -10,7 +10,8 @@
       "coolTime": 0,
       "animTime": 1,
       "animParamName": "SkillA",
-      "effectId": 1
+      "effectId": 1,
+      "effectDelayRatio" : 0.6
     },
     {
       "skillId": 2,
@@ -22,7 +23,8 @@
       "coolTime": 0,
       "animTime": 1,
       "animParamName": "SkillA",
-      "effectId": 2
+      "effectId": 2,
+      "effectDelayRatio": 0.6
     }
   ]
 }
