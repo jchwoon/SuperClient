@@ -15,11 +15,14 @@ public class CreatureHUD : BaseUI
     }
     enum Texts
     {
-        NameTxt
+        NameTxt,
+        LevelTxt
     }
     enum GameObjects
     {
-        TargetMark
+        TargetMark,
+        Level,
+        Bar
     }
 
     Creature _owner;
@@ -49,11 +52,13 @@ public class CreatureHUD : BaseUI
         gameObject.transform.rotation = Camera.main.transform.rotation;
     }
 
-    public void SetInfo(Creature owner)
+    public void AddHUD(Creature owner)
     {
+        gameObject.SetActive(true);
         _owner = owner;
         SetName();
         SetBar();
+        SetLevel();
     }
 
     public void RemoveHUD()
@@ -75,7 +80,16 @@ public class CreatureHUD : BaseUI
                 break;
         }
     }    
-    public void SetName()
+
+    private void SetLevel()
+    {
+        if (_owner.ObjectType == EObjectType.Hero)
+        {
+            Hero hero = (Hero)_owner;
+            Get<TMP_Text>((int)Texts.LevelTxt).text = hero.Level.ToString();
+        }
+    }
+    private void SetName()
     {
         Get<TMP_Text>((int)Texts.NameTxt).text = _owner.Name;
     }
@@ -83,6 +97,8 @@ public class CreatureHUD : BaseUI
     private void SetHeroBar()
     {
         Get<GameObject>((int)GameObjects.TargetMark).SetActive(false);
+        if (_owner.ObjectId != Managers.ObjectManager.MyHero.ObjectId)
+            Get<GameObject>((int)GameObjects.Bar).SetActive(false);
         gameObject.GetComponent<Canvas>().sortingOrder = (int)Enums.SortingOrderInHUD.HeroHUD;
 
         StatInfo statInfo = _owner.Stat.StatInfo;
@@ -95,6 +111,7 @@ public class CreatureHUD : BaseUI
     private void SetMonsterBar()
     {
         Get<Slider>((int)Sliders.MpBar).gameObject.SetActive(false);
+        Get<GameObject>((int)GameObjects.Level).SetActive(false);
         gameObject.GetComponent<Canvas>().sortingOrder = (int)Enums.SortingOrderInHUD.TargetHUD;
 
         StatInfo statInfo = _owner.Stat.StatInfo;

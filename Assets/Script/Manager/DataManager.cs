@@ -17,6 +17,11 @@ public class DataManager
     public Dictionary<int, MonsterData> MonsterDict { get; private set; } = new Dictionary<int, MonsterData>();
     public Dictionary<EHeroClassType, HeroData> HeroDict { get; private set; } = new Dictionary<EHeroClassType, HeroData>();
     public Dictionary<int, SkillData> SkillDict { get; private set; } = new Dictionary<int, SkillData>();
+    public Dictionary<int, EffectData> EffectDict { get; private set; } = new Dictionary<int, EffectData>();
+    public Dictionary<int, RewardData> RewardDict { get; private set; } = new Dictionary<int, RewardData>();
+    public Dictionary<int, RewardTableData> RewardTableDict { get; private set; } = new Dictionary<int, RewardTableData>();
+    public Dictionary<int, ItemData> ItemDict { get; private set; } = new Dictionary<int, ItemData>();
+    public Dictionary<int, ConsumableData> ConsumableDict { get; private set; } = new Dictionary<int, ConsumableData>();
 
     public  void Init()
     {
@@ -25,6 +30,12 @@ public class DataManager
         RoomDict = LoadJson<RoomDataLoader, int, RoomData>("RoomData").MakeDict();
         MonsterDict = LoadJson<MonsterDataLoader, int, MonsterData>("MonsterData").MakeDict();
         SkillDict = LoadJson<SkillDataLoader, int, SkillData>("SkillData").MakeDict();
+        EffectDict = LoadJson<EffectDataLoader, int, EffectData>("EffectData").MakeDict();
+        RewardDict = LoadJson<RewardDataLoader, int, RewardData>("RewardData").MakeDict();
+        RewardTableDict = LoadJson<RewardTableDataLoadaer, int, RewardTableData>("RewardTableData").MakeDict();
+        //Item
+        ConsumableDict = LoadJson<ConsumableDataLoader, int, ConsumableData>("ConsumableData").MakeDict();
+        MakeItemDict();
     }
 
     private  Loader LoadJson<Loader, Key, Value>(string key) where Loader : ILoader<Key, Value>
@@ -33,5 +44,12 @@ public class DataManager
 
         Loader loader = JsonConvert.DeserializeObject<Loader>(textAsset.text);
         return loader;
+    }
+    private void MakeItemDict()
+    {
+        foreach (ConsumableData consumable in ConsumableDict.Values)
+        {
+            ItemDict.Add(consumable.ItemId, consumable);
+        }
     }
 }

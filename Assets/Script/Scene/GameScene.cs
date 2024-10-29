@@ -21,8 +21,7 @@ public class GameScene : BaseScene
         Managers.UIManager.ShowSceneUI<GameSceneUI>();
         Managers.UIManager.ShowSceneUI<JoySceneUI>();
         Managers.ObjectManager.Spawn(packet.MyHero);
-        //ui setting
-        
+
         Managers.UIManager.ShowFadeUI();
     }   
 

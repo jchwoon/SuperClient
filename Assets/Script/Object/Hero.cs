@@ -9,6 +9,12 @@ public class Hero : Creature
     public HeroData HeroData { get; protected set; }
     public HeroInfo HeroInfo { get; protected set; }
 
+    public int Level
+    {
+        get { return HeroInfo.LobbyHeroInfo.Level; }
+        set { HeroInfo.LobbyHeroInfo.Level = value; }
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -32,9 +38,11 @@ public class Hero : Creature
     {
         HeroData = heroData;
         HeroInfo = info;
-        Stat.StatInfo = info.CreatureInfo.StatInfo;
+        Stat = new StatComponent(this);
+        Stat.InitStat(info.CreatureInfo.StatInfo);
         Name = info.LobbyHeroInfo.Nickname;
-        SetObjInfo(info.CreatureInfo);
+        SetObjInfo(info.CreatureInfo.ObjectInfo);
         SetPos(gameObject, info.CreatureInfo.ObjectInfo.PosInfo);
+        AddHUD();
     }
 }

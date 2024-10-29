@@ -10,12 +10,11 @@ using UnityEngine;
 
 public class CreatureMachine : StateMachine
 {
-    public virtual IdleState IdleState { get; set; }
-    public virtual MoveState MoveState { get; set; }
+    public IdleState IdleState { get; set; }
+    public MoveState MoveState { get; set; }
     public virtual SkillState SkillState { get; set; }
     public EMoveType ChaseMode { get; protected set; }
     public Creature Owner { get; set; }
-    public int? CurrentActiveSkillHash { get; set; }
 
     public CreatureMachine (Creature creature)
     {
@@ -30,10 +29,10 @@ public class CreatureMachine : StateMachine
         SkillState = new SkillState(this);
     }
 
-    public override void UseSkill(SkillData skillData, Creature target)
+    public override void UseSkill(SkillData skillData, Creature target, string playAnimName)
     {
         if (skillData != null)
-            Owner.Animator.Play(skillData.AnimName);
+            Owner.Animator.Play(playAnimName);
         if (target != null)
             Owner.transform.LookAt(target.transform);
         CreatureState = ECreatureState.Skill;

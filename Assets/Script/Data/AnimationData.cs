@@ -9,12 +9,14 @@ public class AnimationData
     private string idleParameterName = "IsIdle";
     private string dieParameterName = "IsDie";
     private string attackSpeedParameterName = "AttackSpeed";
+    private string revivalParameterName = "Revival";
 
     public int MoveSpeedHash { get; private set; }
     public int AttackSpeedHash { get; private set; }
     public int IdleHash { get; private set; }
     public int MoveHash { get; private set; }
     public int DieHash { get; private set; }
+    public int RevivalHash { get; private set; }
 
     public AnimationData()
     {
@@ -23,5 +25,6 @@ public class AnimationData
         IdleHash = Animator.StringToHash(idleParameterName);
         MoveHash = Animator.StringToHash(moveParameterName);
         DieHash = Animator.StringToHash(dieParameterName);
+        RevivalHash = Animator.StringToHash(revivalParameterName);
     }
 }

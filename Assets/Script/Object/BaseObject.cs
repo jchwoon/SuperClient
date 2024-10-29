@@ -12,6 +12,7 @@ public class BaseObject : MonoBehaviour
     public int ObjectId { get; set; }
     public EObjectType ObjectType { get; set; }
     public virtual StateMachine Machine { get; set; }
+    public string Name { get; protected set; }
 
     protected virtual void Awake()
     {
@@ -44,10 +45,15 @@ public class BaseObject : MonoBehaviour
         go.transform.position = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);
         go.transform.eulerAngles = new Vector3(0, posInfo.RotY, 0);
     }
-    protected virtual void SetObjInfo(CreatureInfo info)
+    protected virtual void SetObjInfo(ObjectInfo info)
     {
-        ObjectId = info.ObjectInfo.ObjectId;
-        ObjectType = info.ObjectInfo.ObjectType;
+        ObjectId = info.ObjectId;
+        ObjectType = info.ObjectType;
+    }
+
+    protected virtual void OnRevival()
+    {
+        Machine.OnRevival();
     }
 
     #region Network Send
@@ -65,6 +71,11 @@ public class BaseObject : MonoBehaviour
     {
         Vector3 telpoPos = new Vector3(telpoPacket.PosInfo.PosX, telpoPacket.PosInfo.PosY, telpoPacket.PosInfo.PosZ);
         gameObject.transform.position = telpoPos;
+
+        if (telpoPacket.TelpoType == ETeleportType.Respawn)
+        {
+            OnRevival();
+        }
     }
     #endregion
 }

@@ -77,7 +77,7 @@ public class LobbySceneUI : SceneUI
     {
         //slot 업데이트
         Clear();
-        _currentCharacterSlotTxt.text = _heroInfos.Count.ToString();
+        _currentCharacterSlotTxt.text = $"{_heroInfos.Count.ToString()} / {MAX_SLOT_COUNT}";
         float slotSize = 0;
         for (int i = 0; i < MAX_SLOT_COUNT; i++)
         {

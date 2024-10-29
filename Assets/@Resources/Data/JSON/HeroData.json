@@ -5,7 +5,8 @@
       "prefabName": "Warrior",
       "skillIds": [
         1
-      ]
+      ],
+      "respawnTime": 5
     }
   ]
 }

@@ -27,6 +27,6 @@ public class Monster : Creature
         Stat = new StatComponent(this);
         Stat.InitStat(info.StatInfo);
         SetPos(gameObject, info.ObjectInfo.PosInfo);
-        SetObjInfo(info);
+        SetObjInfo(info.ObjectInfo);
     }
 }

@@ -62,4 +62,13 @@ public class Enums
         HeroHUD,
         TargetHUD,
     }
+
+    public enum FloatingFontType
+    {
+        NormalHit,
+        CriticalHit,
+        Heal,
+        Gold,
+        Exp
+    }
 }

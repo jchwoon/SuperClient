@@ -20,7 +20,7 @@ public class Creature : BaseObject
             {
                 AddHUD();
                 GetComponent<TargetOutlineController>().AddOutline(this);
-            }    
+            }
             else
             {
                 RemoveHUD();
@@ -34,13 +34,14 @@ public class Creature : BaseObject
     public Animator Animator { get; private set; }
     public AnimationData AnimData { get; private set; }
     public StatComponent Stat { get; protected set; }
-    public string Name { get; protected set; }
+    public FloatingTextController FloatingTextController { get; protected set; }
 
     protected override void Awake()
     {
         base.Awake();
         Animator = transform.GetComponent<Animator>();
         AnimData = new AnimationData();
+        FloatingTextController = GetComponent<FloatingTextController>();
     }
     protected override void Start()
     {
@@ -75,10 +76,16 @@ public class Creature : BaseObject
         }
     }
 
-    private void OnDie()
+    protected virtual void OnDie()
     {
+        Machine.OnDie();
         ClearTarget();
-        _isTargetted = false;
+    }
+
+    protected override void OnRevival()
+    {
+        base.OnRevival();
+
     }
 
     protected void AddHUD()
@@ -86,7 +93,7 @@ public class Creature : BaseObject
         if (_creatureHUD == null)
             _creatureHUD = Managers.UIManager.AddCreatureHUD(this);
 
-        _creatureHUD.SetInfo(this);
+        _creatureHUD.AddHUD(this);
     }
     protected void RemoveHUD()
     {
@@ -96,8 +103,13 @@ public class Creature : BaseObject
         _creatureHUD.RemoveHUD();
     }
 
+    public void InvokeChangeHUD()
+    {
+        Managers.EventBus.InvokeEvent(Enums.EventType.ChangeHUDInfo);
+    }
+
     #region Network Send
-    public void SendUseSkill(int skillId, int targetId = 0)
+    public void SendUseSkill(int skillId, int targetId)
     {
         ReqUseSkillToS skillPacket = new ReqUseSkillToS();
         skillPacket.SkillId = skillId;
@@ -115,34 +127,37 @@ public class Creature : BaseObject
 
         Creature target = Managers.ObjectManager.FindById(skillPacket.TargetId).GetComponent<Creature>();
         if (target != null)
-            owner.Machine.UseSkill(skillData, target);
+            owner.Machine.UseSkill(skillData, target, skillPacket.PlayAnimName);
     }
 
     public virtual void HandleModifyStat(StatInfo statInfo)
     {
         Stat.StatInfo.MergeFrom(statInfo);
+        InvokeChangeHUD();
     }
 
     public virtual void HandleModifyOneStat(EStatType statType, float changedValue, float gapValue)
     {
         Stat.SetStat(statType, changedValue);
 
-        if (IsTargetted == true)
+        if (_isTargetted == true)
         {
             switch (statType)
             {
                 case EStatType.Hp:
-                    Managers.EventBus.InvokeEvent(Enums.EventType.ChangeHUDInfo);
+                    InvokeChangeHUD();
+                    FloatingTextController.RegisterOrSpawnText(gapValue, transform, Enums.FloatingFontType.NormalHit);
                     break;
                 default:
                     break;
             }
+
+
         }
     }
 
     public virtual void HandleDie(int killerId)
     {
-        Machine.OnDie();
         OnDie();
     }
     #endregion

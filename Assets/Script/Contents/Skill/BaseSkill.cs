@@ -38,9 +38,9 @@ public class BaseSkill
         return SkillData.SkillRange;
     }
 
-    public virtual void UseSkill()
+    public virtual void UseSkill(string playAnimName)
     {
-        MyHeroStateMachine machine = Owner.MyHeroStateMachine;
+        Owner.Animator.Play(playAnimName);
         CoroutineHelper.Instance.StartHelperCoroutine(CoAnimTime());
         CoroutineHelper.Instance.StartHelperCoroutine(CoCoolTime());
     }

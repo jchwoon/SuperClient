@@ -44,6 +44,8 @@ public class GameSceneUI : SceneUI
     GameObject _expBar;
     GameObject _hpBar;
     GameObject _mpBar;
+
+    Coroutine _expBarSmoothRoutine;
     protected override void Awake()
     {
         base.Awake();
@@ -71,12 +73,6 @@ public class GameSceneUI : SceneUI
         Managers.EventBus.RemoveEvent(Enums.EventType.ChangeGrowth, UpdateGrowth);
     }
 
-    public void SetUI()
-    {
-        //_fadeEffect.GetComponent<FadeEffect>().FadeInOut();
-        //_fadeEffect.GetComponent<Image>().raycastTarget = false;
-    }
-
     public void UpdateStat()
     {
         MyHero myHero = Managers.ObjectManager.MyHero;
@@ -87,7 +83,7 @@ public class GameSceneUI : SceneUI
 
         Get<TMP_Text>((int)Texts.AtkTxt).text = statInfo.AtkDamage.ToString();
         Get<TMP_Text>((int)Texts.DefenceTxt).text = statInfo.Defence.ToString();
-        Get<TMP_Text>((int)Texts.AtkSpeedTxt).text = statInfo.AtkSpeed.ToString("N1");
+        Get<TMP_Text>((int)Texts.AtkSpeedTxt).text = statInfo.AtkSpeed.ToString("N2");
         Get<TMP_Text>((int)Texts.HpTxt).text = $"{statInfo.Hp} / {statInfo.MaxHp}";
         Get<TMP_Text>((int)Texts.MpTxt).text = $"{statInfo.Mp} / {statInfo.MaxMp}";
 
@@ -108,7 +104,7 @@ public class GameSceneUI : SceneUI
         if (hero == null)
             return;
 
-        Get<TMP_Text>((int)Texts.GoldTxt).text = hero.CurrencyComponent.Gold.ToString();
+        Get<TMP_Text>((int)Texts.GoldTxt).text = hero.CurrencyComponent.Gold.ToString("N0");
     }
 
     public void UpdateGrowth()
@@ -127,7 +123,9 @@ public class GameSceneUI : SceneUI
         Slider expBar = Get<Slider>((int)Sliders.ExpBar);
         expBar.maxValue = growth.MaxExp;
         expBar.minValue = 0;
-        expBar.value = growth.Exp;
+        if (_expBarSmoothRoutine != null)
+            StopCoroutine(_expBarSmoothRoutine);
+        _expBarSmoothRoutine = StartCoroutine(CoSmoothChangeBar(expBar, expBar.value, growth.Exp));
     }
 
     private void OnBackBtnClicked(PointerEventData eventData)
@@ -138,5 +136,21 @@ public class GameSceneUI : SceneUI
                 Managers.SceneManagerEx.ChangeScene(Enums.SceneType.Lobby);
                 Managers.GameManager.LeaveGame();
             });
+    }
+
+    IEnumerator CoSmoothChangeBar(Slider bar, float current, int target)
+    {
+        float duration = 1.0f;
+        float process = 0.0f;
+
+        while (process <= duration)
+        {
+            process += Time.deltaTime;
+            bar.value = Mathf.Lerp(current, target, process / duration);
+
+            yield return null;
+        }
+
+        bar.value = target;
     }
 }

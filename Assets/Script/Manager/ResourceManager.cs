@@ -21,12 +21,19 @@ public class ResourceManager
         return null;
     }
 
-    public GameObject Instantiate (string key, Transform parent = null)
+    public GameObject Instantiate (string key, Transform parent = null, bool isPool = false)
     {
         GameObject prefab = GetResource<GameObject>(key);
 
         if (prefab == null)
             return null;
+
+        if (isPool == true)
+        {
+            GameObject poolGo = Managers.PoolManager.Pop(prefab, parent);
+            if (poolGo != null)
+                return poolGo;
+        }
 
         GameObject go = UnityEngine.Object.Instantiate(prefab, parent);
 
@@ -42,10 +49,16 @@ public class ResourceManager
         return go;
     }
 
-    public void Destroy(GameObject go)
+    public void Destroy(GameObject go, bool isPool = false)
     {
         if (go == null)
             return;
+
+        if (isPool == true)
+        {
+            if (Managers.PoolManager.Push(go) == true)
+                return;
+        }
 
         UnityEngine.Object.Destroy(go);
     }

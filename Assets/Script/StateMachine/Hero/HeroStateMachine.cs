@@ -23,5 +23,7 @@ public class HeroStateMachine : CreatureMachine
     {
         HeroIdleState = new HeroIdleState(this);
         HeroMoveState = new HeroMoveState(this);
+        IdleState = HeroIdleState;
+        MoveState = HeroMoveState;
     }
 }

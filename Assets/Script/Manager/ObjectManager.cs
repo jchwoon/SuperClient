@@ -55,6 +55,13 @@ public class ObjectManager
         if (type == EObjectType.Monster)
             MonsterSpawn(creatureInfo);
     }
+
+    public void Spawn(ObjectInfo objectInfo)
+    {
+        EObjectType type = objectInfo.ObjectType;
+        if (type == EObjectType.DropItem)
+            DropItemSpawn(objectInfo);
+    }
     private Monster MonsterSpawn(CreatureInfo creatureInfo)
     {
         ObjectInfo objectInfo = creatureInfo.ObjectInfo;
@@ -63,26 +70,44 @@ public class ObjectManager
         if (Managers.DataManager.MonsterDict.TryGetValue(creatureInfo.ObjectInfo.TemplateId, out monsterData) == false)
             return null;
 
-        GameObject go = Managers.ResourceManager.Instantiate(monsterData.PrefabName);
+        GameObject go = Managers.ResourceManager.Instantiate(monsterData.PrefabName, isPool:true);
         go.name = $"{monsterData.Name}";
-        Monster monster = go.AddComponent<Monster>();
+        Monster monster = Utils.GetOrAddComponent<Monster>(go);
         monster.Init(creatureInfo);
         _objects.Add(objectInfo.ObjectId, go);
         _monsters.Add(objectInfo.ObjectId, monster);
 
         return monster;
     }
+
+    private DropItem DropItemSpawn(ObjectInfo objectInfo)
+    {
+        ItemData itemData;
+        if (Managers.DataManager.ItemDict.TryGetValue(objectInfo.TemplateId, out itemData) == false)
+            return null;
+
+        GameObject go = Managers.ResourceManager.Instantiate(itemData.PrefabName, isPool: true);
+        go.name = $"{itemData.Name}";
+        DropItem dropItem = Utils.GetOrAddComponent<DropItem>(go);
+        dropItem.Init(objectInfo);
+        _objects.Add(objectInfo.ObjectId, go);
+
+        return dropItem;
+    }
+    
     public void DeSpawn(int objectId)
     {
-        //MyHero를 삭제할 일이 있을 경우 만들어주기 Todo
         GameObject go = FindById(objectId);
         if (go == null)
             return;
         _objects.Remove(objectId);
         _heroes.Remove(objectId);
         _monsters.Remove(objectId);
+        Debug.Log("Despawn potion");
 
-        Managers.ResourceManager.Destroy(go);
+        //Temp
+        BaseObject creature = go.GetComponent<BaseObject>();
+        Managers.ResourceManager.Destroy(go, isPool: creature.ObjectType == EObjectType.Monster ? true : false);
     }
 
     public GameObject FindById(int objectId)

@@ -13,8 +13,6 @@
       "name": "Vornix",
       "prefabName": "Vornix",
       "level": 1,
-      "exp": 50,
-      "gold": 50,
       "sight": 5,
       "skillIds": [
         2

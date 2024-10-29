@@ -82,13 +82,13 @@ public class UIManager
         return sceneUI;
     }
 
-    public void ShowFadeUI(bool isFadeIn = true)
+    public void ShowFadeUI(float fadeTime = 2.0f, bool isFadeIn = true)
     {
         FadeUI fade = Parent.Find("FadeUI")?.GetComponent<FadeUI>();
         if (fade == null)
             fade = Managers.ResourceManager.Instantiate("FadeUI", Parent).GetComponent<FadeUI>();
 
-        fade.FadeInOut(isFadeIn);
+        fade.FadeInOut(fadeTime, isFadeIn);
     }
 
     public void ShowToasUI(string text, float duration = 2)

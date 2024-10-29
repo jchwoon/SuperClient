@@ -7,7 +7,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public class MyHeroStateMachine : StateMachine
 {
@@ -17,8 +16,14 @@ public class MyHeroStateMachine : StateMachine
         get { return _target; }
         set
         {
-            if (_target != null && value == null)
-                OffAttackMode();
+            if (value == null)
+            {
+                if (_target != null)
+                {
+                    OffAttackMode();
+                    _target.IsTargetted = false;
+                }
+            }
             else
             {
                 if (_target != null)
@@ -40,7 +45,6 @@ public class MyHeroStateMachine : StateMachine
     public bool TargetMode { get; set; } = false;
     //스킬 요청에 대한 응답을 대기중인지
     public bool isWaitSkillRes { get; set; } = false;
-    public int? CurrentActiveSkillHash { get; set; }
     public MyHeroStateMachine(MyHero myHero)
     {
         MovePacket = new MoveToS() { PosInfo = new PosInfo()};
@@ -86,13 +90,13 @@ public class MyHeroStateMachine : StateMachine
         return target;
     }
 
-    public override void UseSkill(SkillData skillData, Creature target)
+    public override void UseSkill(SkillData skillData, Creature target, string playAnimName)
     {
         if (skillData == null || target == null)
             return;
 
         BaseSkill skill = Owner.SkillComponent.GetSkillById(skillData.SkillId);
-        skill.UseSkill();
+        skill.UseSkill(playAnimName);
         ChangeState(SkillState);
         Owner.transform.LookAt(target.transform);
     }
@@ -101,6 +105,13 @@ public class MyHeroStateMachine : StateMachine
     {
         SetAnimParameter(Owner, Owner.AnimData.DieHash);
         CreatureState = ECreatureState.Die;
+        ChangeState(null);
+    }
+    public override void OnRevival()
+    {
+        base.OnRevival();
+        ChangeState(IdleState);
+        SetAnimParameter(Owner, Owner.AnimData.RevivalHash);
     }
 
     private void SetState()

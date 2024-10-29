@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 3309786654644649927}
   - component: {fileID: 2409553839394669718}
   - component: {fileID: 5097741179685285997}
+  - component: {fileID: 771635852442652914}
   m_Layer: 0
   m_Name: Vornix
   m_TagString: Untagged
@@ -221,6 +222,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _outlineMat: {fileID: 2100000, guid: 1456eec879f35094097732dfacd16727, type: 2}
+--- !u!114 &771635852442652914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2391359435489877134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72cfadc03d5a5e640ab8db284501c583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloatingTextPrefab: {fileID: 5760098957294696885, guid: ace183888a379ec4996e031648491f09, type: 3}
 --- !u!1 &2594355968516817363
 GameObject:
   m_ObjectHideFlags: 0

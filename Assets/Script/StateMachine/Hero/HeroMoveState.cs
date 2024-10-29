@@ -17,6 +17,7 @@ public class HeroMoveState : MoveState
     public override void Enter()
     {
         Creature owner = _machine.Owner;
+
         _machine.SetAnimParameter(owner, owner.AnimData.MoveSpeedHash, _machine.Owner.Stat.StatInfo.MoveSpeed);
     }
     public override void Update()

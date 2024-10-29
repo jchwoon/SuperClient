@@ -14,6 +14,7 @@ public class MyHero : Hero
     public SkillComponent SkillComponent { get; private set; }
     public CurrencyComponent CurrencyComponent { get; private set; }
     public GrowthComponent GrowthInfo { get; protected set; }
+    public MyHeroInfo MyHeroInfo { get; private set; }
 
     protected override void Awake()
     {
@@ -50,26 +51,40 @@ public class MyHero : Hero
 
     public void Init(MyHeroInfo info, HeroData heroData)
     {
+        MyHeroInfo = info;
+        HeroInfo = info.HeroInfo;
         MyHeroStateMachine = new MyHeroStateMachine(this);
         SkillComponent = new SkillComponent();
-        CurrencyComponent = new CurrencyComponent();
+        CurrencyComponent = new CurrencyComponent(this);
         MyHeroStat = new MyHeroStatComponent(this);
-        GrowthInfo = new GrowthComponent();
+        GrowthInfo = new GrowthComponent(this);
 
         Stat = MyHeroStat;
         Machine = MyHeroStateMachine;
         HeroData = heroData;
         Name = info.HeroInfo.LobbyHeroInfo.Nickname;
 
-        GrowthInfo.InitGrowth(info.HeroInfo.LobbyHeroInfo.Level, info.Exp);
+        GrowthInfo.InitGrowth();
         CurrencyComponent.InitCurrency(info.Gold);
         Stat.InitStat(info.HeroInfo.CreatureInfo.StatInfo);
         SkillComponent.InitSkill(heroData);
 
-        SetObjInfo(info.HeroInfo.CreatureInfo);
+        SetObjInfo(info.HeroInfo.CreatureInfo.ObjectInfo);
         SetPos(gameObject, info.HeroInfo.CreatureInfo.ObjectInfo.PosInfo);
 
         AddHUD();
+    }
+
+    protected override void OnDie()
+    {
+        base.OnDie();
+        Managers.UIManager.ShowFadeUI(HeroData.RespawnTime -1, false);
+    }
+
+    protected override void OnRevival()
+    {
+        base.OnRevival();
+        Managers.UIManager.ShowFadeUI();
     }
 
     public override void HandleModifyStat(StatInfo statInfo)
@@ -86,6 +101,7 @@ public class MyHero : Hero
         {
             case EStatType.Hp:
                 Managers.EventBus.InvokeEvent(Enums.EventType.ChangeHUDInfo);
+                FloatingTextController.RegisterOrSpawnText(gapValue, transform, Enums.FloatingFontType.NormalHit);
                 break;
             case EStatType.Mp:
                 Managers.EventBus.InvokeEvent(Enums.EventType.ChangeHUDInfo);
@@ -95,8 +111,12 @@ public class MyHero : Hero
         }
     }
 
-    public override void HandleDie(int killerId)
+    public void HandleReward(int exp, int gold)
     {
-        //MyHeroStateMachine.ChangeState(MyHeroStateMachine.die)
+        GrowthInfo.AddExp(exp);
+        CurrencyComponent.AddGold(gold);
+
+        FloatingTextController.RegisterOrSpawnText(exp, transform, Enums.FloatingFontType.Exp, isReward:true);
+        FloatingTextController.RegisterOrSpawnText(gold, transform, Enums.FloatingFontType.Gold, isReward: true);
     }
 }

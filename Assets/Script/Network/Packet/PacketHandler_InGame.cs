@@ -20,6 +20,10 @@ public partial class PacketHandler
         {
             Managers.ObjectManager.Spawn(creature);
         }
+        foreach (ObjectInfo obj in  spawnPacket.Objects)
+        {
+            Managers.ObjectManager.Spawn(obj);
+        }
     }
 
     public static void MoveToCHandler(PacketSession session, IMessage packet)
@@ -126,5 +130,17 @@ public partial class PacketHandler
             return;
 
         bo.HandleTeleport(telpoPacket);
+    }
+
+    public static void RewardToCHandler(PacketSession session, IMessage packet)
+    {
+        RewardToC rewardPacket = (RewardToC)packet;
+
+        MyHero myHero = Managers.ObjectManager.MyHero;
+
+        if (myHero == null)
+            return;
+
+        myHero.HandleReward(rewardPacket.Exp, rewardPacket.Gold);
     }
 }

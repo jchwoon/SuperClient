@@ -29,6 +29,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2cf6690298568294cb6b655c0a3aeb87
+    m_Address: Small_ManaPotion
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7cafb89b5a0f61f479d0a748962abbbc
+    m_Address: Small_HealthPotion
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ddddc73012247774a97359e9af8f24c1, type: 2}
   m_SchemaSet:

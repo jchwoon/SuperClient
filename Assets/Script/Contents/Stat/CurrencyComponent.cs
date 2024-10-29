@@ -4,16 +4,32 @@ using UnityEngine;
 
 public class CurrencyComponent
 {
-    public int Gold { get; private set; }
+    public int Gold
+    {
+        get { return Owner.MyHeroInfo.Gold; }
+        set
+        {
+            Owner.MyHeroInfo.Gold = value;
+            UpdateCurrency();
+        }
+    }
+    public MyHero Owner { get; private set; }
 
+    public CurrencyComponent(MyHero owner)
+    {
+        Owner = owner;
+    }
 
     public void InitCurrency(int gold)
     {
         Gold = gold;
-        UpdateCurrency();
+    }
+    public void AddGold(int gold)
+    {
+        Gold += gold;
     }
 
-    public void UpdateCurrency()
+    private void UpdateCurrency()
     {
         Managers.EventBus.InvokeEvent(Enums.EventType.ChangeCurrency);
     }

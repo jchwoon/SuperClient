@@ -32,7 +32,7 @@ public class StateMachine
 
         CurrentState = changeState;
 
-        CurrentState.Enter();
+        CurrentState?.Enter();
     }
 
     public void Update()
@@ -56,12 +56,16 @@ public class StateMachine
 
     }
 
-    public virtual void UseSkill(SkillData skillData, Creature target)
+    public virtual void UseSkill(SkillData skillData, Creature target, string playAnimName)
     {
     }
     public virtual void OnDie()
     {
 
+    }
+
+    public virtual void OnRevival()
+    {
     }
 
     #region AnimParamGetSet

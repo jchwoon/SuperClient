@@ -21,15 +21,19 @@ public class FadeUI : BaseUI
         _fadeImg = Get<Image>((int)Images.FadeEffect);
     }
 
-    public void FadeInOut(bool isFadeIn = true)
+    public void FadeInOut(float fadeTime, bool isFadeIn = true)
     {
+        _fadeTime = fadeTime;
         if (isFadeIn == true)
         {
             _fadeImg.raycastTarget = false;
             _fadeCoroutine = StartCoroutine(FadeRoutine(1, 0));
         }
         else
+        {
+            _fadeImg.raycastTarget = true;
             _fadeCoroutine = StartCoroutine(FadeRoutine(0, 1));
+        }
     }
 
     IEnumerator FadeRoutine(float start, float end)
