@@ -1,14 +1,21 @@
 using CreatureState;
 using Data;
+using Google.Protobuf.Enum;
+using Google.Protobuf.Protocol;
+using Google.Protobuf.Struct;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CreatureMachine : StateMachine
 {
-    public virtual IdleState IdleState { get; set; }
-    public virtual MoveState MoveState { get; set; }
+    public IdleState IdleState { get; set; }
+    public MoveState MoveState { get; set; }
+    public virtual SkillState SkillState { get; set; }
+    public EMoveType ChaseMode { get; protected set; }
     public Creature Owner { get; set; }
+
     public CreatureMachine (Creature creature)
     {
         Owner = creature;
@@ -19,13 +26,28 @@ public class CreatureMachine : StateMachine
     {
         IdleState = new IdleState(this);
         MoveState = new MoveState(this);
+        SkillState = new SkillState(this);
     }
 
-    public override void UseSkill(SkillData skillData, Creature target)
+    public override void UseSkill(SkillData skillData, Creature target, string playAnimName)
     {
-        Owner.Animator.Play(skillData.AnimName);
-
+        if (skillData != null)
+            Owner.Animator.Play(playAnimName);
         if (target != null)
             Owner.transform.LookAt(target.transform);
+        CreatureState = ECreatureState.Skill;
+    }
+    public override void OnDie()
+    {
+        SetAnimParameter(Owner, Owner.AnimData.DieHash);
+        CreatureState = ECreatureState.Die;
+    }
+
+    public override void UpdatePosInput(MoveToC movePacket)
+    {
+        base.UpdatePosInput(movePacket);
+        ChangeState(MoveState);
+        ChaseMode = movePacket.MoveType;
+        CreatureState = ECreatureState.Move;
     }
 }

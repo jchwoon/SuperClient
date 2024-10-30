@@ -7,14 +7,13 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEditor.PlayerSettings;
 using static UnityEngine.UI.GridLayoutGroup;
 
 namespace MyHeroState
 {
     public class MoveState : BaseState
     {
-        Coroutine sendRoutine;
+        Coroutine _sendRoutine;
 
         public MoveState(MyHeroStateMachine heroMachine) : base(heroMachine)
         {
@@ -23,15 +22,17 @@ namespace MyHeroState
         public override void Exit()
         {
             base.Exit();
-
-            CoroutineHelper.Instance.StopHelperCoroutine(sendRoutine);
+            MyHero owner = _heroMachine.Owner;
+            _heroMachine.SetAnimParameter(owner, owner.AnimData.MoveSpeedHash, 0.0f);
+            CoroutineHelper.Instance.StopHelperCoroutine(_sendRoutine);
         }
         public override void Enter()
         {
             base.Enter();
-            sendRoutine = CoroutineHelper.Instance.StartHelperCoroutine(SendMyPos());
+            _sendRoutine = CoroutineHelper.Instance.StartHelperCoroutine(SendMyPos());
             MyHero owner = _heroMachine.Owner;
-            _heroMachine.SetAnimParameter(owner, owner.AnimData.MoveSpeedHash, _heroMachine.GetModifiedSpeed());
+            _heroMachine.SetAnimParameter(owner, owner.AnimData.MoveSpeedHash, _heroMachine.Owner.Stat.StatInfo.MoveSpeed);
+            _heroMachine.CreatureState = ECreatureState.Move;
         }
 
         public override void Update()
@@ -63,6 +64,10 @@ namespace MyHeroState
                 return;
             Vector3 dir = (_heroMachine.Target.transform.position - _heroMachine.Owner.transform.position).normalized;
             Vector3 targetPos = _heroMachine.Target.transform.position;
+
+            if (Managers.MapManager.CanGo(targetPos.z, targetPos.x) == false)
+                return;
+
             ToMove(targetPos);
             RotateToMoveDir(targetPos);
         }
@@ -81,7 +86,7 @@ namespace MyHeroState
 
         private void ToMove(Vector3 destPos)
         {
-            _owner.transform.position = Vector3.MoveTowards(_owner.transform.position, destPos, _heroMachine.GetModifiedSpeed() * Time.deltaTime);
+            _owner.transform.position = Vector3.MoveTowards(_owner.transform.position, destPos, _heroMachine.Owner.Stat.StatInfo.MoveSpeed * Time.deltaTime);
         }
         private void RotateToMoveDir(Vector3 target)
         {
@@ -107,15 +112,18 @@ namespace MyHeroState
 
         IEnumerator SendMyPos()
         {
+            
             while (true)
             {
+                if (_owner == null)
+                    yield break;
+
                 _heroMachine.MovePacket.PosInfo.PosX = _owner.transform.position.x;
                 _heroMachine.MovePacket.PosInfo.PosY = _owner.transform.position.y;
                 _heroMachine.MovePacket.PosInfo.PosZ = _owner.transform.position.z;
                 _heroMachine.MovePacket.PosInfo.RotY = _owner.transform.eulerAngles.y;
-                _heroMachine.MovePacket.PosInfo.Speed = _heroMachine.MoveInput.magnitude * _heroMachine.GetModifiedSpeed();
                 Managers.NetworkManager.Send(_heroMachine.MovePacket);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.2f);
             }
         }
     }

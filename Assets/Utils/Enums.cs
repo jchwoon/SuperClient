@@ -48,5 +48,27 @@ public class Enums
     {
         None,
         AtkBtnClick,
+        ChangeAttackMode,
+        ChangeStat,
+        ChangeCurrency,
+        ChangeGrowth,
+        ChangeHUDInfo,
+        OnTarget,
+        OffTarget
+    }
+
+    public enum SortingOrderInHUD
+    {
+        HeroHUD,
+        TargetHUD,
+    }
+
+    public enum FloatingFontType
+    {
+        NormalHit,
+        CriticalHit,
+        Heal,
+        Gold,
+        Exp
     }
 }

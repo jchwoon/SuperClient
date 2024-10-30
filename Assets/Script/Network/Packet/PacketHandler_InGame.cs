@@ -20,6 +20,10 @@ public partial class PacketHandler
         {
             Managers.ObjectManager.Spawn(creature);
         }
+        foreach (ObjectInfo obj in  spawnPacket.Objects)
+        {
+            Managers.ObjectManager.Spawn(obj);
+        }
     }
 
     public static void MoveToCHandler(PacketSession session, IMessage packet)
@@ -61,6 +65,82 @@ public partial class PacketHandler
         if (creature == null)
             return;
 
-        creature.ReceiveResUseSkill(creature, skillPacket);
+        creature.HandleUseSkill(creature, skillPacket);
+    }
+
+    public static void ModifyStatToCHandler(PacketSession session, IMessage packet)
+    {
+        ModifyStatToC statPacket = (ModifyStatToC)packet;
+        GameObject go = Managers.ObjectManager.FindById(statPacket.ObjectId);
+
+        if (go == null)
+            return;
+
+        Creature creature = go.GetComponent<Creature>();
+
+        if (creature == null)
+            return;
+
+        creature.HandleModifyStat(statPacket.StatInfo);
+    }
+
+    public static void ModifyOneStatToCHandler(PacketSession session, IMessage packet)
+    {
+        ModifyOneStatToC statOnePacket = (ModifyOneStatToC)packet;
+        GameObject go = Managers.ObjectManager.FindById(statOnePacket.ObjectId);
+
+        if (go == null)
+            return;
+
+        Creature creature = go.GetComponent<Creature>();
+
+        if (creature == null)
+            return;
+
+        creature.HandleModifyOneStat(statOnePacket.StatType, statOnePacket.ChangedValue, statOnePacket.GapValue);
+    }
+
+    public static void DieToCHandler(PacketSession session, IMessage packet)
+    {
+        DieToC diePacket = (DieToC)packet;
+        GameObject go = Managers.ObjectManager.FindById(diePacket.ObjectId);
+
+        if (go == null)
+            return;
+
+        Creature creature = go.GetComponent<Creature>();
+
+        if (creature == null)
+            return;
+
+        creature.HandleDie(diePacket.KillerId);
+    }
+
+    public static void TeleportToCHandler(PacketSession session, IMessage packet)
+    {
+        TeleportToC telpoPacket = (TeleportToC)packet;
+
+        GameObject go = Managers.ObjectManager.FindById(telpoPacket.ObjectId);
+
+        if (go == null)
+            return;
+        BaseObject bo = go.GetComponent<BaseObject>();
+
+        if (bo == null)
+            return;
+
+        bo.HandleTeleport(telpoPacket);
+    }
+
+    public static void RewardToCHandler(PacketSession session, IMessage packet)
+    {
+        RewardToC rewardPacket = (RewardToC)packet;
+
+        MyHero myHero = Managers.ObjectManager.MyHero;
+
+        if (myHero == null)
+            return;
+
+        myHero.HandleReward(rewardPacket.Exp, rewardPacket.Gold);
     }
 }

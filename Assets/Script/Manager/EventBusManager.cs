@@ -10,9 +10,9 @@ public class EventBusManager
     public void AddEvent(Enums.EventType type, Action action)
     {
         if (_events.ContainsKey(type) == false)
-            _events.Add(type, new Action(() => { }));
-
-        _events[type] += action;
+            _events.Add(type, action);
+        else
+            _events[type] += action;
     }
 
     public void RemoveEvent(Enums.EventType type, Action action)

@@ -46,8 +46,8 @@ namespace CreatureState
 
         private void MoveToMoveDir()
         {
-            //_owner.Agent.SetDestination(_posInput);
-            _owner.transform.position = Vector3.MoveTowards(_owner.transform.position, _posInput, 1 * Time.deltaTime);
+            float speed = _machine.ChaseMode == EMoveType.Chase ? _machine.Owner.Stat.StatInfo.ChaseSpeed :_machine.Owner.Stat.StatInfo.MoveSpeed;
+            _owner.transform.position = Vector3.MoveTowards(_owner.transform.position, _posInput, speed * Time.deltaTime);
         }
 
         private void RotateToMoveDir()

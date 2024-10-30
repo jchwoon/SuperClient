@@ -3,10 +3,10 @@
     {
       "heroClassId": 1,
       "prefabName": "Warrior",
-      "comboExitTime": 0.6,
       "skillIds": [
         1
-      ]
+      ],
+      "respawnTime": 5
     }
   ]
 }

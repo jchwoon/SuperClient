@@ -47,7 +47,7 @@ public class JoyMoveController : MonoBehaviour
             touchPos = handleDir * dist;
             SetMoveInput(touchPos);
         }
-        _joyMoveHandleRect.anchoredPosition = touchPos * (_joyMoveRect.anchoredPosition * 0.5f);
+        _joyMoveHandleRect.anchoredPosition = touchPos * (_joyMoveRect.sizeDelta / 2);
     }
 
     private void SetMoveInput(Vector2 dir)

@@ -1,0 +1,32 @@
+{
+  "effects": [
+    {
+      "effectId": 1,
+      "damageRatio": 1
+    },
+    {
+      "effectId": 2,
+      "damageRatio": 1
+    },
+    {
+      "effectId": 100,
+      "damageRatio": 0,
+      "addStatValues": [
+        {
+          "statType": 3,
+          "value": 50
+        }
+      ]
+    },
+    {
+      "effectId": 101,
+      "damageRatio": 0,
+      "addStatValues": [
+        {
+          "statType": 4,
+          "value": 20
+        }
+      ]
+    }
+  ]
+}

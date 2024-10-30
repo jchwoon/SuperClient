@@ -19,6 +19,7 @@ namespace CreatureState
         {
             base.Enter();
             _machine.SetAnimParameter(_owner, _owner.AnimData.IdleHash, true);
+            _machine.CreatureState = ECreatureState.Idle;
         }
 
         public override void Update()

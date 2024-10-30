@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -81,6 +82,15 @@ public class UIManager
         return sceneUI;
     }
 
+    public void ShowFadeUI(float fadeTime = 2.0f, bool isFadeIn = true)
+    {
+        FadeUI fade = Parent.Find("FadeUI")?.GetComponent<FadeUI>();
+        if (fade == null)
+            fade = Managers.ResourceManager.Instantiate("FadeUI", Parent).GetComponent<FadeUI>();
+
+        fade.FadeInOut(fadeTime, isFadeIn);
+    }
+
     public void ShowToasUI(string text, float duration = 2)
     {
         ToastUI toast = Parent.Find("ToastUI")?.GetComponent<ToastUI>();
@@ -90,8 +100,29 @@ public class UIManager
         toast.ShowToast(text, duration);
     }
 
-    public AlertUI ShowAlertPopup(Transform parent)
+    public void ShowAlertPopup(string text, Enums.AlertBtnNum btnNum, Action action1 = null, Action action2 = null, Action action3 = null)
     {
-        return Managers.ResourceManager.Instantiate("Alert", parent).GetComponent<AlertUI>();
+        AlertUI alert = Parent.Find("AlertUI")?.GetComponent<AlertUI>();
+        if (alert == null)
+            alert = Managers.ResourceManager.Instantiate("AlertUI", Parent).GetComponent<AlertUI>();
+
+        alert.gameObject.SetActive(true);
+        alert.SetAlert(text, btnNum, action1, action2, action3);
+
+        //return Managers.ResourceManager.Instantiate("Alert", Parent).GetComponent<AlertUI>();
+    }
+
+    public CreatureHUD AddCreatureHUD(Creature owner)
+    {
+        Transform parent = owner.gameObject.transform.Find("HUD");
+        GameObject go = Managers.ResourceManager.Instantiate("CreatureHUD", parent);
+        CreatureHUD hud = go.GetComponent<CreatureHUD>();
+
+        Canvas canvas = go.GetComponent<Canvas>();
+        canvas.renderMode = RenderMode.WorldSpace;
+
+        canvas.worldCamera = Camera.main;
+
+        return hud;
     }
 }

@@ -1757,6 +1757,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8912715155129528085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6169979149883409511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3849353943316481713}
+  m_Layer: 0
+  m_Name: HUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3849353943316481713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6169979149883409511}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4850178195040492919}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6231680370884531356
 GameObject:
   m_ObjectHideFlags: 0
@@ -2883,6 +2914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4850178195040492919}
   - component: {fileID: 3440454857278405356}
+  - component: {fileID: -5463187772437367615}
   m_Layer: 0
   m_Name: Warrior_Init
   m_TagString: Untagged
@@ -2907,6 +2939,7 @@ Transform:
   - {fileID: 4250221457794634611}
   - {fileID: 4919249987285379813}
   - {fileID: 6574020989636329558}
+  - {fileID: 3849353943316481713}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &3440454857278405356
@@ -2930,6 +2963,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5463187772437367615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8601266128999003023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72cfadc03d5a5e640ab8db284501c583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloatingTextPrefab: {fileID: 5760098957294696885, guid: ace183888a379ec4996e031648491f09, type: 3}
 --- !u!1 &8995190046733070136
 GameObject:
   m_ObjectHideFlags: 0

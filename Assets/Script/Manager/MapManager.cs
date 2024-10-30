@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 public class MapManager
@@ -11,6 +12,7 @@ public class MapManager
     public int MaxZ { get; set; }
     float[,] _mapCollision;
     public GameObject Map { get; private set; }
+    public GameObject LoadedMap { get; private set; }
     public Transform Parent
     {
         get
@@ -21,17 +23,19 @@ public class MapManager
             return map.transform;
         }
     }
-    public void LoadMap(string mapName)
+    private Action _loadedMapAction;
+    public void LoadMap(string mapName, Action action)
     {
         DestroyMap();
+        _loadedMapAction = action;
 
-        GameObject map = Managers.ResourceManager.Instantiate(mapName, Parent);
-        map.transform.position = Vector3.zero;
-        map.name = $"{mapName}";
-
-        Map = map;
-
-        CoroutineHelper.Instance.StartHelperCoroutine(ReadFile($"Assets/@Resources/Data/Map/{mapName}Data.bin"));
+        GameObject map = Managers.ResourceManager.GetResource<GameObject>(mapName);
+        map.name = mapName;
+        LoadedMap = map;
+        
+        TextAsset text = Managers.ResourceManager.GetResource<TextAsset>($"{mapName}MapData");
+        Stream s = new MemoryStream(text.bytes);
+        CoroutineHelper.Instance.StartHelperCoroutine(ReadFile(new BinaryReader(s)));
     }
     public bool CanGo(float z, float x)
     {
@@ -52,6 +56,12 @@ public class MapManager
         return true;
     }
 
+    public void CreateMap()
+    {
+        GameObject map = Managers.ResourceManager.Instantiate(LoadedMap, Parent);
+        map.transform.position = Vector3.zero;
+        Map = map;
+    }
 
     private void DestroyMap()
     {
@@ -59,12 +69,13 @@ public class MapManager
         {
             Managers.ResourceManager.Destroy(Map);
             Map = null;
+            LoadedMap = null;
         }
     }
 
-    IEnumerator ReadFile(string path)
+    IEnumerator ReadFile(BinaryReader reader)
     {
-        using (BinaryReader reader = new BinaryReader(File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read)))
+        using (reader)
         {
             MinX = reader.ReadInt32();
             MaxX = reader.ReadInt32();
@@ -86,6 +97,7 @@ public class MapManager
                 _mapCollision[applyZ, applyX] = height;
                 yield return null;
             }
+            _loadedMapAction?.Invoke();
         };
 
     }

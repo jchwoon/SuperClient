@@ -10,29 +10,52 @@ public class JoySceneUI : SceneUI
     enum GameObjects
     {
         Movestick,
-    }
-
-    enum Buttons
-    {
         AttackBtn
     }
+
     JoyMoveController _joyMoveController;
+    Image _atkBtnImg;
+    [SerializeField]
+    Color AtkActivationColor = Color.white;
+    [SerializeField]
+    Color AtkDeActivationColor = Color.white;
     protected override void Awake()
     {
         base.Awake();
 
         Bind<GameObject>(typeof(GameObjects));
-        Bind<Button>(typeof(Buttons));
 
         GameObject movestick = Get<GameObject>((int)GameObjects.Movestick);
-        Button attackBtn = Get<Button>((int)Buttons.AttackBtn);
+        GameObject atkBtn = Get<GameObject>((int)GameObjects.AttackBtn);
+        _atkBtnImg = atkBtn.GetComponent<Image>();
         _joyMoveController = movestick.GetComponent<JoyMoveController>();
 
 
-        BindEvent(attackBtn.gameObject, OnAttackBtnClicked);
+        BindEvent(atkBtn, OnAttackBtnClicked);
         BindEvent(movestick, OnMovestickPointerDown, Enums.TouchEvent.PointerDown);
         BindEvent(movestick, OnMovestickPointerUp, Enums.TouchEvent.PointerUp);
         BindEvent(movestick, OnMovestickDrag, Enums.TouchEvent.Drag);
+    }
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        Managers.EventBus.AddEvent(Enums.EventType.ChangeAttackMode, ChangeAtkBtnActivation);
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Managers.EventBus.RemoveEvent(Enums.EventType.ChangeAttackMode, ChangeAtkBtnActivation);
+    }
+
+    public void ChangeAtkBtnActivation()
+    {
+        MyHero hero = Managers.ObjectManager.MyHero;
+        if (hero == null)
+            return;
+
+        bool attacking = hero.MyHeroStateMachine.AttackMode;
+
+        _atkBtnImg.color = (attacking ? AtkActivationColor : AtkDeActivationColor);
     }
 
     private void OnMovestickPointerDown(PointerEventData eventData)

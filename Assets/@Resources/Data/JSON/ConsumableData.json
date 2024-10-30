@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "itemId": 100,
+      "effectId": 100,
+      "name": "빨간 포션(소)",
+      "prefabName": "Small_HealthPotion",
+      "stackable": true,
+      "maxStack": 99
+    },
+    {
+      "itemId": 101,
+      "effectId": 101,
+      "name": "파란 포션(소)",
+      "prefabName": "Small_ManaPotion",
+      "stackable": true,
+      "maxStack": 99
+    }
+  ]
+}

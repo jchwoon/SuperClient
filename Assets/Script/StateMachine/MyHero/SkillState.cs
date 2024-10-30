@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.UI.GridLayoutGroup;
 
 namespace MyHeroState {
     public class SkillState : BaseState
@@ -16,18 +17,16 @@ namespace MyHeroState {
         public override void Exit()
         {
             base.Exit();
-            _heroMachine.SetAnimParameter(_heroMachine.Owner, _heroMachine.Owner.AnimData.SkillHash, false);
-            if (_heroMachine.CurrentActiveSkillHash.HasValue)
-                _heroMachine.SetAnimParameter(_heroMachine.Owner, _heroMachine.CurrentActiveSkillHash.Value, false);
         }
         public override void Enter()
         {
             base.Enter();
+            _heroMachine.CreatureState = ECreatureState.Skill;
         }
         public override void Update()
         {
             base.Update();
-            if (_heroMachine.Owner.SkillComponent.isUseSkill == true)
+            if (_heroMachine.Owner.SkillComponent.isUsingSkill == true)
                 return;
 
             if (_heroMachine.MoveInput != Vector2.zero)
@@ -36,7 +35,7 @@ namespace MyHeroState {
                 return;
             }
 
-            if (_heroMachine.Target == null)
+            if (_heroMachine.AttackMode == false || _heroMachine.Target == null)
             {
                 _heroMachine.ChangeState(_heroMachine.IdleState);
                 return;
@@ -49,7 +48,7 @@ namespace MyHeroState {
                 if (_heroMachine.isWaitSkillRes == true)
                     return;
                 CoroutineHelper.Instance.StartHelperCoroutine(CoWailSkill());
-                owner.SendReqUseSkill(skill.SkillId, _heroMachine.Target.ObjectId);
+                owner.SendUseSkill(skill.SkillId, _heroMachine.Target.ObjectId);
                 return;
             }
 

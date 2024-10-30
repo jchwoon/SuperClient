@@ -1,0 +1,14 @@
+{
+  "rewards": [
+    {
+      "rewardId": 1,
+      "itemId": 100,
+      "name": "빨간 포션(소)"
+    },
+    {
+      "rewardId": 2,
+      "itemId": 101,
+      "name": "파란 포션(소)"
+    }
+  ]
+}

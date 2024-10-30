@@ -37,7 +37,7 @@ namespace MyHeroState
         //Attacking이 true일 때 호출될 함수
         public bool MoveToTargetOrUseSkill()
         {
-            if (_heroMachine.Attacking == false || _heroMachine.Target == null)
+            if (_heroMachine.AttackMode == false || _heroMachine.Target == null)
             {
                 if (_heroMachine.CurrentState == _heroMachine.IdleState)
                     return false;
@@ -49,7 +49,7 @@ namespace MyHeroState
             BaseSkill skill = _heroMachine.Owner.SkillComponent.GetCanUseSkillAtReservedSkills(_heroMachine.Target);
 
 
-            if (dist > (skill == null ? 1.0f : _heroMachine.Owner.SkillComponent.GetSkillRange(skill)))
+            if (skill == null || dist > _heroMachine.Owner.SkillComponent.GetSkillRange(skill))
             {
                 if (_heroMachine.CurrentState == _heroMachine.MoveState)
                     return false;

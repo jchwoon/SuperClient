@@ -9,13 +9,10 @@ using UnityEngine;
 
 namespace Data
 {
-    ///////////////////////////////
-    ///////////STAT////////////////
-    ///////////////////////////////
     public class HeroStatData
     {
         public int Level;
-        public float Exp;
+        public int Exp;
         public int MaxHp;
         public int MaxMp;
         public float MoveSpeed;
@@ -81,12 +78,13 @@ namespace Data
         public int MaxHp;
         public int MaxMp;
         public float MoveSpeed;
+        public float ChaseSpeed;
         public int AtkDamage;
         public int Defence;
         public float AtkSpeed;
         public float Sight;
-        public float AtkRange;
-        public List<int> SkillIds; 
+        public List<int> SkillIds;
+        public EMonsterGrade MonsterGrade;
     }
 
     [Serializable]
@@ -108,8 +106,8 @@ namespace Data
     public class HeroData : BaseData
     {
         public EHeroClassType HeroClassId;
-        public float ComboExitTime;
         public List<int> SkillIds;
+        public float RespawnTime;
     }
     [Serializable]
     public class HeroDataLoader : ILoader<EHeroClassType, HeroData>
@@ -133,11 +131,14 @@ namespace Data
         public ESkillType SkillType;
         public string SkillName;
         public string AnimName;
-        public int SkillRange;
+        public float SkillRange;
         public int CostMp;
         public float CoolTime;
         public float AnimTime;
         public string AnimParamName;
+        public float ComboTime;
+        public int MaxComboIdx;
+        public List<string> ComboNames;
     }
 
     [Serializable]
@@ -156,29 +157,119 @@ namespace Data
         }
     }
 
-    ///////////////////////////////
-    ///////////TEXT////////////////
-    ///////////////////////////////
-    //public class TextData
-    //{
-    //    public string TemplateId;
-    //    public string Ko;
-    //    public string En;
-    //}
+    public struct AddStatInfo
+    {
+        public EStatType StatType;
+        public float Value;
+    }
 
-    //[Serializable]
-    //public class TextDataLoader : ILoader<string, TextData>
-    //{
-    //    public List<TextData> heroStats = new List<TextData>();
+    public class EffectData
+    {
+        public int EffectId;
+        public float DamageRatio;
+        public List<AddStatInfo> AddStatValues;
+    }
 
-    //    public Dictionary<string, TextData> MakeDict()
-    //    {
-    //        Dictionary<string, TextData> dict = new Dictionary<string, TextData>();
-    //        foreach (TextData text in heroStats)
-    //            dict.Add(text.TemplateId, text);
+    [Serializable]
+    public class EffectDataLoader : ILoader<int, EffectData>
+    {
+        public List<EffectData> effects = new List<EffectData>();
+        public Dictionary<int, EffectData> MakeDict()
+        {
+            Dictionary<int, EffectData> dict = new Dictionary<int, EffectData>();
 
-    //        return dict;
-    //    }
-    //}
+            foreach (EffectData effect in effects)
+            {
+                dict.Add(effect.EffectId, effect);
+            }
+
+            return dict;
+        }
+    }
+
+    public class RewardData
+    {
+        public int RewardId;
+        public int ItemId;
+    }
+
+    [Serializable]
+    public class RewardDataLoader : ILoader<int, RewardData>
+    {
+        public List<RewardData> rewards = new List<RewardData>();
+        public Dictionary<int, RewardData> MakeDict()
+        {
+            Dictionary<int, RewardData> dict = new Dictionary<int, RewardData>();
+
+            foreach (RewardData reward in rewards)
+            {
+                dict.Add(reward.RewardId, reward);
+            }
+
+            return dict;
+        }
+    }
+
+    public struct RewardInfo
+    {
+        public int RewardId;
+        public float Probability;
+    }
+    public class RewardTableData
+    {
+        public int RewardTableId;
+        public int MonsterId;
+        public int RewardGold;
+        public int RewardExp;
+        public List<RewardInfo> RewardInfos;
+    }
+
+    [Serializable]
+    public class RewardTableDataLoadaer : ILoader<int, RewardTableData>
+    {
+        public List<RewardTableData> rewardTables = new List<RewardTableData>();
+        public Dictionary<int, RewardTableData> MakeDict()
+        {
+            Dictionary<int, RewardTableData> dict = new Dictionary<int, RewardTableData>();
+
+            foreach (RewardTableData rewardTableData in rewardTables)
+            {
+                dict.Add(rewardTableData.RewardTableId, rewardTableData);
+            }
+
+            return dict;
+        }
+    }
+
+    public class ItemData : BaseData
+    {
+        public int ItemId;
+        public bool Stackable;
+        public int MaxStack;
+        public string Name;
+    }
+
+    public class ConsumableData : ItemData
+    {
+        public int EffectId;
+    }
+
+    [Serializable]
+    public class ConsumableDataLoader : ILoader<int, ConsumableData>
+    {
+        public List<ConsumableData> items = new List<ConsumableData>();
+
+        public Dictionary<int, ConsumableData> MakeDict()
+        {
+            Dictionary<int, ConsumableData> dict = new Dictionary<int, ConsumableData>();
+
+            foreach (ConsumableData consumableData in items)
+            {
+                dict.Add(consumableData.ItemId, consumableData);
+            }
+
+            return dict;
+        }
+    }
 }
 

@@ -19,12 +19,10 @@ public abstract class BaseUI : MonoBehaviour
     protected virtual void OnEnable()
     {
     }
-
-    protected virtual void Update()
+    protected virtual void OnDisable()
     {
 
     }
-
     protected void Bind<T>(Type enumType) where T : UnityEngine.Object
     {
         string[] names = Enum.GetNames(enumType);

@@ -5,20 +5,19 @@
       "roomId": 1,
       "maxHp": 100,
       "maxMp": 0,
-      "moveSpeed": 10,
+      "moveSpeed": 1,
+      "chaseSpeed": 3.5,
       "atkDamage": 10,
       "defence": 3,
       "atkSpeed": 1,
       "name": "Vornix",
       "prefabName": "Vornix",
       "level": 1,
-      "exp": 50,
-      "gold": 50,
       "sight": 5,
-      "atkRange": 1,
       "skillIds": [
         2
-      ]
+      ],
+      "monsterGrade": 1
     }
   ]
 }

@@ -4,7 +4,7 @@
       "level": 1,
       "maxHp": 200,
       "maxMp": 100,
-      "moveSpeed": 15,
+      "moveSpeed": 4,
       "atkDamage": 25,
       "defence": 5,
       "atkSpeed": 1,
@@ -14,40 +14,40 @@
       "level": 2,
       "maxHp": 250,
       "maxMp": 120,
-      "moveSpeed": 15,
+      "moveSpeed": 4,
       "atkDamage": 30,
       "defence": 6,
-      "atkSpeed": 1,
+      "atkSpeed": 1.5,
       "exp": 100
     },
     {
       "level": 3,
       "maxHp": 300,
       "maxMp": 150,
-      "moveSpeed": 15,
+      "moveSpeed": 4,
       "atkDamage": 35,
       "defence": 7,
-      "atkSpeed": 1,
+      "atkSpeed": 1.1,
       "exp": 200
     },
     {
       "level": 4,
       "maxHp": 350,
       "maxMp": 180,
-      "moveSpeed": 15,
+      "moveSpeed": 4,
       "atkDamage": 40,
       "defence": 8,
-      "atkSpeed": 1,
+      "atkSpeed": 1.15,
       "exp": 400
     },
     {
       "level": 5,
       "maxHp": 400,
       "maxMp": 210,
-      "moveSpeed": 15,
+      "moveSpeed": 4,
       "atkDamage": 45,
       "defence": 9,
-      "atkSpeed": 1,
+      "atkSpeed": 1.2,
       "exp": 800
     }
   ]

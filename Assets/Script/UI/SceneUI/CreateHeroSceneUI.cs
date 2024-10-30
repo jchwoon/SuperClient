@@ -23,8 +23,6 @@ public class CreateHeroSceneUI : SceneUI
         Nickname
     }
 
-    [SerializeField]
-    AlertUI _alertPopup;
     TMP_InputField _nicknameField;
     TMP_Text _placeHolder;
 
@@ -77,22 +75,16 @@ public class CreateHeroSceneUI : SceneUI
             case Google.Protobuf.Enum.ECreateHeroResult.Success:
                 //로비 인포 정보를 다시 req하고 응답이 오면 close
                 LobbyScene lobby = (LobbyScene)Managers.SceneManagerEx.CurrentScene;
-                lobby.SendReqHeroListPacket(() =>
-                {
-                    ShowAndClose();
-                });
+                lobby.SendReqHeroListPacket();
                 break;
             case Google.Protobuf.Enum.ECreateHeroResult.FailMinmax:
-                _alertPopup.gameObject.SetActive(true);
-                _alertPopup.SetAlert("닉네임의 형식이 올바르지 않습니다.", Enums.AlertBtnNum.One);
+                Managers.UIManager.ShowAlertPopup("닉네임의 형식이 올바르지 않습니다.", Enums.AlertBtnNum.One);
                 break;
             case Google.Protobuf.Enum.ECreateHeroResult.FailOverlap:
-                _alertPopup.gameObject.SetActive(true);
-                _alertPopup.SetAlert("중복된 닉네임입니다.", Enums.AlertBtnNum.One);
+                Managers.UIManager.ShowAlertPopup("중복된 닉네임입니다.", Enums.AlertBtnNum.One);
                 break;
             default:
-                _alertPopup.gameObject.SetActive(true);
-                _alertPopup.SetAlert("알 수 없는 오류", Enums.AlertBtnNum.One);
+                Managers.UIManager.ShowAlertPopup("알 수 없는 오류", Enums.AlertBtnNum.One);
                 break;
         }
     }

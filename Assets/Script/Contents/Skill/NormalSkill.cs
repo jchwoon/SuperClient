@@ -9,23 +9,16 @@ public class NormalSkill : BaseSkill
     {
     }
 
-    public override void UseSkill()
+    protected override IEnumerator CoAnimTime() 
     {
-        base.UseSkill();
-        Debug.Log(Owner.StatData.AtkSpeed);
-        if (Owner.MyHeroStateMachine.CurrentActiveSkillHash.HasValue && Owner.MyHeroStateMachine.CurrentActiveSkillHash.Value == AnimParamHash)
-            Owner.MyHeroStateMachine.SetAnimParameter(Owner, Owner.AnimData.AttackComboHash, true);
-    }
-    protected override IEnumerator CoAnimTime()
-    {
-        Owner.SkillComponent.isUseSkill = true;
-        float animTime = SkillData.AnimTime * Owner.StatData.AtkSpeed;
+        Owner.SkillComponent.isUsingSkill = true;
+        float animTime = SkillData.AnimTime * (1.0f / Owner.Stat.StatInfo.AtkSpeed);
         float process = 0.0f;
         while (process < animTime)
         {
             process += Time.deltaTime;
             yield return null;
         }
-        Owner.SkillComponent.isUseSkill = false;
+        Owner.SkillComponent.isUsingSkill = false;
     }
 }

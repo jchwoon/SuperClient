@@ -38,21 +38,11 @@ public class BaseSkill
         return SkillData.SkillRange;
     }
 
-    public virtual void UseSkill()
+    public virtual void UseSkill(string playAnimName)
     {
-        MyHeroStateMachine machine = Owner.MyHeroStateMachine;
-        int? currentHash = machine.CurrentActiveSkillHash;
-        if (currentHash.HasValue && currentHash.Value != AnimParamHash)
-            machine.SetAnimParameter(Owner, currentHash.Value, false);
-        machine.SetAnimParameter(Owner, AnimParamHash, true);
-        machine.CurrentActiveSkillHash = AnimParamHash;
+        Owner.Animator.Play(playAnimName);
         CoroutineHelper.Instance.StartHelperCoroutine(CoAnimTime());
         CoroutineHelper.Instance.StartHelperCoroutine(CoCoolTime());
-    }
-
-    public virtual void ExitSkill()
-    {
-
     }
 
     IEnumerator CoCoolTime()
@@ -69,7 +59,7 @@ public class BaseSkill
     }
     protected virtual IEnumerator CoAnimTime()
     {
-        Owner.SkillComponent.isUseSkill = true;
+        Owner.SkillComponent.isUsingSkill = true;
         float animTime = SkillData.AnimTime;
         float process = 0.0f;
         while (process < animTime)
@@ -77,7 +67,7 @@ public class BaseSkill
             process += Time.deltaTime;
             yield return null;
         }
-        Owner.SkillComponent.isUseSkill = false;
+        Owner.SkillComponent.isUsingSkill = false;
     }
 }
 

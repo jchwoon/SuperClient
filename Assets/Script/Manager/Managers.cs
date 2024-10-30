@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Managers : MonoBehaviour
 {
+    public static bool Initialized { get; set; }
     private static Managers _instance;
 
     private static Managers Instance
@@ -22,6 +23,7 @@ public class Managers : MonoBehaviour
     private ObjectManager _objectManagr = new ObjectManager();
     private MapManager _mapManager = new MapManager();
     private EventBusManager _eventBus = new EventBusManager();
+    private PoolManager _poolManager = new PoolManager();
 
     public static NetworkManager NetworkManager { get { return Instance._networkManager; } }
     public static SceneManagerEx SceneManagerEx { get { return Instance._sceneManager; } }
@@ -32,6 +34,7 @@ public class Managers : MonoBehaviour
     public static ObjectManager ObjectManager { get { return Instance._objectManagr; } }
     public static MapManager MapManager { get { return Instance._mapManager; } }
     public static EventBusManager EventBus { get { return Instance._eventBus; } }
+    public static PoolManager PoolManager { get { return Instance._poolManager; } }
 
 
     private void Awake()
@@ -41,8 +44,9 @@ public class Managers : MonoBehaviour
     }
     private static void MainInit()
     {
-        if (_instance == null)
+        if (_instance == null && Initialized == false)
         {
+            Initialized = true;
             GameObject gameObject = GameObject.Find("Managers");
             if (gameObject == null)
             {
@@ -58,5 +62,11 @@ public class Managers : MonoBehaviour
     private void Update()
     {
         _networkManager.Update();
+    }
+
+    public static void Clear()
+    {
+        ObjectManager.Clear();
+        PoolManager.Clear();
     }
 }

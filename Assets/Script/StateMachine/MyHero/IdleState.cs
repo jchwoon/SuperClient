@@ -20,6 +20,7 @@ namespace MyHeroState
             base.Enter();
 
             _heroMachine.SetAnimParameter(_owner, _owner.AnimData.MoveSpeedHash, 0.0f);
+            _heroMachine.CreatureState = ECreatureState.Idle;
         }
 
         public override void Update()
@@ -43,7 +44,7 @@ namespace MyHeroState
                 return true;    
             }
 
-            if (_heroMachine.Attacking == true && _heroMachine.Target)
+            if (_heroMachine.AttackMode == true && _heroMachine.Target)
             {
 
                 MoveToTargetOrUseSkill();

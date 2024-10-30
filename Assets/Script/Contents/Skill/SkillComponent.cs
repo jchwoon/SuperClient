@@ -9,9 +9,9 @@ public class SkillComponent
     Dictionary<int, BaseSkill> _skills = new Dictionary<int, BaseSkill>();
     Dictionary<int, BaseSkill> _reservedSkills = new Dictionary<int, BaseSkill>();
     public int NormalSkillId { get; private set; }
-    public bool isUseSkill { get; set; }
+    public bool isUsingSkill { get; set; }
 
-    public void RegisterSkill(HeroData heroData)
+    public void InitSkill(HeroData heroData)
     {
         foreach (int id in heroData.SkillIds)
         {
