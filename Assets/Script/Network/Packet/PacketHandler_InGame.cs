@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Google.Protobuf.Struct;
+using Google.Protobuf.Enum;
 
 public partial class PacketHandler
 {
@@ -142,5 +143,69 @@ public partial class PacketHandler
             return;
 
         myHero.HandleReward(rewardPacket.Exp, rewardPacket.Gold);
+    }
+
+    public static void PickupDropItemToCHandler(PacketSession session, IMessage packet)
+    {
+        PickupDropItemToC pickupItemPacket = (PickupDropItemToC)packet;
+
+        MyHero myHero = Managers.ObjectManager.MyHero;
+
+        if (myHero == null)
+            return;
+
+        myHero.ResCheckCanPickup(pickupItemPacket.Result);
+    }
+
+    public static void AddItemToCHandler(PacketSession session, IMessage packet)
+    {
+        AddItemToC addItemPacket = (AddItemToC)packet;
+
+        MyHero myHero = Managers.ObjectManager.MyHero;
+        if (myHero == null)
+            return;
+
+        InventoryComponent inventory = myHero.Inventory;
+        if (inventory == null)
+            return;
+
+        if (addItemPacket.AddType == EAddItemType.New)
+        {
+            Item item = Managers.ItemFactory.MakeItem(addItemPacket.ItemInfo);
+            inventory.AddNewItem(item, invokeUpdate: true);
+        }
+        else
+            inventory.AddItem(addItemPacket.ItemInfo);
+    }
+
+    public static void UseItemToCHandler(PacketSession session, IMessage packet)
+    {
+        UseItemToC useItemPacket = (UseItemToC)packet;
+
+        MyHero myHero = Managers.ObjectManager.MyHero;
+        if (myHero == null)
+            return;
+
+        InventoryComponent inventory = myHero.Inventory;
+        if (inventory == null)
+            return;
+
+        Item item = inventory.FindItemByDbId(useItemPacket.ItemDbId);
+        item.HandleUseItem(inventory);
+    }
+
+    public static void ChangeSlotTypeToCHandler(PacketSession session, IMessage packet)
+    {
+        ChangeSlotTypeToC changeSlotPacket = (ChangeSlotTypeToC)packet;
+
+        MyHero myHero = Managers.ObjectManager.MyHero;
+        if (myHero == null)
+            return;
+
+        InventoryComponent inventory = myHero.Inventory;
+        if (inventory == null)
+            return;
+
+        inventory.HandleChangeSlotItem(changeSlotPacket.ItemDbId, changeSlotPacket.SlotType);
     }
 }

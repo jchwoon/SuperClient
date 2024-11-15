@@ -36,6 +36,7 @@ public class Enums
     {
         Wall = 6,
         Monster = 8,
+        DropItem
     }
 
     public enum AnimLayer
@@ -54,7 +55,10 @@ public class Enums
         ChangeGrowth,
         ChangeHUDInfo,
         OnTarget,
-        OffTarget
+        OffTarget,
+        PickUpBtnClick,
+        UpdateInventory,
+        Toggle
     }
 
     public enum SortingOrderInHUD
@@ -70,5 +74,13 @@ public class Enums
         Heal,
         Gold,
         Exp
+    }
+
+    public enum UseItemFailReason
+    {
+        None,
+        FullHp,
+        FullMp,
+        Cool
     }
 }

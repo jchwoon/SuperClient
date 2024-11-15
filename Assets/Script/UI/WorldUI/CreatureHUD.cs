@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Google.Protobuf.Enum;
 using Google.Protobuf.Struct;
+using System.Data;
 
 public class CreatureHUD : BaseUI
 {
@@ -38,13 +39,13 @@ public class CreatureHUD : BaseUI
     protected override void OnEnable()
     {
         base.OnEnable();
-        Managers.EventBus.AddEvent(Enums.EventType.ChangeHUDInfo, SetBar);
+        Managers.EventBus.AddEvent(Enums.EventType.ChangeHUDInfo, RefreshHUD);
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        Managers.EventBus.RemoveEvent(Enums.EventType.ChangeHUDInfo, SetBar);
+        Managers.EventBus.RemoveEvent(Enums.EventType.ChangeHUDInfo, RefreshHUD);
     }
 
     protected void Update()
@@ -56,14 +57,18 @@ public class CreatureHUD : BaseUI
     {
         gameObject.SetActive(true);
         _owner = owner;
-        SetName();
-        SetBar();
-        SetLevel();
+        RefreshHUD();
     }
 
     public void RemoveHUD()
     {
         gameObject.SetActive(false);
+    }
+  
+    private void RefreshHUD()
+    {
+        SetName();
+        SetBar();
     }
 
     public void SetBar()
@@ -79,19 +84,6 @@ public class CreatureHUD : BaseUI
             default:
                 break;
         }
-    }    
-
-    private void SetLevel()
-    {
-        if (_owner.ObjectType == EObjectType.Hero)
-        {
-            Hero hero = (Hero)_owner;
-            Get<TMP_Text>((int)Texts.LevelTxt).text = hero.Level.ToString();
-        }
-    }
-    private void SetName()
-    {
-        Get<TMP_Text>((int)Texts.NameTxt).text = _owner.Name;
     }
 
     private void SetHeroBar()
@@ -118,5 +110,9 @@ public class CreatureHUD : BaseUI
         float hpValue = (float)statInfo.Hp / (float)statInfo.MaxHp;
 
         Get<Slider>((int)Sliders.HpBar).value = hpValue;
+    }
+    private void SetName()
+    {
+        Get<TMP_Text>((int)Texts.NameTxt).text = _owner.Name;
     }
 }

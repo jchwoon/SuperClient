@@ -7,7 +7,8 @@
       "moveSpeed": 4,
       "atkDamage": 25,
       "defence": 5,
-      "atkSpeed": 1,
+      "baseAtkSpeed": 1,
+      "addAtkSpeedMultiplier": 0,
       "exp": 50
     },
     {
@@ -17,7 +18,8 @@
       "moveSpeed": 4,
       "atkDamage": 30,
       "defence": 6,
-      "atkSpeed": 1.5,
+      "baseAtkSpeed": 1,
+      "addAtkSpeedMultiplier": 5,
       "exp": 100
     },
     {
@@ -27,7 +29,8 @@
       "moveSpeed": 4,
       "atkDamage": 35,
       "defence": 7,
-      "atkSpeed": 1.1,
+      "baseAtkSpeed": 1,
+      "addAtkSpeedMultiplier": 10,
       "exp": 200
     },
     {
@@ -37,7 +40,8 @@
       "moveSpeed": 4,
       "atkDamage": 40,
       "defence": 8,
-      "atkSpeed": 1.15,
+      "baseAtkSpeed": 1,
+      "addAtkSpeedMultiplier": 15,
       "exp": 400
     },
     {
@@ -47,7 +51,8 @@
       "moveSpeed": 4,
       "atkDamage": 45,
       "defence": 9,
-      "atkSpeed": 1.2,
+      "baseAtkSpeed": 1,
+      "addAtkSpeedMultiplier": 20,
       "exp": 800
     }
   ]

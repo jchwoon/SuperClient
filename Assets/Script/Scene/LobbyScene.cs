@@ -31,8 +31,6 @@ public class LobbyScene : BaseScene
     #region Receive
     public void OnReceiveHeroList(ResHeroListToC packet)
     {
-        Debug.Log(packet.Lobbyheros);
-
         Managers.UIManager.ShowFadeUI();
 
         if (packet.Lobbyheros.Count == 0)

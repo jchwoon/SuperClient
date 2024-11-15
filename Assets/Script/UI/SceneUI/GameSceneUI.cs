@@ -12,6 +12,8 @@ public class GameSceneUI : SceneUI
     enum GameObjects
     {
         BackBtn,
+        InventoryBtn,
+        SettingBtn
     }
     enum Sliders
     {
@@ -55,6 +57,8 @@ public class GameSceneUI : SceneUI
 
 
         BindEvent(Get<GameObject>((int)GameObjects.BackBtn), OnBackBtnClicked);
+        BindEvent(Get<GameObject>((int)GameObjects.InventoryBtn), OnInventoryBtnClicked);
+        BindEvent(Get<GameObject>((int)GameObjects.SettingBtn), OnSettingBtnClicked);
     }
 
     protected override void OnEnable()
@@ -136,6 +140,16 @@ public class GameSceneUI : SceneUI
                 Managers.SceneManagerEx.ChangeScene(Enums.SceneType.Lobby);
                 Managers.GameManager.LeaveGame();
             });
+    }
+
+    private void OnInventoryBtnClicked(PointerEventData eventData)
+    {
+        InventoryUI inventory = Managers.UIManager.ShowPopup<InventoryUI>();
+        inventory.Refresh();
+    }
+    private void OnSettingBtnClicked(PointerEventData eventData)
+    {
+        //Managers.UIManager.ShowPopup<InventoryUI>();
     }
 
     IEnumerator CoSmoothChangeBar(Slider bar, float current, int target)

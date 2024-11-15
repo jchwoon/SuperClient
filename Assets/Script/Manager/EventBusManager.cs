@@ -24,6 +24,6 @@ public class EventBusManager
     public void InvokeEvent(Enums.EventType type)
     {
         if (_events.ContainsKey(type) == true)
-            _events[type].Invoke();
+            _events[type]?.Invoke();
     }
 }

@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "itemId": 200,
+      "descId": "Vornix 고기",
+      "name": "Vornix 고기",
+      "prefabName": "VornixMeat",
+      "imageName": "VornixMeat_sprite",
+      "itemType": 3,
+      "stackable": true,
+      "maxStack": 99
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+using Data;
 using Google.Protobuf.Enum;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,10 +11,12 @@ public class JoySceneUI : SceneUI
     enum GameObjects
     {
         Movestick,
-        AttackBtn
+        AttackBtn,
+        PickUpBtn
     }
 
     JoyMoveController _joyMoveController;
+    JoyPickupController _joyPickupController;
     Image _atkBtnImg;
     [SerializeField]
     Color AtkActivationColor = Color.white;
@@ -27,14 +30,16 @@ public class JoySceneUI : SceneUI
 
         GameObject movestick = Get<GameObject>((int)GameObjects.Movestick);
         GameObject atkBtn = Get<GameObject>((int)GameObjects.AttackBtn);
+        GameObject pickUpBtn = Get<GameObject>((int)GameObjects.PickUpBtn);
         _atkBtnImg = atkBtn.GetComponent<Image>();
         _joyMoveController = movestick.GetComponent<JoyMoveController>();
-
+        _joyPickupController = pickUpBtn.GetComponent<JoyPickupController>();
 
         BindEvent(atkBtn, OnAttackBtnClicked);
         BindEvent(movestick, OnMovestickPointerDown, Enums.TouchEvent.PointerDown);
         BindEvent(movestick, OnMovestickPointerUp, Enums.TouchEvent.PointerUp);
         BindEvent(movestick, OnMovestickDrag, Enums.TouchEvent.Drag);
+        BindEvent(pickUpBtn, OnPickUpBtnClicked);
     }
     protected override void OnEnable()
     {
@@ -76,5 +81,10 @@ public class JoySceneUI : SceneUI
     private void OnAttackBtnClicked(PointerEventData eventData)
     {
         Managers.EventBus.InvokeEvent(Enums.EventType.AtkBtnClick);
+    }
+
+    private void OnPickUpBtnClicked(PointerEventData eventData)
+    {
+        _joyPickupController.OnHandlePickupClick();
     }
 }

@@ -40,38 +40,57 @@ namespace Google.Protobuf.Enum {
             "EAoMRU1PVkVfRElSX1VQEAESFgoSRU1PVkVfRElSX1VQX1JJR0hUEAISEwoP",
             "RU1PVkVfRElSX1JJR0hUEAMSGAoURU1PVkVfRElSX1JJR0hUX0RPV04QBBIS",
             "Cg5FTU9WRV9ESVJfRE9XThAFEhcKE0VNT1ZFX0RJUl9ET1dOX0xFRlQQBhIS",
-            "Cg5FTU9WRV9ESVJfTEVGVBAHEhUKEUVNT1ZFX0RJUl9MRUZUX1VQEAgqhwEK",
-            "CkVNb3ZlRm9yY2USFAoQRU1PVkVfRk9SQ0VfTk9ORRAAEhQKEEVNT1ZFX0ZP",
-            "UkNFX1dFQUsQARIWChJFTU9WRV9GT1JDRV9OT1JNQUwQAhIdChlFTU9WRV9G",
-            "T1JDRV9TTElHSFRfU1RST05HEAMSFgoSRU1PVkVfRk9SQ0VfU1RST05HEAQq",
-            "awoKRVNraWxsVHlwZRIUChBFU0tJTExfVFlQRV9OT05FEAASFgoSRVNLSUxM",
-            "X1RZUEVfTk9STUFMEAESFgoSRVNLSUxMX1RZUEVfQUNUSVZFEAISFwoTRVNL",
-            "SUxMX1RZUEVfUEFTU0lWRRADKqMBChBFU2tpbGxGYWlsUmVhc29uEhsKF0VT",
-            "S0lMTF9GQUlMX1JFQVNPTl9OT05FEAASGwoXRVNLSUxMX0ZBSUxfUkVBU09O",
-            "X1NUVU4QARIbChdFU0tJTExfRkFJTF9SRUFTT05fRElTVBACEhsKF0VTS0lM",
-            "TF9GQUlMX1JFQVNPTl9DT1NUEAMSGwoXRVNLSUxMX0ZBSUxfUkVBU09OX0NP",
-            "T0wQBCrVAQoJRVN0YXRUeXBlEhMKD0VTVEFUX1RZUEVfTk9ORRAAEhUKEUVT",
-            "VEFUX1RZUEVfTUFYX0hQEAESFQoRRVNUQVRfVFlQRV9NQVhfTVAQAhIRCg1F",
-            "U1RBVF9UWVBFX0hQEAMSEQoNRVNUQVRfVFlQRV9NUBAEEhIKDkVTVEFUX1RZ",
-            "UEVfQVRLEAUSFgoSRVNUQVRfVFlQRV9ERUZFTkNFEAYSGQoVRVNUQVRfVFlQ",
-            "RV9NT1ZFX1NQRUVEEAcSGAoURVNUQVRfVFlQRV9BVEtfU1BFRUQQCCo2CglF",
-            "TW92ZVR5cGUSEwoPRU1PVkVfVFlQRV9OT05FEAASFAoQRU1PVkVfVFlQRV9D",
-            "SEFTRRABKlwKDUVNb25zdGVyR3JhZGUSFwoTRU1PTlNURVJfR1JBREVfTk9O",
-            "RRAAEhkKFUVNT05TVEVSX0dSQURFX05PUk1BTBABEhcKE0VNT05TVEVSX0dS",
-            "QURFX1JBUkUQAipECg1FVGVsZXBvcnRUeXBlEhcKE0VURUxFUE9SVF9UWVBF",
-            "X05PTkUQABIaChZFVEVMRVBPUlRfVFlQRV9SRVNQQVdOEAEqYgoJRUl0ZW1U",
-            "eXBlEhMKD0VJVEVNX1RZUEVfTk9ORRAAEhQKEEVJVEVNX1RZUEVfRVFVSVAQ",
-            "ARIWChJFSVRFTV9UWVBFX0NPTlNVTUUQAhISCg5FSVRFTV9UWVBFX0VUQxAD",
-            "KpACCg5FRXF1aXBJdGVtVHlwZRIZChVFRVFVSVBfSVRFTV9UWVBFX05PTkUQ",
-            "ABIbChdFRVFVSVBfSVRFTV9UWVBFX1dFQVBPThABEhsKF0VFUVVJUF9JVEVN",
-            "X1RZUEVfU0hJRUxEEAISGwoXRUVRVUlQX0lURU1fVFlQRV9IRUxNRVQQAxIa",
-            "ChZFRVFVSVBfSVRFTV9UWVBFX0FSTU9SEAQSGgoWRUVRVUlQX0lURU1fVFlQ",
-            "RV9CT09UUxAFEhsKF0VFUVVJUF9JVEVNX1RZUEVfR0xPVkVTEAYSHAoYRUVR",
-            "VUlQX0lURU1fVFlQRV9QRU5EQU5UEAcSGQoVRUVRVUlQX0lURU1fVFlQRV9S",
-            "SU5HEAhCF6oCFEdvb2dsZS5Qcm90b2J1Zi5FbnVtYgZwcm90bzM="));
+            "Cg5FTU9WRV9ESVJfTEVGVBAHEhUKEUVNT1ZFX0RJUl9MRUZUX1VQEAgqawoK",
+            "RVNraWxsVHlwZRIUChBFU0tJTExfVFlQRV9OT05FEAASFgoSRVNLSUxMX1RZ",
+            "UEVfTk9STUFMEAESFgoSRVNLSUxMX1RZUEVfQUNUSVZFEAISFwoTRVNLSUxM",
+            "X1RZUEVfUEFTU0lWRRADKqMBChBFU2tpbGxGYWlsUmVhc29uEhsKF0VTS0lM",
+            "TF9GQUlMX1JFQVNPTl9OT05FEAASGwoXRVNLSUxMX0ZBSUxfUkVBU09OX1NU",
+            "VU4QARIbChdFU0tJTExfRkFJTF9SRUFTT05fRElTVBACEhsKF0VTS0lMTF9G",
+            "QUlMX1JFQVNPTl9DT1NUEAMSGwoXRVNLSUxMX0ZBSUxfUkVBU09OX0NPT0wQ",
+            "BCqdAgoJRVN0YXRUeXBlEhMKD0VTVEFUX1RZUEVfTk9ORRAAEhUKEUVTVEFU",
+            "X1RZUEVfTUFYX0hQEAESFQoRRVNUQVRfVFlQRV9NQVhfTVAQAhIRCg1FU1RB",
+            "VF9UWVBFX0hQEAMSEQoNRVNUQVRfVFlQRV9NUBAEEhIKDkVTVEFUX1RZUEVf",
+            "QVRLEAUSFgoSRVNUQVRfVFlQRV9ERUZFTkNFEAYSGQoVRVNUQVRfVFlQRV9N",
+            "T1ZFX1NQRUVEEAcSGAoURVNUQVRfVFlQRV9BVEtfU1BFRUQQCBInCiNFU1RB",
+            "VF9UWVBFX0FERF9BVEtfU1BFRURfTVVMVElQTElFUhAJEh0KGUVTVEFUX1RZ",
+            "UEVfQkFTRV9BVEtfU1BFRUQQCio2CglFTW92ZVR5cGUSEwoPRU1PVkVfVFlQ",
+            "RV9OT05FEAASFAoQRU1PVkVfVFlQRV9DSEFTRRABKlwKDUVNb25zdGVyR3Jh",
+            "ZGUSFwoTRU1PTlNURVJfR1JBREVfTk9ORRAAEhkKFUVNT05TVEVSX0dSQURF",
+            "X05PUk1BTBABEhcKE0VNT05TVEVSX0dSQURFX1JBUkUQAipECg1FVGVsZXBv",
+            "cnRUeXBlEhcKE0VURUxFUE9SVF9UWVBFX05PTkUQABIaChZFVEVMRVBPUlRf",
+            "VFlQRV9SRVNQQVdOEAEqYgoJRUl0ZW1UeXBlEhMKD0VJVEVNX1RZUEVfTk9O",
+            "RRAAEhQKEEVJVEVNX1RZUEVfRVFVSVAQARIWChJFSVRFTV9UWVBFX0NPTlNV",
+            "TUUQAhISCg5FSVRFTV9UWVBFX0VUQxADKpACCg5FRXF1aXBJdGVtVHlwZRIZ",
+            "ChVFRVFVSVBfSVRFTV9UWVBFX05PTkUQABIbChdFRVFVSVBfSVRFTV9UWVBF",
+            "X1dFQVBPThABEhsKF0VFUVVJUF9JVEVNX1RZUEVfU0hJRUxEEAISGwoXRUVR",
+            "VUlQX0lURU1fVFlQRV9IRUxNRVQQAxIaChZFRVFVSVBfSVRFTV9UWVBFX0FS",
+            "TU9SEAQSGgoWRUVRVUlQX0lURU1fVFlQRV9CT09UUxAFEhsKF0VFUVVJUF9J",
+            "VEVNX1RZUEVfR0xPVkVTEAYSHAoYRUVRVUlQX0lURU1fVFlQRV9QRU5EQU5U",
+            "EAcSGQoVRUVRVUlQX0lURU1fVFlQRV9SSU5HEAgquwIKCUVTbG90VHlwZRIT",
+            "Cg9FU0xPVF9UWVBFX05PTkUQABIVChFFU0xPVF9UWVBFX1dFQVBPThABEhUK",
+            "EUVTTE9UX1RZUEVfU0hJRUxEEAISFQoRRVNMT1RfVFlQRV9IRUxNRVQQAxIU",
+            "ChBFU0xPVF9UWVBFX0FSTU9SEAQSFAoQRVNMT1RfVFlQRV9CT09UUxAFEhUK",
+            "EUVTTE9UX1RZUEVfR0xPVkVTEAYSFgoSRVNMT1RfVFlQRV9QRU5EQU5UEAcS",
+            "GQoVRVNMT1RfVFlQRV9GSVJTVF9SSU5HEAgSGgoWRVNMT1RfVFlQRV9TRUNP",
+            "TkRfUklORxAJEhQKEEVTTE9UX1RZUEVfRVFVSVAQZBIXChJFU0xPVF9UWVBF",
+            "X0NPTlNVTUUQyAESEwoORVNMT1RfVFlQRV9FVEMQrAIqcQoRRVBpY2t1cEZh",
+            "aWxSZWFzb24SHAoYRVBJQ0tVUF9GQUlMX1JFQVNPTl9OT05FEAASIAocRVBJ",
+            "Q0tVUF9GQUlMX1JFQVNPTl9OT1RfTUlORRABEhwKGEVQSUNLVVBfRkFJTF9S",
+            "RUFTT05fRlVMTBACKj4KDEVBZGRJdGVtVHlwZRIWChJFQUREX0lURU1fVFlQ",
+            "RV9ORVcQABIWChJFQUREX0lURU1fVFlQRV9PTEQQASo/CgtFSXRlbVN0YXR1",
+            "cxIVChFFSVRFTV9TVEFUVVNfTk9ORRAAEhkKFUVJVEVNX1NUQVRVU19FUVVJ",
+            "UFBFRBABKl4KD0VDb25zdW1hYmxlVHlwZRIZChVFQ09OU1VNQUJMRV9UWVBF",
+            "X05PTkUQABIXChNFQ09OU1VNQUJMRV9UWVBFX0hQEAESFwoTRUNPTlNVTUFC",
+            "TEVfVFlQRV9NUBACKm4KC0VFZmZlY3RUeXBlEhUKEUVFRkZFQ1RfVFlQRV9O",
+            "T05FEAASFwoTRUVGRkVDVF9UWVBFX0RBTUFHRRABEhUKEUVFRkZFQ1RfVFlQ",
+            "RV9IRUFMEAISGAoURUVGRkVDVF9UWVBFX0FERFNUQVQQAyp/ChNFRWZmZWN0",
+            "RHVyYXRpb25UeXBlEh4KGkVFRkZFQ1RfRFVSQVRJT05fVFlQRV9OT05FEAAS",
+            "IwofRUVGRkVDVF9EVVJBVElPTl9UWVBFX1RFTVBPUkFSWRABEiMKH0VFRkZF",
+            "Q1RfRFVSQVRJT05fVFlQRV9QRVJNQU5FTlQQAkIXqgIUR29vZ2xlLlByb3Rv",
+            "YnVmLkVudW1iBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.EMoveForce), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), }, null, null));
     }
     #endregion
 
@@ -117,14 +136,6 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("EMOVE_DIR_LEFT_UP")] LeftUp = 8,
   }
 
-  public enum EMoveForce {
-    [pbr::OriginalName("EMOVE_FORCE_NONE")] None = 0,
-    [pbr::OriginalName("EMOVE_FORCE_WEAK")] Weak = 1,
-    [pbr::OriginalName("EMOVE_FORCE_NORMAL")] Normal = 2,
-    [pbr::OriginalName("EMOVE_FORCE_SLIGHT_STRONG")] SlightStrong = 3,
-    [pbr::OriginalName("EMOVE_FORCE_STRONG")] Strong = 4,
-  }
-
   public enum ESkillType {
     [pbr::OriginalName("ESKILL_TYPE_NONE")] None = 0,
     [pbr::OriginalName("ESKILL_TYPE_NORMAL")] Normal = 1,
@@ -150,6 +161,8 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("ESTAT_TYPE_DEFENCE")] Defence = 6,
     [pbr::OriginalName("ESTAT_TYPE_MOVE_SPEED")] MoveSpeed = 7,
     [pbr::OriginalName("ESTAT_TYPE_ATK_SPEED")] AtkSpeed = 8,
+    [pbr::OriginalName("ESTAT_TYPE_ADD_ATK_SPEED_MULTIPLIER")] AddAtkSpeedMultiplier = 9,
+    [pbr::OriginalName("ESTAT_TYPE_BASE_ATK_SPEED")] BaseAtkSpeed = 10,
   }
 
   public enum EMoveType {
@@ -185,6 +198,57 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("EEQUIP_ITEM_TYPE_GLOVES")] Gloves = 6,
     [pbr::OriginalName("EEQUIP_ITEM_TYPE_PENDANT")] Pendant = 7,
     [pbr::OriginalName("EEQUIP_ITEM_TYPE_RING")] Ring = 8,
+  }
+
+  public enum ESlotType {
+    [pbr::OriginalName("ESLOT_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ESLOT_TYPE_WEAPON")] Weapon = 1,
+    [pbr::OriginalName("ESLOT_TYPE_SHIELD")] Shield = 2,
+    [pbr::OriginalName("ESLOT_TYPE_HELMET")] Helmet = 3,
+    [pbr::OriginalName("ESLOT_TYPE_ARMOR")] Armor = 4,
+    [pbr::OriginalName("ESLOT_TYPE_BOOTS")] Boots = 5,
+    [pbr::OriginalName("ESLOT_TYPE_GLOVES")] Gloves = 6,
+    [pbr::OriginalName("ESLOT_TYPE_PENDANT")] Pendant = 7,
+    [pbr::OriginalName("ESLOT_TYPE_FIRST_RING")] FirstRing = 8,
+    [pbr::OriginalName("ESLOT_TYPE_SECOND_RING")] SecondRing = 9,
+    [pbr::OriginalName("ESLOT_TYPE_EQUIP")] Equip = 100,
+    [pbr::OriginalName("ESLOT_TYPE_CONSUME")] Consume = 200,
+    [pbr::OriginalName("ESLOT_TYPE_ETC")] Etc = 300,
+  }
+
+  public enum EPickupFailReason {
+    [pbr::OriginalName("EPICKUP_FAIL_REASON_NONE")] None = 0,
+    [pbr::OriginalName("EPICKUP_FAIL_REASON_NOT_MINE")] NotMine = 1,
+    [pbr::OriginalName("EPICKUP_FAIL_REASON_FULL")] Full = 2,
+  }
+
+  public enum EAddItemType {
+    [pbr::OriginalName("EADD_ITEM_TYPE_NEW")] New = 0,
+    [pbr::OriginalName("EADD_ITEM_TYPE_OLD")] Old = 1,
+  }
+
+  public enum EItemStatus {
+    [pbr::OriginalName("EITEM_STATUS_NONE")] None = 0,
+    [pbr::OriginalName("EITEM_STATUS_EQUIPPED")] Equipped = 1,
+  }
+
+  public enum EConsumableType {
+    [pbr::OriginalName("ECONSUMABLE_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ECONSUMABLE_TYPE_HP")] Hp = 1,
+    [pbr::OriginalName("ECONSUMABLE_TYPE_MP")] Mp = 2,
+  }
+
+  public enum EEffectType {
+    [pbr::OriginalName("EEFFECT_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EEFFECT_TYPE_DAMAGE")] Damage = 1,
+    [pbr::OriginalName("EEFFECT_TYPE_HEAL")] Heal = 2,
+    [pbr::OriginalName("EEFFECT_TYPE_ADDSTAT")] Addstat = 3,
+  }
+
+  public enum EEffectDurationType {
+    [pbr::OriginalName("EEFFECT_DURATION_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EEFFECT_DURATION_TYPE_TEMPORARY")] Temporary = 1,
+    [pbr::OriginalName("EEFFECT_DURATION_TYPE_PERMANENT")] Permanent = 2,
   }
 
   #endregion

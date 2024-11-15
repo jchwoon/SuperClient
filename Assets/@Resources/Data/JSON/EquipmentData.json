@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "itemId": 1,
+      "effectId": 100,
+      "descId": "일반 검",
+      "name": "일반 검",
+      "prefabName": "NormalSword",
+      "imageName": "NormalSword_sprite",
+      "itemType": 1,
+      "stackable": false,
+      "maxStack": 1,
+      "classType": 1,
+      "requiredLevel": 3,
+      "equipItemType": 1
+    }
+  ]
+}

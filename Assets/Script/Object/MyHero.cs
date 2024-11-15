@@ -13,7 +13,8 @@ public class MyHero : Hero
     public MyHeroStatComponent MyHeroStat {  get; private set; }
     public SkillComponent SkillComponent { get; private set; }
     public CurrencyComponent CurrencyComponent { get; private set; }
-    public GrowthComponent GrowthInfo { get; protected set; }
+    public GrowthComponent GrowthInfo { get; private set; }
+    public InventoryComponent Inventory { get; private set; }
     public MyHeroInfo MyHeroInfo { get; private set; }
 
     protected override void Awake()
@@ -58,6 +59,7 @@ public class MyHero : Hero
         CurrencyComponent = new CurrencyComponent(this);
         MyHeroStat = new MyHeroStatComponent(this);
         GrowthInfo = new GrowthComponent(this);
+        Inventory = new InventoryComponent(this);
 
         Stat = MyHeroStat;
         Machine = MyHeroStateMachine;
@@ -119,4 +121,26 @@ public class MyHero : Hero
         FloatingTextController.RegisterOrSpawnText(exp, transform, Enums.FloatingFontType.Exp, isReward:true);
         FloatingTextController.RegisterOrSpawnText(gold, transform, Enums.FloatingFontType.Gold, isReward: true);
     }
+
+    #region PickupItem
+    public void ReqCheckCanPickup(int objectId)
+    {
+        PickupDropItemToS pickupItemPacket = new PickupDropItemToS();
+        pickupItemPacket.ObjectId = objectId;
+
+        Managers.NetworkManager.Send(pickupItemPacket);
+    }
+
+    public void ResCheckCanPickup(EPickupFailReason reason)
+    {
+        switch (reason)
+        {
+            case EPickupFailReason.Full:
+                Managers.UIManager.ShowToasUI("인벤토리가 가득 찼습니다!");
+                break;
+            default:
+                break;
+        }
+    }
+    #endregion
 }

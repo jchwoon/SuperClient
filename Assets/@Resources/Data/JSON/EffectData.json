@@ -2,31 +2,61 @@
   "effects": [
     {
       "effectId": 1,
-      "damageRatio": 1
+      "name": "워리어 기본공격 이펙트",
+      "damageRatio": 1,
+      "effectType": 1,
+      "effectDurationType": 0
     },
     {
       "effectId": 2,
-      "damageRatio": 1
+      "name": "Vornix 기본공격 이펙트",
+      "damageRatio": 1,
+      "effectType": 1,
+      "effectDurationType": 0
     },
     {
       "effectId": 100,
+      "name": "일반 검 장착 이펙트",
+      "damageRatio": 0,
+      "addStatValues": [
+        {
+          "statType": 5,
+          "value": 10
+        },
+        {
+          "statType": 9,
+          "value": 20,
+          "multiplier": true
+        }
+      ],
+      "effectType": 3,
+      "effectDurationType": 2
+    },
+    {
+      "effectId": 200,
+      "name": "빨간 포션(소) 이펙트",
       "damageRatio": 0,
       "addStatValues": [
         {
           "statType": 3,
-          "value": 50
+          "value": 30
         }
-      ]
+      ],
+      "effectType": 2,
+      "effectDurationType": 0
     },
     {
-      "effectId": 101,
+      "effectId": 201,
+      "name": "파란 포션(소) 이펙트",
       "damageRatio": 0,
       "addStatValues": [
         {
           "statType": 4,
-          "value": 20
+          "value": 15
         }
-      ]
+      ],
+      "effectType": 2,
+      "effectDurationType": 0
     }
   ]
 }

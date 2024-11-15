@@ -1,4 +1,6 @@
 using Data;
+using Google.Protobuf.Enum;
+using Google.Protobuf.Protocol;
 using Google.Protobuf.Struct;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +9,7 @@ using UnityEngine;
 public class DropItem : BaseObject
 {
     public ItemData ItemData { get; private set; }
+
     protected override void Awake()
     {
         base.Awake();

@@ -1,14 +1,28 @@
 {
   "rewards": [
     {
-      "rewardId": 1,
+      "rewardId": 100,
       "itemId": 100,
-      "name": "빨간 포션(소)"
+      "name": "빨간 포션(소)",
+      "count": 1
     },
     {
-      "rewardId": 2,
+      "rewardId": 101,
       "itemId": 101,
-      "name": "파란 포션(소)"
+      "name": "파란 포션(소)",
+      "count": 1
+    },
+    {
+      "rewardId": 1,
+      "itemId": 1,
+      "name": "일반 검",
+      "count": 1
+    },
+    {
+      "rewardId": 200,
+      "itemId": 200,
+      "name": "Vornix 고기",
+      "count": 1
     }
   ]
 }
