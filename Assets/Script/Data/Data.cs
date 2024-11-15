@@ -18,7 +18,8 @@ namespace Data
         public float MoveSpeed;
         public int AtkDamage;
         public int Defence;
-        public float AtkSpeed;
+        public float BaseAtkSpeed;
+        public int AddAtkSpeedMultiplier;
     }
 
     [Serializable]
@@ -161,6 +162,7 @@ namespace Data
     {
         public EStatType StatType;
         public float Value;
+        public bool Multiplier;
     }
 
     public class EffectData
@@ -244,14 +246,19 @@ namespace Data
     public class ItemData : BaseData
     {
         public int ItemId;
+        public int EffectId;
+        public string DescId;
         public bool Stackable;
         public int MaxStack;
         public string Name;
+        public string ImageName;
+        public EItemType ItemType;
     }
 
     public class ConsumableData : ItemData
     {
-        public int EffectId;
+        public float CoolTime;
+        public EConsumableType ConsumableType;
     }
 
     [Serializable]
@@ -266,6 +273,75 @@ namespace Data
             foreach (ConsumableData consumableData in items)
             {
                 dict.Add(consumableData.ItemId, consumableData);
+            }
+
+            return dict;
+        }
+    }
+
+    public class EquipmentData : ItemData
+    {
+        public EHeroClassType ClassType;
+        public EEquipItemType EquipItemType;
+        public int RequiredLevel;
+    }
+
+    [Serializable]
+    public class EquipmentDataLoader : ILoader<int, EquipmentData>
+    {
+        public List<EquipmentData> items = new List<EquipmentData>();
+
+        public Dictionary<int, EquipmentData> MakeDict()
+        {
+            Dictionary<int, EquipmentData> dict = new Dictionary<int, EquipmentData>();
+
+            foreach (EquipmentData equipmentData in items)
+            {
+                dict.Add(equipmentData.ItemId, equipmentData);
+            }
+
+            return dict;
+        }
+    }
+    public class EtcData : ItemData
+    {
+    }
+
+    [Serializable]
+    public class EtcDataLoader : ILoader<int, EtcData>
+    {
+        public List<EtcData> items = new List<EtcData>();
+
+        public Dictionary<int, EtcData> MakeDict()
+        {
+            Dictionary<int, EtcData> dict = new Dictionary<int, EtcData>();
+
+            foreach (EtcData etcData in items)
+            {
+                dict.Add(etcData.ItemId, etcData);
+            }
+
+            return dict;
+        }
+    }
+
+    public class DescriptionData
+    {
+        public string DescId;
+        public string Text;
+    }
+
+    public class DescriptionDataLoader : ILoader<string, DescriptionData>
+    {
+        public List<DescriptionData> descriptions = new List<DescriptionData>();
+
+        public Dictionary<string, DescriptionData> MakeDict()
+        {
+            Dictionary<string, DescriptionData> dict = new Dictionary<string, DescriptionData>();
+
+            foreach (DescriptionData descriptionData in descriptions)
+            {
+                dict.Add(descriptionData.DescId, descriptionData);
             }
 
             return dict;

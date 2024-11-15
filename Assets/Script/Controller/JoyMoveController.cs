@@ -35,7 +35,7 @@ public class JoyMoveController : MonoBehaviour
     private void SetJoyPos(PointerEventData eventData)
     {
         Vector2 touchPos = Vector2.zero;
-        bool inner = RectTransformUtility.ScreenPointToLocalPointInRectangle(_joyMoveRect, eventData.position, eventData.pressEventCamera, out touchPos);
+        bool inner = RectTransformUtility.ScreenPointToLocalPointInRectangle(_joyMoveRect, eventData.position, null, out touchPos);
         if (inner == true)
         {
             //[-0.5, 0.5]

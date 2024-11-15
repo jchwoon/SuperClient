@@ -11,9 +11,10 @@ public class ObjectManager
 {
     public MyHero MyHero { get; private set; }
     Dictionary<int, Hero> _heroes = new Dictionary<int, Hero>(); 
-    Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>(); 
+    Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
+    Dictionary<int, DropItem> _dropItems = new Dictionary<int, DropItem>();
     Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>(); 
-    public MyHero Spawn(MyHeroInfo myHeroInfo)
+    public MyHero Spawn(MyHeroInfo myHeroInfo, Action<MyHero> initComp)
     {
         HeroInfo heroInfo = myHeroInfo.HeroInfo;
         ObjectInfo objectInfo = heroInfo.CreatureInfo.ObjectInfo;
@@ -22,12 +23,14 @@ public class ObjectManager
         if (Managers.DataManager.HeroDict.TryGetValue(heroInfo.LobbyHeroInfo.ClassType, out heroData) == false)
             return null;
 
-        GameObject go = Managers.ResourceManager.Instantiate($"{heroInfo.LobbyHeroInfo.ClassType}_Init");
+        GameObject go = Managers.ResourceManager.Instantiate($"{heroInfo.LobbyHeroInfo.ClassType}");
         go.name = "MyHero";
         MyHero myHero = go.AddComponent<MyHero>();
         MyHero = myHero;
         myHero.Init(myHeroInfo, heroData);
         _objects.Add(objectInfo.ObjectId, go);
+
+        initComp?.Invoke(myHero);
         return myHero;
     }
 
@@ -39,7 +42,7 @@ public class ObjectManager
         if (Managers.DataManager.HeroDict.TryGetValue(heroInfo.LobbyHeroInfo.ClassType, out heroData) == false)
             return null;
 
-        GameObject go = Managers.ResourceManager.Instantiate($"{heroInfo.LobbyHeroInfo.ClassType}_Init");
+        GameObject go = Managers.ResourceManager.Instantiate($"{heroInfo.LobbyHeroInfo.ClassType}");
         go.name = $"{heroInfo.LobbyHeroInfo.Nickname}";
         Hero hero = go.AddComponent<Hero>();
         hero.Init(heroInfo, heroData);
@@ -86,11 +89,12 @@ public class ObjectManager
         if (Managers.DataManager.ItemDict.TryGetValue(objectInfo.TemplateId, out itemData) == false)
             return null;
 
-        GameObject go = Managers.ResourceManager.Instantiate(itemData.PrefabName, isPool: true);
+        GameObject go = Managers.ResourceManager.Instantiate(itemData.PrefabName, isPool: false);
         go.name = $"{itemData.Name}";
         DropItem dropItem = Utils.GetOrAddComponent<DropItem>(go);
         dropItem.Init(objectInfo);
         _objects.Add(objectInfo.ObjectId, go);
+        _dropItems.Add(objectInfo.ObjectId, dropItem);
 
         return dropItem;
     }
@@ -103,7 +107,7 @@ public class ObjectManager
         _objects.Remove(objectId);
         _heroes.Remove(objectId);
         _monsters.Remove(objectId);
-        Debug.Log("Despawn potion");
+        _dropItems.Remove(objectId);
 
         //Temp
         BaseObject creature = go.GetComponent<BaseObject>();
@@ -128,6 +132,18 @@ public class ObjectManager
         return creatures;
     }
 
+    public List<DropItem> GetAllDropItem()
+    {
+        List<DropItem> items = new List<DropItem>();
+
+        foreach (DropItem item in _dropItems.Values)
+        {
+            items.Add(item);
+        }
+
+        return items;
+    }
+
     public void Clear()
     {
         if (MyHero != null)
@@ -136,5 +152,6 @@ public class ObjectManager
         _objects.Clear();
         _monsters.Clear();
         _heroes.Clear();
+        _dropItems.Clear();
     }
 }

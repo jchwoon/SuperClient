@@ -36,7 +36,7 @@ public class MyHeroStateMachine : StateMachine
     public IdleState IdleState { get; set; }
     public MoveState MoveState { get; set; }
     public SkillState SkillState { get; set; }
-    public Vector2 MoveInput { get; set; } = Vector2.zero;
+    public Vector2 MoveInput { get; private set; } = Vector2.zero;
     public MoveToS MovePacket { get; set; }
     public MyHero Owner { get; set; }
     //어택모드가 활성화 되어있는지 아닌지
@@ -126,7 +126,7 @@ public class MyHeroStateMachine : StateMachine
         MoveInput = moveInput;
         if (moveInput != Vector2.zero)
             TargetMode = false;
-        else if (AttackMode == true)
+        else if (AttackMode == true)//MoveInput(joystickInput)이 없고 AttackMode가 활성화 돼있다면
             TargetMode = true;
     }
 

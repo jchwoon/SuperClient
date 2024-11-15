@@ -7,7 +7,6 @@ using UnityEngine;
 public class UIManager
 {
     private int _popupOrder = 10;
-    private LinkedList<PopupUI> _popupList = new LinkedList<PopupUI> ();
     private Dictionary<string, PopupUI> _popups = new Dictionary<string, PopupUI>();
 
     public Transform Parent
@@ -33,15 +32,6 @@ public class UIManager
             popup = go.GetComponent<T>();
             _popups.Add(name, popup);
         }
-        LinkedListNode<PopupUI> node = _popupList.Find(popup);
-        if (node == null)
-            _popupList.AddLast(popup);
-        else
-        {
-            _popupList.AddLast(popup);
-            _popupList.Remove(node);
-        }
-
 
         popup.gameObject.SetActive(true);
         popup.Canvas.sortingOrder = _popupOrder++;
@@ -58,6 +48,18 @@ public class UIManager
         popupUI.gameObject.SetActive(false);
 
         return popupUI;
+    }
+
+    public T GetPopupUI<T>(string name = null) where T : PopupUI
+    {
+        if (name == null)
+            name = typeof(T).Name;
+
+        PopupUI popup;
+        if (_popups.TryGetValue(name, out popup) == false)
+            return null;
+
+        return popup as T;
     }
 
     public T ShowSceneUI<T>(string name = null) where T : SceneUI
@@ -124,5 +126,10 @@ public class UIManager
         canvas.worldCamera = Camera.main;
 
         return hud;
+    }
+
+    public void Clear()
+    {
+        _popups.Clear();
     }
 }

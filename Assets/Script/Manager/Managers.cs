@@ -24,6 +24,7 @@ public class Managers : MonoBehaviour
     private MapManager _mapManager = new MapManager();
     private EventBusManager _eventBus = new EventBusManager();
     private PoolManager _poolManager = new PoolManager();
+    private ItemFactory _itemFactory = new ItemFactory();
 
     public static NetworkManager NetworkManager { get { return Instance._networkManager; } }
     public static SceneManagerEx SceneManagerEx { get { return Instance._sceneManager; } }
@@ -35,6 +36,7 @@ public class Managers : MonoBehaviour
     public static MapManager MapManager { get { return Instance._mapManager; } }
     public static EventBusManager EventBus { get { return Instance._eventBus; } }
     public static PoolManager PoolManager { get { return Instance._poolManager; } }
+    public static ItemFactory ItemFactory { get { return Instance._itemFactory; } }
 
 
     private void Awake()
@@ -68,5 +70,6 @@ public class Managers : MonoBehaviour
     {
         ObjectManager.Clear();
         PoolManager.Clear();
+        UIManager.Clear();
     }
 }

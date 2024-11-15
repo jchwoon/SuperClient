@@ -2,6 +2,7 @@ using Data;
 using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameScene : BaseScene
@@ -20,7 +21,10 @@ public class GameScene : BaseScene
     {
         Managers.UIManager.ShowSceneUI<GameSceneUI>();
         Managers.UIManager.ShowSceneUI<JoySceneUI>();
-        Managers.ObjectManager.Spawn(packet.MyHero);
+        Managers.ObjectManager.Spawn(packet.MyHero, (MyHero myHero) =>
+        {
+            myHero.Inventory.InitInventory(packet.Items.ToList());
+        });
 
         Managers.UIManager.ShowFadeUI();
     }   

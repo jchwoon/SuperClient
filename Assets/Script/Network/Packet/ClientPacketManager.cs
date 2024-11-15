@@ -32,6 +32,14 @@ public enum PacketId
   DieToC = 23,
   TeleportToC = 24,
   RewardToC = 25,
+  PickupDropItemToS = 26,
+  PickupDropItemToC = 27,
+  AddItemToC = 28,
+  UseItemToS = 29,
+  UseItemToC = 30,
+  EquipItemToS = 31,
+  UnEquipItemToS = 32,
+  ChangeSlotTypeToC = 33,
 
 }
 
@@ -98,6 +106,14 @@ class PacketManager
         _handler.Add((ushort)PacketId.TeleportToC, PacketHandler.TeleportToCHandler);
         _parseHandler.Add((ushort)PacketId.RewardToC, ParsePacket<RewardToC>);
         _handler.Add((ushort)PacketId.RewardToC, PacketHandler.RewardToCHandler);
+        _parseHandler.Add((ushort)PacketId.PickupDropItemToC, ParsePacket<PickupDropItemToC>);
+        _handler.Add((ushort)PacketId.PickupDropItemToC, PacketHandler.PickupDropItemToCHandler);
+        _parseHandler.Add((ushort)PacketId.AddItemToC, ParsePacket<AddItemToC>);
+        _handler.Add((ushort)PacketId.AddItemToC, PacketHandler.AddItemToCHandler);
+        _parseHandler.Add((ushort)PacketId.UseItemToC, ParsePacket<UseItemToC>);
+        _handler.Add((ushort)PacketId.UseItemToC, PacketHandler.UseItemToCHandler);
+        _parseHandler.Add((ushort)PacketId.ChangeSlotTypeToC, ParsePacket<ChangeSlotTypeToC>);
+        _handler.Add((ushort)PacketId.ChangeSlotTypeToC, PacketHandler.ChangeSlotTypeToCHandler);
     
     }
 

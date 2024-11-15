@@ -1,3 +1,4 @@
+using Google.Protobuf.Enum;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,9 +15,8 @@ public class Utils
     }
     public static int GetAccountId()
     {
-        return 5;
-        //int deviceIdHash = SystemInfo.deviceUniqueIdentifier.GetHashCode();
-        //return deviceIdHash;
+        int deviceIdHash = SystemInfo.deviceUniqueIdentifier.GetHashCode();
+        return deviceIdHash;
     }
     public static GameObject FindChild(GameObject go, string name = null, bool recursive = false)
     {
@@ -56,4 +56,26 @@ public class Utils
 
         return null;
     }
+
+    private static readonly Dictionary<EStatType, string> _statToTextMap = new Dictionary<EStatType, string>
+    {
+        { EStatType.MaxHp, "최대 체력" },
+        { EStatType.MaxMp, "최대 마나" },
+        { EStatType.Hp, "체력" },
+        { EStatType.Mp, "마나" },
+        { EStatType.Atk, "공격력" },
+        { EStatType.Defence, "방어력" },
+        { EStatType.MoveSpeed, "이동속도" },
+        { EStatType.AtkSpeed, "공격속도" },
+        { EStatType.AddAtkSpeedMultiplier, "추가 공격속도" }
+    };
+
+    public static string GetStatTypeText(EStatType statType)
+    {
+        if (_statToTextMap.TryGetValue(statType, out string text) == true)
+            return text;
+        return null;
+    }
+
+    public static long TickCount { get { return (long)(Time.time * 1000); } }
 }

@@ -8,12 +8,20 @@
       "rewardExp": 10,
       "rewardInfos": [
         {
-          "rewardId": 1,
+          "rewardId": 100,
           "probability": 1
         },
         {
-          "rewardId": 2,
+          "rewardId": 101,
           "probability": 0.5
+        },
+        {
+          "rewardId": 1,
+          "probability": 0.1
+        },
+        {
+          "rewardId": 200,
+          "probability": 1
         }
       ]
     }

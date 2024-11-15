@@ -11,4 +11,9 @@ public class PopupUI : BaseUI
 
         Canvas = GetComponent<Canvas>();
     }
+
+    protected void ClosePopup<T>() where T : PopupUI
+    {
+        Managers.UIManager.ClosePopupUI<T>();
+    }
 }

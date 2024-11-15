@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: be905cce12f85014aa17722544911499
   m_SerializeEntries:
-  - m_GUID: 11df8a3e1fe95314b86018cc945e5a2e
-    m_Address: Warrior_Init
+  - m_GUID: b419e164ab53516438da636332342da9
+    m_Address: Warrior
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
@@ -37,6 +37,18 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7cafb89b5a0f61f479d0a748962abbbc
     m_Address: Small_HealthPotion
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c53fbdb3e9a9ce42b34631394511fb7
+    m_Address: VornixMeat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 949ce6572c25a5446b035cac76c74aa4
+    m_Address: NormalSword
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
