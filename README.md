@@ -7,7 +7,7 @@
 * 📌 **장르 : 3D MMORPG**
 * 📅 **2024. 09 ~ 진행중**
 * 🔧 **기술 스택**
-  * C#, Unity
+  * C#, .Net, Unity, EntityFrameworkCore, SQLServer
 * ### [SuperWorld 시연영상](https://www.youtube.com/watch?v=Q42nrx8J2Wo)
 
 # 👋 트러블 슈팅
