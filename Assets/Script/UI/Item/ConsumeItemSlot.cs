@@ -22,7 +22,10 @@ public class ConsumeItemSlot : ItemSlot
     {
         Consumable consumable = (Consumable)_item;
         if (consumable == null)
+        {
+            ClearCoolInfo();
             return;
+        }
 
         if (consumable.ConsumableData.ConsumableType == EConsumableType.None)
             return;
@@ -36,8 +39,7 @@ public class ConsumeItemSlot : ItemSlot
         }
         else
         {
-            _coolTimeImage.fillAmount = 0;
-            _coolTimeTxt.text = "";
+            ClearCoolInfo();
         }
     }
 
@@ -78,5 +80,11 @@ public class ConsumeItemSlot : ItemSlot
                 Managers.UIManager.ShowToasUI("MP가 최대인 상태에서는 사용할 수 없습니다.");
                 break;
         }
+    }
+
+    private void ClearCoolInfo()
+    {
+        _coolTimeImage.fillAmount = 0;
+        _coolTimeTxt.text = "";
     }
 }

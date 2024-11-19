@@ -11,12 +11,10 @@ public class NetworkManager
     ServerSession _session = null;
     public Action OnConnectedAction { get; set; }
     public Action OnFailedAction { get; set; }
-    public void Connect()
+    public void Connect(IPEndPoint endPoint)
     {
         _session = new ServerSession();
         Connector connector = new Connector();
-        IPAddress ipAdress = IPAddress.Parse("127.0.0.1");
-        IPEndPoint endPoint = new IPEndPoint(ipAdress, 4000);
 
         connector.OnConnectedAction = OnConnectedAction;
         connector.OnFailedAction = OnFailedAction;

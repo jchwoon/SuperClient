@@ -21,43 +21,43 @@ MonoBehaviour:
     m_Address: Archer_sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - sPreLoad
+    - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 09fa17c19aae92f4b8180bfdaace66f9
     m_Address: Mage_sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - sPreLoad
+    - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 521427e5fa6df7e44aefdb8491bbd29f
     m_Address: Warrior_sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - sPreLoad
+    - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e52ea25af699fd445b7046374f81a5b9
     m_Address: Small_HealthPotion_sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - sPreLoad
+    - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6592b916f86b19e428db6f6847c7b6dd
     m_Address: Small_ManaPotion_sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - sPreLoad
+    - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4a39cb4b272639541b7bd5ac0649acf7
     m_Address: VornixMeat_sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - sPreLoad
+    - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5fd50594014b70e48bd6993443d46b32
     m_Address: NormalSword_sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - sPreLoad
+    - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ddddc73012247774a97359e9af8f24c1, type: 2}

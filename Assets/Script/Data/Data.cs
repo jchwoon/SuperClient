@@ -9,6 +9,30 @@ using UnityEngine;
 
 namespace Data
 {
+    public class ConfigData
+    {
+        public Enums.EConfigIds ConfigId;
+        public string Name;
+        public string Ip;
+        public int Port;
+    }
+
+    [Serializable]
+    public class ConfigDataLoader : ILoader<Enums.EConfigIds, ConfigData>
+    {
+        public List<ConfigData> configs = new List<ConfigData>();
+        public Dictionary<Enums.EConfigIds, ConfigData> MakeDict()
+        {
+            Dictionary<Enums.EConfigIds, ConfigData> dict = new Dictionary<Enums.EConfigIds, ConfigData>();
+
+            foreach (ConfigData config in configs)
+            {
+                dict.Add(config.ConfigId, config);
+            }
+
+            return dict;
+        }
+    }
     public class HeroStatData
     {
         public int Level;
@@ -331,6 +355,7 @@ namespace Data
         public string Text;
     }
 
+    [Serializable]
     public class DescriptionDataLoader : ILoader<string, DescriptionData>
     {
         public List<DescriptionData> descriptions = new List<DescriptionData>();

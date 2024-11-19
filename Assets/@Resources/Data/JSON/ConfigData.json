@@ -1,0 +1,16 @@
+{
+  "configs": [
+    {
+      "configId": 1,
+      "name": "Local",
+      "ip": "127.0.0.1",
+      "port": 4000
+    },
+    {
+      "configId": 2,
+      "name": "Remote",
+      "ip": "test.superworld.p-e.kr",
+      "port": 4000
+    }
+  ]
+}

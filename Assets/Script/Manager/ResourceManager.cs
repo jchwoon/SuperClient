@@ -71,15 +71,16 @@ public class ResourceManager
         {
             loadKey = $"{key}[{key}]";
         }
-        if (_resources.TryGetValue(key, out UnityEngine.Object resource))
-        {
-            action?.Invoke(resource as T);
-            return;
-        }
 
         AsyncOperationHandle<T> asyncOperation = Addressables.LoadAssetAsync<T>(loadKey);
         asyncOperation.Completed += (op) =>
         {
+            if (_resources.TryGetValue(key, out UnityEngine.Object resource))
+            {
+                action?.Invoke(op.Result);
+                return;
+            }
+
             _resources.Add(key, op.Result);
             action?.Invoke(op.Result);
         };
@@ -94,11 +95,22 @@ public class ResourceManager
 
             foreach (var result in op.Result)
             {
-                LoadAsync<T>(result.PrimaryKey, (obj) =>
+                if (result.ResourceType == typeof(Texture2D) || result.ResourceType == typeof(Sprite))
                 {
-                    loadCount++;
-                    action?.Invoke(result.PrimaryKey, loadCount, totalCount);
-                });
+                    LoadAsync<Sprite>(result.PrimaryKey, (obj) =>
+                    {
+                        loadCount++;
+                        action?.Invoke(result.PrimaryKey, loadCount, totalCount);
+                    });
+                }
+                else
+                {
+                    LoadAsync<T>(result.PrimaryKey, (obj) =>
+                    {
+                        loadCount++;
+                        action?.Invoke(result.PrimaryKey, loadCount, totalCount);
+                    });
+                }
             }
         };
     }

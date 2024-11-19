@@ -26,11 +26,13 @@ public class DataManager
     public Dictionary<string, DescriptionData> DescriptionDict { get; private set; } = new Dictionary<string, DescriptionData>();
     public Dictionary<int, EquipmentData> EquipmentDict { get; private set; } = new Dictionary<int, EquipmentData>();
     public Dictionary<int, EtcData> EtcDict { get; private set; } = new Dictionary<int, EtcData>();
+    public Dictionary<Enums.EConfigIds, ConfigData> ConfigDict { get; private set; } = new Dictionary<Enums.EConfigIds, ConfigData>();
     public  void Init()
     {
         if (_isInit == true)
             return;
         _isInit = true;
+        ConfigDict = LoadJson<ConfigDataLoader, Enums.EConfigIds, ConfigData>("ConfigData").MakeDict();
         HeroStatDict = LoadJson<HeroStatDataLoader, int, HeroStatData>("HeroStatData").MakeDict();
         HeroDict = LoadJson<HeroDataLoader, EHeroClassType, HeroData>("HeroData").MakeDict();
         RoomDict = LoadJson<RoomDataLoader, int, RoomData>("RoomData").MakeDict();

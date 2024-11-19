@@ -13,7 +13,9 @@ namespace MyHeroState
 {
     public class MoveState : BaseState
     {
-        Coroutine _sendRoutine;
+        //Coroutine _sendRoutine;
+        float _currentTime;
+        float _sendMovePacketCycle = 0.3f;
 
         public MoveState(MyHeroStateMachine heroMachine) : base(heroMachine)
         {
@@ -24,12 +26,12 @@ namespace MyHeroState
             base.Exit();
             MyHero owner = _heroMachine.Owner;
             _heroMachine.SetAnimParameter(owner, owner.AnimData.MoveSpeedHash, 0.0f);
-            CoroutineHelper.Instance.StopHelperCoroutine(_sendRoutine);
+            //CoroutineHelper.Instance.StopHelperCoroutine(_sendRoutine);
         }
         public override void Enter()
         {
             base.Enter();
-            _sendRoutine = CoroutineHelper.Instance.StartHelperCoroutine(SendMyPos());
+            //_sendRoutine = CoroutineHelper.Instance.StartHelperCoroutine(SendMyPos());
             MyHero owner = _heroMachine.Owner;
             _heroMachine.SetAnimParameter(owner, owner.AnimData.MoveSpeedHash, _heroMachine.Owner.Stat.StatInfo.MoveSpeed);
             _heroMachine.CreatureState = ECreatureState.Move;
@@ -87,6 +89,9 @@ namespace MyHeroState
         private void ToMove(Vector3 destPos)
         {
             _owner.transform.position = Vector3.MoveTowards(_owner.transform.position, destPos, _heroMachine.Owner.Stat.StatInfo.MoveSpeed * Time.deltaTime);
+            _currentTime += Time.deltaTime;
+            if (_currentTime >= _sendMovePacketCycle)
+                SendMyPos();
         }
         private void RotateToMoveDir(Vector3 target)
         {
@@ -110,21 +115,17 @@ namespace MyHeroState
             return false;
         }
 
-        IEnumerator SendMyPos()
+        private void SendMyPos()
         {
-            
-            while (true)
-            {
-                if (_owner == null)
-                    yield break;
+            if (_owner == null)
+                return;
 
-                _heroMachine.MovePacket.PosInfo.PosX = _owner.transform.position.x;
-                _heroMachine.MovePacket.PosInfo.PosY = _owner.transform.position.y;
-                _heroMachine.MovePacket.PosInfo.PosZ = _owner.transform.position.z;
-                _heroMachine.MovePacket.PosInfo.RotY = _owner.transform.eulerAngles.y;
-                Managers.NetworkManager.Send(_heroMachine.MovePacket);
-                yield return new WaitForSeconds(0.2f);
-            }
+            _heroMachine.MovePacket.PosInfo.PosX = _owner.transform.position.x;
+            _heroMachine.MovePacket.PosInfo.PosY = _owner.transform.position.y;
+            _heroMachine.MovePacket.PosInfo.PosZ = _owner.transform.position.z;
+            _heroMachine.MovePacket.PosInfo.RotY = _owner.transform.eulerAngles.y;
+            Managers.NetworkManager.Send(_heroMachine.MovePacket);
+            _currentTime = 0;
         }
     }
 }

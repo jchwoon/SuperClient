@@ -22,7 +22,6 @@ public class CreatureHUD : BaseUI
     enum GameObjects
     {
         TargetMark,
-        Level,
         Bar
     }
 
@@ -103,7 +102,6 @@ public class CreatureHUD : BaseUI
     private void SetMonsterBar()
     {
         Get<Slider>((int)Sliders.MpBar).gameObject.SetActive(false);
-        Get<GameObject>((int)GameObjects.Level).SetActive(false);
         gameObject.GetComponent<Canvas>().sortingOrder = (int)Enums.SortingOrderInHUD.TargetHUD;
 
         StatInfo statInfo = _owner.Stat.StatInfo;

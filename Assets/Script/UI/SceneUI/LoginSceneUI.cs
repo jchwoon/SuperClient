@@ -1,6 +1,8 @@
+using Data;
 using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -57,16 +59,7 @@ public class LoginSceneUI : SceneUI
             _stateTxt.text = $"데이타 로딩중... : {key} {currentCount} / {totalCount}";
             if (currentCount == totalCount)
             {
-                _stateTxt.text = "";
-            }
-        });
-
-        Managers.ResourceManager.LoadAllAsync<Sprite>("sPreLoad", (key, currentCount, totalCount) =>
-        {
-            _stateTxt.text = $"데이타 로드 완료... : {key} {currentCount} / {totalCount}";
-            if (currentCount == totalCount)
-            {
-                _stateTxt.text = $"데이타 로드 완료";
+                _stateTxt.text = "데이타 로드 완료";
                 OnDataLoaded();
             }
         });
@@ -76,10 +69,21 @@ public class LoginSceneUI : SceneUI
     {
         Managers.DataManager.Init();
         _stateTxt.text = $"게임 서버에 연결 중...";
+
+        //Local
+        if (Managers.DataManager.ConfigDict.TryGetValue(Enums.EConfigIds.Local, out ConfigData configData) == false)
+            return;
+        IPAddress ipAddress = IPAddress.Parse(configData.Ip);
+
+        //Remote
+        //if (Managers.DataManager.ConfigDict.TryGetValue(Enums.EConfigIds.Remote, out ConfigData configData) == false)
+        //    return;
+        //IPAddress ipAddress = Dns.GetHostAddresses(configData.Ip)[0];
+        IPEndPoint endPoint = new IPEndPoint(ipAddress, configData.Port);
+
         Managers.NetworkManager.OnConnectedAction = OnConnected;
         Managers.NetworkManager.OnFailedAction = OnFailed;
-        Managers.NetworkManager.Connect();
-
+        Managers.NetworkManager.Connect(endPoint);
     }
 
     private void OnConnected()

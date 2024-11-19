@@ -83,4 +83,10 @@ public class Enums
         FullMp,
         Cool
     }
+
+    public enum EConfigIds
+    {
+        Local = 1,
+        Remote = 2,
+    }
 }

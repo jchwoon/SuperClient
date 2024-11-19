@@ -708,6 +708,10 @@ PrefabInstance:
       value: -135
       objectReference: {fileID: 0}
     - target: {fileID: 1918368505650911395, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918368505650911395, guid: 4069d55cab1f8844f945d15d1f8b7529, type: 3}
       propertyPath: m_MatchWidthOrHeight
       value: 1
       objectReference: {fileID: 0}
