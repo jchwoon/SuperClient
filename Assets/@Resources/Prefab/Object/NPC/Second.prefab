@@ -721,7 +721,7 @@ GameObject:
   - component: {fileID: 2763914743243945539}
   - component: {fileID: 2436971512463497434}
   m_Layer: 0
-  m_Name: NPC_Quest
+  m_Name: Second
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

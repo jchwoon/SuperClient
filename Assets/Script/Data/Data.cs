@@ -372,5 +372,32 @@ namespace Data
             return dict;
         }
     }
+
+    public class NPCData : BaseData
+    {
+        public int NpcId;
+        public int RoomId;
+        public string Name;
+        public float XPos;
+        public float YPos;
+        public float ZPos;
+    }
+
+    [Serializable]
+    public class NPCDataLoader : ILoader<int, NPCData>
+    {
+        public List<NPCData> npcs = new List<NPCData>();
+        public Dictionary<int, NPCData> MakeDict()
+        {
+            Dictionary<int, NPCData> dict = new Dictionary<int, NPCData>();
+
+            foreach (NPCData npcDatas in npcs)
+            {
+                dict.Add(npcDatas.NpcId, npcDatas);
+            }
+
+            return dict;
+        }
+    }
 }
 

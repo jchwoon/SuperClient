@@ -27,6 +27,9 @@ public class DataManager
     public Dictionary<int, EquipmentData> EquipmentDict { get; private set; } = new Dictionary<int, EquipmentData>();
     public Dictionary<int, EtcData> EtcDict { get; private set; } = new Dictionary<int, EtcData>();
     public Dictionary<Enums.EConfigIds, ConfigData> ConfigDict { get; private set; } = new Dictionary<Enums.EConfigIds, ConfigData>();
+    public Dictionary<int, NPCData> NpcDict { get; private set; } = new Dictionary<int, NPCData>();
+
+
     public  void Init()
     {
         if (_isInit == true)
@@ -42,6 +45,8 @@ public class DataManager
         RewardDict = LoadJson<RewardDataLoader, int, RewardData>("RewardData").MakeDict();
         RewardTableDict = LoadJson<RewardTableDataLoadaer, int, RewardTableData>("RewardTableData").MakeDict();
         DescriptionDict = LoadJson<DescriptionDataLoader, string, DescriptionData>("DescriptionData").MakeDict();
+        NpcDict = LoadJson<NPCDataLoader, int, NPCData>("NPCData").MakeDict();
+
         //Item
         ConsumableDict = LoadJson<ConsumableDataLoader, int, ConsumableData>("ConsumableData").MakeDict();
         EquipmentDict = LoadJson<EquipmentDataLoader, int, EquipmentData>("EquipmentData").MakeDict();

@@ -5,7 +5,12 @@
       "name": "Village",
       "startPosX": 0,
       "startPosY": 0,
-      "startPosZ": -10
+      "startPosZ": -10,
+      "npcs": [
+        1,
+        2,
+        3
+      ]
     }
   ]
 }

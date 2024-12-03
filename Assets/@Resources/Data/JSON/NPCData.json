@@ -1,0 +1,31 @@
+{
+  "npcs": [
+    {
+      "npcId": 1,
+      "roomId": 1,
+      "name": "first",
+      "prefabName": "First",
+      "xPos": -10.9,
+      "yPos": 0,
+      "zPos": -20.1
+    },
+    {
+      "npcId": 2,
+      "roomId": 1,
+      "name": "second",
+      "prefabName": "Second",
+      "xPos": -1.1,
+      "yPos": 0,
+      "zPos": 1
+    },
+    {
+      "npcId": 3,
+      "roomId": 1,
+      "name": "third",
+      "prefabName": "Third",
+      "xPos": 10.1,
+      "yPos": 0,
+      "zPos": -10.1
+    }
+  ]
+}

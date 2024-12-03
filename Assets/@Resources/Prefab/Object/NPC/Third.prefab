@@ -2062,7 +2062,7 @@ GameObject:
   - component: {fileID: 8611912162569052992}
   - component: {fileID: 8073002527096589785}
   m_Layer: 0
-  m_Name: NPC_SkillShop
+  m_Name: Third
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

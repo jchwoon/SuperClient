@@ -609,7 +609,7 @@ GameObject:
   - component: {fileID: 122934220681956237}
   - component: {fileID: 449930572422964500}
   m_Layer: 0
-  m_Name: NPC_GeneralShop
+  m_Name: First
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

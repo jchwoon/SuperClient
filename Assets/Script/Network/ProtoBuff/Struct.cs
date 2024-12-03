@@ -46,8 +46,9 @@ namespace Google.Protobuf.Struct {
             "LlByb3RvY29sLkVPYmplY3RUeXBlEg4KBnJvb21JZBgEIAEoBRIiCgdwb3NJ",
             "bmZvGAUgASgLMhEuUHJvdG9jb2wuUG9zSW5mbyJmCghJdGVtSW5mbxIQCghp",
             "dGVtRGJJZBgBIAEoBRISCgp0ZW1wbGF0ZUlkGAIgASgFEg0KBWNvdW50GAMg",
-            "ASgFEiUKCHNsb3RUeXBlGAQgASgOMhMuUHJvdG9jb2wuRVNsb3RUeXBlQhmq",
-            "AhZHb29nbGUuUHJvdG9idWYuU3RydWN0YgZwcm90bzM="));
+            "ASgFEiUKCHNsb3RUeXBlGAQgASgOMhMuUHJvdG9jb2wuRVNsb3RUeXBlIjMK",
+            "CVNraWxsSW5mbxIPCgdza2lsbElkGAEgASgFEhUKDXNraWxsQ29vbHRpbWUY",
+            "AiABKAVCGaoCFkdvb2dsZS5Qcm90b2J1Zi5TdHJ1Y3RiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -58,7 +59,8 @@ namespace Google.Protobuf.Struct {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.StatInfo), global::Google.Protobuf.Struct.StatInfo.Parser, new[]{ "Hp", "MaxHp", "MoveSpeed", "ChaseSpeed", "AtkDamage", "BaseAtkSpeed", "AtkSpeed", "Defence", "Mp", "MaxMp", "AddAtkSpeedMultiplier" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.PosInfo), global::Google.Protobuf.Struct.PosInfo.Parser, new[]{ "PosX", "PosY", "PosZ", "RotY" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ObjectInfo), global::Google.Protobuf.Struct.ObjectInfo.Parser, new[]{ "ObjectId", "TemplateId", "ObjectType", "RoomId", "PosInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ItemInfo), global::Google.Protobuf.Struct.ItemInfo.Parser, new[]{ "ItemDbId", "TemplateId", "Count", "SlotType" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ItemInfo), global::Google.Protobuf.Struct.ItemInfo.Parser, new[]{ "ItemDbId", "TemplateId", "Count", "SlotType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillInfo), global::Google.Protobuf.Struct.SkillInfo.Parser, new[]{ "SkillId", "SkillCooltime" }, null, null, null, null)
           }));
     }
     #endregion
@@ -2767,6 +2769,241 @@ namespace Google.Protobuf.Struct {
           }
           case 32: {
             SlotType = (global::Google.Protobuf.Enum.ESlotType) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class SkillInfo : pb::IMessage<SkillInfo>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SkillInfo> _parser = new pb::MessageParser<SkillInfo>(() => new SkillInfo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SkillInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Google.Protobuf.Struct.StructReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SkillInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SkillInfo(SkillInfo other) : this() {
+      skillId_ = other.skillId_;
+      skillCooltime_ = other.skillCooltime_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SkillInfo Clone() {
+      return new SkillInfo(this);
+    }
+
+    /// <summary>Field number for the "skillId" field.</summary>
+    public const int SkillIdFieldNumber = 1;
+    private int skillId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int SkillId {
+      get { return skillId_; }
+      set {
+        skillId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "skillCooltime" field.</summary>
+    public const int SkillCooltimeFieldNumber = 2;
+    private int skillCooltime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int SkillCooltime {
+      get { return skillCooltime_; }
+      set {
+        skillCooltime_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SkillInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SkillInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (SkillId != other.SkillId) return false;
+      if (SkillCooltime != other.SkillCooltime) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (SkillId != 0) hash ^= SkillId.GetHashCode();
+      if (SkillCooltime != 0) hash ^= SkillCooltime.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (SkillId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(SkillId);
+      }
+      if (SkillCooltime != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(SkillCooltime);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (SkillId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(SkillId);
+      }
+      if (SkillCooltime != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(SkillCooltime);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (SkillId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillId);
+      }
+      if (SkillCooltime != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillCooltime);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SkillInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.SkillId != 0) {
+        SkillId = other.SkillId;
+      }
+      if (other.SkillCooltime != 0) {
+        SkillCooltime = other.SkillCooltime;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            SkillId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            SkillCooltime = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            SkillId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            SkillCooltime = input.ReadInt32();
             break;
           }
         }

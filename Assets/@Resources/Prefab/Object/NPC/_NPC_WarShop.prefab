@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 4929021509808926839}
   - component: {fileID: 4894814178697322222}
   m_Layer: 0
-  m_Name: NPC_WarShop
+  m_Name: _NPC_WarShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

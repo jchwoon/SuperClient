@@ -14,6 +14,7 @@ public class ObjectManager
     Dictionary<int, Monster> _monsters = new Dictionary<int, Monster>();
     Dictionary<int, DropItem> _dropItems = new Dictionary<int, DropItem>();
     Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>(); 
+    Dictionary<int, NPC> _npcs = new Dictionary<int, NPC>(); 
     public MyHero Spawn(MyHeroInfo myHeroInfo, Action<MyHero> initComp)
     {
         HeroInfo heroInfo = myHeroInfo.HeroInfo;
@@ -56,7 +57,13 @@ public class ObjectManager
     {
         EObjectType type = creatureInfo.ObjectInfo.ObjectType;
         if (type == EObjectType.Monster)
+        {
             MonsterSpawn(creatureInfo);
+        }
+        else if(type == EObjectType.Npc)
+        {
+            NPCSpawn(creatureInfo);
+        }
     }
 
     public void Spawn(ObjectInfo objectInfo)
@@ -98,7 +105,23 @@ public class ObjectManager
 
         return dropItem;
     }
-    
+    private NPC NPCSpawn(CreatureInfo creatureInfo)
+    {
+        ObjectInfo objectInfo = creatureInfo.ObjectInfo;
+
+        NPCData npcData;
+        if (Managers.DataManager.NpcDict.TryGetValue(creatureInfo.ObjectInfo.TemplateId, out npcData) == false)
+            return null;
+
+        GameObject go = Managers.ResourceManager.Instantiate(npcData.PrefabName, isPool: true);
+        go.name = $"{npcData.Name}";
+        NPC npc = Utils.GetOrAddComponent<NPC>(go);
+        npc.Init(objectInfo);
+        _objects.Add(objectInfo.ObjectId, go);
+        _npcs.Add(objectInfo.ObjectId, npc);
+
+        return npc;
+    }
     public void DeSpawn(int objectId)
     {
         GameObject go = FindById(objectId);
