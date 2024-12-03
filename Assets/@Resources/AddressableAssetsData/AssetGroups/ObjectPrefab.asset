@@ -53,20 +53,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 93eddc91b7f1be4449870406d95a22ed
-    m_Address: First
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: aba1b6f0e51f89843957d3c7d572224a
+  - m_GUID: e3e60bddfb4b5b8448ae0d5ed6cac47b
     m_Address: Second
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5728b173df1506244a1514016c912d34
+  - m_GUID: 9dc75ccc202672a43b5704ad7bd6ee19
     m_Address: Third
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e9ce91302e0d784aa3d3e9a015f4149
+    m_Address: First
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
