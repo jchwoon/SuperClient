@@ -21,9 +21,9 @@ public class StoreUI : PopupUI
         EquipContent,
         ConsumeContent,
         EtcContent,
-        StoreContent,
         BuyBtn,
-        SellBtn
+        SellBtn,
+        StoreContent
     }
     enum InvenType
     {
@@ -48,6 +48,9 @@ public class StoreUI : PopupUI
     GameObject _currentActiveInvenTab;
     GameObject _currentActiveInven;
     InvenType? _currentInvenType = null;
+
+    GameObject _buyBtn;
+    GameObject _sellBtn;
 
     //플레이어가 선택한 슬롯.
     ItemSlot _activeSlot;
@@ -77,6 +80,10 @@ public class StoreUI : PopupUI
         _consumeInven = Get<GameObject>((int)GameObjects.ConsumeInven);
         _etcInven = Get<GameObject>((int)GameObjects.EtcInven);
 
+        _buyBtn = Get<GameObject>((int)GameObjects.BuyBtn);
+        _sellBtn = Get<GameObject>((int)GameObjects.SellBtn);
+
+
         // 슬롯 등록
         GameObject storeContent = Get<GameObject>((int)GameObjects.StoreContent);
         if (storeContent != null)
@@ -94,8 +101,10 @@ public class StoreUI : PopupUI
         BindEvent(_etcInvenTab, (eventData) => { OnChangeTab(eventData, _etcInvenTab, _etcInven, InvenType.Etc); });
 
         BindEvent(Get<GameObject>((int)GameObjects.CloseBtn), OnCloseBtnClicked);
-        BindEvent(Get<GameObject>((int)GameObjects.BuyBtn), OnBuyItemClicked);
-        BindEvent(Get<GameObject>((int)GameObjects.SellBtn), OnSellItemClicked);
+
+        // 상점 구매, 판매
+        BindEvent(_buyBtn, OnBuyItemClicked);
+        BindEvent(_sellBtn, OnSellItemClicked);
     }
 
     protected override void Start()
@@ -143,7 +152,6 @@ public class StoreUI : PopupUI
 
         RefreshSlot(invenInfo);
         RefreshItem(invenInfo);
-        //RefreshEquippedItem(inventory);
     }
 
     private void RefreshSlot(InvenInfo invenInfo)
@@ -167,18 +175,6 @@ public class StoreUI : PopupUI
         }
     }
 
-
-    //private void RefreshEquippedItem(InventoryComponent inventory)
-    //{
-    //    foreach (EquippedSlot slot in _equippedSlotDict.Values)
-    //        slot.Clear();
-
-    //    List<Equipment> equipItems = inventory.GetAllEquippedItem();
-    //    foreach (Equipment equip in equipItems)
-    //    {
-    //        _equippedSlotDict[equip.SlotType].SetInfo(equip);
-    //    }
-    //}
 
     private InvenInfo GetCurrentActiveInvenInfo(InventoryComponent inventory, MyHero myHero, InvenType invenType)
     {
@@ -231,14 +227,13 @@ public class StoreUI : PopupUI
 
     public void OnBuyItemClicked(PointerEventData eventData)
     {
-        Item selectedItem = _activeSlot.GiveItemData();
-
         // 선택된 슬롯이 없는 경우 반환
-        if (_activeSlot == null || selectedItem == null)
+        if (_activeSlot == null || _activeSlot.GiveItemData() == null)
         {
             return;
         }
 
+        Item selectedItem = _activeSlot.GiveItemData();
 
         // 플레이어 데이터 가져오기
         MyHero myHero = Managers.ObjectManager.MyHero;
@@ -268,14 +263,13 @@ public class StoreUI : PopupUI
 
     public void OnSellItemClicked(PointerEventData eventData)
     {
-
-        Item selectedItem = _activeSlot.GiveItemData();
-
         // 선택된 슬롯이 없는 경우 반환
-        if (_activeSlot == null || selectedItem == null)
+        if (_activeSlot == null || _activeSlot.GiveItemData() == null)
         {
             return;
         }
+
+        Item selectedItem = _activeSlot.GiveItemData();
 
         // 판매 가격 확인
         int sellPrice = selectedItem.Price;
