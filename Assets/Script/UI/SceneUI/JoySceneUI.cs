@@ -17,6 +17,8 @@ public class JoySceneUI : SceneUI
 
     JoyMoveController _joyMoveController;
     JoyPickupController _joyPickupController;
+    JoyAttackController _joyAttackController;
+
     Image _atkBtnImg;
     [SerializeField]
     Color AtkActivationColor = Color.white;
@@ -34,6 +36,7 @@ public class JoySceneUI : SceneUI
         _atkBtnImg = atkBtn.GetComponent<Image>();
         _joyMoveController = movestick.GetComponent<JoyMoveController>();
         _joyPickupController = pickUpBtn.GetComponent<JoyPickupController>();
+        _joyAttackController = atkBtn.GetComponent<JoyAttackController>();
 
         BindEvent(atkBtn, OnAttackBtnClicked);
         BindEvent(movestick, OnMovestickPointerDown, Enums.TouchEvent.PointerDown);
@@ -80,7 +83,7 @@ public class JoySceneUI : SceneUI
 
     private void OnAttackBtnClicked(PointerEventData eventData)
     {
-        Managers.EventBus.InvokeEvent(Enums.EventType.AtkBtnClick);
+        _joyAttackController.OnHandlePointerClick(eventData);
     }
 
     private void OnPickUpBtnClicked(PointerEventData eventData)

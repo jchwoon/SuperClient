@@ -32,11 +32,13 @@ public class MyHero : Hero
         base.OnEnable();
 
         Managers.EventBus.AddEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
+        Managers.EventBus.AddEvent(Enums.EventType.OpenStore, OnOpenStoreBtnClicked);
     }
     protected override void OnDisable()
     {
         base.OnDisable();
         Managers.EventBus.RemoveEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
+        Managers.EventBus.RemoveEvent(Enums.EventType.OpenStore, OnOpenStoreBtnClicked);
     }
     protected override void Update()
     {
@@ -49,6 +51,12 @@ public class MyHero : Hero
         else
             MyHeroStateMachine.FindTargetAndAttack();
     }
+
+    private void OnOpenStoreBtnClicked()
+    {
+
+    }
+    
 
     public void Init(MyHeroInfo info, HeroData heroData)
     {

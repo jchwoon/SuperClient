@@ -9,6 +9,7 @@ public class Item
 {
     public ItemData ItemData { get; private set; }
     public ItemInfo Info { get; private set; } = new ItemInfo();
+    public int Price { get; private set; }
 
     public int ItemDbId
     {

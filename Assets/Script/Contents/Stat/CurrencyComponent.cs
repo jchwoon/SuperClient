@@ -27,6 +27,10 @@ public class CurrencyComponent
     public void AddGold(int gold)
     {
         Gold += gold;
+    }    
+    public void RemoveGold(int gold)
+    {
+        Gold -= gold;
     }
 
     private void UpdateCurrency()

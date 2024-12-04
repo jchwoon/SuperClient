@@ -80,6 +80,14 @@ public class ItemSlot : BaseUI
         _itemImage.color = Color.white;
     }
 
+    public Item GiveItemData()
+    {
+        if (_item != null)
+            return _item;
+        else
+            return null;
+    }
+
     private void OnSlotClicked(PointerEventData eventData)
     {
         if (_item == null)

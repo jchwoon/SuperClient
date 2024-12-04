@@ -6,9 +6,8 @@ using UnityEngine;
 
 public class NPC : BaseObject
 {
-    // TODO: NPC 대화
-    protected InteractUI _interUI;
-    GameObject _slot;
+    //protected InteractUI _interUI;
+    //GameObject _slot;
     public NPCData NpcData { get; private set; }
 
     public void Init(ObjectInfo objectInfo)
@@ -23,6 +22,11 @@ public class NPC : BaseObject
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player"))
+        {
+            Managers.EventBus.InvokeEvent(Enums.EventType.PlayerNearNPC);
+        }
+
         //ToDo: 내 캐릭터만 로직 실행되게 하기
         //_interUI = Managers.UIManager.ShowPopup<InteractUI>();
         //_slot = _interUI.AddSlot($"대화하기");
@@ -31,8 +35,12 @@ public class NPC : BaseObject
 
     private void OnTriggerExit(Collider other)
     {
-        if (_slot != null)
-            _interUI.DeleteSlot(_slot);
+        if (other.CompareTag("Player"))
+        {
+            Managers.EventBus.InvokeEvent(Enums.EventType.PlayerLeaveNPC);
+        }
+        //if (_slot != null)
+        //    _interUI.DeleteSlot(_slot);
     }
 
     //NPC마다 다름
