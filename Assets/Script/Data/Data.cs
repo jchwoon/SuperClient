@@ -152,8 +152,11 @@ namespace Data
 
     public class SkillData
     {
-        public int SkillId;
+        public int TemplateId;
         public ESkillType SkillType;
+        public ESkillAreaType SkillAreaType;
+        public ESkillProjectileType SkillProjectileType;
+        public bool IsNormalSkill;
         public string SkillName;
         public string AnimName;
         public float SkillRange;
@@ -161,6 +164,8 @@ namespace Data
         public float CoolTime;
         public float AnimTime;
         public string AnimParamName;
+        public int EffectId;
+        public float EffectDelayRatio;
         public float ComboTime;
         public int MaxComboIdx;
         public List<string> ComboNames;
@@ -175,7 +180,7 @@ namespace Data
             Dictionary<int, SkillData> dict = new Dictionary<int, SkillData>();
             foreach(SkillData skill in skills)
             {
-                dict.Add(skill.SkillId, skill);
+                dict.Add(skill.TemplateId, skill);
             }
 
             return dict;

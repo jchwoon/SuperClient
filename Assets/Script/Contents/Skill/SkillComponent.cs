@@ -23,7 +23,7 @@ public class SkillComponent
                 BaseSkill skill = null;
                 switch (skillData.SkillType)
                 {
-                    case ESkillType.Normal:
+                    case ESkillType.Active:
                         skill = new NormalSkill(id, Managers.ObjectManager.MyHero, skillData);
                         NormalSkillId = skill.SkillId;
                         break;
@@ -34,7 +34,6 @@ public class SkillComponent
         }
     }
 
-    //예약된 스킬들 중에서 사용이 가능한 스킬을 뽑아 옴
     public BaseSkill GetCanUseSkillAtReservedSkills(Creature target)
     {
         if (_reservedSkills.Count == 0)

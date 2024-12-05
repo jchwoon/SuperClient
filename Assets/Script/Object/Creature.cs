@@ -6,31 +6,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Google.Protobuf.Enum;
+using System;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class Creature : BaseObject
 {
     CreatureHUD _creatureHUD;
-    private bool _isTargetted;
-    public bool IsTargetted
-    {
-        get { return _isTargetted; }
-        set
-        {
-            if (value == true)
-            {
-                AddHUD();
-                GetComponent<TargetOutlineController>().AddOutline(this);
-            }
-            else
-            {
-                RemoveHUD();
-                GetComponent<TargetOutlineController>().BackToOriginMats(this);
-            }
-            _isTargetted = value;
-        }
 
-    }
-
+    public bool IsTargetted { get; private set; }
     public Animator Animator { get; private set; }
     public AnimationData AnimData { get; private set; }
     public StatComponent Stat { get; protected set; }
@@ -68,11 +51,20 @@ public class Creature : BaseObject
         ClearTarget();
     }
 
-    private void ClearTarget()
+    public void OnTargetted()
     {
-        if (_isTargetted == true && Managers.ObjectManager.MyHero)
+        AddHUD();
+        GetComponent<TargetOutlineController>().AddOutline(this);
+        IsTargetted = true;
+    }
+
+    public void ClearTarget()
+    {
+        if (IsTargetted == true && Managers.ObjectManager.MyHero)
         {
-            Managers.ObjectManager.MyHero.MyHeroStateMachine.Target = null;
+            RemoveHUD();
+            GetComponent<TargetOutlineController>().BackToOriginMats(this);
+            IsTargetted = false;
         }
     }
 
@@ -112,8 +104,13 @@ public class Creature : BaseObject
     public void SendUseSkill(int skillId, int targetId)
     {
         ReqUseSkillToS skillPacket = new ReqUseSkillToS();
-        skillPacket.SkillId = skillId;
-        skillPacket.TargetId = targetId;
+        SkillInfo skillInfo = new SkillInfo()
+        {
+            SkillId = skillId,
+            TargetId = targetId,
+            RotY = transform.rotation.eulerAngles.y
+        };
+        skillPacket.SkillInfo = skillInfo;
         Managers.NetworkManager.Send(skillPacket);
     }
     #endregion
@@ -122,12 +119,17 @@ public class Creature : BaseObject
     public void HandleUseSkill(Creature owner, ResUseSkillToC skillPacket)
     {
         SkillData skillData;
-        if (Managers.DataManager.SkillDict.TryGetValue(skillPacket.SkillId, out skillData) == false)
+        if (Managers.DataManager.SkillDict.TryGetValue(skillPacket.SkillInfo.SkillId, out skillData) == false)
             return;
 
-        Creature target = Managers.ObjectManager.FindById(skillPacket.TargetId).GetComponent<Creature>();
-        if (target != null)
-            owner.Machine.UseSkill(skillData, target, skillPacket.PlayAnimName);
+        GameObject go = Managers.ObjectManager.FindById(skillPacket.SkillInfo.TargetId);
+        if (go == null)
+            owner.Machine.UseSkill(skillData, null, skillPacket.SkillInfo.PlayAnimName);
+        else
+        {
+            Creature target = go.GetComponent<Creature>();
+            owner.Machine.UseSkill(skillData, target, skillPacket.SkillInfo.PlayAnimName);
+        }
     }
 
     public virtual void HandleModifyStat(StatInfo statInfo)
@@ -140,7 +142,7 @@ public class Creature : BaseObject
     {
         Stat.SetStat(statType, changedValue);
 
-        if (_isTargetted == true)
+        if (IsTargetted == true)
         {
             switch (statType)
             {

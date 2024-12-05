@@ -27,31 +27,11 @@ namespace MyHeroState
         {
             base.Update();
 
-            if (CheckChangeState() == true)
-                return;
         }
 
         public override ECreatureState GetCreatureState()
         {
             return ECreatureState.Idle;
-        }
-
-        private bool CheckChangeState()
-        {
-            if (_heroMachine.MoveInput != Vector2.zero)
-            {
-                _heroMachine.ChangeState(_heroMachine.MoveState);
-                return true;    
-            }
-
-            if (_heroMachine.AttackMode == true && _heroMachine.Target)
-            {
-
-                MoveToTargetOrUseSkill();
-                return true;
-            }
-
-            return false;
         }
     }
 

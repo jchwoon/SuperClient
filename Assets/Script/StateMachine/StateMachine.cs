@@ -22,7 +22,7 @@ public class StateMachine
     public ECreatureState CreatureState { get; set; }
     public Vector3? PosInput { get; private set; } = null;
 
-    public virtual void ChangeState(IState changeState)
+    protected virtual void ChangeState(IState changeState)
     {
         if (CurrentState == changeState) return;
         if (CurrentState != null)
@@ -35,7 +35,7 @@ public class StateMachine
         CurrentState?.Enter();
     }
 
-    public void Update()
+    public virtual void Update()
     {
         if (CurrentState == null)
             return;

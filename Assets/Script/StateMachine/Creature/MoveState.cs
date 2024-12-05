@@ -28,11 +28,6 @@ namespace CreatureState
                 return;
 
             _posInput = _machine.PosInput.Value;
-            if ((_posInput - _owner.transform.position).sqrMagnitude <= 0.001f)
-            {
-                _machine.ChangeState(_machine.IdleState);
-                return;
-            }
 
 
             MoveToMoveDir();

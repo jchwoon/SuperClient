@@ -47,23 +47,10 @@ public class JoySceneUI : SceneUI
     protected override void OnEnable()
     {
         base.OnEnable();
-        Managers.EventBus.AddEvent(Enums.EventType.ChangeAttackMode, ChangeAtkBtnActivation);
     }
     protected override void OnDisable()
     {
         base.OnDisable();
-        Managers.EventBus.RemoveEvent(Enums.EventType.ChangeAttackMode, ChangeAtkBtnActivation);
-    }
-
-    public void ChangeAtkBtnActivation()
-    {
-        MyHero hero = Managers.ObjectManager.MyHero;
-        if (hero == null)
-            return;
-
-        bool attacking = hero.MyHeroStateMachine.AttackMode;
-
-        _atkBtnImg.color = (attacking ? AtkActivationColor : AtkDeActivationColor);
     }
 
     private void OnMovestickPointerDown(PointerEventData eventData)

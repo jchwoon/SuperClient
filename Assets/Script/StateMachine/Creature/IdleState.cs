@@ -25,14 +25,6 @@ namespace CreatureState
         public override void Update()
         {
             base.Update();
-            if (_machine.PosInput.HasValue == false)
-                return;
-
-            if ((_owner.transform.position - _machine.PosInput.Value).sqrMagnitude > 0.001f)
-            {
-                _machine.ChangeState(_machine.MoveState);
-                return;
-            }
         }
 
         public override ECreatureState GetCreatureState()

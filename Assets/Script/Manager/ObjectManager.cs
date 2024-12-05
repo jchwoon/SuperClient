@@ -131,6 +131,7 @@ public class ObjectManager
         _heroes.Remove(objectId);
         _monsters.Remove(objectId);
         _dropItems.Remove(objectId);
+        _npcs.Remove(objectId);
 
         //Temp
         BaseObject creature = go.GetComponent<BaseObject>();

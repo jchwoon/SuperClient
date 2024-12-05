@@ -6,43 +6,20 @@ using MyHeroState;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class MyHeroStateMachine : StateMachine
 {
-    private Creature _target;
-    public Creature Target
-    {
-        get { return _target; }
-        set
-        {
-            if (value == null)
-            {
-                if (_target != null)
-                {
-                    OffAttackMode();
-                    _target.IsTargetted = false;
-                }
-            }
-            else
-            {
-                if (_target != null)
-                    _target.IsTargetted = false;
-                value.IsTargetted = true;
-            }
-            _target = value;
-        }
-    }
+    public Creature Target { get; private set; }
     public IdleState IdleState { get; set; }
     public MoveState MoveState { get; set; }
     public SkillState SkillState { get; set; }
     public Vector2 MoveInput { get; private set; } = Vector2.zero;
     public MoveToS MovePacket { get; set; }
     public MyHero Owner { get; set; }
-    //어택모드가 활성화 되어있는지 아닌지
-    public bool AttackMode { get; set; } = false;
-    //Target을 기준으로 움직일지 Input을 기준으로 움직일지
-    public bool TargetMode { get; set; } = false;
     //스킬 요청에 대한 응답을 대기중인지
     public bool isWaitSkillRes { get; set; } = false;
     public MyHeroStateMachine(MyHero myHero)
@@ -53,52 +30,83 @@ public class MyHeroStateMachine : StateMachine
         ChangeState(IdleState);
         Managers.GameManager.OnJoystickChanged += UpdateMoveInput;
     }
-    public override void FindTargetAndAttack()
+
+    public override void Update()
     {
-        if (Target == null)
-            Target = FindTarget();
-        if (Target == null)
-        {
-            Managers.UIManager.ShowToasUI("주위에 지정할 타겟이 없습니다.");
-            return;
-        }
-        TargetMode = true;
-        ChangeAttackMode(true);
+        CheckAndSetIState();
+        StateUpdate();
+        FindAndSetTarget();
     }
 
-    public void OffAttackMode()
+    private void StateUpdate()
     {
-        TargetMode = false;
-        ChangeAttackMode(false);
+        if (CurrentState == null)
+            return;
+
+        if (CreatureState == ECreatureState.Die)
+            return;
+
+        CurrentState.Update();
+    }
+
+    private void FindAndSetTarget()
+    {
+        Creature creature = FindTarget();
+
+        //방금 찾은 Target과 이전의 Target이 다를경우
+        //이전 Target을 Clear해주고 새로 찾은 Target을 OnTargetted
+        if (creature != null && Target != creature)
+        {
+            Target?.ClearTarget();
+            creature.OnTargetted();
+        }
+        Target = creature;
     }
 
     public Creature FindTarget()
     {
+        if (CreatureState == ECreatureState.Die)
+            return null;
+
         List<Creature> creatures = Managers.ObjectManager.GetAllCreatures();
         Creature target = null;
         float closestDist = float.MaxValue;
         foreach(Creature creature in creatures)
         {
-            if (creature.Machine.CreatureState == ECreatureState.Die) continue;
+            //if (creature.Machine.CurrentState == null) continue;
             float dist = (creature.gameObject.transform.position - Owner.transform.position).sqrMagnitude;
             if (dist < closestDist)
             {
                 closestDist = dist;
-                target = creature.gameObject.GetComponent<Creature>();
+                target = creature;
             }
         }
+
         return target;
     }
 
+    private void UpdateMoveInput(Vector2 moveInput)
+    {
+        MoveInput = moveInput;
+    }
+
+    //기본공격 포함
     public override void UseSkill(SkillData skillData, Creature target, string playAnimName)
     {
-        if (skillData == null || target == null)
+        if (skillData == null)
             return;
 
-        BaseSkill skill = Owner.SkillComponent.GetSkillById(skillData.SkillId);
+        BaseSkill skill = Owner.SkillComponent.GetSkillById(skillData.TemplateId);
+        if (target != null)
+            Owner.transform.LookAt(target.transform);
         skill.UseSkill(playAnimName);
         ChangeState(SkillState);
-        Owner.transform.LookAt(target.transform);
+    }
+
+    public void OnAttack()
+    {
+        int normalSkillId = Owner.SkillComponent.NormalSkillId;
+        Owner.SendUseSkill(normalSkillId, Target == null ? 0 : Target.ObjectId);
     }
 
     public override void OnDie()
@@ -114,25 +122,28 @@ public class MyHeroStateMachine : StateMachine
         SetAnimParameter(Owner, Owner.AnimData.RevivalHash);
     }
 
+    public void CheckAndSetIState()
+    {
+        //우선순위 1.Die, 2.스킬을 사용중인 상태, 3.움직이는 상태, 4.아이들 상태
+        if (CreatureState == ECreatureState.Die)
+            return;
+
+        if (Owner.SkillComponent.isUsingSkill == true)
+            return;
+
+        if (MoveInput != Vector2.zero)
+        {
+            ChangeState(MoveState);
+            return;
+        }
+
+        ChangeState(IdleState);
+    }
+
     private void SetState()
     {
         IdleState = new IdleState(this);
         MoveState = new MoveState(this);
         SkillState = new SkillState(this);
-    }
-
-    private void UpdateMoveInput(Vector2 moveInput)
-    {
-        MoveInput = moveInput;
-        if (moveInput != Vector2.zero)
-            TargetMode = false;
-        else if (AttackMode == true)//MoveInput(joystickInput)이 없고 AttackMode가 활성화 돼있다면
-            TargetMode = true;
-    }
-
-    private void ChangeAttackMode(bool mode)
-    {
-        AttackMode = mode;
-        Managers.EventBus.InvokeEvent(Enums.EventType.ChangeAttackMode);
     }
 }

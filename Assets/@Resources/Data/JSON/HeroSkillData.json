@@ -1,0 +1,28 @@
+{
+  "skills": [
+    {
+      "templateId": 1,
+      "skillType": 1,
+      "skillAreaType": 1,
+      "skillProjectileType": 0,
+      "SectorAngle": 70,
+      "IsNormalSkill": true,
+      "skillName": "기사 기본 공격",
+      "animName": "NormalAttack",
+      "skillRange": 3,
+      "costMp": 0,
+      "coolTime": 0,
+      "animTime": 1,
+      "animParamName": "SkillA",
+      "effectId": 1,
+      "effectDelayRatio": 0.6,
+      "comboTime": 1,
+      "maxComboIdx": 2,
+      "comboNames": [
+        "NormalAttack",
+        "NormalAttack2",
+        "NormalAttack3"
+      ]
+    }
+  ]
+}

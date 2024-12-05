@@ -17,6 +17,8 @@ public class DataManager
     public Dictionary<int, RoomData> RoomDict { get; private set; } = new Dictionary<int, RoomData>();
     public Dictionary<int, MonsterData> MonsterDict { get; private set; } = new Dictionary<int, MonsterData>();
     public Dictionary<EHeroClassType, HeroData> HeroDict { get; private set; } = new Dictionary<EHeroClassType, HeroData>();
+    public Dictionary<int, SkillData> HeroSkillDict { get; private set; } = new Dictionary<int, SkillData>();
+    public Dictionary<int, SkillData> MonsterSkillDict { get; private set; } = new Dictionary<int, SkillData>();
     public Dictionary<int, SkillData> SkillDict { get; private set; } = new Dictionary<int, SkillData>();
     public Dictionary<int, EffectData> EffectDict { get; private set; } = new Dictionary<int, EffectData>();
     public Dictionary<int, RewardData> RewardDict { get; private set; } = new Dictionary<int, RewardData>();
@@ -40,13 +42,19 @@ public class DataManager
         HeroDict = LoadJson<HeroDataLoader, EHeroClassType, HeroData>("HeroData").MakeDict();
         RoomDict = LoadJson<RoomDataLoader, int, RoomData>("RoomData").MakeDict();
         MonsterDict = LoadJson<MonsterDataLoader, int, MonsterData>("MonsterData").MakeDict();
-        SkillDict = LoadJson<SkillDataLoader, int, SkillData>("SkillData").MakeDict();
         EffectDict = LoadJson<EffectDataLoader, int, EffectData>("EffectData").MakeDict();
         RewardDict = LoadJson<RewardDataLoader, int, RewardData>("RewardData").MakeDict();
         RewardTableDict = LoadJson<RewardTableDataLoadaer, int, RewardTableData>("RewardTableData").MakeDict();
         DescriptionDict = LoadJson<DescriptionDataLoader, string, DescriptionData>("DescriptionData").MakeDict();
         NpcDict = LoadJson<NPCDataLoader, int, NPCData>("NPCData").MakeDict();
+        //Skill
+        HeroSkillDict = LoadJson<SkillDataLoader, int, SkillData>("HeroSkillData").MakeDict();
+        MonsterSkillDict = LoadJson<SkillDataLoader, int, SkillData>("MonsterSkillData").MakeDict();
+        foreach (KeyValuePair<int, SkillData> skill in HeroSkillDict)
+            SkillDict.Add(skill.Key, skill.Value);
 
+        foreach (KeyValuePair<int, SkillData> skill in MonsterSkillDict)
+            SkillDict.Add(skill.Key, skill.Value);
         //Item
         ConsumableDict = LoadJson<ConsumableDataLoader, int, ConsumableData>("ConsumableData").MakeDict();
         EquipmentDict = LoadJson<EquipmentDataLoader, int, EquipmentData>("EquipmentData").MakeDict();

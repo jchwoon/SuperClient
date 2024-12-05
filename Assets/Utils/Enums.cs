@@ -92,4 +92,12 @@ public class Enums
         Local = 1,
         Remote = 2,
     }
+
+    public enum EHeroMoveType
+    {
+        None,
+        Joystick,
+        Coordinate,
+        Target
+    }
 }

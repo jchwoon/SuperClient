@@ -17,28 +17,28 @@ public class CamRotateController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.touchCount <= 0) 
-            return;
+        //if (Input.touchCount <= 0) 
+        //    return;
 
-        if (Input.touchCount == 1)
-            RotateAroundHero(Input.GetTouch(0));
-        else if (Input.touchCount == 2)
-        {
-            Touch touch = Input.GetTouch(0);
-            Touch touch2 = Input.GetTouch(1);
-            if (EventSystem.current.IsPointerOverGameObject(touch.fingerId) == true
-                && EventSystem.current.IsPointerOverGameObject(touch2.fingerId) == false)
-            {
-                RotateAroundHero(touch2);
-                return;
-            }
-            else if (EventSystem.current.IsPointerOverGameObject(touch.fingerId) == false
-                && EventSystem.current.IsPointerOverGameObject(touch2.fingerId) == true)
-            {
-                RotateAroundHero(touch);
-                return;
-            }
-        }
+        //if (Input.touchCount == 1)
+        //    RotateAroundHero(Input.GetTouch(0));
+        //else if (Input.touchCount == 2)
+        //{
+        //    Touch touch = Input.GetTouch(0);
+        //    Touch touch2 = Input.GetTouch(1);
+        //    if (EventSystem.current.IsPointerOverGameObject(touch.fingerId) == true
+        //        && EventSystem.current.IsPointerOverGameObject(touch2.fingerId) == false)
+        //    {
+        //        RotateAroundHero(touch2);
+        //        return;
+        //    }
+        //    else if (EventSystem.current.IsPointerOverGameObject(touch.fingerId) == false
+        //        && EventSystem.current.IsPointerOverGameObject(touch2.fingerId) == true)
+        //    {
+        //        RotateAroundHero(touch);
+        //        return;
+        //    }
+        //}
     }//적어도 하나는 UI를 터치했을때만
 
     private void RotateAroundHero(Touch touch)

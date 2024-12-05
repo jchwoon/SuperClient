@@ -29,35 +29,11 @@ namespace MyHeroState {
             if (_heroMachine.Owner.SkillComponent.isUsingSkill == true)
                 return;
 
-            if (_heroMachine.MoveInput != Vector2.zero)
-            {
-                _heroMachine.ChangeState(_heroMachine.MoveState);
-                return;
-            }
-
-            if (_heroMachine.AttackMode == false || _heroMachine.Target == null)
-            {
-                _heroMachine.ChangeState(_heroMachine.IdleState);
-                return;
-            }
-
             MyHero owner = _heroMachine.Owner;
-            BaseSkill skill = owner.SkillComponent.GetCanUseSkillAtReservedSkills(_heroMachine.Target);
-            if (skill != null)
-            {
-                if (_heroMachine.isWaitSkillRes == true)
-                    return;
-                CoroutineHelper.Instance.StartHelperCoroutine(CoWailSkill());
-                owner.SendUseSkill(skill.SkillId, _heroMachine.Target.ObjectId);
-                return;
-            }
-
-            if (MoveToTargetOrUseSkill() == true)
-                return;
         }
 
         //서버 부하를 줄이기 위해
-        IEnumerator CoWailSkill()
+        IEnumerator CoWaitSkill()
         {
             _heroMachine.isWaitSkillRes = true;
             float time = 0.1f;

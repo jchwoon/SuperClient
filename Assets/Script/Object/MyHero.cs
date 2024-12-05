@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Data;
+using UnityEngine.InputSystem;
 
 public class MyHero : Hero
 {
@@ -37,19 +38,19 @@ public class MyHero : Hero
     protected override void OnDisable()
     {
         base.OnDisable();
+
         Managers.EventBus.RemoveEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
         Managers.EventBus.RemoveEvent(Enums.EventType.OpenStore, OnOpenStoreBtnClicked);
     }
     protected override void Update()
     {
-        base.Update();
+        if (MyHeroStateMachine == null)
+            return;
+        MyHeroStateMachine.Update();
     }
     private void OnAttackBtnClicked()
     {
-        if (MyHeroStateMachine.AttackMode == true)
-            MyHeroStateMachine.OffAttackMode();
-        else
-            MyHeroStateMachine.FindTargetAndAttack();
+        MyHeroStateMachine.OnAttack();
     }
 
     private void OnOpenStoreBtnClicked()

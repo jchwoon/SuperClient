@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class CreatureMachine : StateMachine
 {
@@ -22,19 +23,20 @@ public class CreatureMachine : StateMachine
         SetState();
         ChangeState(IdleState);
     }
-    private void SetState()
+
+    public override void Update()
     {
-        IdleState = new IdleState(this);
-        MoveState = new MoveState(this);
-        SkillState = new SkillState(this);
+        base.Update();
+        CheckAndSetState();
     }
 
     public override void UseSkill(SkillData skillData, Creature target, string playAnimName)
     {
-        if (skillData != null)
-            Owner.Animator.Play(playAnimName);
-        if (target != null)
-            Owner.transform.LookAt(target.transform);
+        if (skillData == null || target == null)
+            return;
+
+        Owner.transform.LookAt(target.transform);
+        Owner.Animator.Play(playAnimName);
         CreatureState = ECreatureState.Skill;
     }
     public override void OnDie()
@@ -49,5 +51,21 @@ public class CreatureMachine : StateMachine
         ChangeState(MoveState);
         ChaseMode = movePacket.MoveType;
         CreatureState = ECreatureState.Move;
+    }
+
+    public void CheckAndSetState()
+    {
+        if (PosInput.HasValue == false)
+            return;
+
+        if ((Owner.transform.position - PosInput.Value).sqrMagnitude <= 0.001f)
+            ChangeState(IdleState);
+    }
+
+    private void SetState()
+    {
+        IdleState = new IdleState(this);
+        MoveState = new MoveState(this);
+        SkillState = new SkillState(this);
     }
 }
