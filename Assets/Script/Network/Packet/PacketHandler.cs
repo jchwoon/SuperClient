@@ -40,7 +40,6 @@ public partial class PacketHandler
         PreEnterRoomToC preEnterPacket = (PreEnterRoomToC)packet;
         LoadingScene loadingScene = (LoadingScene)Managers.SceneManagerEx.CurrentScene;
         loadingScene.OnReceivePreEnterRoom(preEnterPacket);
-
     }
 
     public static void ResEnterRoomToCHandler(PacketSession session, IMessage packet)

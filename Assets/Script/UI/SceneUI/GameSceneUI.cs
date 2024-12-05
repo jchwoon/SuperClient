@@ -13,7 +13,8 @@ public class GameSceneUI : SceneUI
     {
         BackBtn,
         InventoryBtn,
-        SettingBtn
+        SettingBtn,
+        TestRoomChanger
     }
     enum Sliders
     {
@@ -59,6 +60,8 @@ public class GameSceneUI : SceneUI
         BindEvent(Get<GameObject>((int)GameObjects.BackBtn), OnBackBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.InventoryBtn), OnInventoryBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.SettingBtn), OnSettingBtnClicked);
+        BindEvent(Get<GameObject>((int)GameObjects.TestRoomChanger), OnChangeRoomBtnClick);
+        
     }
 
     protected override void OnEnable()
@@ -140,6 +143,11 @@ public class GameSceneUI : SceneUI
                 Managers.SceneManagerEx.ChangeScene(Enums.SceneType.Lobby);
                 Managers.GameManager.LeaveGame();
             });
+    }
+
+    private void OnChangeRoomBtnClick(PointerEventData eventData)
+    {
+        Managers.MapManager.ChangeMap(2);
     }
 
     private void OnInventoryBtnClicked(PointerEventData eventData)

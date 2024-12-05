@@ -1,3 +1,4 @@
+using Google.Protobuf.Protocol;
 using System;
 using System.Collections;
 using System.IO;
@@ -71,6 +72,15 @@ public class MapManager
             Map = null;
             LoadedMap = null;
         }
+    }
+
+    public void ChangeMap(int roomId)
+    {
+        ChangeRoomToS changeRoomPacket = new ChangeRoomToS();
+        changeRoomPacket.RoomId = roomId;
+        Managers.NetworkManager.Send(changeRoomPacket);
+
+        Managers.SceneManagerEx.ChangeScene(Enums.SceneType.Loading);
     }
 
     IEnumerator ReadFile(BinaryReader reader)

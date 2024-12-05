@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Google.Protobuf.Struct;
 using Google.Protobuf.Enum;
+using Data;
 
 public partial class PacketHandler
 {
@@ -21,7 +22,7 @@ public partial class PacketHandler
         {
             Managers.ObjectManager.Spawn(creature);
         }
-        foreach (ObjectInfo obj in  spawnPacket.Objects)
+        foreach (ObjectInfo obj in spawnPacket.Objects)
         {
             Managers.ObjectManager.Spawn(obj);
         }
@@ -46,7 +47,7 @@ public partial class PacketHandler
     public static void DeSpawnToCHandler(PacketSession session, IMessage packet)
     {
         DeSpawnToC deSpawnPacket = (DeSpawnToC)packet;
-        foreach(int id in deSpawnPacket.ObjectIds)
+        foreach (int id in deSpawnPacket.ObjectIds)
         {
             Managers.ObjectManager.DeSpawn(id);
         }
@@ -58,7 +59,7 @@ public partial class PacketHandler
         ResUseSkillToC skillPacket = (ResUseSkillToC)packet;
         GameObject go = Managers.ObjectManager.FindById(skillPacket.ObjectId);
 
-        if (go == null) 
+        if (go == null)
             return;
 
         Creature creature = go.GetComponent<Creature>();
@@ -212,9 +213,8 @@ public partial class PacketHandler
     {
         ChangeRoomToC changeRommPacket = (ChangeRoomToC)packet;
 
-        MyHero myHero = Managers.ObjectManager.MyHero;
-        if (myHero == null)
-            return;
+        LoadingScene loadingScene = (LoadingScene)Managers.SceneManagerEx.CurrentScene;
+
+        loadingScene.OnReceiveChangeRoom(changeRommPacket.RoomId);        
     }
-    
 }

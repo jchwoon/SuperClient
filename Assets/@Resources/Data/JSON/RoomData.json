@@ -11,6 +11,18 @@
         2,
         3
       ]
+    },
+    {
+      "roomId": 2,
+      "name": "TestVillage",
+      "startPosX": 0,
+      "startPosY": 0,
+      "startPosZ": -10,
+      "npcs": [
+        1,
+        2,
+        3
+      ]
     }
   ]
 }

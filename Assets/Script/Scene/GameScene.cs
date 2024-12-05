@@ -27,7 +27,7 @@ public class GameScene : BaseScene
         });
 
         Managers.UIManager.ShowFadeUI();
-    }   
+    }
 
     protected override void OnApplicationQuit()
     {

@@ -46,6 +46,16 @@ public class LoadingScene : BaseScene
         _statusTxt.text = "맵 정보 불러오는 중...";
         Managers.MapManager.LoadMap(key, OnLoadedMap);
     }
+    public void OnReceiveChangeRoom(int roomId)
+    {
+        RoomData room;
+        if (Managers.DataManager.RoomDict.TryGetValue(roomId, out room) == false)
+            return;
+
+        string key = room.Name;
+        _statusTxt.text = "맵 정보 불러오는 중...";
+        Managers.MapManager.LoadMap(key, OnLoadedMap);
+    }
 
     private void OnLoadedMap()
     {
