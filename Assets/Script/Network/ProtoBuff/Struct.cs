@@ -46,9 +46,10 @@ namespace Google.Protobuf.Struct {
             "LlByb3RvY29sLkVPYmplY3RUeXBlEg4KBnJvb21JZBgEIAEoBRIiCgdwb3NJ",
             "bmZvGAUgASgLMhEuUHJvdG9jb2wuUG9zSW5mbyJmCghJdGVtSW5mbxIQCghp",
             "dGVtRGJJZBgBIAEoBRISCgp0ZW1wbGF0ZUlkGAIgASgFEg0KBWNvdW50GAMg",
-            "ASgFEiUKCHNsb3RUeXBlGAQgASgOMhMuUHJvdG9jb2wuRVNsb3RUeXBlIjMK",
-            "CVNraWxsSW5mbxIPCgdza2lsbElkGAEgASgFEhUKDXNraWxsQ29vbHRpbWUY",
-            "AiABKAVCGaoCFkdvb2dsZS5Qcm90b2J1Zi5TdHJ1Y3RiBnByb3RvMw=="));
+            "ASgFEiUKCHNsb3RUeXBlGAQgASgOMhMuUHJvdG9jb2wuRVNsb3RUeXBlIlIK",
+            "CVNraWxsSW5mbxIPCgdza2lsbElkGAEgASgFEhAKCHRhcmdldElkGAIgASgF",
+            "EhQKDHBsYXlBbmltTmFtZRgDIAEoCRIMCgRyb3RZGAQgASgCQhmqAhZHb29n",
+            "bGUuUHJvdG9idWYuU3RydWN0YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -60,7 +61,7 @@ namespace Google.Protobuf.Struct {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.PosInfo), global::Google.Protobuf.Struct.PosInfo.Parser, new[]{ "PosX", "PosY", "PosZ", "RotY" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ObjectInfo), global::Google.Protobuf.Struct.ObjectInfo.Parser, new[]{ "ObjectId", "TemplateId", "ObjectType", "RoomId", "PosInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ItemInfo), global::Google.Protobuf.Struct.ItemInfo.Parser, new[]{ "ItemDbId", "TemplateId", "Count", "SlotType" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillInfo), global::Google.Protobuf.Struct.SkillInfo.Parser, new[]{ "SkillId", "SkillCooltime" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillInfo), global::Google.Protobuf.Struct.SkillInfo.Parser, new[]{ "SkillId", "TargetId", "PlayAnimName", "RotY" }, null, null, null, null)
           }));
     }
     #endregion
@@ -2814,7 +2815,9 @@ namespace Google.Protobuf.Struct {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public SkillInfo(SkillInfo other) : this() {
       skillId_ = other.skillId_;
-      skillCooltime_ = other.skillCooltime_;
+      targetId_ = other.targetId_;
+      playAnimName_ = other.playAnimName_;
+      rotY_ = other.rotY_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2836,15 +2839,39 @@ namespace Google.Protobuf.Struct {
       }
     }
 
-    /// <summary>Field number for the "skillCooltime" field.</summary>
-    public const int SkillCooltimeFieldNumber = 2;
-    private int skillCooltime_;
+    /// <summary>Field number for the "targetId" field.</summary>
+    public const int TargetIdFieldNumber = 2;
+    private int targetId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int SkillCooltime {
-      get { return skillCooltime_; }
+    public int TargetId {
+      get { return targetId_; }
       set {
-        skillCooltime_ = value;
+        targetId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "playAnimName" field.</summary>
+    public const int PlayAnimNameFieldNumber = 3;
+    private string playAnimName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string PlayAnimName {
+      get { return playAnimName_; }
+      set {
+        playAnimName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "rotY" field.</summary>
+    public const int RotYFieldNumber = 4;
+    private float rotY_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float RotY {
+      get { return rotY_; }
+      set {
+        rotY_ = value;
       }
     }
 
@@ -2864,7 +2891,9 @@ namespace Google.Protobuf.Struct {
         return true;
       }
       if (SkillId != other.SkillId) return false;
-      if (SkillCooltime != other.SkillCooltime) return false;
+      if (TargetId != other.TargetId) return false;
+      if (PlayAnimName != other.PlayAnimName) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RotY, other.RotY)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2873,7 +2902,9 @@ namespace Google.Protobuf.Struct {
     public override int GetHashCode() {
       int hash = 1;
       if (SkillId != 0) hash ^= SkillId.GetHashCode();
-      if (SkillCooltime != 0) hash ^= SkillCooltime.GetHashCode();
+      if (TargetId != 0) hash ^= TargetId.GetHashCode();
+      if (PlayAnimName.Length != 0) hash ^= PlayAnimName.GetHashCode();
+      if (RotY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RotY);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2896,9 +2927,17 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(8);
         output.WriteInt32(SkillId);
       }
-      if (SkillCooltime != 0) {
+      if (TargetId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(SkillCooltime);
+        output.WriteInt32(TargetId);
+      }
+      if (PlayAnimName.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(PlayAnimName);
+      }
+      if (RotY != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(RotY);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2914,9 +2953,17 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(8);
         output.WriteInt32(SkillId);
       }
-      if (SkillCooltime != 0) {
+      if (TargetId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(SkillCooltime);
+        output.WriteInt32(TargetId);
+      }
+      if (PlayAnimName.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(PlayAnimName);
+      }
+      if (RotY != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(RotY);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -2931,8 +2978,14 @@ namespace Google.Protobuf.Struct {
       if (SkillId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillId);
       }
-      if (SkillCooltime != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillCooltime);
+      if (TargetId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TargetId);
+      }
+      if (PlayAnimName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayAnimName);
+      }
+      if (RotY != 0F) {
+        size += 1 + 4;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2949,8 +3002,14 @@ namespace Google.Protobuf.Struct {
       if (other.SkillId != 0) {
         SkillId = other.SkillId;
       }
-      if (other.SkillCooltime != 0) {
-        SkillCooltime = other.SkillCooltime;
+      if (other.TargetId != 0) {
+        TargetId = other.TargetId;
+      }
+      if (other.PlayAnimName.Length != 0) {
+        PlayAnimName = other.PlayAnimName;
+      }
+      if (other.RotY != 0F) {
+        RotY = other.RotY;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2976,7 +3035,15 @@ namespace Google.Protobuf.Struct {
             break;
           }
           case 16: {
-            SkillCooltime = input.ReadInt32();
+            TargetId = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            PlayAnimName = input.ReadString();
+            break;
+          }
+          case 37: {
+            RotY = input.ReadFloat();
             break;
           }
         }
@@ -3003,7 +3070,15 @@ namespace Google.Protobuf.Struct {
             break;
           }
           case 16: {
-            SkillCooltime = input.ReadInt32();
+            TargetId = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            PlayAnimName = input.ReadString();
+            break;
+          }
+          case 37: {
+            RotY = input.ReadFloat();
             break;
           }
         }

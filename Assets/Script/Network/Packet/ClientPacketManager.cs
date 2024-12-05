@@ -18,28 +18,30 @@ public enum PacketId
   PreEnterRoomToC = 9,
   ReqEnterRoomToS = 10,
   ResEnterRoomToC = 11,
-  SpawnToC = 12,
-  ReqLeaveGameToS = 13,
-  MoveToS = 14,
-  MoveToC = 15,
-  PingCheckToC = 16,
-  PingCheckToS = 17,
-  DeSpawnToC = 18,
-  ReqUseSkillToS = 19,
-  ResUseSkillToC = 20,
-  ModifyStatToC = 21,
-  ModifyOneStatToC = 22,
-  DieToC = 23,
-  TeleportToC = 24,
-  RewardToC = 25,
-  PickupDropItemToS = 26,
-  PickupDropItemToC = 27,
-  AddItemToC = 28,
-  UseItemToS = 29,
-  UseItemToC = 30,
-  EquipItemToS = 31,
-  UnEquipItemToS = 32,
-  ChangeSlotTypeToC = 33,
+  ChangeRoomToS = 12,
+  ChangeRoomToC = 13,
+  SpawnToC = 14,
+  ReqLeaveGameToS = 15,
+  MoveToS = 16,
+  MoveToC = 17,
+  PingCheckToC = 18,
+  PingCheckToS = 19,
+  DeSpawnToC = 20,
+  ReqUseSkillToS = 21,
+  ResUseSkillToC = 22,
+  ModifyStatToC = 23,
+  ModifyOneStatToC = 24,
+  DieToC = 25,
+  TeleportToC = 26,
+  RewardToC = 27,
+  PickupDropItemToS = 28,
+  PickupDropItemToC = 29,
+  AddItemToC = 30,
+  UseItemToS = 31,
+  UseItemToC = 32,
+  EquipItemToS = 33,
+  UnEquipItemToS = 34,
+  ChangeSlotTypeToC = 35,
 
 }
 
@@ -86,6 +88,8 @@ class PacketManager
         _handler.Add((ushort)PacketId.PreEnterRoomToC, PacketHandler.PreEnterRoomToCHandler);
         _parseHandler.Add((ushort)PacketId.ResEnterRoomToC, ParsePacket<ResEnterRoomToC>);
         _handler.Add((ushort)PacketId.ResEnterRoomToC, PacketHandler.ResEnterRoomToCHandler);
+        _parseHandler.Add((ushort)PacketId.ChangeRoomToC, ParsePacket<ChangeRoomToC>);
+        _handler.Add((ushort)PacketId.ChangeRoomToC, PacketHandler.ChangeRoomToCHandler);
         _parseHandler.Add((ushort)PacketId.SpawnToC, ParsePacket<SpawnToC>);
         _handler.Add((ushort)PacketId.SpawnToC, PacketHandler.SpawnToCHandler);
         _parseHandler.Add((ushort)PacketId.MoveToC, ParsePacket<MoveToC>);
