@@ -112,7 +112,7 @@ public class MyHero : Hero
         MyHeroStat.UpdateStat();
     }
 
-    public override void HandleModifyOneStat(EStatType statType, float changedValue, float gapValue)
+    public override void HandleModifyOneStat(EStatType statType, float changedValue, float gapValue, EFontType fontType)
     {
         Stat.SetStat(statType, changedValue);
 
@@ -120,7 +120,7 @@ public class MyHero : Hero
         {
             case EStatType.Hp:
                 Managers.EventBus.InvokeEvent(Enums.EventType.ChangeHUDInfo);
-                FloatingTextController.RegisterOrSpawnText(gapValue, transform, Enums.FloatingFontType.NormalHit);
+                FloatingTextController.RegisterOrSpawnText(gapValue, transform, fontType);
                 break;
             case EStatType.Mp:
                 Managers.EventBus.InvokeEvent(Enums.EventType.ChangeHUDInfo);
@@ -135,8 +135,8 @@ public class MyHero : Hero
         GrowthInfo.AddExp(exp);
         CurrencyComponent.AddGold(gold);
 
-        FloatingTextController.RegisterOrSpawnText(exp, transform, Enums.FloatingFontType.Exp, isReward:true);
-        FloatingTextController.RegisterOrSpawnText(gold, transform, Enums.FloatingFontType.Gold, isReward: true);
+        FloatingTextController.RegisterOrSpawnText(exp, transform, EFontType.Exp, isReward:true);
+        FloatingTextController.RegisterOrSpawnText(gold, transform, EFontType.Gold, isReward: true);
     }
 
     #region PickupItem

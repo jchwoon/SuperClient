@@ -92,11 +92,14 @@ namespace Google.Protobuf.Enum {
             "U2tpbGxQcm9qZWN0aWxlVHlwZRIfChtFU0tJTExfUFJPSkVDVElMRV9UWVBF",
             "X05PTkUQABIlCiFFU0tJTExfUFJPSkVDVElMRV9UWVBFX1BST0pFQ1RJTEUQ",
             "ASpICghFTlBDVHlwZRISCg5FTlBDX1RZUEVfTk9ORRAAEhMKD0VOUENfVFlQ",
-            "RV9TVE9SRRABEhMKD0VOUENfVFlQRV9RVUVTVBACQheqAhRHb29nbGUuUHJv",
-            "dG9idWYuRW51bWIGcHJvdG8z"));
+            "RV9TVE9SRRABEhMKD0VOUENfVFlQRV9RVUVTVBACKpYBCglFRm9udFR5cGUS",
+            "EwoPRUZPTlRfVFlQRV9OT05FEAASEwoPRUZPTlRfVFlQRV9IRUFMEAESGQoV",
+            "RUZPTlRfVFlQRV9OT1JNQUxfSElUEAISGwoXRUZPTlRfVFlQRV9DUklUSUNB",
+            "TF9ISVQQAxITCg9FRk9OVF9UWVBFX0dPTEQQBBISCg5FRk9OVF9UWVBFX0VY",
+            "UBAFQheqAhRHb29nbGUuUHJvdG9idWYuRW51bWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), typeof(global::Google.Protobuf.Enum.ENPCType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), typeof(global::Google.Protobuf.Enum.ENPCType), typeof(global::Google.Protobuf.Enum.EFontType), }, null, null));
     }
     #endregion
 
@@ -272,6 +275,15 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("ENPC_TYPE_NONE")] None = 0,
     [pbr::OriginalName("ENPC_TYPE_STORE")] Store = 1,
     [pbr::OriginalName("ENPC_TYPE_QUEST")] Quest = 2,
+  }
+
+  public enum EFontType {
+    [pbr::OriginalName("EFONT_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EFONT_TYPE_HEAL")] Heal = 1,
+    [pbr::OriginalName("EFONT_TYPE_NORMAL_HIT")] NormalHit = 2,
+    [pbr::OriginalName("EFONT_TYPE_CRITICAL_HIT")] CriticalHit = 3,
+    [pbr::OriginalName("EFONT_TYPE_GOLD")] Gold = 4,
+    [pbr::OriginalName("EFONT_TYPE_EXP")] Exp = 5,
   }
 
   #endregion

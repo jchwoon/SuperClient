@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using Google.Protobuf.Enum;
 using System;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public class Creature : BaseObject
 {
@@ -53,7 +52,6 @@ public class Creature : BaseObject
 
     public void OnTargetted()
     {
-        AddHUD();
         GetComponent<TargetOutlineController>().AddOutline(this);
         IsTargetted = true;
     }
@@ -138,23 +136,18 @@ public class Creature : BaseObject
         InvokeChangeHUD();
     }
 
-    public virtual void HandleModifyOneStat(EStatType statType, float changedValue, float gapValue)
+    public virtual void HandleModifyOneStat(EStatType statType, float changedValue, float gapValue, EFontType fontType)
     {
         Stat.SetStat(statType, changedValue);
 
-        if (IsTargetted == true)
+        switch (statType)
         {
-            switch (statType)
-            {
-                case EStatType.Hp:
-                    InvokeChangeHUD();
-                    FloatingTextController.RegisterOrSpawnText(gapValue, transform, Enums.FloatingFontType.NormalHit);
-                    break;
-                default:
-                    break;
-            }
-
-
+            case EStatType.Hp:
+                InvokeChangeHUD();
+                FloatingTextController.RegisterOrSpawnText(gapValue, transform, fontType);
+                break;
+            default:
+                break;
         }
     }
 

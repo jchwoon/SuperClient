@@ -1,3 +1,4 @@
+using Google.Protobuf.Enum;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public struct TextInfo
 {
     public float value;
     public Transform parent;
-    public Enums.FloatingFontType fontType;
+    public EFontType fontType;
 }
 public class FloatingTextController : MonoBehaviour
 {
@@ -17,10 +18,10 @@ public class FloatingTextController : MonoBehaviour
     public void OnEnable()
     {
         _floatingRewardQueue.Clear();
-        StartCoroutine(CoWaitRewardText());
+        StartCoroutine(CoWaitFloatingText());
     }
 
-    public void RegisterOrSpawnText(float value, Transform parent, Enums.FloatingFontType fontType, bool isReward = false)
+    public void RegisterOrSpawnText(float value, Transform parent, EFontType fontType, bool isReward = false)
     {
         if (isReward == true)
         {
@@ -38,16 +39,15 @@ public class FloatingTextController : MonoBehaviour
         SpawnFloatingText(value, parent, fontType);
     }
 
-    public void SpawnFloatingText(float value, Transform parent, Enums.FloatingFontType fontType)
+    public void SpawnFloatingText(float value, Transform parent, EFontType fontType)
     {
-        
         GameObject go = Managers.ResourceManager.Instantiate(FloatingTextPrefab.name, parent, isPool:true);
         FloatingText text = go.GetComponent<FloatingText>();
 
         text.SetInfo(value, fontType);
     }
 
-    IEnumerator CoWaitRewardText()
+    IEnumerator CoWaitFloatingText()
     {
         WaitForSeconds sec = new WaitForSeconds(0.5f);
         while (true)
