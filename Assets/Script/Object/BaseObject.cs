@@ -56,6 +56,15 @@ public class BaseObject : MonoBehaviour
         Machine.OnRevival();
     }
 
+    public virtual void OnContactMyHero()
+    {
+
+    }
+    public virtual void OnDetactMyHero()
+    {
+
+    }
+
     #region Network Send
     #endregion
 

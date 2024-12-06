@@ -3,6 +3,7 @@
     {
       "npcId": 1,
       "roomId": 1,
+      "npcType": 1,
       "name": "first",
       "prefabName": "First",
       "xPos": -10.9,
@@ -12,6 +13,7 @@
     {
       "npcId": 2,
       "roomId": 1,
+      "npcType": 1,
       "name": "second",
       "prefabName": "Second",
       "xPos": -1.1,
@@ -21,6 +23,7 @@
     {
       "npcId": 3,
       "roomId": 1,
+      "npcType": 1,
       "name": "third",
       "prefabName": "Third",
       "xPos": 10.1,

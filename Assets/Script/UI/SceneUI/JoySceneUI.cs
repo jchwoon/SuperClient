@@ -11,34 +11,41 @@ public class JoySceneUI : SceneUI
     enum GameObjects
     {
         Movestick,
-        AttackBtn,
+        InteractBtn,
         PickUpBtn
+    }
+
+    enum Images
+    {
+        InteractImg
     }
 
     JoyMoveController _joyMoveController;
     JoyPickupController _joyPickupController;
     JoyAttackController _joyAttackController;
 
-    Image _atkBtnImg;
+    Image _interactImg;
     [SerializeField]
-    Color AtkActivationColor = Color.white;
+    Sprite AttackSprite;
     [SerializeField]
-    Color AtkDeActivationColor = Color.white;
+    Sprite InteractSprite;
     protected override void Awake()
     {
         base.Awake();
 
         Bind<GameObject>(typeof(GameObjects));
+        Bind<Image>(typeof(Images));
 
         GameObject movestick = Get<GameObject>((int)GameObjects.Movestick);
-        GameObject atkBtn = Get<GameObject>((int)GameObjects.AttackBtn);
+        GameObject atkBtn = Get<GameObject>((int)GameObjects.InteractBtn);
         GameObject pickUpBtn = Get<GameObject>((int)GameObjects.PickUpBtn);
-        _atkBtnImg = atkBtn.GetComponent<Image>();
+
+        _interactImg = Get<Image>((int)Images.InteractImg);
         _joyMoveController = movestick.GetComponent<JoyMoveController>();
         _joyPickupController = pickUpBtn.GetComponent<JoyPickupController>();
         _joyAttackController = atkBtn.GetComponent<JoyAttackController>();
 
-        BindEvent(atkBtn, OnAttackBtnClicked);
+        BindEvent(atkBtn, OnInteractBtnClicked);
         BindEvent(movestick, OnMovestickPointerDown, Enums.TouchEvent.PointerDown);
         BindEvent(movestick, OnMovestickPointerUp, Enums.TouchEvent.PointerUp);
         BindEvent(movestick, OnMovestickDrag, Enums.TouchEvent.Drag);
@@ -47,10 +54,23 @@ public class JoySceneUI : SceneUI
     protected override void OnEnable()
     {
         base.OnEnable();
+
+        Managers.GameManager.OnInteractableChanged += ChangeInteractBtn;
     }
     protected override void OnDisable()
     {
         base.OnDisable();
+        Managers.GameManager.OnInteractableChanged -= ChangeInteractBtn;
+    }
+
+    public void ChangeInteractBtn(IInteractable interactable)
+    {
+        if (interactable == null)
+            _interactImg.sprite = AttackSprite;
+        else
+        {
+            _interactImg.sprite = InteractSprite;
+        }
     }
 
     private void OnMovestickPointerDown(PointerEventData eventData)
@@ -68,9 +88,12 @@ public class JoySceneUI : SceneUI
         _joyMoveController.OnHandleDrag(eventData);
     }
 
-    private void OnAttackBtnClicked(PointerEventData eventData)
+    private void OnInteractBtnClicked(PointerEventData eventData)
     {
-        _joyAttackController.OnHandlePointerClick(eventData);
+        if (Managers.GameManager.Interactable == null)
+            Managers.EventBus.InvokeEvent(Enums.EventType.AtkBtnClick);
+        else
+            Managers.GameManager.Interactable.Interact();
     }
 
     private void OnPickUpBtnClicked(PointerEventData eventData)

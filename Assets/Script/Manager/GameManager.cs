@@ -20,6 +20,15 @@ public class GameManager
         }
     }
 
+    public IInteractable Interactable { get; private set; }
+    public event Action<IInteractable> OnInteractableChanged;
+
+    public void SetInteractable(IInteractable interactable)
+    {
+        OnInteractableChanged?.Invoke(interactable);
+        Interactable = interactable;
+    }
+
     public void LeaveGame()
     {
         ReqLeaveGameToS leavePacket = new ReqLeaveGameToS();

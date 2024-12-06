@@ -33,14 +33,12 @@ public class MyHero : Hero
         base.OnEnable();
 
         Managers.EventBus.AddEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
-        Managers.EventBus.AddEvent(Enums.EventType.OpenStore, OnOpenStoreBtnClicked);
     }
     protected override void OnDisable()
     {
         base.OnDisable();
 
         Managers.EventBus.RemoveEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
-        Managers.EventBus.RemoveEvent(Enums.EventType.OpenStore, OnOpenStoreBtnClicked);
     }
     protected override void Update()
     {
@@ -48,14 +46,24 @@ public class MyHero : Hero
             return;
         MyHeroStateMachine.Update();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        BaseObject obj = other.GetComponent<BaseObject>();
+        if (obj != null)
+            obj.OnContactMyHero();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        BaseObject obj = other.GetComponent<BaseObject>();
+        if (obj != null)
+            obj.OnDetactMyHero();
+    }
+
     private void OnAttackBtnClicked()
     {
         MyHeroStateMachine.OnAttack();
-    }
-
-    private void OnOpenStoreBtnClicked()
-    {
-
     }
     
 
