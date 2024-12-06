@@ -21,13 +21,15 @@ public class SkillComponent
                     continue;
 
                 BaseSkill skill = null;
-                switch (skillData.SkillType)
+                switch (skillData.SkillProjectileType)
                 {
-                    case ESkillType.Active:
-                        skill = new NormalSkill(id, Managers.ObjectManager.MyHero, skillData);
-                        NormalSkillId = skill.SkillId;
+                    case ESkillProjectileType.None:
+                        skill = new NonProjectileSkill(id, Managers.ObjectManager.MyHero, skillData);
+                        NormalSkillId = skill.TemplateId;
                         break;
                 }
+                if (skill.SkillData.IsNormalSkill == true)
+                    NormalSkillId = skill.TemplateId;
                 if (skill != null)
                     _skills.Add(id, skill);
             }

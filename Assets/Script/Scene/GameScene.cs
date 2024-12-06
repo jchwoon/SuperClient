@@ -19,12 +19,15 @@ public class GameScene : BaseScene
 
     public void OnReceiveEnterRoom(ResEnterRoomToC packet)
     {
-        Managers.UIManager.ShowSceneUI<GameSceneUI>();
-        Managers.UIManager.ShowSceneUI<JoySceneUI>();
-        Managers.ObjectManager.Spawn(packet.MyHero, (MyHero myHero) =>
+        if (packet.IsChangeRoom == false)
         {
-            myHero.Inventory.InitInventory(packet.Items.ToList());
-        });
+            Managers.UIManager.ShowSceneUI<GameSceneUI>();
+            Managers.UIManager.ShowSceneUI<JoySceneUI>();
+            Managers.ObjectManager.Spawn(packet.MyHero, (MyHero myHero) =>
+            {
+                myHero.Inventory.InitInventory(packet.Items.ToList());
+            });
+        }
 
         Managers.UIManager.ShowFadeUI();
     }

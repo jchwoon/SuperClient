@@ -26,6 +26,7 @@ public class LoadingScene : BaseScene
         base.Awake();
         _nextScene = Managers.SceneManagerEx.NextScene;
 
+        //ToDo:Fix
         if (_nextScene == Enums.SceneType.Game)
         {
             PreEnterRoomToS preEnterPacket = new PreEnterRoomToS();
@@ -42,19 +43,9 @@ public class LoadingScene : BaseScene
         if (Managers.DataManager.RoomDict.TryGetValue(packet.RoomId, out room) == false)
             return;
 
-        string key = room.Name;
         _statusTxt.text = "맵 정보 불러오는 중...";
-        Managers.MapManager.LoadMap(key, OnLoadedMap);
-    }
-    public void OnReceiveChangeRoom(int roomId)
-    {
-        RoomData room;
-        if (Managers.DataManager.RoomDict.TryGetValue(roomId, out room) == false)
-            return;
-
-        string key = room.Name;
-        _statusTxt.text = "맵 정보 불러오는 중...";
-        Managers.MapManager.LoadMap(key, OnLoadedMap);
+        Managers.MapManager.LoadMap(room);
+        OnLoadedMap();
     }
 
     private void OnLoadedMap()

@@ -209,12 +209,4 @@ public partial class PacketHandler
 
         inventory.HandleChangeSlotItem(changeSlotPacket.ItemDbId, changeSlotPacket.SlotType);
     }
-    public static void ChangeRoomToCHandler(PacketSession session, IMessage packet)
-    {
-        ChangeRoomToC changeRommPacket = (ChangeRoomToC)packet;
-
-        LoadingScene loadingScene = (LoadingScene)Managers.SceneManagerEx.CurrentScene;
-
-        loadingScene.OnReceiveChangeRoom(changeRommPacket.RoomId);        
-    }
 }

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalSkill : BaseSkill
+public class NonProjectileSkill : BaseSkill
 {
-    public NormalSkill(int skillId, MyHero owner, SkillData skillData) : base(skillId, owner, skillData)
+    public NonProjectileSkill(int skillId, MyHero owner, SkillData skillData) : base(skillId, owner, skillData)
     {
     }
 

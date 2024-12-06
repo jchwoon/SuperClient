@@ -29,7 +29,6 @@ public class ObjectManager
         MyHero myHero = go.AddComponent<MyHero>();
         MyHero = myHero;
         myHero.Init(myHeroInfo, heroData);
-        _objects.Add(objectInfo.ObjectId, go);
 
         initComp?.Invoke(myHero);
         return myHero;
@@ -141,6 +140,8 @@ public class ObjectManager
     public GameObject FindById(int objectId)
     {
         GameObject go = null;
+        if (MyHero.ObjectId == objectId)
+            return MyHero.gameObject;
         _objects.TryGetValue(objectId, out go);
         return go;
     }
@@ -168,14 +169,20 @@ public class ObjectManager
         return items;
     }
 
-    public void Clear()
+    public void Clear(bool leaveHero = false)
     {
-        if (MyHero != null)
-            MyHero = null;
-        
+        foreach (GameObject obj in _objects.Values)
+            Managers.ResourceManager.Destroy(obj);
+
         _objects.Clear();
         _monsters.Clear();
         _heroes.Clear();
         _dropItems.Clear();
+        _npcs.Clear();
+        if (MyHero && leaveHero == false)
+        {
+            Managers.ResourceManager.Destroy(MyHero.gameObject);
+            MyHero = null;
+        }
     }
 }

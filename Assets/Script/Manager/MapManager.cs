@@ -1,3 +1,4 @@
+using Data;
 using Google.Protobuf.Protocol;
 using System;
 using System.Collections;
@@ -14,6 +15,7 @@ public class MapManager
     float[,] _mapCollision;
     public GameObject Map { get; private set; }
     public GameObject LoadedMap { get; private set; }
+    public RoomData RoomData { get; private set; }
     public Transform Parent
     {
         get
@@ -25,18 +27,21 @@ public class MapManager
         }
     }
     private Action _loadedMapAction;
-    public void LoadMap(string mapName, Action action)
+    public void LoadMap(RoomData roomData, Action action = null)
     {
         DestroyMap();
         _loadedMapAction = action;
 
+        string mapName = roomData.Name;
         GameObject map = Managers.ResourceManager.GetResource<GameObject>(mapName);
         map.name = mapName;
         LoadedMap = map;
-        
+        RoomData = roomData;
+
         TextAsset text = Managers.ResourceManager.GetResource<TextAsset>($"{mapName}MapData");
         Stream s = new MemoryStream(text.bytes);
-        CoroutineHelper.Instance.StartHelperCoroutine(ReadFile(new BinaryReader(s)));
+        ReadFile(new BinaryReader(s));
+        //CoroutineHelper.Instance.StartHelperCoroutine());
     }
     public bool CanGo(float z, float x)
     {
@@ -76,14 +81,21 @@ public class MapManager
 
     public void ChangeMap(int roomId)
     {
+        if (Managers.DataManager.RoomDict.TryGetValue(roomId, out RoomData roomData) == false)
+            return;
+        if (roomId == RoomData.RoomId)
+            return;
+
+        Managers.UIManager.ShowFadeUI(fadeTime: 0.5f, isFadeIn: false);
+        Managers.ObjectManager.Clear(leaveHero : true);
+        LoadMap(roomData);
+        CreateMap();
         ChangeRoomToS changeRoomPacket = new ChangeRoomToS();
         changeRoomPacket.RoomId = roomId;
         Managers.NetworkManager.Send(changeRoomPacket);
-
-        Managers.SceneManagerEx.ChangeScene(Enums.SceneType.Loading);
     }
 
-    IEnumerator ReadFile(BinaryReader reader)
+    private void ReadFile(BinaryReader reader)
     {
         using (reader)
         {
@@ -105,9 +117,8 @@ public class MapManager
 
                 float height = reader.ReadSingle();
                 _mapCollision[applyZ, applyX] = height;
-                yield return null;
             }
-            _loadedMapAction?.Invoke();
+            //_loadedMapAction?.Invoke();
         };
 
     }

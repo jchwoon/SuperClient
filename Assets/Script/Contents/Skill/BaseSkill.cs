@@ -9,14 +9,14 @@ using static UnityEngine.UI.GridLayoutGroup;
 public class BaseSkill
 {
     public MyHero Owner { get; protected set; }
-    public int SkillId { get; protected set; }
+    public int TemplateId { get; protected set; }
     public SkillData SkillData { get; protected set; }
     public bool isCoolTime {  get; protected set; }
     public int AnimParamHash { get; protected set; }
 
-    public BaseSkill(int skillId, MyHero owner, SkillData skillData)
+    public BaseSkill(int templateId, MyHero owner, SkillData skillData)
     {
-        SkillId = skillId;
+        TemplateId = templateId;
         Owner = owner;
         SkillData = skillData;
         AnimParamHash = Animator.StringToHash(skillData?.AnimParamName);
