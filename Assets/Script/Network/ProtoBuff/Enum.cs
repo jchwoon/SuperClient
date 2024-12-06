@@ -91,10 +91,12 @@ namespace Google.Protobuf.Enum {
             "UEVfU0VDVE9SEAESGwoXRVNLSUxMX0FSRUFfVFlQRV9DSVJDTEUQAipeChRF",
             "U2tpbGxQcm9qZWN0aWxlVHlwZRIfChtFU0tJTExfUFJPSkVDVElMRV9UWVBF",
             "X05PTkUQABIlCiFFU0tJTExfUFJPSkVDVElMRV9UWVBFX1BST0pFQ1RJTEUQ",
-            "AUIXqgIUR29vZ2xlLlByb3RvYnVmLkVudW1iBnByb3RvMw=="));
+            "ASpICghFTlBDVHlwZRISCg5FTlBDX1RZUEVfTk9ORRAAEhMKD0VOUENfVFlQ",
+            "RV9TVE9SRRABEhMKD0VOUENfVFlQRV9RVUVTVBACQheqAhRHb29nbGUuUHJv",
+            "dG9idWYuRW51bWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), typeof(global::Google.Protobuf.Enum.ENPCType), }, null, null));
     }
     #endregion
 
@@ -264,6 +266,12 @@ namespace Google.Protobuf.Enum {
   public enum ESkillProjectileType {
     [pbr::OriginalName("ESKILL_PROJECTILE_TYPE_NONE")] None = 0,
     [pbr::OriginalName("ESKILL_PROJECTILE_TYPE_PROJECTILE")] Projectile = 1,
+  }
+
+  public enum ENPCType {
+    [pbr::OriginalName("ENPC_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ENPC_TYPE_STORE")] Store = 1,
+    [pbr::OriginalName("ENPC_TYPE_QUEST")] Quest = 2,
   }
 
   #endregion

@@ -112,9 +112,17 @@ public class ObjectManager
         if (Managers.DataManager.NpcDict.TryGetValue(creatureInfo.ObjectInfo.TemplateId, out npcData) == false)
             return null;
 
-        GameObject go = Managers.ResourceManager.Instantiate(npcData.PrefabName, isPool: true);
+        GameObject go = Managers.ResourceManager.Instantiate(npcData.PrefabName);
         go.name = $"{npcData.Name}";
-        NPC npc = Utils.GetOrAddComponent<NPC>(go);
+        NPC npc = null;
+        switch (npcData.NpcType)
+        {
+            case ENPCType.Store:
+                npc = Utils.GetOrAddComponent<StoreNPC>(go);
+                break;
+            case ENPCType.Quest:
+                break;
+        }
         npc.Init(objectInfo);
         _objects.Add(objectInfo.ObjectId, go);
         _npcs.Add(objectInfo.ObjectId, npc);

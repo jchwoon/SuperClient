@@ -49,19 +49,12 @@ public class Enums
     {
         None,
         AtkBtnClick,
-        OpenStore,
-        ChangeAttackMode,
         ChangeStat,
         ChangeCurrency,
         ChangeGrowth,
         ChangeHUDInfo,
-        PlayerNearNPC,
-        PlayerLeaveNPC,
-        OnTarget,
-        OffTarget,
         PickUpBtnClick,
-        UpdateInventory,
-        Toggle
+        UpdateInventory
     }
 
     public enum SortingOrderInHUD

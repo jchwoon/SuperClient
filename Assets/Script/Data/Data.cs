@@ -380,6 +380,7 @@ namespace Data
 
     public class NPCData : BaseData
     {
+        public ENPCType NpcType;
         public int NpcId;
         public int RoomId;
         public string Name;
