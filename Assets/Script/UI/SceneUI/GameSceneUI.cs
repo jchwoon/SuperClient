@@ -1,7 +1,5 @@
 using Google.Protobuf.Struct;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,6 +11,7 @@ public class GameSceneUI : SceneUI
     {
         BackBtn,
         InventoryBtn,
+        DungeonBtn,
         SettingBtn,
         TestRoomChanger
     }
@@ -59,9 +58,9 @@ public class GameSceneUI : SceneUI
 
         BindEvent(Get<GameObject>((int)GameObjects.BackBtn), OnBackBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.InventoryBtn), OnInventoryBtnClicked);
+        BindEvent(Get<GameObject>((int)GameObjects.DungeonBtn), OnDungeonBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.SettingBtn), OnSettingBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.TestRoomChanger), OnChangeRoomBtnClick);
-        
     }
 
     protected override void OnEnable()
@@ -154,6 +153,10 @@ public class GameSceneUI : SceneUI
     {
         InventoryUI inventory = Managers.UIManager.ShowPopup<InventoryUI>();
         inventory.Refresh();
+    }
+    private void OnDungeonBtnClicked(PointerEventData eventData)
+    {
+        DungeonUI dungeonUI = Managers.UIManager.ShowPopup<DungeonUI>();
     }
     private void OnSettingBtnClicked(PointerEventData eventData)
     {
