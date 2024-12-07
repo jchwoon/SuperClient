@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using Data;
 using UnityEngine.InputSystem;
+using static UnityEngine.UI.GridLayoutGroup;
+using static UnityEngine.GraphicsBuffer;
 
 public class MyHero : Hero
 {
@@ -63,7 +65,11 @@ public class MyHero : Hero
 
     private void OnAttackBtnClicked()
     {
-        MyHeroStateMachine.OnAttack();
+        //Temp
+        if (SkillComponent.isUsingSkill)
+            return;
+        int normalSkillId = SkillComponent.GetCurrentNormalSkillId();
+        MyHeroStateMachine.SendUseSkill(normalSkillId);
     }
     
 

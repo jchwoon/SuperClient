@@ -90,6 +90,15 @@ public class MyHeroStateMachine : StateMachine
         MoveInput = moveInput;
     }
 
+    public void SendUseSkill(int templateId)
+    {
+        BaseSkill skill = Owner.SkillComponent.GetSkillById(templateId);
+        if (skill.CheckCanUseSkill() == ESkillFailReason.None)
+        {
+            Owner.SendUseSkill(templateId, Target == null ? 0 : Target.ObjectId);
+        }
+    }
+
     //기본공격 포함
     public override void UseSkill(SkillData skillData, Creature target, string playAnimName)
     {
@@ -101,12 +110,6 @@ public class MyHeroStateMachine : StateMachine
             Owner.transform.LookAt(target.transform);
         skill.UseSkill(playAnimName);
         ChangeState(SkillState);
-    }
-
-    public void OnAttack()
-    {
-        int normalSkillId = Owner.SkillComponent.NormalSkillId;
-        Owner.SendUseSkill(normalSkillId, Target == null ? 0 : Target.ObjectId);
     }
 
     public override void OnDie()

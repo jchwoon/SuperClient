@@ -16,8 +16,7 @@ public class CreatureHUD : BaseUI
     }
     enum Texts
     {
-        NameTxt,
-        LevelTxt
+        NameTxt
     }
     enum GameObjects
     {
@@ -66,8 +65,17 @@ public class CreatureHUD : BaseUI
   
     private void RefreshHUD()
     {
+        Init();
         SetName();
         SetBar();
+    }
+
+    private void Init()
+    {
+        Get<Slider>((int)Sliders.HpBar).gameObject.SetActive(true);
+        Get<Slider>((int)Sliders.MpBar).gameObject.SetActive(true);
+        Get<GameObject>((int)GameObjects.TargetMark).SetActive(true);
+        Get<GameObject>((int)GameObjects.Bar).SetActive(true);
     }
 
     public void SetBar()
@@ -87,7 +95,6 @@ public class CreatureHUD : BaseUI
 
     private void SetHeroBar()
     {
-        Get<GameObject>((int)GameObjects.TargetMark).SetActive(false);
         if (_owner.ObjectId != Managers.ObjectManager.MyHero.ObjectId)
             Get<GameObject>((int)GameObjects.Bar).SetActive(false);
         gameObject.GetComponent<Canvas>().sortingOrder = (int)Enums.SortingOrderInHUD.HeroHUD;
@@ -101,6 +108,8 @@ public class CreatureHUD : BaseUI
     }
     private void SetMonsterBar()
     {
+        if (_owner.IsTargetted == false)
+            Get<GameObject>((int)GameObjects.TargetMark).SetActive(false);
         Get<Slider>((int)Sliders.MpBar).gameObject.SetActive(false);
         gameObject.GetComponent<Canvas>().sortingOrder = (int)Enums.SortingOrderInHUD.TargetHUD;
 

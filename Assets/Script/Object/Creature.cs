@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Google.Protobuf.Enum;
 using System;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class Creature : BaseObject
 {
@@ -52,17 +53,20 @@ public class Creature : BaseObject
 
     public void OnTargetted()
     {
+        if (IsTargetted)
+            return;
         GetComponent<TargetOutlineController>().AddOutline(this);
         IsTargetted = true;
+        InvokeChangeHUD();
     }
 
     public void ClearTarget()
     {
         if (IsTargetted == true && Managers.ObjectManager.MyHero)
         {
-            RemoveHUD();
             GetComponent<TargetOutlineController>().BackToOriginMats(this);
             IsTargetted = false;
+            InvokeChangeHUD();
         }
     }
 
@@ -70,6 +74,7 @@ public class Creature : BaseObject
     {
         Machine.OnDie();
         ClearTarget();
+        RemoveHUD();
     }
 
     protected override void OnRevival()
@@ -143,6 +148,7 @@ public class Creature : BaseObject
         switch (statType)
         {
             case EStatType.Hp:
+                AddHUD();
                 InvokeChangeHUD();
                 FloatingTextController.RegisterOrSpawnText(gapValue, transform, fontType);
                 break;

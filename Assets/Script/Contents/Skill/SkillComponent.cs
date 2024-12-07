@@ -25,55 +25,33 @@ public class SkillComponent
                 {
                     case ESkillProjectileType.None:
                         skill = new NonProjectileSkill(id, Managers.ObjectManager.MyHero, skillData);
-                        NormalSkillId = skill.TemplateId;
                         break;
                 }
                 if (skill.SkillData.IsNormalSkill == true)
-                    NormalSkillId = skill.TemplateId;
+                    SetNormalSkillId(skill.TemplateId);
                 if (skill != null)
                     _skills.Add(id, skill);
             }
         }
     }
 
-    public BaseSkill GetCanUseSkillAtReservedSkills(Creature target)
+    public int GetCurrentNormalSkillId()
     {
-        if (_reservedSkills.Count == 0)
-        {
-            BaseSkill normalSkill = GetSkillById(NormalSkillId);
-            ESkillFailReason reason = normalSkill.CheckCanUseSkill(target);
-            if (reason == ESkillFailReason.None)
-                return normalSkill;
-        }
-        
-        foreach(BaseSkill skill in _reservedSkills.Values)
-        {
-            ESkillFailReason reason =  skill.CheckCanUseSkill(target);
-            if (reason == ESkillFailReason.None)
-                return skill;
-        }
-
-        return null;
+        //해당 노멀 스킬이 콤보가능한 스킬일 수 있기 때문에
+        BaseSkill skill = GetSkillById(NormalSkillId);
+       
+        return skill.TemplateId;
     }
 
-    public ESkillFailReason CheckCanUseSkill(Creature target, BaseSkill skill = null)
+    public void SetNormalSkillId(int templateId)
     {
-        BaseSkill useSkill = skill;
-        if (useSkill == null)
-            useSkill = _skills[NormalSkillId];
-
-        return useSkill.CheckCanUseSkill(target);
+        NormalSkillId = templateId;
     }
 
-    public float GetSkillRange(BaseSkill skill)
-    {
-        return skill.GetSkillRange();
-    }
-
-    public BaseSkill GetSkillById(int skillId)
+    public BaseSkill GetSkillById(int templateId)
     {
         BaseSkill skill;
-        if (_skills.TryGetValue(skillId, out skill) == false)
+        if (_skills.TryGetValue(templateId, out skill) == false)
             return null;
 
         return skill;
