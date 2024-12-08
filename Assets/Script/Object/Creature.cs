@@ -7,13 +7,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using Google.Protobuf.Enum;
 using System;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public class Creature : BaseObject
 {
     CreatureHUD _creatureHUD;
-
-    public bool IsTargetted { get; private set; }
     public Animator Animator { get; private set; }
     public AnimationData AnimData { get; private set; }
     public StatComponent Stat { get; protected set; }
@@ -35,40 +32,6 @@ public class Creature : BaseObject
         }
         base.Start();
     }
-    protected override void Update()
-    {
-        base.Update();
-    }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        ClearTarget();
-    }
-
-    public void OnTargetted()
-    {
-        if (IsTargetted)
-            return;
-        GetComponent<TargetOutlineController>().AddOutline(this);
-        IsTargetted = true;
-        InvokeChangeHUD();
-    }
-
-    public void ClearTarget()
-    {
-        if (IsTargetted == true && Managers.ObjectManager.MyHero)
-        {
-            GetComponent<TargetOutlineController>().BackToOriginMats(this);
-            IsTargetted = false;
-            InvokeChangeHUD();
-        }
-    }
 
     protected virtual void OnDie()
     {
@@ -80,7 +43,6 @@ public class Creature : BaseObject
     protected override void OnRevival()
     {
         base.OnRevival();
-
     }
 
     protected void AddHUD()
@@ -133,6 +95,9 @@ public class Creature : BaseObject
             Creature target = go.GetComponent<Creature>();
             owner.Machine.UseSkill(skillData, target, skillPacket.SkillInfo.PlayAnimName);
         }
+
+        //해당 스킬에 대해한 파티클
+        //해당 스킬 Hit에 대한 파티클
     }
 
     public virtual void HandleModifyStat(StatInfo statInfo)

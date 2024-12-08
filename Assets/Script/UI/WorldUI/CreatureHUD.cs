@@ -20,7 +20,6 @@ public class CreatureHUD : BaseUI
     }
     enum GameObjects
     {
-        TargetMark,
         Bar
     }
 
@@ -74,7 +73,6 @@ public class CreatureHUD : BaseUI
     {
         Get<Slider>((int)Sliders.HpBar).gameObject.SetActive(true);
         Get<Slider>((int)Sliders.MpBar).gameObject.SetActive(true);
-        Get<GameObject>((int)GameObjects.TargetMark).SetActive(true);
         Get<GameObject>((int)GameObjects.Bar).SetActive(true);
     }
 
@@ -108,8 +106,6 @@ public class CreatureHUD : BaseUI
     }
     private void SetMonsterBar()
     {
-        if (_owner.IsTargetted == false)
-            Get<GameObject>((int)GameObjects.TargetMark).SetActive(false);
         Get<Slider>((int)Sliders.MpBar).gameObject.SetActive(false);
         gameObject.GetComponent<Canvas>().sortingOrder = (int)Enums.SortingOrderInHUD.TargetHUD;
 

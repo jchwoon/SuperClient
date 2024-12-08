@@ -140,7 +140,6 @@ GameObject:
   - component: {fileID: 3054566516119258676}
   - component: {fileID: 3309786654644649927}
   - component: {fileID: 2409553839394669718}
-  - component: {fileID: 5097741179685285997}
   - component: {fileID: 771635852442652914}
   m_Layer: 8
   m_Name: Vornix
@@ -209,19 +208,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.7
   m_Center: {x: 0, y: 0.3, z: 0}
---- !u!114 &5097741179685285997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2391359435489877134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 334d8fbbdd6e5f440851e96b86c11c5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _outlineMat: {fileID: 2100000, guid: 1456eec879f35094097732dfacd16727, type: 2}
 --- !u!114 &771635852442652914
 MonoBehaviour:
   m_ObjectHideFlags: 0

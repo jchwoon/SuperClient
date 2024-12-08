@@ -32,11 +32,11 @@ public class BaseSkill
     {
         Owner.Animator.Play(playAnimName);
         
-        CoroutineHelper.Instance.StartHelperCoroutine(CoCoolTime());
-        CoroutineHelper.Instance.StartHelperCoroutine(CoAnimTime());
+        CoroutineHelper.Instance.StartHelperCoroutine(CoRunCoolTime());
+        CoroutineHelper.Instance.StartHelperCoroutine(CoRunAnimTime());
     }
 
-    IEnumerator CoCoolTime()
+    IEnumerator CoRunCoolTime()
     {
         IsCoolTime = true;
         float coolTime = SkillData.CoolTime;
@@ -49,7 +49,7 @@ public class BaseSkill
         IsCoolTime = false;
     }
 
-    protected virtual IEnumerator CoAnimTime()
+    IEnumerator CoRunAnimTime()
     {
         Owner.SkillComponent.isUsingSkill = true;
         float animTime = SkillData.AnimTime;
@@ -60,6 +60,17 @@ public class BaseSkill
             yield return null;
         }
         Owner.SkillComponent.isUsingSkill = false;
+    }
+
+    IEnumerator CoRunEffectTime()
+    {
+        float effectTime = SkillData.EffectDelayRatio * SkillData.AnimTime;
+        float process = 0.0f;
+        while (process < effectTime)
+        {
+            process += Time.deltaTime;
+            yield return null;
+        }
     }
 }
 

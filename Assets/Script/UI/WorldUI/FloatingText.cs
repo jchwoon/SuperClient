@@ -56,6 +56,9 @@ public class FloatingText : MonoBehaviour
                 _text.text = $"Exp +{(int)value}";
                 _text.color = _expFontColor;
                 break;
+            default:
+                Debug.Log("Non Type Floating Text");
+                break;
         }
     }
 
