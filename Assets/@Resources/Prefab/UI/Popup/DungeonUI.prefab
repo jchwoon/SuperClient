@@ -239,7 +239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5119115714490826273
 Transform:
   m_ObjectHideFlags: 0
@@ -253,8 +253,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5263878488986340334}
-  - {fileID: 1201273198121834660}
+  - {fileID: 367407967270853050}
   - {fileID: 2763860421785711519}
   m_Father: {fileID: 4487797187343175280}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -873,7 +872,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9169275305127106020}
-  m_Father: {fileID: 5119115714490826273}
+  m_Father: {fileID: 367407967270853050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2101,6 +2100,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9358d630007adfd478b9595acf849753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6772073006146268134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 367407967270853050}
+  m_Layer: 0
+  m_Name: PartyBtns
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &367407967270853050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6772073006146268134}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5263878488986340334}
+  - {fileID: 1201273198121834660}
+  m_Father: {fileID: 5119115714490826273}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6886711165430591718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2196,7 +2228,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 65551237926551558}
-  m_Father: {fileID: 5119115714490826273}
+  m_Father: {fileID: 367407967270853050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

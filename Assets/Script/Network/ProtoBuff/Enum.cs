@@ -96,10 +96,19 @@ namespace Google.Protobuf.Enum {
             "EwoPRUZPTlRfVFlQRV9OT05FEAASEwoPRUZPTlRfVFlQRV9IRUFMEAESGQoV",
             "RUZPTlRfVFlQRV9OT1JNQUxfSElUEAISGwoXRUZPTlRfVFlQRV9DUklUSUNB",
             "TF9ISVQQAxITCg9FRk9OVF9UWVBFX0dPTEQQBBISCg5FRk9OVF9UWVBFX0VY",
-            "UBAFQheqAhRHb29nbGUuUHJvdG9idWYuRW51bWIGcHJvdG8z"));
+            "UBAFKvYCCg5FU2tpbGxTbG90VHlwZRIZChVFU0tJTExfU0xPVF9UWVBFX05P",
+            "TkUQABIbChdFU0tJTExfU0xPVF9UWVBFX05PUk1BTBABEhkKFUVTS0lMTF9T",
+            "TE9UX1RZUEVfREFTSBACEhwKGEVTS0lMTF9TTE9UX1RZUEVfQUNUSVZFMRAD",
+            "EhwKGEVTS0lMTF9TTE9UX1RZUEVfQUNUSVZFMhAEEhwKGEVTS0lMTF9TTE9U",
+            "X1RZUEVfQUNUSVZFMxAFEhwKGEVTS0lMTF9TTE9UX1RZUEVfQUNUSVZFNBAG",
+            "Eh0KGUVTS0lMTF9TTE9UX1RZUEVfUEFTU0lWRTEQBxIdChlFU0tJTExfU0xP",
+            "VF9UWVBFX1BBU1NJVkUyEAgSHQoZRVNLSUxMX1NMT1RfVFlQRV9QQVNTSVZF",
+            "MxAJEh0KGUVTS0lMTF9TTE9UX1RZUEVfUEFTU0lWRTQQChIdChlFU0tJTExf",
+            "U0xPVF9UWVBFX1BBU1NJVkU1EAtCF6oCFEdvb2dsZS5Qcm90b2J1Zi5FbnVt",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), typeof(global::Google.Protobuf.Enum.ENPCType), typeof(global::Google.Protobuf.Enum.EFontType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), typeof(global::Google.Protobuf.Enum.ENPCType), typeof(global::Google.Protobuf.Enum.EFontType), typeof(global::Google.Protobuf.Enum.ESkillSlotType), }, null, null));
     }
     #endregion
 
@@ -284,6 +293,21 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("EFONT_TYPE_CRITICAL_HIT")] CriticalHit = 3,
     [pbr::OriginalName("EFONT_TYPE_GOLD")] Gold = 4,
     [pbr::OriginalName("EFONT_TYPE_EXP")] Exp = 5,
+  }
+
+  public enum ESkillSlotType {
+    [pbr::OriginalName("ESKILL_SLOT_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ESKILL_SLOT_TYPE_NORMAL")] Normal = 1,
+    [pbr::OriginalName("ESKILL_SLOT_TYPE_DASH")] Dash = 2,
+    [pbr::OriginalName("ESKILL_SLOT_TYPE_ACTIVE1")] Active1 = 3,
+    [pbr::OriginalName("ESKILL_SLOT_TYPE_ACTIVE2")] Active2 = 4,
+    [pbr::OriginalName("ESKILL_SLOT_TYPE_ACTIVE3")] Active3 = 5,
+    [pbr::OriginalName("ESKILL_SLOT_TYPE_ACTIVE4")] Active4 = 6,
+    [pbr::OriginalName("ESKILL_SLOT_TYPE_PASSIVE1")] Passive1 = 7,
+    [pbr::OriginalName("ESKILL_SLOT_TYPE_PASSIVE2")] Passive2 = 8,
+    [pbr::OriginalName("ESKILL_SLOT_TYPE_PASSIVE3")] Passive3 = 9,
+    [pbr::OriginalName("ESKILL_SLOT_TYPE_PASSIVE4")] Passive4 = 10,
+    [pbr::OriginalName("ESKILL_SLOT_TYPE_PASSIVE5")] Passive5 = 11,
   }
 
   #endregion

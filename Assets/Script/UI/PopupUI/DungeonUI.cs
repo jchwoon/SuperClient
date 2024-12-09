@@ -16,7 +16,7 @@ public class DungeonUI : PopupUI
         NormalDungeonList,
         BossDungeonBtn,
         BossDungeonList,
-        PartyTab,
+        PartyBtns,
         SoloPartyBtn,
         PartyMakeBtn,
         DungeonPartyList
@@ -49,7 +49,7 @@ public class DungeonUI : PopupUI
         _normalDungeonList = Get<GameObject>((int)GameObjects.NormalDungeonList);
         _bossDungeonList = Get<GameObject>((int)GameObjects.BossDungeonList);
         _partyList = Get<GameObject>((int)GameObjects.DungeonPartyList);
-        _partyTab = Get<GameObject>((int)GameObjects.PartyTab);
+        _partyTab = Get<GameObject>((int)GameObjects.PartyBtns);
         _normalBtn = Get<GameObject>((int)GameObjects.NormalDungeonBtn);
         _bossBtn = Get<GameObject>((int)GameObjects.BossDungeonBtn);
         _soloPartyBtn = Get<GameObject>((int)GameObjects.SoloPartyBtn);
@@ -91,15 +91,23 @@ public class DungeonUI : PopupUI
     {
         if (_currentDungeonTab != null)
             _currentDungeonTab.GetComponent<Image>().color = _deActiveColor;
+
         changedTab.GetComponent<Image>().color = _activeColor;
         _currentDungeonTab = changedTab;
     }
 
     private void ChangeDungeonList(GameObject changedDungeonList)
     {
+        PartyMakeTabOn(false);
+
         if (_currentDungeonList != null)
             _currentDungeonList.SetActive(false);
+
         changedDungeonList.SetActive(true);
+
+        //TODO 현재 던전탭에 있는 파티들 동기화
+        GetDungeonInfo(changedDungeonList);
+
         _currentDungeonList = changedDungeonList;
     }
 
@@ -110,6 +118,20 @@ public class DungeonUI : PopupUI
 
     private void OnMakePartyBtnClicked(PointerEventData eventData)
     {
+        PartyMakeTabOn(true);
+    }
 
+    private void PartyMakeTabOn(bool isPartyTabOpen)
+    {
+        _partyTab.SetActive(!isPartyTabOpen);
+        _partyList.SetActive(isPartyTabOpen);
+    }
+
+    private void GetDungeonInfo(GameObject changedDungeonList)
+    {
+        if (changedDungeonList.TryGetComponent(out DungeonSlot dungeonSlot))
+        {
+
+        }
     }
 }

@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class DungeonSlot : BaseUI
 {
+
     protected enum Texts
     {
         DungeonNameTxt,
         DungeonLvTxt
     }
+
+
 
     protected override void Awake()
     {

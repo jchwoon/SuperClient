@@ -209,4 +209,13 @@ public partial class PacketHandler
 
         inventory.HandleChangeSlotItem(changeSlotPacket.ItemDbId, changeSlotPacket.SlotType);
     }
+    public static void ChangeRoomToSHandler(PacketSession session, IMessage packet)
+    {
+        ChangeRoomToS changeRoomToSPacket = (ChangeRoomToS)packet;
+
+        MyHero myHero = Managers.ObjectManager.MyHero;
+        if (myHero == null)
+            return;
+    }
+    
 }

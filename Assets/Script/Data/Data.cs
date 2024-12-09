@@ -404,5 +404,32 @@ namespace Data
             return dict;
         }
     }
+    
+    public class DungeonData : BaseData
+    {
+        public int RoomId;
+        public string Name;
+        public int minLv;
+        public float XPos;
+        public float YPos;
+        public float ZPos;
+    }
+
+    [Serializable]
+    public class DungeonDataLoader : ILoader<int, DungeonData>
+    {
+        public List<DungeonData> dungeons = new List<DungeonData>();
+        public Dictionary<int, DungeonData> MakeDict()
+        {
+            Dictionary<int, DungeonData> dict = new Dictionary<int, DungeonData>();
+
+            foreach (DungeonData dungeonDatas in dungeons)
+            {
+                dict.Add(dungeonDatas.RoomId, dungeonDatas);
+            }
+
+            return dict;
+        }
+    }
 }
 
