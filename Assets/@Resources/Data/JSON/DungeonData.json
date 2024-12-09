@@ -1,0 +1,12 @@
+{
+  "dungeons": [
+    {
+      "roomId": 1,
+      "name": "Dungeon1",
+      "minLv": 1,
+      "startPosX": 0,
+      "startPosY": 0,
+      "startPosZ": -10      
+    }
+  ]
+}

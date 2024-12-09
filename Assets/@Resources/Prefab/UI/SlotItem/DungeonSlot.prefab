@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3380818695531643711}
   - component: {fileID: 1524895161572765711}
   - component: {fileID: 1011157090712945492}
+  - component: {fileID: 1114137568456240589}
   m_Layer: 0
   m_Name: DungeonSlot
   m_TagString: Untagged
@@ -122,6 +123,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1114137568456240589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5068844693900947810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae1d5f29e03848d4cb765b55c171db19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8900504928304784862
 GameObject:
   m_ObjectHideFlags: 0

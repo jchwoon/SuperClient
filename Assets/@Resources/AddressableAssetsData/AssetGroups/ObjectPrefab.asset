@@ -17,18 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: be905cce12f85014aa17722544911499
   m_SerializeEntries:
-  - m_GUID: b419e164ab53516438da636332342da9
-    m_Address: Warrior
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 75f057b43e0a449dae5f6549f5107474
-    m_Address: Vornix
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2cf6690298568294cb6b655c0a3aeb87
     m_Address: Small_ManaPotion
     m_ReadOnly: 0
@@ -67,6 +55,18 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3e9ce91302e0d784aa3d3e9a015f4149
     m_Address: First
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b419e164ab53516438da636332342da9
+    m_Address: Warrior
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75f057b43e0a449dae5f6549f5107474
+    m_Address: Vornix
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad

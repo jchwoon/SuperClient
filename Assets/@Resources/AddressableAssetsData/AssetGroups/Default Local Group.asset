@@ -71,18 +71,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ea770ae95245bd2479a986b2f0fa5098
-    m_Address: CreatureHUD
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ace183888a379ec4996e031648491f09
-    m_Address: FloatingText
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8ad5bace28aaa3d49a545802129d7f1c
     m_Address: InventoryUI
     m_ReadOnly: 0
@@ -101,8 +89,14 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e0aa0e411d61afe48a23b773730183e6
-    m_Address: DungeonUI
+  - m_GUID: ea770ae95245bd2479a986b2f0fa5098
+    m_Address: CreatureHUD
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ace183888a379ec4996e031648491f09
+    m_Address: FloatingText
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
