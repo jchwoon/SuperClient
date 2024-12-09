@@ -153,22 +153,21 @@ namespace Data
     public class SkillData
     {
         public int TemplateId;
+        public int NextComboSkillTemplateId;
         public ESkillType SkillType;
         public ESkillAreaType SkillAreaType;
         public ESkillProjectileType SkillProjectileType;
         public bool IsNormalSkill;
+        public bool IsComboSkill;
         public string SkillName;
         public string AnimName;
         public float SkillRange;
         public int CostMp;
         public float CoolTime;
         public float AnimTime;
-        public string AnimParamName;
         public int EffectId;
         public float EffectDelayRatio;
         public float ComboTime;
-        public int MaxComboIdx;
-        public List<string> ComboNames;
     }
 
     [Serializable]

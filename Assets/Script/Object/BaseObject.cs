@@ -2,8 +2,10 @@ using Data;
 using Google.Protobuf.Enum;
 using Google.Protobuf.Protocol;
 using Google.Protobuf.Struct;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class BaseObject : MonoBehaviour 
@@ -11,8 +13,9 @@ public class BaseObject : MonoBehaviour
     protected bool isMachineInit = false;
     public int ObjectId { get; set; }
     public EObjectType ObjectType { get; set; }
-    public virtual StateMachine Machine { get; set; }
     public string Name { get; protected set; }
+    public virtual StateMachine Machine { get; protected set; }
+    TargetController _targetController;
 
     protected virtual void Awake()
     {
@@ -38,6 +41,21 @@ public class BaseObject : MonoBehaviour
         if (Machine == null)
             return;
         Machine.Update();
+    }
+
+    public virtual void OnTarget()
+    {
+        if (_targetController == null)
+            _targetController = new TargetController(this);
+
+        _targetController.OnTarget();
+    }
+
+    public virtual void ClearTarget()
+    {
+        if (_targetController == null)
+            return;
+        _targetController.ClearTarget();
     }
 
     protected virtual void SetPos(GameObject go, PosInfo posInfo)

@@ -26,24 +26,20 @@ namespace MyHeroState {
         public override void Update()
         {
             base.Update();
-            if (_heroMachine.Owner.SkillComponent.isUsingSkill == true)
-                return;
-
-            MyHero owner = _heroMachine.Owner;
         }
 
-        //서버 부하를 줄이기 위해
-        IEnumerator CoWaitSkill()
-        {
-            _heroMachine.isWaitSkillRes = true;
-            float time = 0.1f;
-            float process = 0.0f;
-            while (process < time)
-            {
-                process += Time.deltaTime;
-                yield return null;
-            }
-            _heroMachine.isWaitSkillRes = false;
-        }
+        ////서버 부하를 줄이기 위해
+        //IEnumerator CoWaitSkill()
+        //{
+        //    _heroMachine.isWaitSkillRes = true;
+        //    float time = 0.1f;
+        //    float process = 0.0f;
+        //    while (process < time)
+        //    {
+        //        process += Time.deltaTime;
+        //        yield return null;
+        //    }
+        //    _heroMachine.isWaitSkillRes = false;
+        //}
     }
 }

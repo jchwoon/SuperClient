@@ -51,24 +51,25 @@ namespace Google.Protobuf.Protocol {
             "bEluZm8iSgoOUmVzVXNlU2tpbGxUb0MSEAoIb2JqZWN0SWQYASABKAUSJgoJ",
             "c2tpbGxJbmZvGAIgASgLMhMuUHJvdG9jb2wuU2tpbGxJbmZvIkcKDU1vZGlm",
             "eVN0YXRUb0MSEAoIb2JqZWN0SWQYASABKAUSJAoIc3RhdEluZm8YAiABKAsy",
-            "Ei5Qcm90b2NvbC5TdGF0SW5mbyJzChBNb2RpZnlPbmVTdGF0VG9DEhAKCG9i",
-            "amVjdElkGAEgASgFEhQKDGNoYW5nZWRWYWx1ZRgCIAEoAhIQCghnYXBWYWx1",
-            "ZRgDIAEoAhIlCghzdGF0VHlwZRgEIAEoDjITLlByb3RvY29sLkVTdGF0VHlw",
-            "ZSIsCgZEaWVUb0MSEAoIb2JqZWN0SWQYASABKAUSEAoIa2lsbGVySWQYAiAB",
-            "KAUibwoLVGVsZXBvcnRUb0MSEAoIb2JqZWN0SWQYASABKAUSIgoHcG9zSW5m",
-            "bxgCIAEoCzIRLlByb3RvY29sLlBvc0luZm8SKgoJdGVscG9UeXBlGAMgASgO",
-            "MhcuUHJvdG9jb2wuRVRlbGVwb3J0VHlwZSImCglSZXdhcmRUb0MSCwoDZXhw",
-            "GAEgASgFEgwKBGdvbGQYAiABKAUiOQoRUGlja3VwRHJvcEl0ZW1Ub1MSEAoI",
-            "b2JqZWN0SWQYASABKAUSEgoKdGVtcGxhdGVJZBgCIAEoBSJAChFQaWNrdXBE",
-            "cm9wSXRlbVRvQxIrCgZyZXN1bHQYASABKA4yGy5Qcm90b2NvbC5FUGlja3Vw",
-            "RmFpbFJlYXNvbiJbCgpBZGRJdGVtVG9DEiQKCGl0ZW1JbmZvGAEgASgLMhIu",
-            "UHJvdG9jb2wuSXRlbUluZm8SJwoHYWRkVHlwZRgCIAEoDjIWLlByb3RvY29s",
-            "LkVBZGRJdGVtVHlwZSIfCgpVc2VJdGVtVG9TEhEKCWl0ZW1kRGJJZBgBIAEo",
-            "BSIeCgpVc2VJdGVtVG9DEhAKCGl0ZW1EYklkGAEgASgFIiAKDEVxdWlwSXRl",
-            "bVRvUxIQCghpdGVtRGJJZBgBIAEoBSIiCg5VbkVxdWlwSXRlbVRvUxIQCghp",
-            "dGVtRGJJZBgBIAEoBSJMChFDaGFuZ2VTbG90VHlwZVRvQxIQCghpdGVtRGJJ",
-            "ZBgBIAEoBRIlCghzbG90VHlwZRgCIAEoDjITLlByb3RvY29sLkVTbG90VHlw",
-            "ZUIbqgIYR29vZ2xlLlByb3RvYnVmLlByb3RvY29sYgZwcm90bzM="));
+            "Ei5Qcm90b2NvbC5TdGF0SW5mbyKaAQoQTW9kaWZ5T25lU3RhdFRvQxIQCghv",
+            "YmplY3RJZBgBIAEoBRIUCgxjaGFuZ2VkVmFsdWUYAiABKAISEAoIZ2FwVmFs",
+            "dWUYAyABKAISJQoIc3RhdFR5cGUYBCABKA4yEy5Qcm90b2NvbC5FU3RhdFR5",
+            "cGUSJQoIZm9udFR5cGUYBSABKA4yEy5Qcm90b2NvbC5FRm9udFR5cGUiLAoG",
+            "RGllVG9DEhAKCG9iamVjdElkGAEgASgFEhAKCGtpbGxlcklkGAIgASgFIm8K",
+            "C1RlbGVwb3J0VG9DEhAKCG9iamVjdElkGAEgASgFEiIKB3Bvc0luZm8YAiAB",
+            "KAsyES5Qcm90b2NvbC5Qb3NJbmZvEioKCXRlbHBvVHlwZRgDIAEoDjIXLlBy",
+            "b3RvY29sLkVUZWxlcG9ydFR5cGUiJgoJUmV3YXJkVG9DEgsKA2V4cBgBIAEo",
+            "BRIMCgRnb2xkGAIgASgFIjkKEVBpY2t1cERyb3BJdGVtVG9TEhAKCG9iamVj",
+            "dElkGAEgASgFEhIKCnRlbXBsYXRlSWQYAiABKAUiQAoRUGlja3VwRHJvcEl0",
+            "ZW1Ub0MSKwoGcmVzdWx0GAEgASgOMhsuUHJvdG9jb2wuRVBpY2t1cEZhaWxS",
+            "ZWFzb24iWwoKQWRkSXRlbVRvQxIkCghpdGVtSW5mbxgBIAEoCzISLlByb3Rv",
+            "Y29sLkl0ZW1JbmZvEicKB2FkZFR5cGUYAiABKA4yFi5Qcm90b2NvbC5FQWRk",
+            "SXRlbVR5cGUiHwoKVXNlSXRlbVRvUxIRCglpdGVtZERiSWQYASABKAUiHgoK",
+            "VXNlSXRlbVRvQxIQCghpdGVtRGJJZBgBIAEoBSIgCgxFcXVpcEl0ZW1Ub1MS",
+            "EAoIaXRlbURiSWQYASABKAUiIgoOVW5FcXVpcEl0ZW1Ub1MSEAoIaXRlbURi",
+            "SWQYASABKAUiTAoRQ2hhbmdlU2xvdFR5cGVUb0MSEAoIaXRlbURiSWQYASAB",
+            "KAUSJQoIc2xvdFR5cGUYAiABKA4yEy5Qcm90b2NvbC5FU2xvdFR5cGVCG6oC",
+            "GEdvb2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, global::Google.Protobuf.Struct.StructReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -94,7 +95,7 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ReqUseSkillToS), global::Google.Protobuf.Protocol.ReqUseSkillToS.Parser, new[]{ "SkillInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ResUseSkillToC), global::Google.Protobuf.Protocol.ResUseSkillToC.Parser, new[]{ "ObjectId", "SkillInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ModifyStatToC), global::Google.Protobuf.Protocol.ModifyStatToC.Parser, new[]{ "ObjectId", "StatInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ModifyOneStatToC), global::Google.Protobuf.Protocol.ModifyOneStatToC.Parser, new[]{ "ObjectId", "ChangedValue", "GapValue", "StatType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ModifyOneStatToC), global::Google.Protobuf.Protocol.ModifyOneStatToC.Parser, new[]{ "ObjectId", "ChangedValue", "GapValue", "StatType", "FontType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.DieToC), global::Google.Protobuf.Protocol.DieToC.Parser, new[]{ "ObjectId", "KillerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.TeleportToC), global::Google.Protobuf.Protocol.TeleportToC.Parser, new[]{ "ObjectId", "PosInfo", "TelpoType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.RewardToC), global::Google.Protobuf.Protocol.RewardToC.Parser, new[]{ "Exp", "Gold" }, null, null, null, null),
@@ -4719,6 +4720,7 @@ namespace Google.Protobuf.Protocol {
       changedValue_ = other.changedValue_;
       gapValue_ = other.gapValue_;
       statType_ = other.statType_;
+      fontType_ = other.fontType_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4776,6 +4778,18 @@ namespace Google.Protobuf.Protocol {
       }
     }
 
+    /// <summary>Field number for the "fontType" field.</summary>
+    public const int FontTypeFieldNumber = 5;
+    private global::Google.Protobuf.Enum.EFontType fontType_ = global::Google.Protobuf.Enum.EFontType.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.Enum.EFontType FontType {
+      get { return fontType_; }
+      set {
+        fontType_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -4795,6 +4809,7 @@ namespace Google.Protobuf.Protocol {
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ChangedValue, other.ChangedValue)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(GapValue, other.GapValue)) return false;
       if (StatType != other.StatType) return false;
+      if (FontType != other.FontType) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -4806,6 +4821,7 @@ namespace Google.Protobuf.Protocol {
       if (ChangedValue != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ChangedValue);
       if (GapValue != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(GapValue);
       if (StatType != global::Google.Protobuf.Enum.EStatType.None) hash ^= StatType.GetHashCode();
+      if (FontType != global::Google.Protobuf.Enum.EFontType.None) hash ^= FontType.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4840,6 +4856,10 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(32);
         output.WriteEnum((int) StatType);
       }
+      if (FontType != global::Google.Protobuf.Enum.EFontType.None) {
+        output.WriteRawTag(40);
+        output.WriteEnum((int) FontType);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -4866,6 +4886,10 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(32);
         output.WriteEnum((int) StatType);
       }
+      if (FontType != global::Google.Protobuf.Enum.EFontType.None) {
+        output.WriteRawTag(40);
+        output.WriteEnum((int) FontType);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -4887,6 +4911,9 @@ namespace Google.Protobuf.Protocol {
       }
       if (StatType != global::Google.Protobuf.Enum.EStatType.None) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) StatType);
+      }
+      if (FontType != global::Google.Protobuf.Enum.EFontType.None) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) FontType);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4911,6 +4938,9 @@ namespace Google.Protobuf.Protocol {
       }
       if (other.StatType != global::Google.Protobuf.Enum.EStatType.None) {
         StatType = other.StatType;
+      }
+      if (other.FontType != global::Google.Protobuf.Enum.EFontType.None) {
+        FontType = other.FontType;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4947,6 +4977,10 @@ namespace Google.Protobuf.Protocol {
             StatType = (global::Google.Protobuf.Enum.EStatType) input.ReadEnum();
             break;
           }
+          case 40: {
+            FontType = (global::Google.Protobuf.Enum.EFontType) input.ReadEnum();
+            break;
+          }
         }
       }
     #endif
@@ -4980,6 +5014,10 @@ namespace Google.Protobuf.Protocol {
           }
           case 32: {
             StatType = (global::Google.Protobuf.Enum.EStatType) input.ReadEnum();
+            break;
+          }
+          case 40: {
+            FontType = (global::Google.Protobuf.Enum.EFontType) input.ReadEnum();
             break;
           }
         }

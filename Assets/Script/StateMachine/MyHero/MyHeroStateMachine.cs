@@ -13,7 +13,7 @@ using static UnityEngine.UI.GridLayoutGroup;
 
 public class MyHeroStateMachine : StateMachine
 {
-    public Creature Target { get; private set; }
+    public BaseObject Target { get; private set; }
     public IdleState IdleState { get; set; }
     public MoveState MoveState { get; set; }
     public SkillState SkillState { get; set; }
@@ -51,19 +51,19 @@ public class MyHeroStateMachine : StateMachine
 
     private void FindAndSetTarget()
     {
-        Creature creature = FindTarget();
-
+        BaseObject obj = FindTarget();
+        
         //방금 찾은 Target과 이전의 Target이 다를경우
-        //이전 Target을 Clear해주고 새로 찾은 Target을 OnTargetted
-        if (creature != null && Target != creature)
+        //이전 Target을 Clear해주고 새로 찾은 Target을 OnTarget
+        if (obj != null && Target != obj)
         {
             Target?.ClearTarget();
-            creature.OnTargetted();
+            obj.OnTarget();
         }
-        Target = creature;
+        Target = obj;
     }
 
-    public Creature FindTarget()
+    public BaseObject FindTarget()
     {
         if (CreatureState == ECreatureState.Die)
             return null;
@@ -73,7 +73,7 @@ public class MyHeroStateMachine : StateMachine
         float closestDist = float.MaxValue;
         foreach(Creature creature in creatures)
         {
-            //if (creature.Machine.CurrentState == null) continue;
+            //if (obj.Machine.CurrentState == null) continue;
             float dist = (creature.gameObject.transform.position - Owner.transform.position).sqrMagnitude;
             if (dist < closestDist)
             {
@@ -90,6 +90,15 @@ public class MyHeroStateMachine : StateMachine
         MoveInput = moveInput;
     }
 
+    public void SendUseSkill(int templateId)
+    {
+        BaseSkill skill = Owner.SkillComponent.GetSkillById(templateId);
+        if (skill.CheckCanUseSkill() == ESkillFailReason.None)
+        {
+            Owner.SendUseSkill(templateId, Target == null ? 0 : Target.ObjectId);
+        }
+    }
+
     //기본공격 포함
     public override void UseSkill(SkillData skillData, Creature target, string playAnimName)
     {
@@ -101,12 +110,6 @@ public class MyHeroStateMachine : StateMachine
             Owner.transform.LookAt(target.transform);
         skill.UseSkill(playAnimName);
         ChangeState(SkillState);
-    }
-
-    public void OnAttack()
-    {
-        int normalSkillId = Owner.SkillComponent.NormalSkillId;
-        Owner.SendUseSkill(normalSkillId, Target == null ? 0 : Target.ObjectId);
     }
 
     public override void OnDie()

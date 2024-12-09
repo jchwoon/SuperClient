@@ -2,27 +2,60 @@
   "skills": [
     {
       "templateId": 1,
+      "nextComboSkillTemplateId": 2,
       "skillType": 1,
       "skillAreaType": 1,
       "skillProjectileType": 0,
-      "SectorAngle": 70,
       "IsNormalSkill": true,
-      "skillName": "전사 기본공격",
+      "IsComboSkill": true,
+      "skillName": "전사 기본공격 콤보1",
       "animName": "NormalAttack",
-      "skillRange": 3,
+      "SectorAngle": 45,
+      "skillRange": 2.5,
       "costMp": 0,
       "coolTime": 0,
-      "animTime": 1,
-      "animParamName": "SkillA",
+      "animTime": 0.67,
       "effectId": 1,
-      "effectDelayRatio": 0.6,
-      "comboTime": 1,
-      "maxComboIdx": 2,
-      "comboNames": [
-        "NormalAttack",
-        "NormalAttack2",
-        "NormalAttack3"
-      ]
+      "effectDelayRatio": 0.5,
+      "comboTime": 1
+    },
+    {
+      "templateId": 2,
+      "nextComboSkillTemplateId": 3,
+      "skillType": 1,
+      "skillAreaType": 1,
+      "skillProjectileType": 0,
+      "IsNormalSkill": true,
+      "IsComboSkill": true,
+      "skillName": "전사 기본공격 콤보2",
+      "animName": "NormalAttack2",
+      "SectorAngle": 45,
+      "skillRange": 2.5,
+      "costMp": 0,
+      "coolTime": 0,
+      "animTime": 0.67,
+      "effectId": 1,
+      "effectDelayRatio": 0.5,
+      "comboTime": 1
+    },
+    {
+      "templateId": 3,
+      "nextComboSkillTemplateId": 1,
+      "skillType": 1,
+      "skillAreaType": 1,
+      "skillProjectileType": 0,
+      "IsNormalSkill": true,
+      "IsComboSkill": true,
+      "skillName": "전사 기본공격 콤보3",
+      "animName": "NormalAttack3",
+      "SectorAngle": 45,
+      "skillRange": 2.5,
+      "costMp": 0,
+      "coolTime": 0,
+      "animTime": 0.67,
+      "effectId": 1,
+      "effectDelayRatio": 0.5,
+      "comboTime": 1
     }
   ]
 }

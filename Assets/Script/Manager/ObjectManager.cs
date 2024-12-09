@@ -57,11 +57,11 @@ public class ObjectManager
         EObjectType type = creatureInfo.ObjectInfo.ObjectType;
         if (type == EObjectType.Monster)
         {
-            MonsterSpawn(creatureInfo);
+            SpawnMonster(creatureInfo);
         }
         else if(type == EObjectType.Npc)
         {
-            NPCSpawn(creatureInfo);
+            SpawnNPC(creatureInfo);
         }
     }
 
@@ -69,9 +69,9 @@ public class ObjectManager
     {
         EObjectType type = objectInfo.ObjectType;
         if (type == EObjectType.DropItem)
-            DropItemSpawn(objectInfo);
+            SpawnDropItem(objectInfo);
     }
-    private Monster MonsterSpawn(CreatureInfo creatureInfo)
+    private Monster SpawnMonster(CreatureInfo creatureInfo)
     {
         ObjectInfo objectInfo = creatureInfo.ObjectInfo;
 
@@ -89,7 +89,7 @@ public class ObjectManager
         return monster;
     }
 
-    private DropItem DropItemSpawn(ObjectInfo objectInfo)
+    private DropItem SpawnDropItem(ObjectInfo objectInfo)
     {
         ItemData itemData;
         if (Managers.DataManager.ItemDict.TryGetValue(objectInfo.TemplateId, out itemData) == false)
@@ -104,7 +104,7 @@ public class ObjectManager
 
         return dropItem;
     }
-    private NPC NPCSpawn(CreatureInfo creatureInfo)
+    private NPC SpawnNPC(CreatureInfo creatureInfo)
     {
         ObjectInfo objectInfo = creatureInfo.ObjectInfo;
 
@@ -128,6 +128,11 @@ public class ObjectManager
         _npcs.Add(objectInfo.ObjectId, npc);
 
         return npc;
+    }
+
+    public void SpawnParticle()
+    {
+
     }
     public void DeSpawn(int objectId)
     {

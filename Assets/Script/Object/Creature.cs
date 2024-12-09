@@ -7,13 +7,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using Google.Protobuf.Enum;
 using System;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public class Creature : BaseObject
 {
     CreatureHUD _creatureHUD;
-
-    public bool IsTargetted { get; private set; }
     public Animator Animator { get; private set; }
     public AnimationData AnimData { get; private set; }
     public StatComponent Stat { get; protected set; }
@@ -35,49 +32,17 @@ public class Creature : BaseObject
         }
         base.Start();
     }
-    protected override void Update()
-    {
-        base.Update();
-    }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        ClearTarget();
-    }
-
-    public void OnTargetted()
-    {
-        AddHUD();
-        GetComponent<TargetOutlineController>().AddOutline(this);
-        IsTargetted = true;
-    }
-
-    public void ClearTarget()
-    {
-        if (IsTargetted == true && Managers.ObjectManager.MyHero)
-        {
-            RemoveHUD();
-            GetComponent<TargetOutlineController>().BackToOriginMats(this);
-            IsTargetted = false;
-        }
-    }
 
     protected virtual void OnDie()
     {
         Machine.OnDie();
         ClearTarget();
+        RemoveHUD();
     }
 
     protected override void OnRevival()
     {
         base.OnRevival();
-
     }
 
     protected void AddHUD()
@@ -130,6 +95,9 @@ public class Creature : BaseObject
             Creature target = go.GetComponent<Creature>();
             owner.Machine.UseSkill(skillData, target, skillPacket.SkillInfo.PlayAnimName);
         }
+
+        //해당 스킬에 대해한 파티클
+        //해당 스킬 Hit에 대한 파티클
     }
 
     public virtual void HandleModifyStat(StatInfo statInfo)
@@ -138,23 +106,19 @@ public class Creature : BaseObject
         InvokeChangeHUD();
     }
 
-    public virtual void HandleModifyOneStat(EStatType statType, float changedValue, float gapValue)
+    public virtual void HandleModifyOneStat(EStatType statType, float changedValue, float gapValue, EFontType fontType)
     {
         Stat.SetStat(statType, changedValue);
 
-        if (IsTargetted == true)
+        switch (statType)
         {
-            switch (statType)
-            {
-                case EStatType.Hp:
-                    InvokeChangeHUD();
-                    FloatingTextController.RegisterOrSpawnText(gapValue, transform, Enums.FloatingFontType.NormalHit);
-                    break;
-                default:
-                    break;
-            }
-
-
+            case EStatType.Hp:
+                AddHUD();
+                InvokeChangeHUD();
+                FloatingTextController.RegisterOrSpawnText(gapValue, transform, fontType);
+                break;
+            default:
+                break;
         }
     }
 

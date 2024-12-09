@@ -4,50 +4,41 @@ using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public class BaseSkill
 {
     public MyHero Owner { get; protected set; }
     public int TemplateId { get; protected set; }
     public SkillData SkillData { get; protected set; }
-    public bool isCoolTime {  get; protected set; }
-    public int AnimParamHash { get; protected set; }
+    public bool IsCoolTime {  get; protected set; }
 
     public BaseSkill(int templateId, MyHero owner, SkillData skillData)
     {
         TemplateId = templateId;
         Owner = owner;
         SkillData = skillData;
-        AnimParamHash = Animator.StringToHash(skillData?.AnimParamName);
     }
 
-    public ESkillFailReason CheckCanUseSkill(Creature target)
+    //서버에 보내기전 (SendUseSkill) 클라에서도 판단
+    public ESkillFailReason CheckCanUseSkill()
     {
-        if (isCoolTime == true)
+        if (IsCoolTime == true)
             return ESkillFailReason.Cool;
-        float dist = Vector3.Distance(Owner.transform.position, target.transform.position);
-        if (dist > GetSkillRange())
-            return ESkillFailReason.Dist;
 
         return ESkillFailReason.None;
-    }
-
-    public float GetSkillRange()
-    {
-        return SkillData.SkillRange;
     }
 
     public virtual void UseSkill(string playAnimName)
     {
         Owner.Animator.Play(playAnimName);
-        CoroutineHelper.Instance.StartHelperCoroutine(CoAnimTime());
-        CoroutineHelper.Instance.StartHelperCoroutine(CoCoolTime());
+        
+        CoroutineHelper.Instance.StartHelperCoroutine(CoRunCoolTime());
+        CoroutineHelper.Instance.StartHelperCoroutine(CoRunAnimTime());
     }
 
-    IEnumerator CoCoolTime()
+    IEnumerator CoRunCoolTime()
     {
-        isCoolTime = true;
+        IsCoolTime = true;
         float coolTime = SkillData.CoolTime;
         float process = 0.0f;
         while (process < coolTime)
@@ -55,9 +46,10 @@ public class BaseSkill
             process += Time.deltaTime;
             yield return null;
         }
-        isCoolTime = false;
+        IsCoolTime = false;
     }
-    protected virtual IEnumerator CoAnimTime()
+
+    IEnumerator CoRunAnimTime()
     {
         Owner.SkillComponent.isUsingSkill = true;
         float animTime = SkillData.AnimTime;
@@ -68,6 +60,17 @@ public class BaseSkill
             yield return null;
         }
         Owner.SkillComponent.isUsingSkill = false;
+    }
+
+    IEnumerator CoRunEffectTime()
+    {
+        float effectTime = SkillData.EffectDelayRatio * SkillData.AnimTime;
+        float process = 0.0f;
+        while (process < effectTime)
+        {
+            process += Time.deltaTime;
+            yield return null;
+        }
     }
 }
 

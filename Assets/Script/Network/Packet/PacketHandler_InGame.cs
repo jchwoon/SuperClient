@@ -99,7 +99,7 @@ public partial class PacketHandler
         if (creature == null)
             return;
 
-        creature.HandleModifyOneStat(statOnePacket.StatType, statOnePacket.ChangedValue, statOnePacket.GapValue);
+        creature.HandleModifyOneStat(statOnePacket.StatType, statOnePacket.ChangedValue, statOnePacket.GapValue, statOnePacket.FontType);
     }
 
     public static void DieToCHandler(PacketSession session, IMessage packet)
