@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 912926294603391407}
   - component: {fileID: 7284202371124100156}
   m_Layer: 0
-  m_Name: Name
+  m_Name: DungeonNameTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 6768408998109161752}
   - component: {fileID: 7988018135776166385}
   m_Layer: 0
-  m_Name: LV
+  m_Name: DungeonLvTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
