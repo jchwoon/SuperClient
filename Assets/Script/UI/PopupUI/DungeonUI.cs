@@ -18,7 +18,8 @@ public class DungeonUI : PopupUI
         BossDungeonList,
         PartyBtns,
         SoloPartyBtn,
-        PartyMakeBtn,
+        PartyBtn,
+        Party,
         DungeonPartyList
     }
 
@@ -27,10 +28,12 @@ public class DungeonUI : PopupUI
     GameObject _partyList;
 
     GameObject _partyTab;
+    GameObject _partyBtnTab;
 
     GameObject _normalBtn;
     GameObject _bossBtn;
     GameObject _soloPartyBtn;
+    GameObject _PartyBtn;
     GameObject _partyMakeBtn;
 
     GameObject _currentDungeonTab;
@@ -49,11 +52,11 @@ public class DungeonUI : PopupUI
         _normalDungeonList = Get<GameObject>((int)GameObjects.NormalDungeonList);
         _bossDungeonList = Get<GameObject>((int)GameObjects.BossDungeonList);
         _partyList = Get<GameObject>((int)GameObjects.DungeonPartyList);
-        _partyTab = Get<GameObject>((int)GameObjects.PartyBtns);
+        _partyTab = Get<GameObject>((int)GameObjects.Party);
         _normalBtn = Get<GameObject>((int)GameObjects.NormalDungeonBtn);
         _bossBtn = Get<GameObject>((int)GameObjects.BossDungeonBtn);
         _soloPartyBtn = Get<GameObject>((int)GameObjects.SoloPartyBtn);
-        _partyMakeBtn = Get<GameObject>((int)GameObjects.PartyMakeBtn);
+        _PartyBtn = Get<GameObject>((int)GameObjects.PartyBtn);
 
         BindEvent(Get<GameObject>((int)GameObjects.CloseBtn), OnCloseBtnClicked);
         BindEvent(_normalBtn, (eventData) => { OnChangeTab(eventData, _normalBtn, _normalDungeonList); });
@@ -113,7 +116,7 @@ public class DungeonUI : PopupUI
 
     private void OnSinglePartyBtnClicked(PointerEventData eventData)
     {
-
+        Managers.MapManager.ChangeMap(3);
     }
 
     private void OnMakePartyBtnClicked(PointerEventData eventData)

@@ -48,7 +48,7 @@ MonoBehaviour:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 25b30dd8b1581884782505050255cc42
-    m_Address: TestDungeonData
+    m_Address: TestDungeonMapData
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
