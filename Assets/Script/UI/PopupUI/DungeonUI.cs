@@ -23,6 +23,11 @@ public class DungeonUI : PopupUI
         DungeonPartyList
     }
 
+    enum Buttons
+    {
+        PartyMakeBtn
+    }
+
     GameObject _normalDungeonList;
     GameObject _bossDungeonList;
     GameObject _partyList;
@@ -48,6 +53,7 @@ public class DungeonUI : PopupUI
         base.Awake();
 
         Bind<GameObject>(typeof(GameObjects));
+        Bind<Button>(typeof(Buttons));
 
         _normalDungeonList = Get<GameObject>((int)GameObjects.NormalDungeonList);
         _bossDungeonList = Get<GameObject>((int)GameObjects.BossDungeonList);
@@ -58,6 +64,7 @@ public class DungeonUI : PopupUI
         _soloPartyBtn = Get<GameObject>((int)GameObjects.SoloPartyBtn);
         _PartyBtn = Get<GameObject>((int)GameObjects.PartyBtn);
 
+        BindEvent(Get<Button>((int)Buttons.PartyMakeBtn).gameObject, OnPartyMakeBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.CloseBtn), OnCloseBtnClicked);
         BindEvent(_normalBtn, (eventData) => { OnChangeTab(eventData, _normalBtn, _normalDungeonList); });
         BindEvent(_bossBtn, (eventData) => { OnChangeTab(eventData, _bossBtn, _bossDungeonList); });
@@ -122,6 +129,11 @@ public class DungeonUI : PopupUI
     private void OnMakePartyBtnClicked(PointerEventData eventData)
     {
         PartyMakeTabOn(true);
+    }
+
+    private void OnPartyMakeBtnClicked(PointerEventData eventData)
+    {
+
     }
 
     private void PartyMakeTabOn(bool isPartyTabOpen)

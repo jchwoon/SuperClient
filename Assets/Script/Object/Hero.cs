@@ -45,4 +45,12 @@ public class Hero : Creature
         SetPos(gameObject, info.CreatureInfo.ObjectInfo.PosInfo);
         AddHUD();
     }
+
+    #region Network
+    public void RequestCreateParty()
+    {
+        //Create
+    }
+    #endregion
+
 }
