@@ -86,29 +86,32 @@ namespace Google.Protobuf.Enum {
             "RRAAEiMKH0VFRkZFQ1RfRFVSQVRJT05fVFlQRV9URU1QT1JBUlkQARIjCh9F",
             "RUZGRUNUX0RVUkFUSU9OX1RZUEVfUEVSTUFORU5UEAIqUwoKRVNraWxsVHlw",
             "ZRIUChBFU0tJTExfVFlQRV9OT05FEAASFgoSRVNLSUxMX1RZUEVfQUNUSVZF",
-            "EAESFwoTRVNLSUxMX1RZUEVfUEFTU0lWRRACKmUKDkVTa2lsbEFyZWFUeXBl",
-            "EhkKFUVTS0lMTF9BUkVBX1RZUEVfTk9ORRAAEhsKF0VTS0lMTF9BUkVBX1RZ",
-            "UEVfU0VDVE9SEAESGwoXRVNLSUxMX0FSRUFfVFlQRV9DSVJDTEUQAipeChRF",
-            "U2tpbGxQcm9qZWN0aWxlVHlwZRIfChtFU0tJTExfUFJPSkVDVElMRV9UWVBF",
-            "X05PTkUQABIlCiFFU0tJTExfUFJPSkVDVElMRV9UWVBFX1BST0pFQ1RJTEUQ",
-            "ASpICghFTlBDVHlwZRISCg5FTlBDX1RZUEVfTk9ORRAAEhMKD0VOUENfVFlQ",
-            "RV9TVE9SRRABEhMKD0VOUENfVFlQRV9RVUVTVBACKpYBCglFRm9udFR5cGUS",
-            "EwoPRUZPTlRfVFlQRV9OT05FEAASEwoPRUZPTlRfVFlQRV9IRUFMEAESGQoV",
-            "RUZPTlRfVFlQRV9OT1JNQUxfSElUEAISGwoXRUZPTlRfVFlQRV9DUklUSUNB",
-            "TF9ISVQQAxITCg9FRk9OVF9UWVBFX0dPTEQQBBISCg5FRk9OVF9UWVBFX0VY",
-            "UBAFKvYCCg5FU2tpbGxTbG90VHlwZRIZChVFU0tJTExfU0xPVF9UWVBFX05P",
-            "TkUQABIbChdFU0tJTExfU0xPVF9UWVBFX05PUk1BTBABEhkKFUVTS0lMTF9T",
-            "TE9UX1RZUEVfREFTSBACEhwKGEVTS0lMTF9TTE9UX1RZUEVfQUNUSVZFMRAD",
-            "EhwKGEVTS0lMTF9TTE9UX1RZUEVfQUNUSVZFMhAEEhwKGEVTS0lMTF9TTE9U",
-            "X1RZUEVfQUNUSVZFMxAFEhwKGEVTS0lMTF9TTE9UX1RZUEVfQUNUSVZFNBAG",
-            "Eh0KGUVTS0lMTF9TTE9UX1RZUEVfUEFTU0lWRTEQBxIdChlFU0tJTExfU0xP",
-            "VF9UWVBFX1BBU1NJVkUyEAgSHQoZRVNLSUxMX1NMT1RfVFlQRV9QQVNTSVZF",
-            "MxAJEh0KGUVTS0lMTF9TTE9UX1RZUEVfUEFTU0lWRTQQChIdChlFU0tJTExf",
-            "U0xPVF9UWVBFX1BBU1NJVkU1EAtCF6oCFEdvb2dsZS5Qcm90b2J1Zi5FbnVt",
-            "YgZwcm90bzM="));
+            "EAESFwoTRVNLSUxMX1RZUEVfUEFTU0lWRRACKl4KFEVTa2lsbFByb2plY3Rp",
+            "bGVUeXBlEh8KG0VTS0lMTF9QUk9KRUNUSUxFX1RZUEVfTk9ORRAAEiUKIUVT",
+            "S0lMTF9QUk9KRUNUSUxFX1RZUEVfUFJPSkVDVElMRRABKkgKCEVOUENUeXBl",
+            "EhIKDkVOUENfVFlQRV9OT05FEAASEwoPRU5QQ19UWVBFX1NUT1JFEAESEwoP",
+            "RU5QQ19UWVBFX1FVRVNUEAIqlgEKCUVGb250VHlwZRITCg9FRk9OVF9UWVBF",
+            "X05PTkUQABITCg9FRk9OVF9UWVBFX0hFQUwQARIZChVFRk9OVF9UWVBFX05P",
+            "Uk1BTF9ISVQQAhIbChdFRk9OVF9UWVBFX0NSSVRJQ0FMX0hJVBADEhMKD0VG",
+            "T05UX1RZUEVfR09MRBAEEhIKDkVGT05UX1RZUEVfRVhQEAUq9gIKDkVTa2ls",
+            "bFNsb3RUeXBlEhkKFUVTS0lMTF9TTE9UX1RZUEVfTk9ORRAAEhsKF0VTS0lM",
+            "TF9TTE9UX1RZUEVfTk9STUFMEAESGQoVRVNLSUxMX1NMT1RfVFlQRV9EQVNI",
+            "EAISHAoYRVNLSUxMX1NMT1RfVFlQRV9BQ1RJVkUxEAMSHAoYRVNLSUxMX1NM",
+            "T1RfVFlQRV9BQ1RJVkUyEAQSHAoYRVNLSUxMX1NMT1RfVFlQRV9BQ1RJVkUz",
+            "EAUSHAoYRVNLSUxMX1NMT1RfVFlQRV9BQ1RJVkU0EAYSHQoZRVNLSUxMX1NM",
+            "T1RfVFlQRV9QQVNTSVZFMRAHEh0KGUVTS0lMTF9TTE9UX1RZUEVfUEFTU0lW",
+            "RTIQCBIdChlFU0tJTExfU0xPVF9UWVBFX1BBU1NJVkUzEAkSHQoZRVNLSUxM",
+            "X1NMT1RfVFlQRV9QQVNTSVZFNBAKEh0KGUVTS0lMTF9TTE9UX1RZUEVfUEFT",
+            "U0lWRTUQCypjCg5FU2tpbGxBcmVhVHlwZRIZChVFU0tJTExfQVJFQV9UWVBF",
+            "X05PTkUQABIbChdFU0tJTExfQVJFQV9UWVBFX1NJTkdMRRABEhkKFUVTS0lM",
+            "TF9BUkVBX1RZUEVfQVJFQRACKoEBChVFU2tpbGxVc2FnZVRhcmdldFR5cGUS",
+            "IQodRVNLSUxMX1VTQUdFX1RBUkdFVF9UWVBFX1NFTEYQABIhCh1FU0tJTExf",
+            "VVNBR0VfVEFSR0VUX1RZUEVfQUxMWRABEiIKHkVTS0lMTF9VU0FHRV9UQVJH",
+            "RVRfVFlQRV9FTkVNWRACQheqAhRHb29nbGUuUHJvdG9idWYuRW51bWIGcHJv",
+            "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), typeof(global::Google.Protobuf.Enum.ENPCType), typeof(global::Google.Protobuf.Enum.EFontType), typeof(global::Google.Protobuf.Enum.ESkillSlotType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), typeof(global::Google.Protobuf.Enum.ENPCType), typeof(global::Google.Protobuf.Enum.EFontType), typeof(global::Google.Protobuf.Enum.ESkillSlotType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillUsageTargetType), }, null, null));
     }
     #endregion
 
@@ -269,12 +272,6 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("ESKILL_TYPE_PASSIVE")] Passive = 2,
   }
 
-  public enum ESkillAreaType {
-    [pbr::OriginalName("ESKILL_AREA_TYPE_NONE")] None = 0,
-    [pbr::OriginalName("ESKILL_AREA_TYPE_SECTOR")] Sector = 1,
-    [pbr::OriginalName("ESKILL_AREA_TYPE_CIRCLE")] Circle = 2,
-  }
-
   public enum ESkillProjectileType {
     [pbr::OriginalName("ESKILL_PROJECTILE_TYPE_NONE")] None = 0,
     [pbr::OriginalName("ESKILL_PROJECTILE_TYPE_PROJECTILE")] Projectile = 1,
@@ -308,6 +305,18 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("ESKILL_SLOT_TYPE_PASSIVE3")] Passive3 = 9,
     [pbr::OriginalName("ESKILL_SLOT_TYPE_PASSIVE4")] Passive4 = 10,
     [pbr::OriginalName("ESKILL_SLOT_TYPE_PASSIVE5")] Passive5 = 11,
+  }
+
+  public enum ESkillAreaType {
+    [pbr::OriginalName("ESKILL_AREA_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ESKILL_AREA_TYPE_SINGLE")] Single = 1,
+    [pbr::OriginalName("ESKILL_AREA_TYPE_AREA")] Area = 2,
+  }
+
+  public enum ESkillUsageTargetType {
+    [pbr::OriginalName("ESKILL_USAGE_TARGET_TYPE_SELF")] Self = 0,
+    [pbr::OriginalName("ESKILL_USAGE_TARGET_TYPE_ALLY")] Ally = 1,
+    [pbr::OriginalName("ESKILL_USAGE_TARGET_TYPE_ENEMY")] Enemy = 2,
   }
 
   #endregion

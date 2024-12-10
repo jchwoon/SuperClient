@@ -78,5 +78,10 @@ public class Utils
         return null;
     }
 
+    public static float GetAngleFromDir(Vector2 dir)
+    {
+        return Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+    }
+
     public static long TickCount { get { return (long)(Time.time * 1000); } }
 }

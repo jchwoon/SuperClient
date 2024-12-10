@@ -34,13 +34,17 @@ public class MyHero : Hero
     {
         base.OnEnable();
 
+        //Temp
         Managers.EventBus.AddEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
+        Managers.EventBus.AddEvent(Enums.EventType.DashBtnClick, OnDashBtnClicked);
     }
     protected override void OnDisable()
     {
         base.OnDisable();
-
+        
+        //Temp
         Managers.EventBus.RemoveEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
+        Managers.EventBus.RemoveEvent(Enums.EventType.DashBtnClick, OnDashBtnClicked);
     }
     protected override void Update()
     {
@@ -65,13 +69,22 @@ public class MyHero : Hero
 
     private void OnAttackBtnClicked()
     {
-        //Temp
         if (SkillComponent.isUsingSkill)
             return;
-        int normalSkillId = SkillComponent.GetCurrentNormalSkillId();
-        MyHeroStateMachine.SendUseSkill(normalSkillId);
+        BaseSkill normalSkill = SkillComponent.GetSkillById(SkillComponent.NormalSkillId);
+        if (normalSkill.CheckCanUseSkill() == ESkillFailReason.None)
+        {
+            BaseObject target = MyHeroStateMachine.Target;
+            SendUseSkill(normalSkill.TemplateId, target == null ? ObjectId : target.ObjectId, ObjectId);
+        }
     }
     
+    private void OnDashBtnClicked()
+    {
+        BaseSkill dashSkill = SkillComponent.GetSkillById(SkillComponent.DashSkillId);
+        if (dashSkill.CheckCanUseSkill() == ESkillFailReason.None)
+            SendUseSkill(dashSkill.TemplateId, ObjectId, ObjectId);
+    }
 
     public void Init(MyHeroInfo info, HeroData heroData)
     {

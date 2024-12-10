@@ -48,7 +48,10 @@ public class Enums
     public enum EventType
     {
         None,
+        //Temp
         AtkBtnClick,
+        //Temp
+        DashBtnClick,
         ChangeStat,
         ChangeCurrency,
         ChangeGrowth,

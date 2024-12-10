@@ -6,8 +6,6 @@ using MyHeroState;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static UnityEngine.UI.GridLayoutGroup;
 
@@ -90,17 +88,8 @@ public class MyHeroStateMachine : StateMachine
         MoveInput = moveInput;
     }
 
-    public void SendUseSkill(int templateId)
-    {
-        BaseSkill skill = Owner.SkillComponent.GetSkillById(templateId);
-        if (skill.CheckCanUseSkill() == ESkillFailReason.None)
-        {
-            Owner.SendUseSkill(templateId, Target == null ? 0 : Target.ObjectId);
-        }
-    }
-
     //기본공격 포함
-    public override void UseSkill(SkillData skillData, Creature target, string playAnimName)
+    public override void UseSkill(SkillData skillData, Creature target, ResUseSkillToC skillPacket)
     {
         if (skillData == null)
             return;
@@ -108,7 +97,16 @@ public class MyHeroStateMachine : StateMachine
         BaseSkill skill = Owner.SkillComponent.GetSkillById(skillData.TemplateId);
         if (target != null)
             Owner.transform.LookAt(target.transform);
-        skill.UseSkill(playAnimName);
+
+        if (skillData.IsMoveSkill)
+        {
+            PosInfo posInfo = skillPacket.PosInfo;
+            Vector3 destPos = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);
+            CoroutineHelper.Instance.StartHelperCoroutine(CoMoveFromSkillData(Owner, skillData, destPos));
+        }
+        skill.UseSkill(skillPacket.SkillInfo.PlayAnimName);
+
+
         ChangeState(SkillState);
     }
 
