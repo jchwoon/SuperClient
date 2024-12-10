@@ -17,29 +17,26 @@ public class DungeonUI : PopupUI
         BossDungeonBtn,
         BossDungeonList,
         PartyBtns,
-        SoloPartyBtn,
-        PartyBtn,
-        Party,
-        DungeonPartyList
+        PartyListTab,
+        DungeonSlot
     }
 
     enum Buttons
     {
-        PartyMakeBtn
+        SoloPartyBtn,
+        PartyBtn,
+        PartyMakeBtn,
+        PartyJoinBtn,
     }
 
     GameObject _normalDungeonList;
     GameObject _bossDungeonList;
-    GameObject _partyList;
 
-    GameObject _partyTab;
-    GameObject _partyBtnTab;
+    GameObject _partyBtns;
+    GameObject _partyListTab;
 
-    GameObject _normalBtn;
-    GameObject _bossBtn;
-    GameObject _soloPartyBtn;
-    GameObject _PartyBtn;
-    GameObject _partyMakeBtn;
+    GameObject _normalTab;
+    GameObject _bossTab;
 
     GameObject _currentDungeonTab;
     GameObject _currentDungeonList;
@@ -55,21 +52,23 @@ public class DungeonUI : PopupUI
         Bind<GameObject>(typeof(GameObjects));
         Bind<Button>(typeof(Buttons));
 
+        _normalTab = Get<GameObject>((int)GameObjects.NormalDungeonBtn);
         _normalDungeonList = Get<GameObject>((int)GameObjects.NormalDungeonList);
+        _bossTab = Get<GameObject>((int)GameObjects.BossDungeonBtn);
         _bossDungeonList = Get<GameObject>((int)GameObjects.BossDungeonList);
-        _partyList = Get<GameObject>((int)GameObjects.DungeonPartyList);
-        _partyTab = Get<GameObject>((int)GameObjects.Party);
-        _normalBtn = Get<GameObject>((int)GameObjects.NormalDungeonBtn);
-        _bossBtn = Get<GameObject>((int)GameObjects.BossDungeonBtn);
-        _soloPartyBtn = Get<GameObject>((int)GameObjects.SoloPartyBtn);
-        _PartyBtn = Get<GameObject>((int)GameObjects.PartyBtn);
 
+        _partyBtns = Get<GameObject>((int)GameObjects.PartyBtns);
+        _partyListTab = Get<GameObject>((int)GameObjects.PartyListTab);
+        
+        BindEvent(Get<Button>((int)Buttons.SoloPartyBtn).gameObject, OnSinglePartyBtnClicked);
+        BindEvent(Get<Button>((int)Buttons.PartyBtn).gameObject, OnPartyBtnClicked);
         BindEvent(Get<Button>((int)Buttons.PartyMakeBtn).gameObject, OnPartyMakeBtnClicked);
+        BindEvent(Get<Button>((int)Buttons.PartyJoinBtn).gameObject, OnPartyJoinBtnClicked);
+        BindEvent(Get<GameObject>((int)GameObjects.DungeonSlot), OnPartyMakeBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.CloseBtn), OnCloseBtnClicked);
-        BindEvent(_normalBtn, (eventData) => { OnChangeTab(eventData, _normalBtn, _normalDungeonList); });
-        BindEvent(_bossBtn, (eventData) => { OnChangeTab(eventData, _bossBtn, _bossDungeonList); });
-        BindEvent(_soloPartyBtn, OnSinglePartyBtnClicked);
-        BindEvent(_partyMakeBtn, OnMakePartyBtnClicked);
+        BindEvent(_normalTab, (eventData) => { OnChangeTab(eventData, _normalTab, _normalDungeonList); });
+        BindEvent(_bossTab, (eventData) => { OnChangeTab(eventData, _bossTab, _bossDungeonList); });
+
     }
 
     protected override void Start()
@@ -79,16 +78,27 @@ public class DungeonUI : PopupUI
     protected override void OnEnable()
     {
         base.OnEnable();
+        Initial();
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
     }
+
+    private void Initial()
+    {
+        _normalDungeonList.SetActive(false);
+        _bossDungeonList.SetActive(false);
+        _partyBtns.SetActive(false);
+        _partyListTab.SetActive(false);
+    }
+
     private void OnCloseBtnClicked(PointerEventData eventData)
     {
         ClosePopup<DungeonUI>();
     }
+
     private void OnChangeTab(PointerEventData eventData, GameObject changedTab, GameObject changedDungeonList)
     {
         if (changedTab == _currentDungeonTab)
@@ -97,6 +107,7 @@ public class DungeonUI : PopupUI
         ChangeTabColor(changedTab);
         ChangeDungeonList(changedDungeonList);
     }
+
     private void ChangeTabColor(GameObject changedTab)
     {
         if (_currentDungeonTab != null)
@@ -108,7 +119,7 @@ public class DungeonUI : PopupUI
 
     private void ChangeDungeonList(GameObject changedDungeonList)
     {
-        PartyMakeTabOn(false);
+        PartyTabOn(false);
 
         if (_currentDungeonList != null)
             _currentDungeonList.SetActive(false);
@@ -125,22 +136,28 @@ public class DungeonUI : PopupUI
     {
         Managers.MapManager.ChangeMap(3);
     }
-
-    private void OnMakePartyBtnClicked(PointerEventData eventData)
+    
+    private void OnPartyBtnClicked(PointerEventData eventData)
     {
-        PartyMakeTabOn(true);
+        PartyTabOn(true);
     }
 
     private void OnPartyMakeBtnClicked(PointerEventData eventData)
     {
-
+        string heroName = Managers.ObjectManager.MyHero.Name;
+        Managers.PartyManager.MakeParty(Managers.ObjectManager.MyHero);
     }
 
-    private void PartyMakeTabOn(bool isPartyTabOpen)
+    private void OnPartyJoinBtnClicked(PointerEventData eventData)
     {
-        _partyTab.SetActive(!isPartyTabOpen);
-        _partyList.SetActive(isPartyTabOpen);
+
     }
+    private void PartyTabOn(bool isPartyTabOpen)
+    {
+        _partyBtns.SetActive(!isPartyTabOpen);
+        _partyListTab.SetActive(isPartyTabOpen);
+    }
+    
 
     private void GetDungeonInfo(GameObject changedDungeonList)
     {
@@ -149,4 +166,5 @@ public class DungeonUI : PopupUI
 
         }
     }
+
 }

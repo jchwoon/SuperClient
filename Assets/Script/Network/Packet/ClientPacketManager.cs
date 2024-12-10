@@ -88,8 +88,8 @@ class PacketManager
         _handler.Add((ushort)PacketId.PreEnterRoomToC, PacketHandler.PreEnterRoomToCHandler);
         _parseHandler.Add((ushort)PacketId.ResEnterRoomToC, ParsePacket<ResEnterRoomToC>);
         _handler.Add((ushort)PacketId.ResEnterRoomToC, PacketHandler.ResEnterRoomToCHandler);
-        _parseHandler.Add((ushort)PacketId.ChangeRoomToS, ParsePacket<ChangeRoomToS>);
-        _handler.Add((ushort)PacketId.ChangeRoomToS, PacketHandler.ChangeRoomToSHandler);
+        _parseHandler.Add((ushort)PacketId.ChangeRoomToC, ParsePacket<ChangeRoomToC>);
+        _handler.Add((ushort)PacketId.ChangeRoomToC, PacketHandler.ChangeRoomToCHandler);
         _parseHandler.Add((ushort)PacketId.SpawnToC, ParsePacket<SpawnToC>);
         _handler.Add((ushort)PacketId.SpawnToC, PacketHandler.SpawnToCHandler);
         _parseHandler.Add((ushort)PacketId.MoveToC, ParsePacket<MoveToC>);

@@ -217,5 +217,13 @@ public partial class PacketHandler
         if (myHero == null)
             return;
     }
+    public static void ChangeRoomToCHandler(PacketSession session, IMessage packet)
+    {
+        ChangeRoomToS changeRoomToSPacket = (ChangeRoomToS)packet;
+
+        MyHero myHero = Managers.ObjectManager.MyHero;
+        if (myHero == null)
+            return;
+    }
     
 }
