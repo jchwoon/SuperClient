@@ -18,7 +18,8 @@ public class DungeonUI : PopupUI
         BossDungeonList,
         PartyBtns,
         PartyListTab,
-        DungeonSlot
+        DungeonSlot,
+        PartySlot
     }
 
     enum Buttons
@@ -34,6 +35,8 @@ public class DungeonUI : PopupUI
 
     GameObject _partyBtns;
     GameObject _partyListTab;
+    GameObject _dungeonSlot;
+    GameObject _partySlot;
 
     GameObject _normalTab;
     GameObject _bossTab;
@@ -59,13 +62,15 @@ public class DungeonUI : PopupUI
 
         _partyBtns = Get<GameObject>((int)GameObjects.PartyBtns);
         _partyListTab = Get<GameObject>((int)GameObjects.PartyListTab);
+        _dungeonSlot = Get<GameObject>((int)GameObjects.DungeonSlot);
+        _partySlot = Get<GameObject>((int)GameObjects.PartySlot);
         
         BindEvent(Get<Button>((int)Buttons.SoloPartyBtn).gameObject, OnSinglePartyBtnClicked);
         BindEvent(Get<Button>((int)Buttons.PartyBtn).gameObject, OnPartyBtnClicked);
         BindEvent(Get<Button>((int)Buttons.PartyMakeBtn).gameObject, OnPartyMakeBtnClicked);
         BindEvent(Get<Button>((int)Buttons.PartyJoinBtn).gameObject, OnPartyJoinBtnClicked);
-        BindEvent(Get<GameObject>((int)GameObjects.DungeonSlot), OnPartyMakeBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.CloseBtn), OnCloseBtnClicked);
+        BindEvent(Get<GameObject>((int)GameObjects.DungeonSlot), OnClickDungeonSlot);
         BindEvent(_normalTab, (eventData) => { OnChangeTab(eventData, _normalTab, _normalDungeonList); });
         BindEvent(_bossTab, (eventData) => { OnChangeTab(eventData, _bossTab, _bossDungeonList); });
 
@@ -119,7 +124,8 @@ public class DungeonUI : PopupUI
 
     private void ChangeDungeonList(GameObject changedDungeonList)
     {
-        PartyTabOn(false);
+        _partyBtns.SetActive(false);
+        _partyListTab.SetActive(false);
 
         if (_currentDungeonList != null)
             _currentDungeonList.SetActive(false);
@@ -142,16 +148,30 @@ public class DungeonUI : PopupUI
         PartyTabOn(true);
     }
 
+    private void OnClickDungeonSlot(PointerEventData eventData)
+    {
+        PartyTabOn(false);
+    }
+
     private void OnPartyMakeBtnClicked(PointerEventData eventData)
     {
         string heroName = Managers.ObjectManager.MyHero.Name;
+        int heroLV = Managers.ObjectManager.MyHero.Level;
+
+        if(_partySlot.TryGetComponent(out PartySlot partySlot))
+        {            
+            partySlot.SetUserName(heroName, heroLV);
+        }
+
         Managers.PartyManager.MakeParty(Managers.ObjectManager.MyHero);
+
     }
 
     private void OnPartyJoinBtnClicked(PointerEventData eventData)
     {
 
     }
+
     private void PartyTabOn(bool isPartyTabOpen)
     {
         _partyBtns.SetActive(!isPartyTabOpen);
