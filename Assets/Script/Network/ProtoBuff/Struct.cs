@@ -46,10 +46,11 @@ namespace Google.Protobuf.Struct {
             "LlByb3RvY29sLkVPYmplY3RUeXBlEg4KBnJvb21JZBgEIAEoBRIiCgdwb3NJ",
             "bmZvGAUgASgLMhEuUHJvdG9jb2wuUG9zSW5mbyJmCghJdGVtSW5mbxIQCghp",
             "dGVtRGJJZBgBIAEoBRISCgp0ZW1wbGF0ZUlkGAIgASgFEg0KBWNvdW50GAMg",
-            "ASgFEiUKCHNsb3RUeXBlGAQgASgOMhMuUHJvdG9jb2wuRVNsb3RUeXBlIlIK",
-            "CVNraWxsSW5mbxIPCgdza2lsbElkGAEgASgFEhAKCHRhcmdldElkGAIgASgF",
-            "EhQKDHBsYXlBbmltTmFtZRgDIAEoCRIMCgRyb3RZGAQgASgCQhmqAhZHb29n",
-            "bGUuUHJvdG9idWYuU3RydWN0YgZwcm90bzM="));
+            "ASgFEiUKCHNsb3RUeXBlGAQgASgOMhMuUHJvdG9jb2wuRVNsb3RUeXBlInYK",
+            "CVNraWxsSW5mbxIPCgdza2lsbElkGAEgASgFEhUKDXNraWxsVGFyZ2V0SWQY",
+            "AiABKAUSHQoVc2tpbGxMb2NhdGlvblRhcmdldElkGAMgASgFEhQKDHBsYXlB",
+            "bmltTmFtZRgEIAEoCRIMCgRyb3RZGAUgASgCQhmqAhZHb29nbGUuUHJvdG9i",
+            "dWYuU3RydWN0YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -61,7 +62,7 @@ namespace Google.Protobuf.Struct {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.PosInfo), global::Google.Protobuf.Struct.PosInfo.Parser, new[]{ "PosX", "PosY", "PosZ", "RotY" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ObjectInfo), global::Google.Protobuf.Struct.ObjectInfo.Parser, new[]{ "ObjectId", "TemplateId", "ObjectType", "RoomId", "PosInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ItemInfo), global::Google.Protobuf.Struct.ItemInfo.Parser, new[]{ "ItemDbId", "TemplateId", "Count", "SlotType" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillInfo), global::Google.Protobuf.Struct.SkillInfo.Parser, new[]{ "SkillId", "TargetId", "PlayAnimName", "RotY" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillInfo), global::Google.Protobuf.Struct.SkillInfo.Parser, new[]{ "SkillId", "SkillTargetId", "SkillLocationTargetId", "PlayAnimName", "RotY" }, null, null, null, null)
           }));
     }
     #endregion
@@ -2815,7 +2816,8 @@ namespace Google.Protobuf.Struct {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public SkillInfo(SkillInfo other) : this() {
       skillId_ = other.skillId_;
-      targetId_ = other.targetId_;
+      skillTargetId_ = other.skillTargetId_;
+      skillLocationTargetId_ = other.skillLocationTargetId_;
       playAnimName_ = other.playAnimName_;
       rotY_ = other.rotY_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -2839,20 +2841,32 @@ namespace Google.Protobuf.Struct {
       }
     }
 
-    /// <summary>Field number for the "targetId" field.</summary>
-    public const int TargetIdFieldNumber = 2;
-    private int targetId_;
+    /// <summary>Field number for the "skillTargetId" field.</summary>
+    public const int SkillTargetIdFieldNumber = 2;
+    private int skillTargetId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int TargetId {
-      get { return targetId_; }
+    public int SkillTargetId {
+      get { return skillTargetId_; }
       set {
-        targetId_ = value;
+        skillTargetId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "skillLocationTargetId" field.</summary>
+    public const int SkillLocationTargetIdFieldNumber = 3;
+    private int skillLocationTargetId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int SkillLocationTargetId {
+      get { return skillLocationTargetId_; }
+      set {
+        skillLocationTargetId_ = value;
       }
     }
 
     /// <summary>Field number for the "playAnimName" field.</summary>
-    public const int PlayAnimNameFieldNumber = 3;
+    public const int PlayAnimNameFieldNumber = 4;
     private string playAnimName_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2864,7 +2878,7 @@ namespace Google.Protobuf.Struct {
     }
 
     /// <summary>Field number for the "rotY" field.</summary>
-    public const int RotYFieldNumber = 4;
+    public const int RotYFieldNumber = 5;
     private float rotY_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2891,7 +2905,8 @@ namespace Google.Protobuf.Struct {
         return true;
       }
       if (SkillId != other.SkillId) return false;
-      if (TargetId != other.TargetId) return false;
+      if (SkillTargetId != other.SkillTargetId) return false;
+      if (SkillLocationTargetId != other.SkillLocationTargetId) return false;
       if (PlayAnimName != other.PlayAnimName) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RotY, other.RotY)) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -2902,7 +2917,8 @@ namespace Google.Protobuf.Struct {
     public override int GetHashCode() {
       int hash = 1;
       if (SkillId != 0) hash ^= SkillId.GetHashCode();
-      if (TargetId != 0) hash ^= TargetId.GetHashCode();
+      if (SkillTargetId != 0) hash ^= SkillTargetId.GetHashCode();
+      if (SkillLocationTargetId != 0) hash ^= SkillLocationTargetId.GetHashCode();
       if (PlayAnimName.Length != 0) hash ^= PlayAnimName.GetHashCode();
       if (RotY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RotY);
       if (_unknownFields != null) {
@@ -2927,16 +2943,20 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(8);
         output.WriteInt32(SkillId);
       }
-      if (TargetId != 0) {
+      if (SkillTargetId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(TargetId);
+        output.WriteInt32(SkillTargetId);
+      }
+      if (SkillLocationTargetId != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(SkillLocationTargetId);
       }
       if (PlayAnimName.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(34);
         output.WriteString(PlayAnimName);
       }
       if (RotY != 0F) {
-        output.WriteRawTag(37);
+        output.WriteRawTag(45);
         output.WriteFloat(RotY);
       }
       if (_unknownFields != null) {
@@ -2953,16 +2973,20 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(8);
         output.WriteInt32(SkillId);
       }
-      if (TargetId != 0) {
+      if (SkillTargetId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(TargetId);
+        output.WriteInt32(SkillTargetId);
+      }
+      if (SkillLocationTargetId != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(SkillLocationTargetId);
       }
       if (PlayAnimName.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(34);
         output.WriteString(PlayAnimName);
       }
       if (RotY != 0F) {
-        output.WriteRawTag(37);
+        output.WriteRawTag(45);
         output.WriteFloat(RotY);
       }
       if (_unknownFields != null) {
@@ -2978,8 +3002,11 @@ namespace Google.Protobuf.Struct {
       if (SkillId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillId);
       }
-      if (TargetId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TargetId);
+      if (SkillTargetId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillTargetId);
+      }
+      if (SkillLocationTargetId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillLocationTargetId);
       }
       if (PlayAnimName.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayAnimName);
@@ -3002,8 +3029,11 @@ namespace Google.Protobuf.Struct {
       if (other.SkillId != 0) {
         SkillId = other.SkillId;
       }
-      if (other.TargetId != 0) {
-        TargetId = other.TargetId;
+      if (other.SkillTargetId != 0) {
+        SkillTargetId = other.SkillTargetId;
+      }
+      if (other.SkillLocationTargetId != 0) {
+        SkillLocationTargetId = other.SkillLocationTargetId;
       }
       if (other.PlayAnimName.Length != 0) {
         PlayAnimName = other.PlayAnimName;
@@ -3035,14 +3065,18 @@ namespace Google.Protobuf.Struct {
             break;
           }
           case 16: {
-            TargetId = input.ReadInt32();
+            SkillTargetId = input.ReadInt32();
             break;
           }
-          case 26: {
+          case 24: {
+            SkillLocationTargetId = input.ReadInt32();
+            break;
+          }
+          case 34: {
             PlayAnimName = input.ReadString();
             break;
           }
-          case 37: {
+          case 45: {
             RotY = input.ReadFloat();
             break;
           }
@@ -3070,14 +3104,18 @@ namespace Google.Protobuf.Struct {
             break;
           }
           case 16: {
-            TargetId = input.ReadInt32();
+            SkillTargetId = input.ReadInt32();
             break;
           }
-          case 26: {
+          case 24: {
+            SkillLocationTargetId = input.ReadInt32();
+            break;
+          }
+          case 34: {
             PlayAnimName = input.ReadString();
             break;
           }
-          case 37: {
+          case 45: {
             RotY = input.ReadFloat();
             break;
           }

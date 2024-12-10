@@ -5,9 +5,7 @@ using Google.Protobuf.Protocol;
 using Google.Protobuf.Struct;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public class CreatureMachine : StateMachine
 {
@@ -30,13 +28,20 @@ public class CreatureMachine : StateMachine
         CheckAndSetState();
     }
 
-    public override void UseSkill(SkillData skillData, Creature target, string playAnimName)
+    public override void UseSkill(SkillData skillData, Creature target, ResUseSkillToC skillPacket)
     {
         if (skillData == null || target == null)
             return;
 
         Owner.transform.LookAt(target.transform);
-        Owner.Animator.Play(playAnimName);
+        if (skillData.IsMoveSkill)
+        {
+            PosInfo posInfo = skillPacket.PosInfo;
+            Vector3 destPos = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);
+            CoroutineHelper.Instance.StartHelperCoroutine(CoMoveFromSkillData(Owner, skillData, destPos));
+        }
+        Owner.Animator.Play(skillPacket.SkillInfo.PlayAnimName);
+        //스킬을 썻을 때 위치가 변하는 스킬이면 위치 동기화 처리
         CreatureState = ECreatureState.Skill;
     }
     public override void OnDie()

@@ -12,7 +12,7 @@ public class JoySceneUI : SceneUI
     {
         Movestick,
         InteractBtn,
-        PickUpBtn
+        DashBtn
     }
 
     enum Images
@@ -21,8 +21,6 @@ public class JoySceneUI : SceneUI
     }
 
     JoyMoveController _joyMoveController;
-    JoyPickupController _joyPickupController;
-    JoyAttackController _joyAttackController;
 
     Image _interactImg;
     [SerializeField]
@@ -38,18 +36,16 @@ public class JoySceneUI : SceneUI
 
         GameObject movestick = Get<GameObject>((int)GameObjects.Movestick);
         GameObject atkBtn = Get<GameObject>((int)GameObjects.InteractBtn);
-        GameObject pickUpBtn = Get<GameObject>((int)GameObjects.PickUpBtn);
+        GameObject dashBtn = Get<GameObject>((int)GameObjects.DashBtn);
 
         _interactImg = Get<Image>((int)Images.InteractImg);
         _joyMoveController = movestick.GetComponent<JoyMoveController>();
-        _joyPickupController = pickUpBtn.GetComponent<JoyPickupController>();
-        _joyAttackController = atkBtn.GetComponent<JoyAttackController>();
 
         BindEvent(atkBtn, OnInteractBtnClicked);
         BindEvent(movestick, OnMovestickPointerDown, Enums.TouchEvent.PointerDown);
         BindEvent(movestick, OnMovestickPointerUp, Enums.TouchEvent.PointerUp);
         BindEvent(movestick, OnMovestickDrag, Enums.TouchEvent.Drag);
-        BindEvent(pickUpBtn, OnPickUpBtnClicked);
+        BindEvent(dashBtn, OnDashBtnClicked);
     }
     protected override void OnEnable()
     {
@@ -96,8 +92,8 @@ public class JoySceneUI : SceneUI
             Managers.GameManager.Interactable.Interact();
     }
 
-    private void OnPickUpBtnClicked(PointerEventData eventData)
+    private void OnDashBtnClicked(PointerEventData eventData)
     {
-        _joyPickupController.OnHandlePickupClick();
+        Managers.EventBus.InvokeEvent(Enums.EventType.DashBtnClick);
     }
 }

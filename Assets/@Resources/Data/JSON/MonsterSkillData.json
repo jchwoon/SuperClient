@@ -3,9 +3,10 @@
     {
       "templateId": 1000,
       "skillType": 1,
-      "skillAreaType": 0,
+      "skillAreaType": 1,
       "skillProjectileType": 0,
-      "isNormalSkill": true,
+      "skillSlotType": 1,
+      "skillUsageTargetType": 2,
       "skillName": "Vornix 기본공격",
       "animName": "NormalAttack",
       "skillRange": 1.5,
@@ -15,11 +16,7 @@
       "animParamName": "SkillA",
       "effectId": 2,
       "effectDelayRatio": 0.6,
-      "comboTime": 0,
-      "maxComboIdx": 0,
-      "comboNames": [
-        "NormalAttack"
-      ]
+      "comboTime": 0
     }
   ]
 }
