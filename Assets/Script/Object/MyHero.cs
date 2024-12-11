@@ -159,7 +159,7 @@ public class MyHero : Hero
     }
 
     #region PickupItem
-    public void ReqCheckCanPickup(int objectId)
+    public void ReqPickupItem(int objectId)
     {
         PickupDropItemToS pickupItemPacket = new PickupDropItemToS();
         pickupItemPacket.ObjectId = objectId;
@@ -167,13 +167,15 @@ public class MyHero : Hero
         Managers.NetworkManager.Send(pickupItemPacket);
     }
 
-    public void ResCheckCanPickup(EPickupFailReason reason)
+    public void ResPickupItem(EPickupFailReason reason)
     {
         switch (reason)
         {
             case EPickupFailReason.Full:
                 Managers.UIManager.ShowToasUI("인벤토리가 가득 찼습니다!");
                 break;
+                //만약 실패하지 않았으면 여기서 플레이어에게 가게하고
+                //도착했으면 Despawn을 하면 괜찮을듯?
             default:
                 break;
         }

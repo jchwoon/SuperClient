@@ -35,6 +35,6 @@ public class DropItem : BaseObject
     {
         if (hero == null)
             return;
-        hero.ReqCheckCanPickup(ObjectId);
+        hero.ReqPickupItem(ObjectId);
     }
 }

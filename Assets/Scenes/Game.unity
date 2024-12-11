@@ -2811,7 +2811,6 @@ GameObject:
   - component: {fileID: 1169316827}
   - component: {fileID: 1169316826}
   - component: {fileID: 1169316825}
-  - component: {fileID: 1169316828}
   m_Layer: 0
   m_Name: DashBtn
   m_TagString: Untagged
@@ -2921,18 +2920,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169316823}
   m_CullTransparentMesh: 1
---- !u!114 &1169316828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1169316823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e5fc6a10eed2342810d62ee3512791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1173981125
 GameObject:
   m_ObjectHideFlags: 0
@@ -5558,7 +5545,6 @@ GameObject:
   - component: {fileID: 2086535341}
   - component: {fileID: 2086535340}
   - component: {fileID: 2086535342}
-  - component: {fileID: 2086535343}
   m_Layer: 5
   m_Name: InteractBtn
   m_TagString: Untagged
@@ -5668,18 +5654,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2086535343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2086535338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2679556c8d8df64bbbcc6d401a3ad8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

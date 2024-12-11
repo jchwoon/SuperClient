@@ -155,7 +155,7 @@ public partial class PacketHandler
         if (myHero == null)
             return;
 
-        myHero.ResCheckCanPickup(pickupItemPacket.Result);
+        myHero.ResPickupItem(pickupItemPacket.Result);
     }
 
     public static void AddItemToCHandler(PacketSession session, IMessage packet)
