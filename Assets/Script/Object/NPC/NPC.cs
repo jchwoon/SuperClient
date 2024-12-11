@@ -25,12 +25,12 @@ public abstract class NPC : BaseObject, IInteractable
 
     public abstract void Interact();
 
-    public override void OnContactMyHero()
+    public override void OnContactMyHero(MyHero hero)
     {
         Managers.GameManager.SetInteractable(this);
     }
 
-    public override void OnDetactMyHero()
+    public override void OnDetactMyHero(MyHero hero)
     {
         Managers.GameManager.SetInteractable(null);
     }
