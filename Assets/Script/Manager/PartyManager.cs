@@ -34,7 +34,7 @@ public class PartyManager
         }
     }
 
-    public void MakeParty(Hero owner, DungeonData dungeonData)
+    public void MakeParty(Hero owner, DungeonData dungeonData = null)
     {
         int newPartyId = parties.Count;
         Party newParty = new Party { PartyId = newPartyId };

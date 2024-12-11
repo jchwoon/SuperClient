@@ -167,9 +167,9 @@ public class DungeonUI : PopupUI
     {
         Hero hero = Managers.ObjectManager.MyHero;
         
-        Managers.PartyManager.MakeParty(hero, dungeonData);
+        Managers.PartyManager.MakeParty(hero);
 
-        GameObject newParty = Managers.ResourceManager.Instantiate("PartyList", _partyContents.transform);
+        Managers.ResourceManager.Instantiate("PartyList", _partyContents.transform);
     }
 
     private void OnPartyJoinBtnClicked(PointerEventData eventData)

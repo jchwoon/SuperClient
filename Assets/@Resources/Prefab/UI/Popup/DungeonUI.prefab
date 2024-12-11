@@ -2356,6 +2356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9358d630007adfd478b9595acf849753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dungeonId: 0
+  partyId: 0
 --- !u!1 &6772073006146268134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2400,7 +2402,7 @@ GameObject:
   - component: {fileID: 2253861160068935866}
   - component: {fileID: 5888140672584423854}
   m_Layer: 0
-  m_Name: Content
+  m_Name: PartyContents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
