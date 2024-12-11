@@ -57,14 +57,14 @@ public class MyHero : Hero
     {
         BaseObject obj = other.GetComponent<BaseObject>();
         if (obj != null)
-            obj.OnContactMyHero();
+            obj.OnContactMyHero(this);
     }
 
     private void OnTriggerExit(Collider other)
     {
         BaseObject obj = other.GetComponent<BaseObject>();
         if (obj != null)
-            obj.OnDetactMyHero();
+            obj.OnDetactMyHero(this);
     }
 
     private void OnAttackBtnClicked()

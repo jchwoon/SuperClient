@@ -30,4 +30,11 @@ public class DropItem : BaseObject
         SetPos(gameObject, info.PosInfo);
         SetObjInfo(info);
     }
+
+    public override void OnContactMyHero(MyHero hero)
+    {
+        if (hero == null)
+            return;
+        hero.ReqCheckCanPickup(ObjectId);
+    }
 }
