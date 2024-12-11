@@ -19,7 +19,8 @@ public class DungeonUI : PopupUI
         PartyBtns,
         PartyListTab,
         DungeonSlot,
-        PartySlot
+        PartySlot,
+        PartyContents
     }
 
     enum Buttons
@@ -44,6 +45,7 @@ public class DungeonUI : PopupUI
     GameObject _currentDungeonTab;
     GameObject _currentDungeonList;
 
+    GameObject _partyContents;
 
     Color _activeColor = Color.gray;
     Color _deActiveColor = Color.white;
@@ -64,7 +66,9 @@ public class DungeonUI : PopupUI
         _partyListTab = Get<GameObject>((int)GameObjects.PartyListTab);
         _dungeonSlot = Get<GameObject>((int)GameObjects.DungeonSlot);
         _partySlot = Get<GameObject>((int)GameObjects.PartySlot);
-        
+
+        _partyContents = Get<GameObject>((int)GameObjects.PartyContents);
+
         BindEvent(Get<Button>((int)Buttons.SoloPartyBtn).gameObject, OnSinglePartyBtnClicked);
         BindEvent(Get<Button>((int)Buttons.PartyBtn).gameObject, OnPartyBtnClicked);
         BindEvent(Get<Button>((int)Buttons.PartyMakeBtn).gameObject, OnPartyMakeBtnClicked);
@@ -142,7 +146,7 @@ public class DungeonUI : PopupUI
     {
         Managers.MapManager.ChangeMap(3);
     }
-    
+
     private void OnPartyBtnClicked(PointerEventData eventData)
     {
         PartyTabOn(true);
@@ -158,18 +162,27 @@ public class DungeonUI : PopupUI
         string heroName = Managers.ObjectManager.MyHero.Name;
         int heroLV = Managers.ObjectManager.MyHero.Level;
 
-        if(_partySlot.TryGetComponent(out PartySlot partySlot))
-        {            
-            partySlot.SetUserName(heroName, heroLV);
+        GameObject newParty = Managers.ResourceManager.Instantiate("PartyList", _partyContents.transform);
+
+        if (newParty.TryGetComponent(out PartySlot partySlot))
+        {
+            partySlot.AddPartyMember(heroName, heroLV);
         }
 
         Managers.PartyManager.MakeParty(Managers.ObjectManager.MyHero);
-
     }
 
     private void OnPartyJoinBtnClicked(PointerEventData eventData)
     {
+        string heroName = Managers.ObjectManager.MyHero.Name;
+        int heroLV = Managers.ObjectManager.MyHero.Level;
 
+        if (_partySlot.TryGetComponent(out PartySlot partySlot))
+        {
+            partySlot.AddPartyMember(heroName, heroLV);
+        }
+
+        Managers.PartyManager.MakeParty(Managers.ObjectManager.MyHero);
     }
 
     private void PartyTabOn(bool isPartyTabOpen)
@@ -177,7 +190,7 @@ public class DungeonUI : PopupUI
         _partyBtns.SetActive(!isPartyTabOpen);
         _partyListTab.SetActive(isPartyTabOpen);
     }
-    
+
 
     private void GetDungeonInfo(GameObject changedDungeonList)
     {

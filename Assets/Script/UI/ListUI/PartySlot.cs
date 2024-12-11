@@ -1,11 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class PartySlot : BaseUI
 {
-
     protected enum Texts
     {
         Member1Name,
@@ -18,16 +16,24 @@ public class PartySlot : BaseUI
         Member4LV,
     }
 
-    TMP_Text _member1Name;
-    TMP_Text _member2Name;
-    TMP_Text _member3Name;
-    TMP_Text _member4Name;
-    TMP_Text _member1LV;
-    TMP_Text _member2LV;
-    TMP_Text _member3LV;
-    TMP_Text _member4LV;
+    private struct PartyMember
+    {
+        public string Name;
+        public int Level;
 
+        public PartyMember(string name, int level)
+        {
+            Name = name;
+            Level = level;
+        }
+    }
 
+    private const int MaxPartyMembers = 4;
+    private List<PartyMember> _partyMembers = new List<PartyMember>();
+
+    // UI 요소
+    private TMP_Text[] _memberNames = new TMP_Text[MaxPartyMembers];
+    private TMP_Text[] _memberLevels = new TMP_Text[MaxPartyMembers];
 
     protected override void Awake()
     {
@@ -35,26 +41,64 @@ public class PartySlot : BaseUI
 
         Bind<TMP_Text>(typeof(Texts));
 
+        _memberNames[0] = Get<TMP_Text>((int)Texts.Member1Name);
+        _memberNames[1] = Get<TMP_Text>((int)Texts.Member2Name);
+        _memberNames[2] = Get<TMP_Text>((int)Texts.Member3Name);
+        _memberNames[3] = Get<TMP_Text>((int)Texts.Member4Name);
 
-        _member1Name = Get<TMP_Text>((int)Texts.Member1Name);
-        _member2Name = Get<TMP_Text>((int)Texts.Member2Name);
-        _member3Name = Get<TMP_Text>((int)Texts.Member3Name);
-        _member4Name = Get<TMP_Text>((int)Texts.Member4Name);
-        _member1LV = Get<TMP_Text>((int)Texts.Member1LV);
-        _member2LV = Get<TMP_Text>((int)Texts.Member2LV);
-        _member3LV = Get<TMP_Text>((int)Texts.Member3LV);
-        _member4LV = Get<TMP_Text>((int)Texts.Member4LV);
+        _memberLevels[0] = Get<TMP_Text>((int)Texts.Member1LV);
+        _memberLevels[1] = Get<TMP_Text>((int)Texts.Member2LV);
+        _memberLevels[2] = Get<TMP_Text>((int)Texts.Member3LV);
+        _memberLevels[3] = Get<TMP_Text>((int)Texts.Member4LV);
+
+        ResetUI();
     }
-    
-    public void SetUserName(string userName, int userLv)
+
+    private void ResetUI()
     {
-        //TODO List로 유저 정보 받아오기.
-
-        string lv = "LV. " + userLv;
-
-        _member1Name.text = userName;
-        _member1LV.text = lv;
+        for (int i = 0; i < MaxPartyMembers; i++)
+        {
+            _memberNames[i].text = "";
+            _memberLevels[i].text = "";
+        }
     }
 
+    public void AddPartyMember(string userName, int userLv)
+    {
+        if (_partyMembers.Count >= MaxPartyMembers)
+        {
+            // 인원초과
+            return;
+        }
 
+        if (_partyMembers.Exists(m => m.Name == userName))
+        {
+            // 이미 존재하는 멤버인지 확인
+            return;
+        }
+
+        _partyMembers.Add(new PartyMember(userName, userLv));
+        UpdateUI();
+    }
+
+    public void RemovePartyMember(string userName)
+    {
+        var member = _partyMembers.Find(m => m.Name == userName);
+        if (member.Name != null)
+        {
+            _partyMembers.Remove(member);
+            UpdateUI();
+        }
+    }
+
+    private void UpdateUI()
+    {
+        ResetUI(); // 초기화 후 다시 세팅
+
+        for (int i = 0; i < _partyMembers.Count; i++)
+        {
+            _memberNames[i].text = _partyMembers[i].Name;
+            _memberLevels[i].text = $"LV. {_partyMembers[i].Level}";
+        }
+    }
 }
