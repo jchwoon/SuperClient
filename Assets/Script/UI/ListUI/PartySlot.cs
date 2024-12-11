@@ -15,23 +15,9 @@ public class PartySlot : BaseUI
         Member3LV,
         Member4LV,
     }
-
-    private struct PartyMember
-    {
-        public string Name;
-        public int Level;
-
-        public PartyMember(string name, int level)
-        {
-            Name = name;
-            Level = level;
-        }
-    }
-
+    [HideInInspector] public int PartyId;
     private const int MaxPartyMembers = 4;
-    private List<PartyMember> _partyMembers = new List<PartyMember>();
-
-    // UI 요소
+    
     private TMP_Text[] _memberNames = new TMP_Text[MaxPartyMembers];
     private TMP_Text[] _memberLevels = new TMP_Text[MaxPartyMembers];
 
@@ -41,17 +27,15 @@ public class PartySlot : BaseUI
 
         Bind<TMP_Text>(typeof(Texts));
 
-        _memberNames[0] = Get<TMP_Text>((int)Texts.Member1Name);
-        _memberNames[1] = Get<TMP_Text>((int)Texts.Member2Name);
-        _memberNames[2] = Get<TMP_Text>((int)Texts.Member3Name);
-        _memberNames[3] = Get<TMP_Text>((int)Texts.Member4Name);
-
-        _memberLevels[0] = Get<TMP_Text>((int)Texts.Member1LV);
-        _memberLevels[1] = Get<TMP_Text>((int)Texts.Member2LV);
-        _memberLevels[2] = Get<TMP_Text>((int)Texts.Member3LV);
-        _memberLevels[3] = Get<TMP_Text>((int)Texts.Member4LV);
+        for (int i = 0; i < MaxPartyMembers; i++)
+        {
+            _memberNames[i] = Get<TMP_Text>((int)Texts.Member1Name + i);
+            _memberLevels[i] = Get<TMP_Text>((int)Texts.Member1LV + i);
+        }
 
         ResetUI();
+
+        Managers.PartyManager.OnPartyUpdated += UpdateUI;
     }
 
     private void ResetUI()
@@ -61,44 +45,28 @@ public class PartySlot : BaseUI
             _memberNames[i].text = "";
             _memberLevels[i].text = "";
         }
-    }
-
-    public void AddPartyMember(string userName, int userLv)
-    {
-        if (_partyMembers.Count >= MaxPartyMembers)
-        {
-            // 인원초과
-            return;
-        }
-
-        if (_partyMembers.Exists(m => m.Name == userName))
-        {
-            // 이미 존재하는 멤버인지 확인
-            return;
-        }
-
-        _partyMembers.Add(new PartyMember(userName, userLv));
-        UpdateUI();
-    }
-
-    public void RemovePartyMember(string userName)
-    {
-        var member = _partyMembers.Find(m => m.Name == userName);
-        if (member.Name != null)
-        {
-            _partyMembers.Remove(member);
-            UpdateUI();
-        }
-    }
+    }    
 
     private void UpdateUI()
     {
-        ResetUI(); // 초기화 후 다시 세팅
+        ResetUI();
 
-        for (int i = 0; i < _partyMembers.Count; i++)
+        Party party = Managers.PartyManager.GetParty(PartyId);
+        if (party == null) 
+            return;
+
+        for (int i = 0; i < party.PartyMembers.Count; i++)
         {
-            _memberNames[i].text = _partyMembers[i].Name;
-            _memberLevels[i].text = $"LV. {_partyMembers[i].Level}";
+            UpdateMemberUI(i, party.PartyMembers[i]);
         }
+    }
+
+    private void UpdateMemberUI(int index, PartyMember member)
+    {
+        if (index < 0 || index >= MaxPartyMembers)
+            return;
+
+        _memberNames[index].text = member.Name;
+        _memberLevels[index].text = $"LV. {member.Level}";
     }
 }

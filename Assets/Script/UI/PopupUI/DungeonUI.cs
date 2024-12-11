@@ -1,3 +1,4 @@
+using Data;
 using Google.Protobuf.Enum;
 using System;
 using System.Collections;
@@ -49,6 +50,11 @@ public class DungeonUI : PopupUI
 
     Color _activeColor = Color.gray;
     Color _deActiveColor = Color.white;
+
+    //TODO 던전, 파티 클릭시 정보 받아오기
+    [HideInInspector] public int dungeonId;
+    [HideInInspector] public int partyId;
+    [HideInInspector] public DungeonData dungeonData;
 
     protected override void Awake()
     {
@@ -137,7 +143,7 @@ public class DungeonUI : PopupUI
         changedDungeonList.SetActive(true);
 
         //TODO 현재 던전탭에 있는 파티들 동기화
-        GetDungeonInfo(changedDungeonList);
+        //GetDungeonInfo(changedDungeonList);
 
         _currentDungeonList = changedDungeonList;
     }
@@ -159,30 +165,18 @@ public class DungeonUI : PopupUI
 
     private void OnPartyMakeBtnClicked(PointerEventData eventData)
     {
-        string heroName = Managers.ObjectManager.MyHero.Name;
-        int heroLV = Managers.ObjectManager.MyHero.Level;
+        Hero hero = Managers.ObjectManager.MyHero;
+        
+        Managers.PartyManager.MakeParty(hero, dungeonData);
 
         GameObject newParty = Managers.ResourceManager.Instantiate("PartyList", _partyContents.transform);
-
-        if (newParty.TryGetComponent(out PartySlot partySlot))
-        {
-            partySlot.AddPartyMember(heroName, heroLV);
-        }
-
-        Managers.PartyManager.MakeParty(Managers.ObjectManager.MyHero);
     }
 
     private void OnPartyJoinBtnClicked(PointerEventData eventData)
     {
-        string heroName = Managers.ObjectManager.MyHero.Name;
-        int heroLV = Managers.ObjectManager.MyHero.Level;
+        Hero hero = Managers.ObjectManager.MyHero;
 
-        if (_partySlot.TryGetComponent(out PartySlot partySlot))
-        {
-            partySlot.AddPartyMember(heroName, heroLV);
-        }
-
-        Managers.PartyManager.MakeParty(Managers.ObjectManager.MyHero);
+        Managers.PartyManager.JoinParty(hero, partyId);
     }
 
     private void PartyTabOn(bool isPartyTabOpen)
