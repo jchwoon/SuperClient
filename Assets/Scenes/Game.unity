@@ -2813,7 +2813,7 @@ GameObject:
   - component: {fileID: 1169316825}
   - component: {fileID: 1169316828}
   m_Layer: 0
-  m_Name: PickUpBtn
+  m_Name: DashBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3199,7 +3199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pick Up
+  m_text: Dash
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02033049d8f5e9a41a63c3bf9b7ddc7a, type: 2}
   m_sharedMaterial: {fileID: -3663696063583735501, guid: 02033049d8f5e9a41a63c3bf9b7ddc7a, type: 2}
@@ -4899,7 +4899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1928055682
 RectTransform:
   m_ObjectHideFlags: 0

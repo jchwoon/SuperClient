@@ -6,7 +6,9 @@ using Google.Protobuf.WellKnownTypes;
 using MyHeroState;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public interface IState
 {
@@ -56,7 +58,7 @@ public class StateMachine
 
     }
 
-    public virtual void UseSkill(SkillData skillData, Creature target, string playAnimName)
+    public virtual void UseSkill(SkillData skillData, Creature target, ResUseSkillToC skillPacket)
     {
     }
     public virtual void OnDie()
@@ -66,6 +68,24 @@ public class StateMachine
 
     public virtual void OnRevival()
     {
+    }
+
+    protected IEnumerator CoMoveFromSkillData(Creature owner, SkillData skillData, Vector3 destPos)
+    {
+        float duration = skillData.AnimTime * skillData.EffectDelayRatio;
+
+        Vector3 startPos = owner.transform.position;
+        owner.transform.LookAt(destPos);
+
+        float elapsedTime = 0;
+        while (elapsedTime < duration)
+        {
+            owner.transform.position = Vector3.Lerp(startPos, destPos, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        owner.transform.position = destPos;
     }
 
     #region AnimParamGetSet

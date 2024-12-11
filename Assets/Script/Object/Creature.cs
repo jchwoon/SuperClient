@@ -66,14 +66,21 @@ public class Creature : BaseObject
     }
 
     #region Network Send
-    public void SendUseSkill(int skillId, int targetId)
+    //targetId는 누구에게서 Effect가 나갈건지
+    public void SendUseSkill(int skillId, int skillTargetId, int skillLocationTargetId)
     {
+        Vector2 joystickDir = Managers.GameManager.MoveInput;
+        float rotY = joystickDir == Vector2.zero
+            ? transform.rotation.eulerAngles.y
+            : Utils.GetAngleFromDir(joystickDir);
+
         ReqUseSkillToS skillPacket = new ReqUseSkillToS();
         SkillInfo skillInfo = new SkillInfo()
         {
             SkillId = skillId,
-            TargetId = targetId,
-            RotY = transform.rotation.eulerAngles.y
+            SkillLocationTargetId = skillLocationTargetId,
+            SkillTargetId = skillTargetId,
+            RotY = rotY
         };
         skillPacket.SkillInfo = skillInfo;
         Managers.NetworkManager.Send(skillPacket);
@@ -87,13 +94,13 @@ public class Creature : BaseObject
         if (Managers.DataManager.SkillDict.TryGetValue(skillPacket.SkillInfo.SkillId, out skillData) == false)
             return;
 
-        GameObject go = Managers.ObjectManager.FindById(skillPacket.SkillInfo.TargetId);
+        GameObject go = Managers.ObjectManager.FindById(skillPacket.SkillInfo.SkillTargetId);
         if (go == null)
-            owner.Machine.UseSkill(skillData, null, skillPacket.SkillInfo.PlayAnimName);
+            owner.Machine.UseSkill(skillData, null, skillPacket);
         else
         {
             Creature target = go.GetComponent<Creature>();
-            owner.Machine.UseSkill(skillData, target, skillPacket.SkillInfo.PlayAnimName);
+            owner.Machine.UseSkill(skillData, target, skillPacket);
         }
 
         //해당 스킬에 대해한 파티클
