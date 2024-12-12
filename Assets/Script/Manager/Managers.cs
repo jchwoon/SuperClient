@@ -25,6 +25,7 @@ public class Managers : MonoBehaviour
     private EventBusManager _eventBus = new EventBusManager();
     private PoolManager _poolManager = new PoolManager();
     private ItemFactory _itemFactory = new ItemFactory();
+    private PartyManager _partyManager = new PartyManager();
     private InputManager _inputManager = new InputManager();
 
     public static NetworkManager NetworkManager { get { return Instance._networkManager; } }
@@ -38,6 +39,7 @@ public class Managers : MonoBehaviour
     public static EventBusManager EventBus { get { return Instance._eventBus; } }
     public static PoolManager PoolManager { get { return Instance._poolManager; } }
     public static ItemFactory ItemFactory { get { return Instance._itemFactory; } }
+    public static PartyManager PartyManager { get { return Instance._partyManager; } }
     public static InputManager InputManager { get { return Instance._inputManager; } }
 
 
