@@ -43,6 +43,7 @@ public enum PacketId
   EquipItemToS = 34,
   UnEquipItemToS = 35,
   ChangeSlotTypeToC = 36,
+
 }
 
 
