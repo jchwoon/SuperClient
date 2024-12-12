@@ -11,6 +11,7 @@ public class GameSceneUI : SceneUI
     enum GameObjects
     {
         InventoryBtn,
+        MenuBtn
     }
     enum Sliders
     {
@@ -52,6 +53,7 @@ public class GameSceneUI : SceneUI
         Bind<Slider>(typeof(Sliders));
 
         BindEvent(Get<GameObject>((int)GameObjects.InventoryBtn), OnInventoryBtnClicked);
+        BindEvent(Get<GameObject>((int)GameObjects.MenuBtn), OnMenuBtnClicked);
     }
 
     protected override void OnEnable()
@@ -139,10 +141,11 @@ public class GameSceneUI : SceneUI
         InventoryUI inventory = Managers.UIManager.ShowPopup<InventoryUI>();
         inventory.Refresh();
     }
-    //private void OnDungeonBtnClicked(PointerEventData eventData)
-    //{
-    //    DungeonUI dungeonUI = Managers.UIManager.ShowPopup<DungeonUI>();
-    //}
+
+    private void OnMenuBtnClicked(PointerEventData eventData)
+    {
+        Managers.UIManager.ShowPopup<MenuUI>();
+    }
 
     IEnumerator CoSmoothChangeBar(Slider bar, float current, int target)
     {
