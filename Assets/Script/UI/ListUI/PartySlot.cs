@@ -69,4 +69,10 @@ public class PartySlot : BaseUI
         _memberNames[index].text = member.Name;
         _memberLevels[index].text = $"LV. {member.Level}";
     }
+
+    public void ClickPartyInfo()
+    {
+        Debug.Log(gameObject.name);
+        Debug.Log(PartyId);
+    }
 }

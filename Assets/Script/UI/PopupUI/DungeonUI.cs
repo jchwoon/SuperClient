@@ -30,6 +30,7 @@ public class DungeonUI : PopupUI
         PartyBtn,
         PartyMakeBtn,
         PartyJoinBtn,
+        PartyExitBtn,
     }
 
     GameObject _normalDungeonList;
@@ -77,8 +78,11 @@ public class DungeonUI : PopupUI
 
         BindEvent(Get<Button>((int)Buttons.SoloPartyBtn).gameObject, OnSinglePartyBtnClicked);
         BindEvent(Get<Button>((int)Buttons.PartyBtn).gameObject, OnPartyBtnClicked);
+
         BindEvent(Get<Button>((int)Buttons.PartyMakeBtn).gameObject, OnPartyMakeBtnClicked);
         BindEvent(Get<Button>((int)Buttons.PartyJoinBtn).gameObject, OnPartyJoinBtnClicked);
+        BindEvent(Get<Button>((int)Buttons.PartyExitBtn).gameObject, OnPartyExitBtnClicked);
+        
         BindEvent(Get<GameObject>((int)GameObjects.CloseBtn), OnCloseBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.DungeonSlot), OnClickDungeonSlot);
         BindEvent(_normalTab, (eventData) => { OnChangeTab(eventData, _normalTab, _normalDungeonList); });
@@ -166,17 +170,39 @@ public class DungeonUI : PopupUI
     private void OnPartyMakeBtnClicked(PointerEventData eventData)
     {
         Hero hero = Managers.ObjectManager.MyHero;
-        
-        Managers.PartyManager.MakeParty(hero);
 
-        Managers.ResourceManager.Instantiate("PartyList", _partyContents.transform);
+        if (hero.PartyId >= 0)
+            return;
+        
+        GameObject partyTab = Managers.ResourceManager.Instantiate("PartyList", _partyContents.transform);
+
+        Managers.PartyManager.MakeParty(hero, partyTab);
     }
 
     private void OnPartyJoinBtnClicked(PointerEventData eventData)
     {
         Hero hero = Managers.ObjectManager.MyHero;
 
+        if (hero.PartyId >= 0)
+            return;
+
         Managers.PartyManager.JoinParty(hero, partyId);
+    }
+
+    private void OnPartyExitBtnClicked(PointerEventData eventData)
+    {
+        Hero hero = Managers.ObjectManager.MyHero;
+
+        if (hero.PartyId < 0)
+        {
+            return;
+        }
+        else
+        {
+            Managers.PartyManager.RemovePartyMember(hero, hero.PartyId);
+            hero.PartyId = -1;
+        }
+
     }
 
     private void PartyTabOn(bool isPartyTabOpen)

@@ -8,4 +8,5 @@ public class Party
 {
     public int PartyId;
     public List<PartyMember> PartyMembers = new List<PartyMember>();
+    public GameObject PartyTab;
 }
