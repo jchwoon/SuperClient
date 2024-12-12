@@ -96,4 +96,10 @@ public class Enums
         Coordinate,
         Target
     }
+
+    public enum ETouchProperty
+    {
+        Position,
+        Delta
+    }
 }
