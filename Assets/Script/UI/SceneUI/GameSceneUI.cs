@@ -1,5 +1,6 @@
 using Google.Protobuf.Struct;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,11 +10,7 @@ public class GameSceneUI : SceneUI
 {
     enum GameObjects
     {
-        BackBtn,
         InventoryBtn,
-        DungeonBtn,
-        SettingBtn,
-        TestRoomChanger
     }
     enum Sliders
     {
@@ -25,7 +22,6 @@ public class GameSceneUI : SceneUI
     {
         AtkTxt,
         DefenceTxt,
-        AtkSpeedTxt,
         LevelTxt,
         LevelPercentageTxt,
         HpTxt,
@@ -55,12 +51,7 @@ public class GameSceneUI : SceneUI
         Bind<TMP_Text>(typeof(Texts));
         Bind<Slider>(typeof(Sliders));
 
-
-        BindEvent(Get<GameObject>((int)GameObjects.BackBtn), OnBackBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.InventoryBtn), OnInventoryBtnClicked);
-        BindEvent(Get<GameObject>((int)GameObjects.DungeonBtn), OnDungeonBtnClicked);
-        BindEvent(Get<GameObject>((int)GameObjects.SettingBtn), OnSettingBtnClicked);
-        BindEvent(Get<GameObject>((int)GameObjects.TestRoomChanger), OnChangeRoomBtnClick);
     }
 
     protected override void OnEnable()
@@ -89,7 +80,6 @@ public class GameSceneUI : SceneUI
 
         Get<TMP_Text>((int)Texts.AtkTxt).text = statInfo.AtkDamage.ToString();
         Get<TMP_Text>((int)Texts.DefenceTxt).text = statInfo.Defence.ToString();
-        Get<TMP_Text>((int)Texts.AtkSpeedTxt).text = statInfo.AtkSpeed.ToString("N2");
         Get<TMP_Text>((int)Texts.HpTxt).text = $"{statInfo.Hp} / {statInfo.MaxHp}";
         Get<TMP_Text>((int)Texts.MpTxt).text = $"{statInfo.Mp} / {statInfo.MaxMp}";
 
@@ -134,34 +124,25 @@ public class GameSceneUI : SceneUI
         _expBarSmoothRoutine = StartCoroutine(CoSmoothChangeBar(expBar, expBar.value, growth.Exp));
     }
 
-    private void OnBackBtnClicked(PointerEventData eventData)
-    {
-        Managers.UIManager.ShowAlertPopup("로비로 이동하시겠습니까?", Enums.AlertBtnNum.Two,
-            () => 
-            {
-                Managers.SceneManagerEx.ChangeScene(Enums.SceneType.Lobby);
-                Managers.GameManager.LeaveGame();
-            });
-    }
-
-    private void OnChangeRoomBtnClick(PointerEventData eventData)
-    {
-        Managers.MapManager.ChangeMap(2);
-    }
+    //private void OnBackBtnClicked(PointerEventData eventData)
+    //{
+    //    Managers.UIManager.ShowAlertPopup("로비로 이동하시겠습니까?", Enums.AlertBtnNum.Two,
+    //        () => 
+    //        {
+    //            Managers.SceneManagerEx.ChangeScene(Enums.SceneType.Lobby);
+    //            Managers.GameManager.LeaveGame();
+    //        });
+    //}
 
     private void OnInventoryBtnClicked(PointerEventData eventData)
     {
         InventoryUI inventory = Managers.UIManager.ShowPopup<InventoryUI>();
         inventory.Refresh();
     }
-    private void OnDungeonBtnClicked(PointerEventData eventData)
-    {
-        DungeonUI dungeonUI = Managers.UIManager.ShowPopup<DungeonUI>();
-    }
-    private void OnSettingBtnClicked(PointerEventData eventData)
-    {
-        //Managers.UIManager.ShowPopup<InventoryUI>();
-    }
+    //private void OnDungeonBtnClicked(PointerEventData eventData)
+    //{
+    //    DungeonUI dungeonUI = Managers.UIManager.ShowPopup<DungeonUI>();
+    //}
 
     IEnumerator CoSmoothChangeBar(Slider bar, float current, int target)
     {

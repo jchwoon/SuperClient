@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.TextCore.Text;
 
 public class CameraController : MonoBehaviour
 {
     public Transform TargetTransform { get; set; }
-    float _targetDist = 12.0f;
+    public float minDistance = 2f; // √÷º“ ¡‹ ∞≈∏Æ
+    public float maxDistance = 12f; // √÷¥Î ¡‹ ∞≈∏Æ
+    public float currentDist = 12.0f;
     float _smoothTime = 0.3f;
     Vector3 _velocity = Vector3.zero;
     Vector3 TargetPos = Vector3.zero;
@@ -26,11 +29,11 @@ public class CameraController : MonoBehaviour
         TargetPos = TargetTransform.Find("HeadPoint").position;
         Vector3 dir = (transform.position - TargetPos).normalized;
 
-        Vector3 camPos = new Vector3(TargetPos.x, transform.position.y, TargetPos.z) + (new Vector3(dir.x, 0, dir.z) * _targetDist);
+        Vector3 camPos = new Vector3(TargetPos.x, transform.position.y, TargetPos.z) + (new Vector3(dir.x, 0, dir.z) * currentDist);
         
         RaycastHit hit;
-        Vector3 rayPos = TargetPos + (new Vector3(dir.x, dir.y, dir.z) * _targetDist);
-        if (Physics.Raycast(TargetPos, rayPos - TargetPos, out hit, _targetDist, _wallLayerMask) == true)
+        Vector3 rayPos = TargetPos + (new Vector3(dir.x, dir.y, dir.z) * currentDist);
+        if (Physics.Raycast(TargetPos, rayPos - TargetPos, out hit, currentDist, _wallLayerMask) == true)
         {
             camPos = GetHitPos(hit);
         }
