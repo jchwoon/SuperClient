@@ -17,6 +17,8 @@ public class CamRotateController : MonoBehaviour
 
     int _touchCount = 0;
     Vector3 velocity = Vector3.zero;
+    float prevDist = 0.0f;
+    float currentDist = 0.0f;
 
     Action<int> OnChangeTouchCount;
     Coroutine _currentActiveRoutine;
@@ -96,9 +98,6 @@ public class CamRotateController : MonoBehaviour
             yield return null;
         }
     }
-
-    float prevDist = 0.0f;
-    float currentDist = 0.0f;
     private void ZoomInOut()
     {
         //두 터치의 위치를 먼저 구하고 거리 구하기

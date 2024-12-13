@@ -45,7 +45,6 @@ public class PartyManager
 
         CreatePartyToS createPartyPacket = new CreatePartyToS();
 
-        createPartyPacket.Hero = owner.HeroInfo;
 
         Managers.NetworkManager.Send(createPartyPacket);
 

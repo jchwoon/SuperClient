@@ -9,8 +9,8 @@
       "imageName": "Small_HealthPotion_sprite",
       "itemType": 2,
       "coolTime": 3,
-      "stackable": true,
-      "maxStack": 99,
+      "stackable": false,
+      "maxStack": 1,
       "consumableType": 1
     },
     {
@@ -22,8 +22,8 @@
       "imageName": "Small_ManaPotion_sprite",
       "itemType": 2,
       "coolTime": 3,
-      "stackable": true,
-      "maxStack": 99,
+      "stackable": false,
+      "maxStack": 1,
       "consumableType": 2
     }
   ]

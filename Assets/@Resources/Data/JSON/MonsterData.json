@@ -10,6 +10,8 @@
       "atkDamage": 10,
       "defence": 3,
       "atkSpeed": 1,
+      "aggroType": 1,
+      "detectionRange": 10,
       "name": "Vornix",
       "prefabName": "Vornix",
       "level": 1,

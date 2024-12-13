@@ -109,6 +109,7 @@ namespace Data
         public float AtkSpeed;
         public float Sight;
         public List<int> SkillIds;
+        public EMonsterAggroType AggroType;
         public EMonsterGrade MonsterGrade;
     }
 

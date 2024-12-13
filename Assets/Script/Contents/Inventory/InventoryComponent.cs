@@ -8,14 +8,14 @@ using System.Linq;
 public class InventoryComponent
 {
     MyHero _owner;
-    Dictionary<int, Item> _ownerAllItems = new Dictionary<int, Item>();
+    Dictionary<long, Item> _ownerAllItems = new Dictionary<long, Item>();
     //Equipped
     Dictionary<ESlotType, Equipment> _equippedItems = new Dictionary<ESlotType, Equipment>();
 
     //Inventory
-    Dictionary<int, Item> _equipInvenItems = new Dictionary<int, Item>();
-    Dictionary<int, Item> _consumeInvenItems = new Dictionary<int, Item>();
-    Dictionary<int, Item> _etcInvenItems = new Dictionary<int, Item>();
+    Dictionary<long, Item> _equipInvenItems = new Dictionary<long, Item>();
+    Dictionary<long, Item> _consumeInvenItems = new Dictionary<long, Item>();
+    Dictionary<long, Item> _etcInvenItems = new Dictionary<long, Item>();
 
     Dictionary<EConsumableType, long> _consumableCoolDict = new Dictionary<EConsumableType, long>();
 
@@ -104,7 +104,7 @@ public class InventoryComponent
         return _ownerAllItems.Values.ToList();
     }
 
-    public Item FindItemByDbId(int dbId)
+    public Item FindItemByDbId(long dbId)
     {
         Item item;
         if (_ownerAllItems.TryGetValue(dbId, out item) == false)
@@ -113,7 +113,7 @@ public class InventoryComponent
         return item;
     }
 
-    public void RemoveItem(int itemDbId)
+    public void RemoveItem(long itemDbId)
     {
         _ownerAllItems.Remove(itemDbId);
         _equipInvenItems.Remove(itemDbId);
@@ -169,7 +169,7 @@ public class InventoryComponent
     #endregion
 
     #region Handler
-    public void HandleChangeSlotItem(int itemDbId, ESlotType changedSlot)
+    public void HandleChangeSlotItem(long itemDbId, ESlotType changedSlot)
     {
         Item item = FindItemByDbId(itemDbId);
         Equipment equipItem = (Equipment)item;
