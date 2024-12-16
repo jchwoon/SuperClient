@@ -94,16 +94,16 @@ public class InputManager
     public Vector2 GetSecondTouchInfo(ETouchProperty touchType)
     {
         if (touchType == ETouchProperty.Position)
-            return touchController.Touch.FirstTouchPosition.ReadValue<Vector2>();
+            return touchController.Touch.SecondTouchPosition.ReadValue<Vector2>();
         else
-            return touchController.Touch.FirstTouchDelta.ReadValue<Vector2>();
+            return touchController.Touch.SecondTouchDelta.ReadValue<Vector2>();
     }
     public Vector2 GetThirdTouchInfo(ETouchProperty touchType)
     {
         if (touchType == ETouchProperty.Position)
-            return touchController.Touch.FirstTouchPosition.ReadValue<Vector2>();
+            return touchController.Touch.ThirdTouchPosition.ReadValue<Vector2>();
         else
-            return touchController.Touch.FirstTouchDelta.ReadValue<Vector2>();
+            return touchController.Touch.ThirdTouchDelta.ReadValue<Vector2>();
     }
     #endregion
 }

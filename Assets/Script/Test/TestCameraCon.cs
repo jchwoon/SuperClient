@@ -1,15 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.TextCore.Text;
 using static Enums;
+using UnityEngine.EventSystems;
 
-public class CameraController : MonoBehaviour
+public class TestCameraCon : MonoBehaviour
 {
-    public GameObject Target { get; set; }
+    public GameObject Target;
     [Header("Dist")]
     public float targetToDist = 12.0f;
     //Field Of View
@@ -21,7 +19,7 @@ public class CameraController : MonoBehaviour
     public float maxXAngle = 55.0f;
     //Speed
     [Header("Speed")]
-    public float rotateSpeed = 15.0f;
+    public float rotateSpeed = 5.0f;
     public float zoomSpeed = 3.0f;
     public float smoothTime = 0.2f;
 
@@ -50,7 +48,6 @@ public class CameraController : MonoBehaviour
     {
         _wallLayerMask = 1 << (int)Enums.Layers.Wall;
         _mainCam = Camera.main;
-        _uiCam = Utils.FindChild<Camera>(gameObject);
     }
 
     private void OnEnable()
@@ -69,8 +66,6 @@ public class CameraController : MonoBehaviour
     #region Camera Target ÃßÀû
     private void LateUpdate()
     {
-        if (Target == null) return;
-
         Vector3 targetPos = Target.transform.position;
         Vector3 dir = (transform.position - targetPos).normalized;
 
@@ -204,7 +199,6 @@ public class CameraController : MonoBehaviour
         float power = (_prevDist - _currentDist) * Time.deltaTime * zoomSpeed;
 
         _mainCam.fieldOfView = Mathf.Clamp(_mainCam.fieldOfView + power, minFOV, maxFOV);
-        _uiCam.fieldOfView = _mainCam.fieldOfView;
 
         _prevDist = _currentDist;
     }

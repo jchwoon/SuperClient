@@ -26,7 +26,7 @@ public class MyHero : Hero
         base.Awake();
 
         CameraController cameraController = Camera.main.GetComponent<CameraController>();
-        cameraController.TargetTransform = transform;
+        cameraController.Target = Utils.FindChild(gameObject, "HeadPoint");
         cameraController.transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z + 5);
     }
 

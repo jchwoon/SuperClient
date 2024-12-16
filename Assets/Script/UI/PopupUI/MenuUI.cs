@@ -9,7 +9,8 @@ public class MenuUI : PopupUI
     {
         DungeonBtn,
         CloseBtn,
-        ToSelectSceneBtn
+        ToSelectSceneBtn,
+        SkillBtn
     }
     protected override void Awake()
     {
@@ -20,15 +21,17 @@ public class MenuUI : PopupUI
         BindEvent(Get<GameObject>((int)GameObjects.DungeonBtn), OnDungeonBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.CloseBtn), OnCloseBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.ToSelectSceneBtn), OnToSelectSceneBtnClicked);
+        BindEvent(Get<GameObject>((int)GameObjects.SkillBtn), OnSkillBtnClicked);
     }
 
     private void OnDungeonBtnClicked(PointerEventData eventData)
     {
+        ClosePopup();
         Managers.UIManager.ShowPopup<DungeonUI>();
     }
     private void OnCloseBtnClicked(PointerEventData eventData)
     {
-        ClosePopup<MenuUI>();
+        ClosePopup();
     }
     private void OnToSelectSceneBtnClicked(PointerEventData eventData)
     {
@@ -38,5 +41,16 @@ public class MenuUI : PopupUI
             Managers.SceneManagerEx.ChangeScene(Enums.SceneType.Lobby);
             Managers.GameManager.LeaveGame();
         });
+    }
+
+    private void OnSkillBtnClicked(PointerEventData eventData)
+    {
+        ClosePopup();
+        //Managers.UIManager.Show
+    }
+
+    private void ClosePopup()
+    {
+        ClosePopup<MenuUI>();
     }
 }
