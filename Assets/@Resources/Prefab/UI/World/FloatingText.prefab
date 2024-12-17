@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -3663696063583735501, guid: 02033049d8f5e9a41a63c3bf9b7ddc7a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,10 +101,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 02033049d8f5e9a41a63c3bf9b7ddc7a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -3663696063583735501, guid: 02033049d8f5e9a41a63c3bf9b7ddc7a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -128,8 +128,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -189,6 +189,7 @@ MonoBehaviour:
   _healFontColor: {r: 0.5960907, g: 1, b: 0.18431371, a: 1}
   _goldFontColor: {r: 0.85490197, g: 0.64705884, b: 0.1254902, a: 1}
   _expFontColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
+  _missFontColor: {r: 0.593087, g: 0.07662869, b: 0.7735849, a: 1}
 --- !u!95 &5459506163755454089
 Animator:
   serializedVersion: 5

@@ -16,6 +16,8 @@ public class FloatingText : MonoBehaviour
     Color _goldFontColor;
     [SerializeField]
     Color _expFontColor;
+    [SerializeField]
+    Color _missFontColor;
 
     private void Update()
     {
@@ -55,6 +57,11 @@ public class FloatingText : MonoBehaviour
                 _text.fontSize = 5;
                 _text.text = $"Exp +{(int)value}";
                 _text.color = _expFontColor;
+                break;
+            case EFontType.Miss:
+                _text.fontSize = 5;
+                _text.text = $"Miss";
+                _text.color = _missFontColor;
                 break;
             default:
                 Debug.Log("Non Type Floating Text");

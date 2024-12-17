@@ -6,7 +6,7 @@
       "maxMp": 100,
       "moveSpeed": 4,
       "atkDamage": 25,
-      "defence": 5,
+      "defence": 30,
       "baseAtkSpeed": 1,
       "addAtkSpeedMultiplier": 0,
       "exp": 50

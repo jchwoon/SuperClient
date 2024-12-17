@@ -2775,7 +2775,7 @@ MonoBehaviour:
   maxFOV: 50
   minXAngle: 20
   maxXAngle: 55
-  rotateSpeed: 5
+  rotateSpeed: 20
   zoomSpeed: 3
   smoothTime: 0.2
 --- !u!114 &529359373

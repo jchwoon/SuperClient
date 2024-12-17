@@ -13,11 +13,11 @@ public class FloatingTextController : MonoBehaviour
 {
     [SerializeField]
     GameObject FloatingTextPrefab;
-    private Queue<TextInfo> _floatingRewardQueue = new Queue<TextInfo>();
+    private Queue<TextInfo> _floatingQueue = new Queue<TextInfo>();
 
     public void OnEnable()
     {
-        _floatingRewardQueue.Clear();
+        _floatingQueue.Clear();
         StartCoroutine(CoWaitFloatingText());
     }
 
@@ -32,7 +32,7 @@ public class FloatingTextController : MonoBehaviour
                 fontType = fontType
             };
 
-            _floatingRewardQueue.Enqueue(info);
+            _floatingQueue.Enqueue(info);
             return;
         }
 
@@ -49,12 +49,12 @@ public class FloatingTextController : MonoBehaviour
 
     IEnumerator CoWaitFloatingText()
     {
-        WaitForSeconds sec = new WaitForSeconds(0.5f);
+        WaitForSeconds sec = new WaitForSeconds(0.2f);
         while (true)
         {
-            if (_floatingRewardQueue.Count > 0)
+            if (_floatingQueue.Count > 0)
             {
-                TextInfo info = _floatingRewardQueue.Dequeue();
+                TextInfo info = _floatingQueue.Dequeue();
                 SpawnFloatingText(info.value, info.parent, info.fontType);
             }
             yield return sec;

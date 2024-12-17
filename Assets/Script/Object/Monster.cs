@@ -1,4 +1,5 @@
 using Data;
+using Google.Protobuf.Enum;
 using Google.Protobuf.Struct;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,5 +29,14 @@ public class Monster : Creature
         Stat.InitStat(info.StatInfo);
         SetPos(gameObject, info.ObjectInfo.PosInfo);
         SetObjInfo(info.ObjectInfo);
+    }
+
+    public override void HandleModifyOneStat(EStatType statType, float changedValue, float gapValue, EFontType fontType)
+    {
+        base.HandleModifyOneStat(statType, changedValue, gapValue, fontType);
+        if (statType == EStatType.Hp && gapValue < 0 && changedValue != 0)
+        {
+            Machine.OnDamage();
+        }
     }
 }
