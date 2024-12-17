@@ -66,6 +66,11 @@ public class StateMachine
 
     }
 
+    public virtual void OnDamage()
+    {
+
+    }
+
     public virtual void OnRevival()
     {
     }

@@ -40,6 +40,11 @@ public class Creature : BaseObject
         RemoveHUD();
     }
 
+    protected virtual void OnHit()
+    {
+
+    }
+
     protected override void OnRevival()
     {
         base.OnRevival();
@@ -96,11 +101,11 @@ public class Creature : BaseObject
 
         GameObject go = Managers.ObjectManager.FindById(skillPacket.SkillInfo.SkillTargetId);
         if (go == null)
-            owner.Machine.UseSkill(skillData, null, skillPacket);
+            owner.Machine?.UseSkill(skillData, null, skillPacket);
         else
         {
             Creature target = go.GetComponent<Creature>();
-            owner.Machine.UseSkill(skillData, target, skillPacket);
+            owner.Machine?.UseSkill(skillData, target, skillPacket);
         }
 
         //해당 스킬에 대해한 파티클

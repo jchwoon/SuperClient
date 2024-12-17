@@ -113,7 +113,7 @@ public partial class @TouchController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a41351a9-9182-464e-8e29-7194cd0e221d"",
-                    ""path"": ""<Touchscreen>/primaryTouch/position"",
+                    ""path"": ""<Touchscreen>/touch0/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -124,7 +124,7 @@ public partial class @TouchController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""eb500b6f-fd0a-41da-803a-715df54e5aa2"",
-                    ""path"": ""<Touchscreen>/primaryTouch/press"",
+                    ""path"": ""<Touchscreen>/touch0/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -135,7 +135,7 @@ public partial class @TouchController: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""db3ec8df-5f5e-4fef-af9d-b30142bca760"",
-                    ""path"": ""<Touchscreen>/primaryTouch/delta"",
+                    ""path"": ""<Touchscreen>/touch0/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

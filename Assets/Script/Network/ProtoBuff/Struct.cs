@@ -45,7 +45,7 @@ namespace Google.Protobuf.Struct {
             "ASgFEhIKCnRlbXBsYXRlSWQYAiABKAUSKQoKb2JqZWN0VHlwZRgDIAEoDjIV",
             "LlByb3RvY29sLkVPYmplY3RUeXBlEg4KBnJvb21JZBgEIAEoBRIiCgdwb3NJ",
             "bmZvGAUgASgLMhEuUHJvdG9jb2wuUG9zSW5mbyJmCghJdGVtSW5mbxIQCghp",
-            "dGVtRGJJZBgBIAEoBRISCgp0ZW1wbGF0ZUlkGAIgASgFEg0KBWNvdW50GAMg",
+            "dGVtRGJJZBgBIAEoAxISCgp0ZW1wbGF0ZUlkGAIgASgFEg0KBWNvdW50GAMg",
             "ASgFEiUKCHNsb3RUeXBlGAQgASgOMhMuUHJvdG9jb2wuRVNsb3RUeXBlInYK",
             "CVNraWxsSW5mbxIPCgdza2lsbElkGAEgASgFEhUKDXNraWxsVGFyZ2V0SWQY",
             "AiABKAUSHQoVc2tpbGxMb2NhdGlvblRhcmdldElkGAMgASgFEhQKDHBsYXlB",
@@ -2521,10 +2521,10 @@ namespace Google.Protobuf.Struct {
 
     /// <summary>Field number for the "itemDbId" field.</summary>
     public const int ItemDbIdFieldNumber = 1;
-    private int itemDbId_;
+    private long itemDbId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int ItemDbId {
+    public long ItemDbId {
       get { return itemDbId_; }
       set {
         itemDbId_ = value;
@@ -2593,7 +2593,7 @@ namespace Google.Protobuf.Struct {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (ItemDbId != 0) hash ^= ItemDbId.GetHashCode();
+      if (ItemDbId != 0L) hash ^= ItemDbId.GetHashCode();
       if (TemplateId != 0) hash ^= TemplateId.GetHashCode();
       if (Count != 0) hash ^= Count.GetHashCode();
       if (SlotType != global::Google.Protobuf.Enum.ESlotType.None) hash ^= SlotType.GetHashCode();
@@ -2615,9 +2615,9 @@ namespace Google.Protobuf.Struct {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ItemDbId != 0) {
+      if (ItemDbId != 0L) {
         output.WriteRawTag(8);
-        output.WriteInt32(ItemDbId);
+        output.WriteInt64(ItemDbId);
       }
       if (TemplateId != 0) {
         output.WriteRawTag(16);
@@ -2641,9 +2641,9 @@ namespace Google.Protobuf.Struct {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ItemDbId != 0) {
+      if (ItemDbId != 0L) {
         output.WriteRawTag(8);
-        output.WriteInt32(ItemDbId);
+        output.WriteInt64(ItemDbId);
       }
       if (TemplateId != 0) {
         output.WriteRawTag(16);
@@ -2667,8 +2667,8 @@ namespace Google.Protobuf.Struct {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (ItemDbId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ItemDbId);
+      if (ItemDbId != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(ItemDbId);
       }
       if (TemplateId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(TemplateId);
@@ -2691,7 +2691,7 @@ namespace Google.Protobuf.Struct {
       if (other == null) {
         return;
       }
-      if (other.ItemDbId != 0) {
+      if (other.ItemDbId != 0L) {
         ItemDbId = other.ItemDbId;
       }
       if (other.TemplateId != 0) {
@@ -2723,7 +2723,7 @@ namespace Google.Protobuf.Struct {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ItemDbId = input.ReadInt32();
+            ItemDbId = input.ReadInt64();
             break;
           }
           case 16: {
@@ -2758,7 +2758,7 @@ namespace Google.Protobuf.Struct {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ItemDbId = input.ReadInt32();
+            ItemDbId = input.ReadInt64();
             break;
           }
           case 16: {

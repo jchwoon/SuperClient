@@ -50,6 +50,12 @@ public class CreatureMachine : StateMachine
         CreatureState = ECreatureState.Die;
     }
 
+    public override void OnDamage()
+    {
+        Owner.Animator.Play(Owner.AnimData.HitHash);
+        CreatureState = ECreatureState.Hit;
+    }
+
     public override void UpdatePosInput(MoveToC movePacket)
     {
         base.UpdatePosInput(movePacket);

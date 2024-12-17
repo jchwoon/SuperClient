@@ -126,16 +126,6 @@ public class GameSceneUI : SceneUI
         _expBarSmoothRoutine = StartCoroutine(CoSmoothChangeBar(expBar, expBar.value, growth.Exp));
     }
 
-    //private void OnBackBtnClicked(PointerEventData eventData)
-    //{
-    //    Managers.UIManager.ShowAlertPopup("로비로 이동하시겠습니까?", Enums.AlertBtnNum.Two,
-    //        () => 
-    //        {
-    //            Managers.SceneManagerEx.ChangeScene(Enums.SceneType.Lobby);
-    //            Managers.GameManager.LeaveGame();
-    //        });
-    //}
-
     private void OnInventoryBtnClicked(PointerEventData eventData)
     {
         InventoryUI inventory = Managers.UIManager.ShowPopup<InventoryUI>();
