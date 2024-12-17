@@ -151,7 +151,7 @@ namespace Data
         }
     }
 
-    public class SkillData
+    public class SkillData : BaseData
     {
         public int TemplateId;
         public int NextComboSkillTemplateId;

@@ -19,7 +19,8 @@
       "animTime": 0.66,
       "effectId": 1,
       "effectDelayRatio": 0.5,
-      "comboTime": 1
+      "comboTime": 1,
+      "prefabName": "WarriorNormalSkill"
     },
     {
       "templateId": 2,
@@ -40,7 +41,8 @@
       "animTime": 0.66,
       "effectId": 1,
       "effectDelayRatio": 0.5,
-      "comboTime": 1
+      "comboTime": 1,
+      "prefabName": "WarriorNormalSkill"
     },
     {
       "templateId": 3,
@@ -61,7 +63,8 @@
       "animTime": 0.66,
       "effectId": 1,
       "effectDelayRatio": 0.5,
-      "comboTime": 1
+      "comboTime": 1,
+      "prefabName": "WarriorNormalSkill"
     },
     {
       "templateId": 99,
