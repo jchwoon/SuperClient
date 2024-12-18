@@ -4,7 +4,7 @@
       "heroClassId": 1,
       "prefabName": "Warrior",
       "skillIds": [
-        1, 99 
+        1, 2, 3, 99 
       ],
       "respawnTime": 5
     }

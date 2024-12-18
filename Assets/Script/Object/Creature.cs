@@ -107,9 +107,6 @@ public class Creature : BaseObject
             Creature target = go.GetComponent<Creature>();
             owner.Machine?.UseSkill(skillData, target, skillPacket);
         }
-
-        //해당 스킬에 대해한 파티클
-        //해당 스킬 Hit에 대한 파티클
     }
 
     public virtual void HandleModifyStat(StatInfo statInfo)

@@ -175,6 +175,7 @@ namespace Data
         public int EffectId;
         public float EffectDelayRatio;
         public float ComboTime;
+        public float Duration;
     }
 
     [Serializable]

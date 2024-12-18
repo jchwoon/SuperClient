@@ -94,7 +94,7 @@ public class MyHeroStateMachine : StateMachine
         if (skillData == null)
             return;
 
-        BaseSkill skill = Owner.SkillComponent.GetSkillById(skillData.TemplateId);
+        BaseSkill skill = Owner.SkillComponent.GetSkillById(skillPacket.SkillInfo.SkillId);
         if (target != null)
             Owner.transform.LookAt(target.transform);
 
@@ -104,7 +104,7 @@ public class MyHeroStateMachine : StateMachine
             Vector3 destPos = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);
             CoroutineHelper.Instance.StartHelperCoroutine(CoMoveFromSkillData(Owner, skillData, destPos));
         }
-        skill.UseSkill(skillPacket.SkillInfo.PlayAnimName);
+        skill.UseSkill(skillPacket.SkillInfo.PlayAnimName, skillPacket.SkillInfo.SkillLocationTargetId);
 
 
         ChangeState(SkillState);

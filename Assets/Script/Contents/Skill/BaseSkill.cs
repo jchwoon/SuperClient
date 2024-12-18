@@ -28,12 +28,13 @@ public class BaseSkill
         return ESkillFailReason.None;
     }
 
-    public virtual void UseSkill(string playAnimName)
+    public virtual void UseSkill(string playAnimName, int skillEffectTargetId)
     {
         Owner.Animator.Play(playAnimName);
         
         CoroutineHelper.Instance.StartHelperCoroutine(CoRunCoolTime());
         CoroutineHelper.Instance.StartHelperCoroutine(CoRunAnimTime());
+        CoroutineHelper.Instance.StartHelperCoroutine(CoRunEffectTime(skillEffectTargetId));
     }
 
     IEnumerator CoRunCoolTime()
@@ -62,15 +63,24 @@ public class BaseSkill
         Owner.SkillComponent.isUsingSkill = false;
     }
 
-    IEnumerator CoRunEffectTime()
+    IEnumerator CoRunEffectTime(int effectTargetId)
     {
-        float effectTime = SkillData.EffectDelayRatio * SkillData.AnimTime;
+        float effectDelayTime = SkillData.EffectDelayRatio * SkillData.AnimTime;
         float process = 0.0f;
-        while (process < effectTime)
+        while (process < effectDelayTime)
         {
             process += Time.deltaTime;
             yield return null;
         }
+        GameObject target = Managers.ObjectManager.FindById(effectTargetId);
+        float effectDuration = SkillData.Duration == 0 ? SkillData.AnimTime - effectDelayTime : SkillData.Duration;
+        ParticleInfo info = new ParticleInfo
+            (
+                SkillData.PrefabName,
+                target != null ? target.transform : Owner.transform,
+                effectDuration
+            );
+        Managers.ObjectManager.SpawnParticle(info);
     }
 }
 

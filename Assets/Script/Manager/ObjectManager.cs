@@ -130,10 +130,13 @@ public class ObjectManager
         return npc;
     }
 
-    public void SpawnParticle()
+    public void SpawnParticle(ParticleInfo info)
     {
+        GameObject go = Managers.ResourceManager.Instantiate(info.PrefabName, info.Parent, isPool : true);
 
+        Utils.GetOrAddComponent<ParticleController>(go).SetInfo(info);
     }
+
     public void DeSpawn(int objectId)
     {
         GameObject go = FindById(objectId);
@@ -153,7 +156,7 @@ public class ObjectManager
     public GameObject FindById(int objectId)
     {
         GameObject go = null;
-        if (MyHero.ObjectId == objectId)
+        if (MyHero && MyHero.ObjectId == objectId)
             return MyHero.gameObject;
         _objects.TryGetValue(objectId, out go);
         return go;
