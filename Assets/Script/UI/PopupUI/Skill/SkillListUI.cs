@@ -1,5 +1,6 @@
 using Data;
 using Google.Protobuf.Enum;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,8 @@ public class SkillListUI : BaseUI
 
     List<SkillData> _activeSkills;
     List<SkillData> _passiveSkills;
+
+    Action<SkillData> _slotClickAction;
 
     //Active
     Dictionary<ESkillSlotType, List<SkillData>> _skillsSortBySlotType = new Dictionary<ESkillSlotType, List<SkillData>>()
@@ -77,9 +80,12 @@ public class SkillListUI : BaseUI
             foreach (List<SkillData> skills in _skillsSortBySlotType.Values)
             {
                 GameObject go = _activeSkillGroup.transform.GetChild(cnt).gameObject;
-                SkillListSlot listSlot = go.GetComponent<SkillListSlot>();
                 go.SetActive(true);
-                listSlot.SetInfo(skills);
+                SkillSlot[] slots = go.GetComponentsInChildren<SkillSlot>();
+                for (int i = 0; i < skills.Count; i++)
+                {
+                    slots[i].SetInfo(skills[i], _slotClickAction);
+                }
                 cnt++;
             }
 
@@ -92,6 +98,11 @@ public class SkillListUI : BaseUI
             _passiveSkillTab.SetActive(true);
             return;
         }
+    }
+
+    public void RegisterAction(Action<SkillData> slotClickAction)
+    {
+        _slotClickAction = slotClickAction;
     }
 
     private void RegisterAllSkillByClassType()

@@ -1,3 +1,5 @@
+using Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,6 +17,8 @@ public class SkillUI : PopupUI
     }
 
     SkillListUI _skillListUI;
+    SkillDescUI _skillDescUI;
+
     protected override void Awake()
     {
         base.Awake();
@@ -22,6 +26,9 @@ public class SkillUI : PopupUI
         Bind<GameObject>(typeof(GameObjects));
 
         _skillListUI = Get<GameObject>((int)GameObjects.SkillListPanel).GetComponent<SkillListUI>();
+        _skillDescUI = Get<GameObject>((int)GameObjects.SkillDescPanel).GetComponent<SkillDescUI>();
+
+        _skillListUI.RegisterAction(OnSkillSlotClicked);
 
         BindEvent(Get<GameObject>((int)GameObjects.CloseBtn), OnCloseBtnClicked);
     }
@@ -29,10 +36,15 @@ public class SkillUI : PopupUI
     public void Refresh()
     {
         _skillListUI.Refresh();
-}
+    }
 
     private void OnCloseBtnClicked(PointerEventData eventData)
     {
         ClosePopup<SkillUI>();
+    }
+
+    private void OnSkillSlotClicked(SkillData skillData)
+    {
+        _skillDescUI.OnSlotClicked(skillData);
     }
 }

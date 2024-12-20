@@ -2,20 +2,109 @@
   "effects": [
     {
       "effectId": 1,
-      "name": "워리어 기본공격 이펙트",
+      "name": "가디언 기본공격 이펙트",
       "damageRatio": 1,
       "effectType": 1,
-      "effectDurationType": 0
-    },
-    {
-      "effectId": 2,
-      "name": "Vornix 기본공격 이펙트",
-      "damageRatio": 1,
-      "effectType": 1,
-      "effectDurationType": 0
+      "effectDurationType": 0,
+      "duration": 0
     },
     {
       "effectId": 100,
+      "name": "가디언 수호의 방패1 이펙트",
+      "damageRatio": 0,
+      "healthRatio": 0.1,
+      "effectType": 4,
+      "effectDurationType": 1,
+      "duration": 10
+    },
+    {
+      "effectId": 101,
+      "name": "가디언 수호의 방패2 이펙트",
+      "damageRatio": 0,
+      "healthRatio": 0.2,
+      "effectType": 4,
+      "effectDurationType": 1,
+      "duration": 10
+    },
+    {
+      "effectId": 102,
+      "name": "가디언 수호의 방패3 이펙트",
+      "damageRatio": 0,
+      "healthRatio": 0.3,
+      "effectType": 4,
+      "effectDurationType": 1,
+      "duration": 10
+    },
+    {
+      "effectId": 110,
+      "name": "가디언 불굴의 함성 이펙트",
+      "damageRatio": 0,
+      "healthRatio": 0,
+      "entityRatio": 1,
+      "effectType": 3,
+      "effectDurationType": 1,
+      "duration": 2
+    },
+    {
+      "effectId": 111,
+      "name": "가디언 불굴의 함성2 이펙트",
+      "damageRatio": 0,
+      "healthRatio": 0,
+      "entityRatio": 1.5,
+      "effectType": 3,
+      "effectDurationType": 1,
+      "duration": 3
+    },
+    {
+      "effectId": 112,
+      "name": "가디언 불굴의 함성3 이펙트",
+      "damageRatio": 0,
+      "healthRatio": 0,
+      "entityRatio": 2,
+      "effectType": 3,
+      "effectDurationType": 1,
+      "duration": 4
+    },
+    {
+      "effectId": 120,
+      "name": "가디언 심판의 일격1 이펙트",
+      "damageRatio": 6,
+      "healthRatio": 0,
+      "entityRatio": 2,
+      "effectType": 1,
+      "effectDurationType": 0,
+      "duration": 4
+    },
+    {
+      "effectId": 121,
+      "name": "가디언 심판의 일격2 이펙트",
+      "damageRatio": 6.5,
+      "healthRatio": 0,
+      "entityRatio": 0,
+      "effectType": 1,
+      "effectDurationType": 0,
+      "duration": 4
+    },
+    {
+      "effectId": 122,
+      "name": "가디언 심판의 일격3 이펙트",
+      "damageRatio": 7,
+      "healthRatio": 0,
+      "entityRatio": 0,
+      "effectType": 1,
+      "effectDurationType": 0,
+      "duration": 4
+    },
+    {
+      "effectId": 1001,
+      "name": "Vornix 기본공격 이펙트",
+      "damageRatio": 1,
+      "effectType": 1,
+      "effectDurationType": 0,
+      "duration": 0
+    },
+    {
+      "effectId": 1000,
       "name": "일반 검 장착 이펙트",
       "damageRatio": 0,
       "addStatValues": [

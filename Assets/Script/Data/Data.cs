@@ -168,6 +168,7 @@ namespace Data
         public string SkillName;
         public string AnimName;
         public string IconName;
+        public string DescId;
         public float SkillRange;
         public int CostMp;
         public int RequireLevel;
@@ -208,7 +209,10 @@ namespace Data
     {
         public int EffectId;
         public float DamageRatio;
+        public float HealthRatio;
+        public float EntityRatio;
         public List<AddStatInfo> AddStatValues;
+        public float Duration;
     }
 
     [Serializable]
@@ -368,6 +372,7 @@ namespace Data
     {
         public string DescId;
         public string Text;
+        public string DetailText;
     }
 
     [Serializable]

@@ -15,6 +15,21 @@
     {
       "descId": "Vornix 고기",
       "text": "부드럽고 쫄깃한 식감의 고기입니다."
+    },
+    {
+      "descId": "수호의 방패",
+      "text": "주위의 모든 아군에게 보호막을 부여합니다.",
+      "detailText": "{duration}초 동안 주위의 아군에게 최대 체력의 {healthRatio}%의 보호막을 부여"
+    },
+    {
+      "descId": "불굴의 함성",
+      "text": "주위의 모든 적군에게 도발을 겁니다.",
+      "detailText": "{duration}초 동안 주위의 적군에게 도발을 걸고, 도발에 걸린 적군 수 X {entityRatio} 만큼의 방어력 증가"
+    },
+    {
+      "descId": "심판의 일격",
+      "text": "단 한명의 적군에게 강력한 일격을 가합니다.",
+      "detailText": "단일 대상에게 공격력의 {damageRatio}% 만큼의 데미지"
     }
   ]
 } 

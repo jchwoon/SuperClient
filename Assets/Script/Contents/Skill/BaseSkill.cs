@@ -34,7 +34,10 @@ public class BaseSkill
         
         CoroutineHelper.Instance.StartHelperCoroutine(CoRunCoolTime());
         CoroutineHelper.Instance.StartHelperCoroutine(CoRunAnimTime());
-        CoroutineHelper.Instance.StartHelperCoroutine(CoRunEffectTime(skillEffectTargetId));
+        if (!string.IsNullOrEmpty(SkillData.PrefabName))
+        {
+            CoroutineHelper.Instance.StartHelperCoroutine(CoRunEffectTime(skillEffectTargetId));
+        }
     }
 
     IEnumerator CoRunCoolTime()
