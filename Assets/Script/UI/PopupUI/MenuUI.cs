@@ -46,7 +46,8 @@ public class MenuUI : PopupUI
     private void OnSkillBtnClicked(PointerEventData eventData)
     {
         ClosePopup();
-        //Managers.UIManager.Show
+        SkillUI skillUI = Managers.UIManager.ShowPopup<SkillUI>();
+        skillUI.Refresh();
     }
 
     private void ClosePopup()

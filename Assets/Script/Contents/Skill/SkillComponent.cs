@@ -2,12 +2,12 @@ using Data;
 using Google.Protobuf.Enum;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SkillComponent
 {
     Dictionary<int, BaseSkill> _skills = new Dictionary<int, BaseSkill>();
-    Dictionary<int, BaseSkill> _reservedSkills = new Dictionary<int, BaseSkill>();
     public int NormalSkillId { get; private set; }
     public int DashSkillId { get; private set; }
     public bool isUsingSkill { get; set; }
@@ -45,5 +45,10 @@ public class SkillComponent
             return null;
 
         return skill;
+    }
+
+    public List<BaseSkill> GetAllSkill()
+    {
+        return _skills.Values.ToList();
     }
 }

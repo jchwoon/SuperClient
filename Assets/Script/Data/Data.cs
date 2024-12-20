@@ -155,6 +155,7 @@ namespace Data
     {
         public int TemplateId;
         public int NextComboSkillTemplateId;
+        public EHeroClassType ClassType;
         public ESkillType SkillType;
         public ESkillProjectileType SkillProjectileType;
         public ESkillSlotType SkillSlotType;
@@ -166,8 +167,10 @@ namespace Data
         public bool IsMoveSkill;
         public string SkillName;
         public string AnimName;
+        public string IconName;
         public float SkillRange;
         public int CostMp;
+        public int RequireLevel;
         public float CoolTime;
         public float Speed;
         public float Dist;
