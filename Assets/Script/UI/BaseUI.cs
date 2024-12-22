@@ -81,6 +81,10 @@ public class BaseUI : MonoBehaviour
                 handler.OnEndDragHandler -= action;
                 handler.OnEndDragHandler += action;
                 break;
+            case Enums.TouchEvent.Drop:
+                handler.OnDropHandler -= action;
+                handler.OnDropHandler += action;
+                break;
         }
     }
 }

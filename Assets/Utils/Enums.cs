@@ -22,6 +22,7 @@ public class Enums
         BeginDrag,
         Drag,
         EndDrag,
+        Drop
     }
 
     public enum AlertBtnNum

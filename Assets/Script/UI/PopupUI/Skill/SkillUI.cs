@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SkillUI : PopupUI
 {
@@ -13,11 +14,14 @@ public class SkillUI : PopupUI
         CloseBtn,
         SkillListPanel,
         SkillDescPanel,
-        SkillRegisterPanel
+        SkillRegisterPanel,
+        DraggingSkill
     }
 
     SkillListUI _skillListUI;
     SkillDescUI _skillDescUI;
+    SkillRegisterUI _skillRegisterUI;
+    DraggingSkillSlot _draggingSlot;
 
     protected override void Awake()
     {
@@ -27,8 +31,11 @@ public class SkillUI : PopupUI
 
         _skillListUI = Get<GameObject>((int)GameObjects.SkillListPanel).GetComponent<SkillListUI>();
         _skillDescUI = Get<GameObject>((int)GameObjects.SkillDescPanel).GetComponent<SkillDescUI>();
+        _skillRegisterUI = Get<GameObject>((int)GameObjects.SkillRegisterPanel).GetComponent<SkillRegisterUI>();
+        _draggingSlot = Get<GameObject>((int)GameObjects.DraggingSkill).GetComponent<DraggingSkillSlot>(); ;
 
-        _skillListUI.RegisterAction(OnSkillSlotClicked);
+        _skillListUI.RegisterEvent(OnSkillSlotClicked, OnSkillSlotBeginDrag, OnSkillSlotDrag, OnSkillRegisterEvent);
+        _skillRegisterUI.SetInfo(OnSkillSlotClicked);
 
         BindEvent(Get<GameObject>((int)GameObjects.CloseBtn), OnCloseBtnClicked);
     }
@@ -46,5 +53,19 @@ public class SkillUI : PopupUI
     private void OnSkillSlotClicked(SkillData skillData)
     {
         _skillDescUI.OnSlotClicked(skillData);
+    }
+
+    private void OnSkillSlotBeginDrag(Sprite sprite)
+    {
+        _draggingSlot.OnBeginDrag(sprite);
+    }
+    private void OnSkillSlotDrag(Vector2 screenPos)
+    {
+        _draggingSlot.OnDrag(screenPos, CanvasRect);
+    }
+
+    private void OnSkillRegisterEvent()
+    {
+        _draggingSlot.OnEndDrag();
     }
 }

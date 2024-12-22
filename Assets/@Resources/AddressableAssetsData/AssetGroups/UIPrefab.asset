@@ -59,12 +59,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 77b60c4b0c87f21449b260c23ad271e9
-    m_Address: InteractUI
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8ad5bace28aaa3d49a545802129d7f1c
     m_Address: InventoryUI
     m_ReadOnly: 0

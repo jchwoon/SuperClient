@@ -27,6 +27,10 @@ public class JoySceneUI : SceneUI
     Sprite AttackSprite;
     [SerializeField]
     Sprite InteractSprite;
+
+    public float layoutSkillDist = 200.0f;
+    public float[] layoutSkillAngles = new float[4];
+    public Transform[] layoutSkillTransform = new Transform[4];
     protected override void Awake()
     {
         base.Awake();
@@ -35,13 +39,19 @@ public class JoySceneUI : SceneUI
         Bind<Image>(typeof(Images));
 
         GameObject movestick = Get<GameObject>((int)GameObjects.Movestick);
-        GameObject atkBtn = Get<GameObject>((int)GameObjects.InteractBtn);
+        GameObject interactBtn = Get<GameObject>((int)GameObjects.InteractBtn);
         GameObject dashBtn = Get<GameObject>((int)GameObjects.DashBtn);
 
         _interactImg = Get<Image>((int)Images.InteractImg);
         _joyMoveController = movestick.GetComponent<JoyMoveController>();
 
-        BindEvent(atkBtn, OnInteractBtnClicked);
+        for (int i = 0; i <  layoutSkillTransform.Length; i++)
+        {
+            LayoutSkillUi(interactBtn.transform.localPosition, layoutSkillAngles[i], layoutSkillTransform[i]);
+        }
+
+
+        BindEvent(interactBtn, OnInteractBtnClicked);
         BindEvent(movestick, OnMovestickPointerDown, Enums.TouchEvent.PointerDown);
         BindEvent(movestick, OnMovestickPointerUp, Enums.TouchEvent.PointerUp);
         BindEvent(movestick, OnMovestickDrag, Enums.TouchEvent.Drag);
@@ -95,5 +105,13 @@ public class JoySceneUI : SceneUI
     private void OnDashBtnClicked(PointerEventData eventData)
     {
         Managers.EventBus.InvokeEvent(Enums.EventType.DashBtnClick);
+    }
+
+    private void LayoutSkillUi(Vector2 pivot, float angle, Transform transform)
+    {
+        float radian = angle * Mathf.Deg2Rad;
+        Vector2 offset = new Vector2(Mathf.Cos(radian), Mathf.Sin(radian)) * layoutSkillDist;
+
+        transform.localPosition = pivot + offset;
     }
 }

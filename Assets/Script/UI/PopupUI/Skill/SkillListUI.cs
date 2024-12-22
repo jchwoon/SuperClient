@@ -34,7 +34,10 @@ public class SkillListUI : BaseUI
     List<SkillData> _activeSkills;
     List<SkillData> _passiveSkills;
 
-    Action<SkillData> _slotClickAction;
+    Action<SkillData> _slotClickEvent;
+    Action _skillRegisterEvent;
+    Action<Sprite> _slotBeginDragEvent;
+    Action<Vector2> _slotDragEvent;
 
     //Active
     Dictionary<ESkillSlotType, List<SkillData>> _skillsSortBySlotType = new Dictionary<ESkillSlotType, List<SkillData>>()
@@ -84,7 +87,7 @@ public class SkillListUI : BaseUI
                 SkillSlot[] slots = go.GetComponentsInChildren<SkillSlot>();
                 for (int i = 0; i < skills.Count; i++)
                 {
-                    slots[i].SetInfo(skills[i], _slotClickAction);
+                    slots[i].SetInfo(skills[i], _slotClickEvent, _slotBeginDragEvent, _slotDragEvent, _skillRegisterEvent);
                 }
                 cnt++;
             }
@@ -100,9 +103,12 @@ public class SkillListUI : BaseUI
         }
     }
 
-    public void RegisterAction(Action<SkillData> slotClickAction)
+    public void RegisterEvent(Action<SkillData> slotClickEvent, Action<Sprite> slotBeginDragEvent, Action<Vector2> slotDragEvent, Action skillRegisterEvent)
     {
-        _slotClickAction = slotClickAction;
+        _slotBeginDragEvent = slotBeginDragEvent;
+        _slotDragEvent = slotDragEvent;
+        _slotClickEvent = slotClickEvent;
+        _skillRegisterEvent = skillRegisterEvent;
     }
 
     private void RegisterAllSkillByClassType()
