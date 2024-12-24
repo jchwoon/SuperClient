@@ -28,14 +28,33 @@ public class SkillComponent
                         skill = new NonProjectileSkill(id, Managers.ObjectManager.MyHero, skillData);
                         break;
                 }
+                if (skill != null)
+                    _skills.Add(id, skill);
                 if (skill.SkillData.SkillSlotType == ESkillSlotType.Normal)
                     NormalSkillId = skill.TemplateId;
                 else if (skill.SkillData.SkillSlotType == ESkillSlotType.Dash)
+                {
+                    JoySceneUI joy = Managers.UIManager.ShowSceneUI<JoySceneUI>();
+                    joy.SetDashSkill(skillData);
                     DashSkillId = skill.TemplateId;
-                if (skill != null)
-                    _skills.Add(id, skill);
+                }
             }
         }
+    }
+
+    public bool CheckCanUseSkill(int templatedId)
+    {
+        BaseSkill skill = GetSkillById(templatedId);
+        if (skill == null)
+            return false;
+
+        if (skill.SkillData.CanCancel == false && isUsingSkill)
+            return false;
+
+        if (skill.CheckCanUseSkill() != ESkillFailReason.None)
+            return false;
+
+        return true;
     }
 
     public BaseSkill GetSkillById(int templateId)

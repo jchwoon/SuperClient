@@ -16,6 +16,7 @@ public class SkillRegisterSlot : BaseUI
 
     Image _skillImage;
     Action<SkillData, SkillRegisterSlot> _slotClickEvent;
+    Action _slotChangeEvent;
     Func<ESkillSlotType, bool> _checkDuplicateEvent;
     public SkillData SkillData { get; private set; }
     protected override void Awake()
@@ -28,10 +29,11 @@ public class SkillRegisterSlot : BaseUI
         BindEvent(gameObject, OnDropSkill, Enums.TouchEvent.Drop);
     }
 
-    public void SetInfo(Action<SkillData, SkillRegisterSlot> slotClickEvent, Func<ESkillSlotType, bool> checkDuplicateEvent)
+    public void SetInfo(Action<SkillData, SkillRegisterSlot> slotClickEvent, Func<ESkillSlotType, bool> checkDuplicateEvent, Action slotChangeEvent)
     {
         _slotClickEvent = slotClickEvent;
         _checkDuplicateEvent = checkDuplicateEvent;
+        _slotChangeEvent = slotChangeEvent;
     }
 
     private void OnSlotClicked(PointerEventData eventData)
@@ -50,6 +52,10 @@ public class SkillRegisterSlot : BaseUI
 
         _skillImage.gameObject.SetActive(true);
         _skillImage.sprite = Managers.ResourceManager.GetResource<Sprite>(SkillData.IconName);
+        if (_slotChangeEvent != null)
+        {
+            _slotChangeEvent.Invoke();
+        }
     }
 
     private SkillData CheckValidAndGetSkillData(PointerEventData eventData)

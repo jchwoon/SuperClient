@@ -36,7 +36,6 @@ public class MyHero : Hero
 
         //Temp
         Managers.EventBus.AddEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
-        Managers.EventBus.AddEvent(Enums.EventType.DashBtnClick, OnDashBtnClicked);
     }
     protected override void OnDisable()
     {
@@ -44,7 +43,6 @@ public class MyHero : Hero
         
         //Temp
         Managers.EventBus.RemoveEvent(Enums.EventType.AtkBtnClick, OnAttackBtnClicked);
-        Managers.EventBus.RemoveEvent(Enums.EventType.DashBtnClick, OnDashBtnClicked);
     }
     protected override void Update()
     {
@@ -65,25 +63,6 @@ public class MyHero : Hero
         BaseObject obj = other.GetComponent<BaseObject>();
         if (obj != null)
             obj.OnDetactMyHero(this);
-    }
-
-    private void OnAttackBtnClicked()
-    {
-        if (SkillComponent.isUsingSkill)
-            return;
-        BaseSkill normalSkill = SkillComponent.GetSkillById(SkillComponent.NormalSkillId);
-        if (normalSkill.CheckCanUseSkill() == ESkillFailReason.None)
-        {
-            BaseObject target = MyHeroStateMachine.Target;
-            SendUseSkill(normalSkill.TemplateId, target == null ? ObjectId : target.ObjectId, ObjectId);
-        }
-    }
-    
-    private void OnDashBtnClicked()
-    {
-        BaseSkill dashSkill = SkillComponent.GetSkillById(SkillComponent.DashSkillId);
-        if (dashSkill.CheckCanUseSkill() == ESkillFailReason.None)
-            SendUseSkill(dashSkill.TemplateId, ObjectId, ObjectId);
     }
 
     public void Init(MyHeroInfo info, HeroData heroData)
@@ -111,6 +90,28 @@ public class MyHero : Hero
         SetPos(gameObject, info.HeroInfo.CreatureInfo.ObjectInfo.PosInfo);
 
         AddHUD();
+    }
+
+    private void OnAttackBtnClicked()
+    {
+        if (SkillComponent.isUsingSkill)
+            return;
+        BaseSkill normalSkill = SkillComponent.GetSkillById(SkillComponent.NormalSkillId);
+        if (normalSkill.CheckCanUseSkill() == ESkillFailReason.None)
+        {
+            BaseObject target = MyHeroStateMachine.Target;
+            SendUseSkill(normalSkill.TemplateId, target == null ? 0 : target.ObjectId);
+        }
+    }
+
+    public void UseSkill(int skillTemplateId)
+    {
+        BaseSkill skill = SkillComponent.GetSkillById(skillTemplateId);
+        if (SkillComponent.CheckCanUseSkill(skillTemplateId))
+        {
+            BaseObject target = MyHeroStateMachine.Target;
+            SendUseSkill(skillTemplateId, target == null ? 0 : target.ObjectId);
+        }
     }
 
     protected override void OnDie()

@@ -161,6 +161,7 @@ namespace Data
         public ESkillSlotType SkillSlotType;
         public ESkillAreaType SkillAreaType;
         public ESkillUsageTargetType SkillUsageTargetType;
+        public ESkillTargetingType SkillTargetingType;
         public float SectorAngle;
         public bool CanCancel;
         public bool IsComboSkill;

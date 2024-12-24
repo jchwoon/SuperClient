@@ -53,6 +53,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6960c6bd5088317429f7e0e033bee813
+    m_Address: HeroDash_sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a2563f2b8dbc4044b9a50537d3a29962
     m_Address: GuardianActiveB_sprite
     m_ReadOnly: 0

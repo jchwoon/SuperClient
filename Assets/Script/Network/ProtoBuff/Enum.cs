@@ -108,12 +108,15 @@ namespace Google.Protobuf.Enum {
             "SUxMX0FSRUFfVFlQRV9BUkVBEAIqgQEKFUVTa2lsbFVzYWdlVGFyZ2V0VHlw",
             "ZRIhCh1FU0tJTExfVVNBR0VfVEFSR0VUX1RZUEVfU0VMRhAAEiEKHUVTS0lM",
             "TF9VU0FHRV9UQVJHRVRfVFlQRV9BTExZEAESIgoeRVNLSUxMX1VTQUdFX1RB",
-            "UkdFVF9UWVBFX0VORU1ZEAIqUQoRRU1vbnN0ZXJBZ2dyb1R5cGUSHgoaRU1P",
-            "TlNURVJfQUdHUk9fVFlQRV9NQU5VQUwQABIcChhFTU9OU1RFUl9BR0dST19U",
-            "WVBFX0FVVE8QAUIXqgIUR29vZ2xlLlByb3RvYnVmLkVudW1iBnByb3RvMw=="));
+            "UkdFVF9UWVBFX0VORU1ZEAIqhQEKE0VTa2lsbFRhcmdldGluZ1R5cGUSJAog",
+            "RVNLSUxMX1RBUkdFVElOR19UWVBFX05PTl9UQVJHRVQQABIgChxFU0tJTExf",
+            "VEFSR0VUSU5HX1RZUEVfVEFSR0VUEAESJgoiRVNLSUxMX1RBUkdFVElOR19U",
+            "WVBFX1NNQVJUX1RBUkdFVBACKlEKEUVNb25zdGVyQWdncm9UeXBlEh4KGkVN",
+            "T05TVEVSX0FHR1JPX1RZUEVfTUFOVUFMEAASHAoYRU1PTlNURVJfQUdHUk9f",
+            "VFlQRV9BVVRPEAFCF6oCFEdvb2dsZS5Qcm90b2J1Zi5FbnVtYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), typeof(global::Google.Protobuf.Enum.ENPCType), typeof(global::Google.Protobuf.Enum.EFontType), typeof(global::Google.Protobuf.Enum.ESkillSlotType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillUsageTargetType), typeof(global::Google.Protobuf.Enum.EMonsterAggroType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), typeof(global::Google.Protobuf.Enum.ENPCType), typeof(global::Google.Protobuf.Enum.EFontType), typeof(global::Google.Protobuf.Enum.ESkillSlotType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillUsageTargetType), typeof(global::Google.Protobuf.Enum.ESkillTargetingType), typeof(global::Google.Protobuf.Enum.EMonsterAggroType), }, null, null));
     }
     #endregion
 
@@ -321,6 +324,12 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("ESKILL_USAGE_TARGET_TYPE_SELF")] Self = 0,
     [pbr::OriginalName("ESKILL_USAGE_TARGET_TYPE_ALLY")] Ally = 1,
     [pbr::OriginalName("ESKILL_USAGE_TARGET_TYPE_ENEMY")] Enemy = 2,
+  }
+
+  public enum ESkillTargetingType {
+    [pbr::OriginalName("ESKILL_TARGETING_TYPE_NON_TARGET")] NonTarget = 0,
+    [pbr::OriginalName("ESKILL_TARGETING_TYPE_TARGET")] Target = 1,
+    [pbr::OriginalName("ESKILL_TARGETING_TYPE_SMART_TARGET")] SmartTarget = 2,
   }
 
   public enum EMonsterAggroType {

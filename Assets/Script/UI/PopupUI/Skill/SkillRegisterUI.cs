@@ -46,7 +46,7 @@ public class SkillRegisterUI : BaseUI
         slots.CopyTo(_slots, 0);
         foreach (SkillRegisterSlot slot in slots)
         {
-            slot.SetInfo(OnSlotClicked, CheckDuplicateSkill);
+            slot.SetInfo(OnSlotClicked, CheckDuplicateSkill, OnSlotChanged);
         }
     }
 
@@ -73,6 +73,11 @@ public class SkillRegisterUI : BaseUI
         }
     }
 
+    private void OnSlotChanged()
+    {
+        Managers.EventBus.InvokeEvent<SkillRegisterSlot[]>(Enums.EventType.UpdateSkillSet, _slots);
+    }
+
     private void OnAllClearBtnClicked(PointerEventData eventData)
     {
         foreach (SkillRegisterSlot slot in _slots)
@@ -80,6 +85,7 @@ public class SkillRegisterUI : BaseUI
             slot.Clear();
         }
         SkillRegisterSlot = null;
+        OnSlotChanged();
     }
 
     private void OnOneClearBtnClicked(PointerEventData eventData)
@@ -89,6 +95,7 @@ public class SkillRegisterUI : BaseUI
 
         SkillRegisterSlot.Clear();
         SkillRegisterSlot = null;
+        OnSlotChanged();
     }
 
     private void HighlightSelectedSlot(SkillRegisterSlot selectedSlot)

@@ -53,12 +53,15 @@ public class Enums
         AtkBtnClick,
         //Temp
         DashBtnClick,
+
+
         ChangeStat,
         ChangeCurrency,
         ChangeGrowth,
         ChangeHUDInfo,
         PickUpBtnClick,
-        UpdateInventory
+        UpdateInventory,
+        UpdateSkillSet
     }
 
     public enum SortingOrderInHUD

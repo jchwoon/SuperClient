@@ -12,7 +12,6 @@ public class JoySceneUI : SceneUI
     {
         Movestick,
         InteractBtn,
-        DashBtn
     }
 
     enum Images
@@ -25,12 +24,15 @@ public class JoySceneUI : SceneUI
     Image _interactImg;
     [SerializeField]
     Sprite AttackSprite;
+    //Temp InteractType으로 교체
     [SerializeField]
     Sprite InteractSprite;
 
     public float layoutSkillDist = 200.0f;
     public float[] layoutSkillAngles = new float[4];
     public Transform[] layoutSkillTransform = new Transform[4];
+
+    JoySkillSlot[] _joySkillSlots = new JoySkillSlot[4];
     protected override void Awake()
     {
         base.Awake();
@@ -40,33 +42,33 @@ public class JoySceneUI : SceneUI
 
         GameObject movestick = Get<GameObject>((int)GameObjects.Movestick);
         GameObject interactBtn = Get<GameObject>((int)GameObjects.InteractBtn);
-        GameObject dashBtn = Get<GameObject>((int)GameObjects.DashBtn);
+
 
         _interactImg = Get<Image>((int)Images.InteractImg);
         _joyMoveController = movestick.GetComponent<JoyMoveController>();
-
-        for (int i = 0; i <  layoutSkillTransform.Length; i++)
-        {
-            LayoutSkillUi(interactBtn.transform.localPosition, layoutSkillAngles[i], layoutSkillTransform[i]);
-        }
-
 
         BindEvent(interactBtn, OnInteractBtnClicked);
         BindEvent(movestick, OnMovestickPointerDown, Enums.TouchEvent.PointerDown);
         BindEvent(movestick, OnMovestickPointerUp, Enums.TouchEvent.PointerUp);
         BindEvent(movestick, OnMovestickDrag, Enums.TouchEvent.Drag);
-        BindEvent(dashBtn, OnDashBtnClicked);
+
+        //skill joystick layout
+        InitJoySkillLayout(interactBtn.transform.localPosition);
+        //skill joystic event Binding
+        InitJoySkillSlot();
     }
     protected override void OnEnable()
     {
         base.OnEnable();
 
         Managers.GameManager.OnInteractableChanged += ChangeInteractBtn;
+        Managers.EventBus.AddEvent<SkillRegisterSlot[]>(Enums.EventType.UpdateSkillSet, OnChangedSkillSet);
     }
     protected override void OnDisable()
     {
         base.OnDisable();
         Managers.GameManager.OnInteractableChanged -= ChangeInteractBtn;
+        Managers.EventBus.RemoveEvent<SkillRegisterSlot[]>(Enums.EventType.UpdateSkillSet, OnChangedSkillSet);
     }
 
     public void ChangeInteractBtn(IInteractable interactable)
@@ -79,6 +81,7 @@ public class JoySceneUI : SceneUI
         }
     }
 
+    #region MoveJoystick
     private void OnMovestickPointerDown(PointerEventData eventData)
     {
         _joyMoveController.OnHandlePointerDown(eventData);
@@ -93,6 +96,7 @@ public class JoySceneUI : SceneUI
     {
         _joyMoveController.OnHandleDrag(eventData);
     }
+    #endregion
 
     private void OnInteractBtnClicked(PointerEventData eventData)
     {
@@ -102,11 +106,7 @@ public class JoySceneUI : SceneUI
             Managers.GameManager.Interactable.Interact();
     }
 
-    private void OnDashBtnClicked(PointerEventData eventData)
-    {
-        Managers.EventBus.InvokeEvent(Enums.EventType.DashBtnClick);
-    }
-
+    #region SkillJoystick
     private void LayoutSkillUi(Vector2 pivot, float angle, Transform transform)
     {
         float radian = angle * Mathf.Deg2Rad;
@@ -114,4 +114,51 @@ public class JoySceneUI : SceneUI
 
         transform.localPosition = pivot + offset;
     }
+
+    private void OnChangedSkillSet(SkillRegisterSlot[] slots)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            _joySkillSlots[i+1].SetInfo(slots[i].SkillData);
+        }
+    }
+
+    private void OnSkillBtnClicked(PointerEventData eventData, JoySkillSlot slot)
+    {
+        if (slot == null)
+            return;
+
+        slot.UseSkill();
+    }
+
+    public void SetDashSkill(SkillData dashSkillData)
+    {
+        _joySkillSlots[0].SetInfo(dashSkillData);
+    }
+
+    private void InitJoySkillSlot()
+    {
+        JoySkillSlot[] slots = transform.GetComponentsInChildren<JoySkillSlot>();
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            int index = i;
+            _joySkillSlots[i] = slots[i];
+            BindEvent(_joySkillSlots[i].gameObject, (ed) =>
+            {
+                OnSkillBtnClicked(ed, _joySkillSlots[index]);
+            });
+        }
+    }
+
+    private void InitJoySkillLayout(Vector2 pivot)
+    {
+        for (int i = 0; i < layoutSkillTransform.Length; i++)
+        {
+            LayoutSkillUi(pivot, layoutSkillAngles[i], layoutSkillTransform[i]);
+        }
+    }
+    #endregion
+
+
 }

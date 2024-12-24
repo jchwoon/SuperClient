@@ -104,7 +104,7 @@ public class MyHeroStateMachine : StateMachine
             Vector3 destPos = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);
             CoroutineHelper.Instance.StartHelperCoroutine(CoMoveFromSkillData(Owner, skillData, destPos));
         }
-        skill.UseSkill(skillPacket.SkillInfo.PlayAnimName, skillPacket.SkillInfo.SkillLocationTargetId);
+        skill.UseSkill(skillPacket.SkillInfo.PlayAnimName);
 
 
         ChangeState(SkillState);

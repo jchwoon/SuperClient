@@ -19,13 +19,11 @@ public class JoyMoveController : MonoBehaviour
     public void OnHandlePointerDown(PointerEventData eventData)
     {
         SetJoyPos(eventData);
-        //_isPress = true;
     }
     public void OnHandlePointerUp(PointerEventData eventData)
     {
         Managers.GameManager.MoveInput = Vector2.zero;
         _joyMoveHandleRect.anchoredPosition = Vector2.zero;
-        //_isPress = false;
     }
     public void OnHandleDrag(PointerEventData eventData)
     {

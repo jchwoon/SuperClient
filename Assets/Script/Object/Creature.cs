@@ -72,7 +72,7 @@ public class Creature : BaseObject
 
     #region Network Send
     //targetId는 누구에게서 Effect가 나갈건지
-    public void SendUseSkill(int skillId, int skillTargetId, int skillLocationTargetId)
+    public void SendUseSkill(int skillId, int skillTargetId)
     {
         Vector2 joystickDir = Managers.GameManager.MoveInput;
         float rotY = joystickDir == Vector2.zero
@@ -83,7 +83,6 @@ public class Creature : BaseObject
         SkillInfo skillInfo = new SkillInfo()
         {
             SkillId = skillId,
-            SkillLocationTargetId = skillLocationTargetId,
             SkillTargetId = skillTargetId,
             RotY = rotY
         };

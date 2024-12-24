@@ -58,6 +58,15 @@ public class Utils
         return null;
     }
 
+    public static SkillComponent GetSkillComponent()
+    {
+        MyHero hero = Managers.ObjectManager.MyHero;
+        if (hero == null)
+            return null;
+
+        return hero.SkillComponent;
+    }
+
     private static readonly Dictionary<EStatType, string> _statToTextMap = new Dictionary<EStatType, string>
     {
         { EStatType.MaxHp, "최대 체력" },

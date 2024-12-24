@@ -12,6 +12,8 @@ public class BaseSkill
     public SkillData SkillData { get; protected set; }
     public bool IsCoolTime {  get; protected set; }
 
+    float _remainCoolTime;
+
     public BaseSkill(int templateId, MyHero owner, SkillData skillData)
     {
         TemplateId = templateId;
@@ -28,7 +30,7 @@ public class BaseSkill
         return ESkillFailReason.None;
     }
 
-    public virtual void UseSkill(string playAnimName, int skillEffectTargetId)
+    public virtual void UseSkill(string playAnimName)
     {
         Owner.Animator.Play(playAnimName);
         
@@ -36,8 +38,13 @@ public class BaseSkill
         CoroutineHelper.Instance.StartHelperCoroutine(CoRunAnimTime());
         if (!string.IsNullOrEmpty(SkillData.PrefabName))
         {
-            CoroutineHelper.Instance.StartHelperCoroutine(CoRunEffectTime(skillEffectTargetId));
+            CoroutineHelper.Instance.StartHelperCoroutine(CoRunEffectTime(Owner.ObjectId));
         }
+    }
+
+    public float GetRemainCoolTime()
+    {
+        return _remainCoolTime;
     }
 
     IEnumerator CoRunCoolTime()
@@ -45,11 +52,14 @@ public class BaseSkill
         IsCoolTime = true;
         float coolTime = SkillData.CoolTime;
         float process = 0.0f;
+        _remainCoolTime = coolTime;
         while (process < coolTime)
         {
+            _remainCoolTime -= Time.deltaTime;
             process += Time.deltaTime;
             yield return null;
         }
+        _remainCoolTime = 0.0f;
         IsCoolTime = false;
     }
 
