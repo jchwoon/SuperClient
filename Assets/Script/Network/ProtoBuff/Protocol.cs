@@ -35,43 +35,45 @@ namespace Google.Protobuf.Protocol {
             "bGV0ZUhlcm9Ub0MSEQoJaXNTdWNjZXNzGAEgASgIEg8KB2hlcm9JZHgYAiAB",
             "KAUiIgoPUHJlRW50ZXJSb29tVG9TEg8KB2hlcm9JZHgYASABKAUiIQoPUHJl",
             "RW50ZXJSb29tVG9DEg4KBnJvb21JZBgBIAEoBSIiCg9SZXFFbnRlclJvb21U",
-            "b1MSDwoHaGVyb0lkeBgBIAEoBSJwCg9SZXNFbnRlclJvb21Ub0MSJAoGbXlI",
-            "ZXJvGAEgASgLMhQuUHJvdG9jb2wuTXlIZXJvSW5mbxIUCgxpc0NoYW5nZVJv",
-            "b20YAiABKAgSIQoFaXRlbXMYAyADKAsyEi5Qcm90b2NvbC5JdGVtSW5mbyIf",
-            "Cg1DaGFuZ2VSb29tVG9TEg4KBnJvb21JZBgBIAEoBSIfCg1DaGFuZ2VSb29t",
-            "VG9DEg4KBnJvb21JZBgBIAEoBSKAAQoIU3Bhd25Ub0MSIgoGaGVyb2VzGAEg",
-            "AygLMhIuUHJvdG9jb2wuSGVyb0luZm8SKQoJY3JlYXR1cmVzGAIgAygLMhYu",
-            "UHJvdG9jb2wuQ3JlYXR1cmVJbmZvEiUKB29iamVjdHMYAyADKAsyFC5Qcm90",
-            "b2NvbC5PYmplY3RJbmZvIhEKD1JlcUxlYXZlR2FtZVRvUyItCgdNb3ZlVG9T",
-            "EiIKB3Bvc0luZm8YASABKAsyES5Qcm90b2NvbC5Qb3NJbmZvImYKB01vdmVU",
-            "b0MSEAoIb2JqZWN0SWQYASABKAUSIgoHcG9zSW5mbxgCIAEoCzIRLlByb3Rv",
-            "Y29sLlBvc0luZm8SJQoIbW92ZVR5cGUYAyABKA4yEy5Qcm90b2NvbC5FTW92",
-            "ZVR5cGUiDgoMUGluZ0NoZWNrVG9DIg4KDFBpbmdDaGVja1RvUyIfCgpEZVNw",
-            "YXduVG9DEhEKCW9iamVjdElkcxgBIAMoBSI4Cg5SZXFVc2VTa2lsbFRvUxIm",
-            "Cglza2lsbEluZm8YASABKAsyEy5Qcm90b2NvbC5Ta2lsbEluZm8ibgoOUmVz",
-            "VXNlU2tpbGxUb0MSEAoIb2JqZWN0SWQYASABKAUSJgoJc2tpbGxJbmZvGAIg",
-            "ASgLMhMuUHJvdG9jb2wuU2tpbGxJbmZvEiIKB3Bvc0luZm8YAyABKAsyES5Q",
-            "cm90b2NvbC5Qb3NJbmZvIkcKDU1vZGlmeVN0YXRUb0MSEAoIb2JqZWN0SWQY",
-            "ASABKAUSJAoIc3RhdEluZm8YAiABKAsyEi5Qcm90b2NvbC5TdGF0SW5mbyKa",
-            "AQoQTW9kaWZ5T25lU3RhdFRvQxIQCghvYmplY3RJZBgBIAEoBRIUCgxjaGFu",
-            "Z2VkVmFsdWUYAiABKAISEAoIZ2FwVmFsdWUYAyABKAISJQoIc3RhdFR5cGUY",
-            "BCABKA4yEy5Qcm90b2NvbC5FU3RhdFR5cGUSJQoIZm9udFR5cGUYBSABKA4y",
-            "Ey5Qcm90b2NvbC5FRm9udFR5cGUiLAoGRGllVG9DEhAKCG9iamVjdElkGAEg",
-            "ASgFEhAKCGtpbGxlcklkGAIgASgFIm8KC1RlbGVwb3J0VG9DEhAKCG9iamVj",
-            "dElkGAEgASgFEiIKB3Bvc0luZm8YAiABKAsyES5Qcm90b2NvbC5Qb3NJbmZv",
-            "EioKCXRlbHBvVHlwZRgDIAEoDjIXLlByb3RvY29sLkVUZWxlcG9ydFR5cGUi",
-            "JgoJUmV3YXJkVG9DEgsKA2V4cBgBIAEoBRIMCgRnb2xkGAIgASgFIjkKEVBp",
-            "Y2t1cERyb3BJdGVtVG9TEhAKCG9iamVjdElkGAEgASgFEhIKCnRlbXBsYXRl",
-            "SWQYAiABKAUiQAoRUGlja3VwRHJvcEl0ZW1Ub0MSKwoGcmVzdWx0GAEgASgO",
-            "MhsuUHJvdG9jb2wuRVBpY2t1cEZhaWxSZWFzb24iWwoKQWRkSXRlbVRvQxIk",
-            "CghpdGVtSW5mbxgBIAEoCzISLlByb3RvY29sLkl0ZW1JbmZvEicKB2FkZFR5",
-            "cGUYAiABKA4yFi5Qcm90b2NvbC5FQWRkSXRlbVR5cGUiHwoKVXNlSXRlbVRv",
-            "UxIRCglpdGVtZERiSWQYASABKAMiHgoKVXNlSXRlbVRvQxIQCghpdGVtRGJJ",
-            "ZBgBIAEoAyIgCgxFcXVpcEl0ZW1Ub1MSEAoIaXRlbURiSWQYASABKAMiIgoO",
-            "VW5FcXVpcEl0ZW1Ub1MSEAoIaXRlbURiSWQYASABKAMiTAoRQ2hhbmdlU2xv",
-            "dFR5cGVUb0MSEAoIaXRlbURiSWQYASABKAMSJQoIc2xvdFR5cGUYAiABKA4y",
-            "Ey5Qcm90b2NvbC5FU2xvdFR5cGUiEAoOQ3JlYXRlUGFydHlUb1NCG6oCGEdv",
-            "b2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
+            "b1MSDwoHaGVyb0lkeBgBIAEoBSKVAQoPUmVzRW50ZXJSb29tVG9DEiQKBm15",
+            "SGVybxgBIAEoCzIULlByb3RvY29sLk15SGVyb0luZm8SFAoMaXNDaGFuZ2VS",
+            "b29tGAIgASgIEiEKBWl0ZW1zGAMgAygLMhIuUHJvdG9jb2wuSXRlbUluZm8S",
+            "IwoGc2tpbGxzGAQgAygLMhMuUHJvdG9jb2wuU2tpbGxJbmZvIh8KDUNoYW5n",
+            "ZVJvb21Ub1MSDgoGcm9vbUlkGAEgASgFIh8KDUNoYW5nZVJvb21Ub0MSDgoG",
+            "cm9vbUlkGAEgASgFIoABCghTcGF3blRvQxIiCgZoZXJvZXMYASADKAsyEi5Q",
+            "cm90b2NvbC5IZXJvSW5mbxIpCgljcmVhdHVyZXMYAiADKAsyFi5Qcm90b2Nv",
+            "bC5DcmVhdHVyZUluZm8SJQoHb2JqZWN0cxgDIAMoCzIULlByb3RvY29sLk9i",
+            "amVjdEluZm8iEQoPUmVxTGVhdmVHYW1lVG9TIi0KB01vdmVUb1MSIgoHcG9z",
+            "SW5mbxgBIAEoCzIRLlByb3RvY29sLlBvc0luZm8iZgoHTW92ZVRvQxIQCghv",
+            "YmplY3RJZBgBIAEoBRIiCgdwb3NJbmZvGAIgASgLMhEuUHJvdG9jb2wuUG9z",
+            "SW5mbxIlCghtb3ZlVHlwZRgDIAEoDjITLlByb3RvY29sLkVNb3ZlVHlwZSIO",
+            "CgxQaW5nQ2hlY2tUb0MiDgoMUGluZ0NoZWNrVG9TIh8KCkRlU3Bhd25Ub0MS",
+            "EQoJb2JqZWN0SWRzGAEgAygFIl8KDlJlcVVzZVNraWxsVG9TEiYKCXNraWxs",
+            "SW5mbxgBIAEoCzITLlByb3RvY29sLlNraWxsSW5mbxIlCgpza2lsbFBpdm90",
+            "GAIgASgLMhEuUHJvdG9jb2wuUG9zSW5mbyJuCg5SZXNVc2VTa2lsbFRvQxIQ",
+            "CghvYmplY3RJZBgBIAEoBRImCglza2lsbEluZm8YAiABKAsyEy5Qcm90b2Nv",
+            "bC5Ta2lsbEluZm8SIgoHcG9zSW5mbxgDIAEoCzIRLlByb3RvY29sLlBvc0lu",
+            "Zm8iRwoNTW9kaWZ5U3RhdFRvQxIQCghvYmplY3RJZBgBIAEoBRIkCghzdGF0",
+            "SW5mbxgCIAEoCzISLlByb3RvY29sLlN0YXRJbmZvIpoBChBNb2RpZnlPbmVT",
+            "dGF0VG9DEhAKCG9iamVjdElkGAEgASgFEhQKDGNoYW5nZWRWYWx1ZRgCIAEo",
+            "AhIQCghnYXBWYWx1ZRgDIAEoAhIlCghzdGF0VHlwZRgEIAEoDjITLlByb3Rv",
+            "Y29sLkVTdGF0VHlwZRIlCghmb250VHlwZRgFIAEoDjITLlByb3RvY29sLkVG",
+            "b250VHlwZSIsCgZEaWVUb0MSEAoIb2JqZWN0SWQYASABKAUSEAoIa2lsbGVy",
+            "SWQYAiABKAUibwoLVGVsZXBvcnRUb0MSEAoIb2JqZWN0SWQYASABKAUSIgoH",
+            "cG9zSW5mbxgCIAEoCzIRLlByb3RvY29sLlBvc0luZm8SKgoJdGVscG9UeXBl",
+            "GAMgASgOMhcuUHJvdG9jb2wuRVRlbGVwb3J0VHlwZSImCglSZXdhcmRUb0MS",
+            "CwoDZXhwGAEgASgFEgwKBGdvbGQYAiABKAUiOQoRUGlja3VwRHJvcEl0ZW1U",
+            "b1MSEAoIb2JqZWN0SWQYASABKAUSEgoKdGVtcGxhdGVJZBgCIAEoBSJAChFQ",
+            "aWNrdXBEcm9wSXRlbVRvQxIrCgZyZXN1bHQYASABKA4yGy5Qcm90b2NvbC5F",
+            "UGlja3VwRmFpbFJlYXNvbiJbCgpBZGRJdGVtVG9DEiQKCGl0ZW1JbmZvGAEg",
+            "ASgLMhIuUHJvdG9jb2wuSXRlbUluZm8SJwoHYWRkVHlwZRgCIAEoDjIWLlBy",
+            "b3RvY29sLkVBZGRJdGVtVHlwZSIfCgpVc2VJdGVtVG9TEhEKCWl0ZW1kRGJJ",
+            "ZBgBIAEoAyIeCgpVc2VJdGVtVG9DEhAKCGl0ZW1EYklkGAEgASgDIiAKDEVx",
+            "dWlwSXRlbVRvUxIQCghpdGVtRGJJZBgBIAEoAyIiCg5VbkVxdWlwSXRlbVRv",
+            "UxIQCghpdGVtRGJJZBgBIAEoAyJMChFDaGFuZ2VTbG90VHlwZVRvQxIQCghp",
+            "dGVtRGJJZBgBIAEoAxIlCghzbG90VHlwZRgCIAEoDjITLlByb3RvY29sLkVT",
+            "bG90VHlwZSIQCg5DcmVhdGVQYXJ0eVRvU0IbqgIYR29vZ2xlLlByb3RvYnVm",
+            "LlByb3RvY29sYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, global::Google.Protobuf.Struct.StructReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -85,7 +87,7 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PreEnterRoomToS), global::Google.Protobuf.Protocol.PreEnterRoomToS.Parser, new[]{ "HeroIdx" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PreEnterRoomToC), global::Google.Protobuf.Protocol.PreEnterRoomToC.Parser, new[]{ "RoomId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ReqEnterRoomToS), global::Google.Protobuf.Protocol.ReqEnterRoomToS.Parser, new[]{ "HeroIdx" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ResEnterRoomToC), global::Google.Protobuf.Protocol.ResEnterRoomToC.Parser, new[]{ "MyHero", "IsChangeRoom", "Items" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ResEnterRoomToC), global::Google.Protobuf.Protocol.ResEnterRoomToC.Parser, new[]{ "MyHero", "IsChangeRoom", "Items", "Skills" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ChangeRoomToS), global::Google.Protobuf.Protocol.ChangeRoomToS.Parser, new[]{ "RoomId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ChangeRoomToC), global::Google.Protobuf.Protocol.ChangeRoomToC.Parser, new[]{ "RoomId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.SpawnToC), global::Google.Protobuf.Protocol.SpawnToC.Parser, new[]{ "Heroes", "Creatures", "Objects" }, null, null, null, null),
@@ -95,7 +97,7 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PingCheckToC), global::Google.Protobuf.Protocol.PingCheckToC.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PingCheckToS), global::Google.Protobuf.Protocol.PingCheckToS.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.DeSpawnToC), global::Google.Protobuf.Protocol.DeSpawnToC.Parser, new[]{ "ObjectIds" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ReqUseSkillToS), global::Google.Protobuf.Protocol.ReqUseSkillToS.Parser, new[]{ "SkillInfo" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ReqUseSkillToS), global::Google.Protobuf.Protocol.ReqUseSkillToS.Parser, new[]{ "SkillInfo", "SkillPivot" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ResUseSkillToC), global::Google.Protobuf.Protocol.ResUseSkillToC.Parser, new[]{ "ObjectId", "SkillInfo", "PosInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ModifyStatToC), global::Google.Protobuf.Protocol.ModifyStatToC.Parser, new[]{ "ObjectId", "StatInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ModifyOneStatToC), global::Google.Protobuf.Protocol.ModifyOneStatToC.Parser, new[]{ "ObjectId", "ChangedValue", "GapValue", "StatType", "FontType" }, null, null, null, null),
@@ -2161,6 +2163,7 @@ namespace Google.Protobuf.Protocol {
       myHero_ = other.myHero_ != null ? other.myHero_.Clone() : null;
       isChangeRoom_ = other.isChangeRoom_;
       items_ = other.items_.Clone();
+      skills_ = other.skills_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2205,6 +2208,17 @@ namespace Google.Protobuf.Protocol {
       get { return items_; }
     }
 
+    /// <summary>Field number for the "skills" field.</summary>
+    public const int SkillsFieldNumber = 4;
+    private static readonly pb::FieldCodec<global::Google.Protobuf.Struct.SkillInfo> _repeated_skills_codec
+        = pb::FieldCodec.ForMessage(34, global::Google.Protobuf.Struct.SkillInfo.Parser);
+    private readonly pbc::RepeatedField<global::Google.Protobuf.Struct.SkillInfo> skills_ = new pbc::RepeatedField<global::Google.Protobuf.Struct.SkillInfo>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::Google.Protobuf.Struct.SkillInfo> Skills {
+      get { return skills_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2223,6 +2237,7 @@ namespace Google.Protobuf.Protocol {
       if (!object.Equals(MyHero, other.MyHero)) return false;
       if (IsChangeRoom != other.IsChangeRoom) return false;
       if(!items_.Equals(other.items_)) return false;
+      if(!skills_.Equals(other.skills_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2233,6 +2248,7 @@ namespace Google.Protobuf.Protocol {
       if (myHero_ != null) hash ^= MyHero.GetHashCode();
       if (IsChangeRoom != false) hash ^= IsChangeRoom.GetHashCode();
       hash ^= items_.GetHashCode();
+      hash ^= skills_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2260,6 +2276,7 @@ namespace Google.Protobuf.Protocol {
         output.WriteBool(IsChangeRoom);
       }
       items_.WriteTo(output, _repeated_items_codec);
+      skills_.WriteTo(output, _repeated_skills_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2279,6 +2296,7 @@ namespace Google.Protobuf.Protocol {
         output.WriteBool(IsChangeRoom);
       }
       items_.WriteTo(ref output, _repeated_items_codec);
+      skills_.WriteTo(ref output, _repeated_skills_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2296,6 +2314,7 @@ namespace Google.Protobuf.Protocol {
         size += 1 + 1;
       }
       size += items_.CalculateSize(_repeated_items_codec);
+      size += skills_.CalculateSize(_repeated_skills_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -2318,6 +2337,7 @@ namespace Google.Protobuf.Protocol {
         IsChangeRoom = other.IsChangeRoom;
       }
       items_.Add(other.items_);
+      skills_.Add(other.skills_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -2352,6 +2372,10 @@ namespace Google.Protobuf.Protocol {
             items_.AddEntriesFrom(input, _repeated_items_codec);
             break;
           }
+          case 34: {
+            skills_.AddEntriesFrom(input, _repeated_skills_codec);
+            break;
+          }
         }
       }
     #endif
@@ -2384,6 +2408,10 @@ namespace Google.Protobuf.Protocol {
           }
           case 26: {
             items_.AddEntriesFrom(ref input, _repeated_items_codec);
+            break;
+          }
+          case 34: {
+            skills_.AddEntriesFrom(ref input, _repeated_skills_codec);
             break;
           }
         }
@@ -4224,6 +4252,7 @@ namespace Google.Protobuf.Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public ReqUseSkillToS(ReqUseSkillToS other) : this() {
       skillInfo_ = other.skillInfo_ != null ? other.skillInfo_.Clone() : null;
+      skillPivot_ = other.skillPivot_ != null ? other.skillPivot_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4245,6 +4274,18 @@ namespace Google.Protobuf.Protocol {
       }
     }
 
+    /// <summary>Field number for the "skillPivot" field.</summary>
+    public const int SkillPivotFieldNumber = 2;
+    private global::Google.Protobuf.Struct.PosInfo skillPivot_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.Struct.PosInfo SkillPivot {
+      get { return skillPivot_; }
+      set {
+        skillPivot_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -4261,6 +4302,7 @@ namespace Google.Protobuf.Protocol {
         return true;
       }
       if (!object.Equals(SkillInfo, other.SkillInfo)) return false;
+      if (!object.Equals(SkillPivot, other.SkillPivot)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -4269,6 +4311,7 @@ namespace Google.Protobuf.Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (skillInfo_ != null) hash ^= SkillInfo.GetHashCode();
+      if (skillPivot_ != null) hash ^= SkillPivot.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4291,6 +4334,10 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(10);
         output.WriteMessage(SkillInfo);
       }
+      if (skillPivot_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(SkillPivot);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -4305,6 +4352,10 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(10);
         output.WriteMessage(SkillInfo);
       }
+      if (skillPivot_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(SkillPivot);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -4317,6 +4368,9 @@ namespace Google.Protobuf.Protocol {
       int size = 0;
       if (skillInfo_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(SkillInfo);
+      }
+      if (skillPivot_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SkillPivot);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4335,6 +4389,12 @@ namespace Google.Protobuf.Protocol {
           SkillInfo = new global::Google.Protobuf.Struct.SkillInfo();
         }
         SkillInfo.MergeFrom(other.SkillInfo);
+      }
+      if (other.skillPivot_ != null) {
+        if (skillPivot_ == null) {
+          SkillPivot = new global::Google.Protobuf.Struct.PosInfo();
+        }
+        SkillPivot.MergeFrom(other.SkillPivot);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4362,6 +4422,13 @@ namespace Google.Protobuf.Protocol {
             input.ReadMessage(SkillInfo);
             break;
           }
+          case 18: {
+            if (skillPivot_ == null) {
+              SkillPivot = new global::Google.Protobuf.Struct.PosInfo();
+            }
+            input.ReadMessage(SkillPivot);
+            break;
+          }
         }
       }
     #endif
@@ -4386,6 +4453,13 @@ namespace Google.Protobuf.Protocol {
               SkillInfo = new global::Google.Protobuf.Struct.SkillInfo();
             }
             input.ReadMessage(SkillInfo);
+            break;
+          }
+          case 18: {
+            if (skillPivot_ == null) {
+              SkillPivot = new global::Google.Protobuf.Struct.PosInfo();
+            }
+            input.ReadMessage(SkillPivot);
             break;
           }
         }

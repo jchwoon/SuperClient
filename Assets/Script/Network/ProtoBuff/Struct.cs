@@ -46,10 +46,10 @@ namespace Google.Protobuf.Struct {
             "LlByb3RvY29sLkVPYmplY3RUeXBlEg4KBnJvb21JZBgEIAEoBRIiCgdwb3NJ",
             "bmZvGAUgASgLMhEuUHJvdG9jb2wuUG9zSW5mbyJmCghJdGVtSW5mbxIQCghp",
             "dGVtRGJJZBgBIAEoAxISCgp0ZW1wbGF0ZUlkGAIgASgFEg0KBWNvdW50GAMg",
-            "ASgFEiUKCHNsb3RUeXBlGAQgASgOMhMuUHJvdG9jb2wuRVNsb3RUeXBlIlcK",
+            "ASgFEiUKCHNsb3RUeXBlGAQgASgOMhMuUHJvdG9jb2wuRVNsb3RUeXBlIl0K",
             "CVNraWxsSW5mbxIPCgdza2lsbElkGAEgASgFEhUKDXNraWxsVGFyZ2V0SWQY",
-            "AiABKAUSFAoMcGxheUFuaW1OYW1lGAMgASgJEgwKBHJvdFkYBCABKAJCGaoC",
-            "Fkdvb2dsZS5Qcm90b2J1Zi5TdHJ1Y3RiBnByb3RvMw=="));
+            "AiABKAUSEgoKc2tpbGxMZXZlbBgDIAEoBRIUCgxwbGF5QW5pbU5hbWUYBCAB",
+            "KAlCGaoCFkdvb2dsZS5Qcm90b2J1Zi5TdHJ1Y3RiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -61,7 +61,7 @@ namespace Google.Protobuf.Struct {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.PosInfo), global::Google.Protobuf.Struct.PosInfo.Parser, new[]{ "PosX", "PosY", "PosZ", "RotY" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ObjectInfo), global::Google.Protobuf.Struct.ObjectInfo.Parser, new[]{ "ObjectId", "TemplateId", "ObjectType", "RoomId", "PosInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ItemInfo), global::Google.Protobuf.Struct.ItemInfo.Parser, new[]{ "ItemDbId", "TemplateId", "Count", "SlotType" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillInfo), global::Google.Protobuf.Struct.SkillInfo.Parser, new[]{ "SkillId", "SkillTargetId", "PlayAnimName", "RotY" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillInfo), global::Google.Protobuf.Struct.SkillInfo.Parser, new[]{ "SkillId", "SkillTargetId", "SkillLevel", "PlayAnimName" }, null, null, null, null)
           }));
     }
     #endregion
@@ -2816,8 +2816,8 @@ namespace Google.Protobuf.Struct {
     public SkillInfo(SkillInfo other) : this() {
       skillId_ = other.skillId_;
       skillTargetId_ = other.skillTargetId_;
+      skillLevel_ = other.skillLevel_;
       playAnimName_ = other.playAnimName_;
-      rotY_ = other.rotY_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2851,8 +2851,20 @@ namespace Google.Protobuf.Struct {
       }
     }
 
+    /// <summary>Field number for the "skillLevel" field.</summary>
+    public const int SkillLevelFieldNumber = 3;
+    private int skillLevel_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int SkillLevel {
+      get { return skillLevel_; }
+      set {
+        skillLevel_ = value;
+      }
+    }
+
     /// <summary>Field number for the "playAnimName" field.</summary>
-    public const int PlayAnimNameFieldNumber = 3;
+    public const int PlayAnimNameFieldNumber = 4;
     private string playAnimName_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -2860,18 +2872,6 @@ namespace Google.Protobuf.Struct {
       get { return playAnimName_; }
       set {
         playAnimName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "rotY" field.</summary>
-    public const int RotYFieldNumber = 4;
-    private float rotY_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public float RotY {
-      get { return rotY_; }
-      set {
-        rotY_ = value;
       }
     }
 
@@ -2892,8 +2892,8 @@ namespace Google.Protobuf.Struct {
       }
       if (SkillId != other.SkillId) return false;
       if (SkillTargetId != other.SkillTargetId) return false;
+      if (SkillLevel != other.SkillLevel) return false;
       if (PlayAnimName != other.PlayAnimName) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(RotY, other.RotY)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2903,8 +2903,8 @@ namespace Google.Protobuf.Struct {
       int hash = 1;
       if (SkillId != 0) hash ^= SkillId.GetHashCode();
       if (SkillTargetId != 0) hash ^= SkillTargetId.GetHashCode();
+      if (SkillLevel != 0) hash ^= SkillLevel.GetHashCode();
       if (PlayAnimName.Length != 0) hash ^= PlayAnimName.GetHashCode();
-      if (RotY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(RotY);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2931,13 +2931,13 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(16);
         output.WriteInt32(SkillTargetId);
       }
-      if (PlayAnimName.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(PlayAnimName);
+      if (SkillLevel != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(SkillLevel);
       }
-      if (RotY != 0F) {
-        output.WriteRawTag(37);
-        output.WriteFloat(RotY);
+      if (PlayAnimName.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(PlayAnimName);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2957,13 +2957,13 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(16);
         output.WriteInt32(SkillTargetId);
       }
-      if (PlayAnimName.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(PlayAnimName);
+      if (SkillLevel != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(SkillLevel);
       }
-      if (RotY != 0F) {
-        output.WriteRawTag(37);
-        output.WriteFloat(RotY);
+      if (PlayAnimName.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(PlayAnimName);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -2981,11 +2981,11 @@ namespace Google.Protobuf.Struct {
       if (SkillTargetId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillTargetId);
       }
+      if (SkillLevel != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillLevel);
+      }
       if (PlayAnimName.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayAnimName);
-      }
-      if (RotY != 0F) {
-        size += 1 + 4;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3005,11 +3005,11 @@ namespace Google.Protobuf.Struct {
       if (other.SkillTargetId != 0) {
         SkillTargetId = other.SkillTargetId;
       }
+      if (other.SkillLevel != 0) {
+        SkillLevel = other.SkillLevel;
+      }
       if (other.PlayAnimName.Length != 0) {
         PlayAnimName = other.PlayAnimName;
-      }
-      if (other.RotY != 0F) {
-        RotY = other.RotY;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3038,12 +3038,12 @@ namespace Google.Protobuf.Struct {
             SkillTargetId = input.ReadInt32();
             break;
           }
-          case 26: {
-            PlayAnimName = input.ReadString();
+          case 24: {
+            SkillLevel = input.ReadInt32();
             break;
           }
-          case 37: {
-            RotY = input.ReadFloat();
+          case 34: {
+            PlayAnimName = input.ReadString();
             break;
           }
         }
@@ -3073,12 +3073,12 @@ namespace Google.Protobuf.Struct {
             SkillTargetId = input.ReadInt32();
             break;
           }
-          case 26: {
-            PlayAnimName = input.ReadString();
+          case 24: {
+            SkillLevel = input.ReadInt32();
             break;
           }
-          case 37: {
-            RotY = input.ReadFloat();
+          case 34: {
+            PlayAnimName = input.ReadString();
             break;
           }
         }

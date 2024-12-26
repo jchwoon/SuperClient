@@ -84,9 +84,15 @@ public class Creature : BaseObject
         {
             SkillId = skillId,
             SkillTargetId = skillTargetId,
-            RotY = rotY
+        };
+        PosInfo skillPivot = new PosInfo()
+        {
+            PosX = transform.position.x,
+            PosY = transform.position.y,
+            PosZ = transform.position.z,
         };
         skillPacket.SkillInfo = skillInfo;
+        skillPacket.SkillPivot = skillPivot;
         Managers.NetworkManager.Send(skillPacket);
     }
     #endregion

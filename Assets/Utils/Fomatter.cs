@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class Fomatter 
 {
-    public static string FormatSkillDescription(SkillData skill, DescriptionData desc, EffectData effect = null)
+    public static string FormatSkillDescription(SkillData skillData, DescriptionData desc, int skillLevel, EffectData effect = null)
     {
         string skillDesc = "";
-        skillDesc += FormatSkillCost(skill);
+        skillDesc += FormatSkillCost(skillData);
         skillDesc += ", ";
         skillDesc += desc.DetailText
-            .Replace("{healthRatio}", (effect.HealthRatio * 100).ToString("F1"))
+            .Replace("{healthRatio}", ((effect.HealthRatio + (effect.GapPerLevel * (skillLevel - 1))) * 100).ToString())
             .Replace("{duration}", effect.Duration.ToString())
             .Replace("{entityRatio}", effect.EntityRatio.ToString("F1"))
-            .Replace("{damageRatio}", (effect.DamageRatio * 100).ToString("F1"));
+            .Replace("{damageRatio}", ((effect.DamageRatio + (effect.GapPerLevel * (skillLevel - 1))) * 100).ToString());
         skillDesc += "\n";
-        skillDesc += FormatSkillCool(skill);
+        skillDesc += FormatSkillCool(skillData);
 
         return skillDesc;
     }

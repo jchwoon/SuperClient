@@ -13,7 +13,7 @@ public class SkillListUI : BaseUI
     enum GameObjects
     {
         SkillType,
-        ActiveSkillGroup,
+        ActiveSkillContent,
         ActiveTab,
         PassiveTab
     }
@@ -24,7 +24,7 @@ public class SkillListUI : BaseUI
         PassiveToggle
     }
 
-    GameObject _activeSkillGroup;
+    GameObject _activeSkillContent;
     GameObject _activeSkillTab;
     GameObject _passiveSkillTab;
 
@@ -39,12 +39,12 @@ public class SkillListUI : BaseUI
     Action<Sprite> _slotBeginDragEvent;
     Action<Vector2> _slotDragEvent;
 
-    //Active
-    Dictionary<ESkillSlotType, List<SkillData>> _skillsSortBySlotType = new Dictionary<ESkillSlotType, List<SkillData>>()
+    Dictionary<ESkillSlotType, SkillData> _skillsSortBySlotType = new Dictionary<ESkillSlotType, SkillData>(3)
     {
-        { ESkillSlotType.Active1, new List<SkillData>(3) },
-        { ESkillSlotType.Active2, new List<SkillData>(3) },
-        { ESkillSlotType.Active3, new List<SkillData>(3) },
+        {ESkillSlotType.Active1, null },
+        {ESkillSlotType.Active2, null },
+        {ESkillSlotType.Active3, null },
+        {ESkillSlotType.Active4, null },
     };
 
     protected override void Awake()
@@ -55,7 +55,7 @@ public class SkillListUI : BaseUI
         _activeToggle = Get<Toggle>((int)Toggles.ActiveToggle);
         _passiveToggle = Get<Toggle>((int)Toggles.PassiveToggle);
 
-        _activeSkillGroup = Get<GameObject>((int)GameObjects.ActiveSkillGroup);
+        _activeSkillContent = Get<GameObject>((int)GameObjects.ActiveSkillContent);
         _activeSkillTab = Get<GameObject>((int)GameObjects.ActiveTab);
         _passiveSkillTab = Get<GameObject>((int)GameObjects.PassiveTab);
 
@@ -80,15 +80,13 @@ public class SkillListUI : BaseUI
             _activeSkillTab.SetActive(true);
             _passiveSkillTab.SetActive(false);
             int cnt = 0;
-            foreach (List<SkillData> skills in _skillsSortBySlotType.Values)
+            foreach (SkillData skillData in _skillsSortBySlotType.Values)
             {
-                GameObject go = _activeSkillGroup.transform.GetChild(cnt).gameObject;
+                if (skillData == null) continue;
+                GameObject go = _activeSkillContent.transform.GetChild(cnt).gameObject;
                 go.SetActive(true);
-                SkillSlot[] slots = go.GetComponentsInChildren<SkillSlot>();
-                for (int i = 0; i < skills.Count; i++)
-                {
-                    slots[i].SetInfo(skills[i], _slotClickEvent, _slotBeginDragEvent, _slotDragEvent, _skillRegisterEvent);
-                }
+                SkillSlot slot = go.GetComponent<SkillSlot>();
+                slot.SetInfo(skillData, _slotClickEvent, _slotBeginDragEvent, _slotDragEvent, _skillRegisterEvent);
                 cnt++;
             }
 
@@ -126,7 +124,7 @@ public class SkillListUI : BaseUI
         {
             if (_skillsSortBySlotType.ContainsKey(skillData.SkillSlotType))
             {
-                _skillsSortBySlotType[skillData.SkillSlotType].Add(skillData);
+                _skillsSortBySlotType[skillData.SkillSlotType] = skillData;
             }
         }
     }

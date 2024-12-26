@@ -10,90 +10,30 @@
     },
     {
       "effectId": 100,
-      "name": "가디언 수호의 방패1 이펙트",
-      "damageRatio": 0,
-      "healthRatio": 0.1,
+      "name": "가디언 수호의 방패 이펙트",
       "effectType": 4,
       "effectDurationType": 1,
-      "duration": 10
+      "duration": 10,
+      "healthRatio": 0.1,
+      "gapPerLevel": 0.05
     },
     {
       "effectId": 101,
-      "name": "가디언 수호의 방패2 이펙트",
-      "damageRatio": 0,
-      "healthRatio": 0.2,
-      "effectType": 4,
+      "name": "가디언 불굴의 함성 이펙트",
+      "effectType": 3,
       "effectDurationType": 1,
-      "duration": 10
+      "duration": 2,
+      "entityRatio": 1,
+      "gapPerLevel": 0.1
     },
     {
       "effectId": 102,
-      "name": "가디언 수호의 방패3 이펙트",
-      "damageRatio": 0,
-      "healthRatio": 0.3,
-      "effectType": 4,
-      "effectDurationType": 1,
-      "duration": 10
-    },
-    {
-      "effectId": 110,
-      "name": "가디언 불굴의 함성 이펙트",
-      "damageRatio": 0,
-      "healthRatio": 0,
-      "entityRatio": 1,
-      "effectType": 3,
-      "effectDurationType": 1,
-      "duration": 2
-    },
-    {
-      "effectId": 111,
-      "name": "가디언 불굴의 함성2 이펙트",
-      "damageRatio": 0,
-      "healthRatio": 0,
-      "entityRatio": 1.5,
-      "effectType": 3,
-      "effectDurationType": 1,
-      "duration": 3
-    },
-    {
-      "effectId": 112,
-      "name": "가디언 불굴의 함성3 이펙트",
-      "damageRatio": 0,
-      "healthRatio": 0,
-      "entityRatio": 2,
-      "effectType": 3,
-      "effectDurationType": 1,
-      "duration": 4
-    },
-    {
-      "effectId": 120,
-      "name": "가디언 심판의 일격1 이펙트",
+      "name": "가디언 심판의 일격 이펙트",
       "damageRatio": 6,
-      "healthRatio": 0,
-      "entityRatio": 2,
       "effectType": 1,
       "effectDurationType": 0,
-      "duration": 4
-    },
-    {
-      "effectId": 121,
-      "name": "가디언 심판의 일격2 이펙트",
-      "damageRatio": 6.5,
-      "healthRatio": 0,
-      "entityRatio": 0,
-      "effectType": 1,
-      "effectDurationType": 0,
-      "duration": 4
-    },
-    {
-      "effectId": 122,
-      "name": "가디언 심판의 일격3 이펙트",
-      "damageRatio": 7,
-      "healthRatio": 0,
-      "entityRatio": 0,
-      "effectType": 1,
-      "effectDurationType": 0,
-      "duration": 4
+      "duration": 4,
+      "gapPerLevel": 0.1
     },
     {
       "effectId": 1001,
@@ -104,9 +44,10 @@
       "duration": 0
     },
     {
-      "effectId": 1000,
+      "effectId": 10001,
       "name": "일반 검 장착 이펙트",
-      "damageRatio": 0,
+      "effectType": 3,
+      "effectDurationType": 2,
       "addStatValues": [
         {
           "statType": 5,
@@ -117,35 +58,31 @@
           "value": 20,
           "multiplier": true
         }
-      ],
-      "effectType": 3,
-      "effectDurationType": 2
+      ]
     },
     {
-      "effectId": 200,
+      "effectId": 11001,
       "name": "빨간 포션(소) 이펙트",
-      "damageRatio": 0,
+      "effectType": 2,
+      "effectDurationType": 0,
       "addStatValues": [
         {
           "statType": 3,
           "value": 30
         }
-      ],
-      "effectType": 2,
-      "effectDurationType": 0
+      ]
     },
     {
-      "effectId": 201,
+      "effectId": 11002,
       "name": "파란 포션(소) 이펙트",
-      "damageRatio": 0,
+      "effectType": 2,
+      "effectDurationType": 0,
       "addStatValues": [
         {
           "statType": 4,
           "value": 15
         }
-      ],
-      "effectType": 2,
-      "effectDurationType": 0
+      ]
     }
   ]
 }

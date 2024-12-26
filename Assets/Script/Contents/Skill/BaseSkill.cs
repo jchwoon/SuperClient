@@ -11,14 +11,16 @@ public class BaseSkill
     public int TemplateId { get; protected set; }
     public SkillData SkillData { get; protected set; }
     public bool IsCoolTime {  get; protected set; }
+    public int SkillLevel { get; protected set; }
 
     float _remainCoolTime;
 
-    public BaseSkill(int templateId, MyHero owner, SkillData skillData)
+    public BaseSkill(int templateId, MyHero owner, SkillData skillData, int skillLevel)
     {
         TemplateId = templateId;
         Owner = owner;
         SkillData = skillData;
+        SkillLevel = skillLevel;
     }
 
     //서버에 보내기전 (SendUseSkill) 클라에서도 판단

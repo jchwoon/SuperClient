@@ -4,9 +4,8 @@
       "roomId": 1,
       "poolDatas": [
         {
-          "spawnId": 1,
           "maxEntityCount": 10,
-          "monsterId": 1,
+          "monsterId": 1001,
           "respawnTime": 5,
           "posX": 0,
           "posY": 0,

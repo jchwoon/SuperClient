@@ -113,9 +113,16 @@ namespace ServerCore
             }
             _sendArgs.BufferList = _sendList;
 
-            bool willRaiseEvent = _socket.SendAsync(_sendArgs);
-            if (willRaiseEvent == false)
-                CompleteSend(null, _sendArgs);
+            try
+            {
+                bool willRaiseEvent = _socket.SendAsync(_sendArgs);
+                if (willRaiseEvent == false)
+                    CompleteSend(null, _sendArgs);
+            }
+            catch (Exception e) 
+            { 
+                Debug.Log(e); 
+            }
         }
 
         private void CompleteSend(object sneder, SocketAsyncEventArgs args)
@@ -146,10 +153,17 @@ namespace ServerCore
             _receiveArgs.SetBuffer(segment.Array, segment.Offset, segment.Count);
 
 
-            bool willRaiseEvent = _socket.ReceiveAsync(_receiveArgs);
-            if (willRaiseEvent == false)
+            try
             {
-                CompleteReceive(null, _receiveArgs);
+                bool willRaiseEvent = _socket.ReceiveAsync(_receiveArgs);
+                if (willRaiseEvent == false)
+                {
+                    CompleteReceive(null, _receiveArgs);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e);
             }
         }
 

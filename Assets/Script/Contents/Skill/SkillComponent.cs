@@ -1,5 +1,6 @@
 using Data;
 using Google.Protobuf.Enum;
+using Google.Protobuf.Struct;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,24 +13,24 @@ public class SkillComponent
     public int DashSkillId { get; private set; }
     public bool isUsingSkill { get; set; }
 
-    public void InitSkill(HeroData heroData)
+    public void InitSkill(Dictionary<int, int> skills)
     {
-        foreach (int id in heroData.SkillIds)
+        foreach (KeyValuePair<int/*templateId*/, int/*level*/> s in skills) 
         {
-           if (Managers.DataManager.SkillDict.TryGetValue(id, out SkillData skillData) == true)
+            if (Managers.DataManager.SkillDict.TryGetValue(s.Key, out SkillData skillData) == true)
             {
-                if (_skills.ContainsKey(id))
+                if (_skills.ContainsKey(s.Key))
                     continue;
 
                 BaseSkill skill = null;
                 switch (skillData.SkillProjectileType)
                 {
                     case ESkillProjectileType.None:
-                        skill = new NonProjectileSkill(id, Managers.ObjectManager.MyHero, skillData);
+                        skill = new NonProjectileSkill(s.Key, Managers.ObjectManager.MyHero, skillData, s.Value);
                         break;
                 }
                 if (skill != null)
-                    _skills.Add(id, skill);
+                    _skills.Add(s.Key, skill);
                 if (skill.SkillData.SkillSlotType == ESkillSlotType.Normal)
                     NormalSkillId = skill.TemplateId;
                 else if (skill.SkillData.SkillSlotType == ESkillSlotType.Dash)
@@ -40,6 +41,7 @@ public class SkillComponent
                 }
             }
         }
+        
     }
 
     public bool CheckCanUseSkill(int templatedId)
@@ -64,6 +66,11 @@ public class SkillComponent
             return null;
 
         return skill;
+    }
+
+    public int GetSkillLevelById(int templatedId)
+    {
+        return GetSkillById(templatedId).SkillLevel;
     }
 
     public List<BaseSkill> GetAllSkill()

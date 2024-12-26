@@ -1,8 +1,8 @@
 {
   "items": [
     {
-      "itemId": 1,
-      "effectId": 100,
+      "itemId": 10001,
+      "effectId": 10001,
       "descId": "일반 검",
       "name": "일반 검",
       "prefabName": "NormalSword",

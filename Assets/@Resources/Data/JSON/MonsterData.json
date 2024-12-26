@@ -1,7 +1,7 @@
 {
   "monsters": [
     {
-      "monsterId": 1,
+      "monsterId": 1001,
       "roomId": 1,
       "maxHp": 100,
       "maxMp": 0,
@@ -16,9 +16,7 @@
       "prefabName": "Vornix",
       "level": 1,
       "sight": 5,
-      "skillIds": [
-        1000
-      ],
+      "skillIds": [ 1001 ],
       "monsterGrade": 1
     }
   ]

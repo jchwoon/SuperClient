@@ -154,7 +154,7 @@ namespace Data
     public class SkillData : BaseData
     {
         public int TemplateId;
-        public int NextComboSkillTemplateId;
+        public int NextSkillTemplateId;
         public EHeroClassType ClassType;
         public ESkillType SkillType;
         public ESkillProjectileType SkillProjectileType;
@@ -172,7 +172,7 @@ namespace Data
         public string DescId;
         public float SkillRange;
         public int CostMp;
-        public int RequireLevel;
+        public int MaxLevel;
         public float CoolTime;
         public float Speed;
         public float Dist;
@@ -212,6 +212,7 @@ namespace Data
         public float DamageRatio;
         public float HealthRatio;
         public float EntityRatio;
+        public float GapPerLevel;
         public List<AddStatInfo> AddStatValues;
         public float Duration;
     }

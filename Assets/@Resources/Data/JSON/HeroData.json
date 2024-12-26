@@ -2,9 +2,15 @@
   "heroes": [
     {
       "heroClassId": 1,
-      "prefabName": "Warrior",
+      "prefabName": "Guardian",
       "skillIds": [
-        1, 2, 3, 99 
+        1,
+        2,
+        3,
+        600,
+        100,
+        101,
+        102
       ],
       "respawnTime": 5
     }

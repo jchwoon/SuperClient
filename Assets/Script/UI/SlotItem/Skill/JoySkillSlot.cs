@@ -43,7 +43,6 @@ public class JoySkillSlot : BaseUI
         }
 
         float remainCool = _skill.GetRemainCoolTime();
-        Debug.Log(remainCool);
         if (remainCool  > 0)
         {
             _skillCoolImage.fillAmount = remainCool / SkillData.CoolTime;

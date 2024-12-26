@@ -84,7 +84,6 @@ public class MyHero : Hero
         GrowthInfo.InitGrowth();
         CurrencyComponent.InitCurrency(info.Gold);
         Stat.InitStat(info.HeroInfo.CreatureInfo.StatInfo);
-        SkillComponent.InitSkill(heroData);
 
         SetObjInfo(info.HeroInfo.CreatureInfo.ObjectInfo);
         SetPos(gameObject, info.HeroInfo.CreatureInfo.ObjectInfo.PosInfo);

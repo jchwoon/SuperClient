@@ -1,26 +1,26 @@
 {
   "rewardTables": [
     {
-      "rewardTableId": 1,
-      "monsterId": 1,
+      "rewardTableId": 1001,
+      "monsterId": 1001,
       "name": "Vornix 리워드 테이블",
       "rewardGold": 64,
       "rewardExp": 10,
       "rewardInfos": [
         {
-          "rewardId": 100,
+          "rewardId": 11001,
           "probability": 1
         },
         {
-          "rewardId": 101,
+          "rewardId": 11002,
           "probability": 0.5
         },
         {
-          "rewardId": 1,
+          "rewardId": 10001,
           "probability": 0.1
         },
         {
-          "rewardId": 200,
+          "rewardId": 12001,
           "probability": 1
         }
       ]

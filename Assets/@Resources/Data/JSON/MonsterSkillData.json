@@ -1,7 +1,7 @@
 {
   "skills": [
     {
-      "templateId": 1000,
+      "templateId": 1001,
       "skillType": 1,
       "skillAreaType": 1,
       "skillProjectileType": 0,
@@ -14,7 +14,7 @@
       "coolTime": 0,
       "animTime": 1,
       "animParamName": "SkillA",
-      "effectId": 2,
+      "effectId": 1001,
       "effectDelayRatio": 0.6,
       "comboTime": 0
     }

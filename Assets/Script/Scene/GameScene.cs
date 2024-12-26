@@ -1,5 +1,6 @@
 using Data;
 using Google.Protobuf.Protocol;
+using Google.Protobuf.Struct;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ public class GameScene : BaseScene
             Managers.ObjectManager.Spawn(packet.MyHero, (MyHero myHero) =>
             {
                 myHero.Inventory.InitInventory(packet.Items.ToList());
+                myHero.SkillComponent.InitSkill(packet.Skills.ToDictionary(kvp => kvp.SkillId, kvp => kvp.SkillLevel));
             });
         }
 

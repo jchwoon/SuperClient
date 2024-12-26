@@ -52,7 +52,7 @@ public class SkillUI : PopupUI
 
     private void OnSkillSlotClicked(SkillData skillData)
     {
-        _skillDescUI.OnSlotClicked(skillData);
+        _skillDescUI.Refresh(skillData);
     }
 
     private void OnSkillSlotBeginDrag(Sprite sprite)

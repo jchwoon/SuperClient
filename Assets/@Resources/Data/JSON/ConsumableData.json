@@ -1,8 +1,8 @@
 {
   "items": [
     {
-      "itemId": 100,
-      "effectId": 200,
+      "itemId": 11001,
+      "effectId": 11001,
       "descId": "빨간 포션(소)",
       "name": "빨간 포션(소)",
       "prefabName": "Small_HealthPotion",
@@ -14,8 +14,8 @@
       "consumableType": 1
     },
     {
-      "itemId": 101,
-      "effectId": 201,
+      "itemId": 11002,
+      "effectId": 11002,
       "descId": "파란 포션(소)",
       "name": "파란 포션(소)",
       "prefabName": "Small_ManaPotion",
