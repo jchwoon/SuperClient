@@ -71,7 +71,6 @@ public class Creature : BaseObject
     }
 
     #region Network Send
-    //targetId는 누구에게서 Effect가 나갈건지
     public void SendUseSkill(int skillId, int skillTargetId)
     {
         Vector2 joystickDir = Managers.GameManager.MoveInput;
@@ -85,11 +84,13 @@ public class Creature : BaseObject
             SkillId = skillId,
             SkillTargetId = skillTargetId,
         };
+        //Temp
         PosInfo skillPivot = new PosInfo()
         {
             PosX = transform.position.x,
             PosY = transform.position.y,
             PosZ = transform.position.z,
+            RotY = rotY,
         };
         skillPacket.SkillInfo = skillInfo;
         skillPacket.SkillPivot = skillPivot;
