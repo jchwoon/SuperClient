@@ -14,7 +14,9 @@ public class Creature : BaseObject
     public Animator Animator { get; private set; }
     public AnimationData AnimData { get; private set; }
     public StatComponent Stat { get; protected set; }
+    public EffectComponent EffectComponent { get; private set; }
     public FloatingTextController FloatingTextController { get; protected set; }
+    public int ShieldValue { get; protected set; }
 
     protected override void Awake()
     {
@@ -22,6 +24,7 @@ public class Creature : BaseObject
         Animator = transform.GetComponent<Animator>();
         AnimData = new AnimationData();
         FloatingTextController = GetComponent<FloatingTextController>();
+        EffectComponent = new EffectComponent(this);
     }
     protected override void Start()
     {
@@ -140,6 +143,25 @@ public class Creature : BaseObject
     public virtual void HandleDie(int killerId)
     {
         OnDie();
+    }
+
+    public void HandleApplyEffect(long effectId, int templateId)
+    {
+        if (Managers.DataManager.EffectDict.TryGetValue(templateId, out EffectData effectData) == false)
+            return;
+
+        EffectComponent.ApplyEffect(effectData, effectId);
+    }
+
+    public void HandleReleaseEffect(long effectId)
+    {
+        EffectComponent.ReleaseEffect(effectId);
+    }
+
+    public void HandleChangedShield(int shieldValue)
+    {
+        ShieldValue = shieldValue;
+        InvokeChangeHUD();
     }
     #endregion
 }

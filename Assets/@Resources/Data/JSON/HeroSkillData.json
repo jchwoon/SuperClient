@@ -22,7 +22,7 @@
       "effectId": 1,
       "effectDelayRatio": 0.4,
       "comboTime": 1,
-      "prefabName": "WarriorNormalSkill"
+      "prefabName": "GuardianNormalSkill"
     },
     {
       "templateId": 2,
@@ -46,7 +46,7 @@
       "effectId": 1,
       "effectDelayRatio": 0.4,
       "comboTime": 1,
-      "prefabName": "WarriorNormalSkill2"
+      "prefabName": "GuardianNormalSkill2"
     },
     {
       "templateId": 3,
@@ -70,7 +70,7 @@
       "effectId": 1,
       "effectDelayRatio": 0.4,
       "comboTime": 1,
-      "prefabName": "WarriorNormalSkill3"
+      "prefabName": "GuardianNormalSkill3"
     },
     {
       "templateId": 100,
@@ -89,11 +89,10 @@
       "costMp": 50,
       "maxLevel": 20,
       "coolTime": 10,
-      "animTime": 0.66,
+      "animTime": 0.33,
       "effectId": 100,
-      "effectDelayRatio": 0.5,
+      "effectDelayRatio": 0,
       "comboTime": 0,
-      "prefabName": "GuardianActiveA",
       "iconName": "GuardianActiveA_sprite",
       "descId": "수호의 방패"
     },
@@ -118,7 +117,6 @@
       "effectId": 101,
       "effectDelayRatio": 0.5,
       "comboTime": 0,
-      "prefabName": "GuardianActiveB",
       "iconName": "GuardianActiveB_sprite",
       "descId": "불굴의 함성"
     },
@@ -143,7 +141,6 @@
       "effectId": 102,
       "effectDelayRatio": 0.5,
       "comboTime": 0,
-      "prefabName": "GuardianActiveC",
       "iconName": "GuardianActiveC_sprite",
       "descId": "심판의 일격"
     },

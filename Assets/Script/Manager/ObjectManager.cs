@@ -130,11 +130,12 @@ public class ObjectManager
         return npc;
     }
 
-    public void SpawnParticle(ParticleInfo info)
+    public ParticleController SpawnParticle(ParticleInfo info)
     {
         GameObject go = Managers.ResourceManager.Instantiate(info.PrefabName, info.Parent, isPool : true);
-
-        Utils.GetOrAddComponent<ParticleController>(go).SetInfo(info);
+        ParticleController particleController = Utils.GetOrAddComponent<ParticleController>(go);
+        particleController.SetInfo(info);
+        return particleController;
     }
 
     public void DeSpawn(int objectId)

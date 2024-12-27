@@ -21,20 +21,29 @@ public class ParticleController : MonoBehaviour
     ParticleSystem _ps;
     ParticleInfo _info;
     Coroutine _particleLifeRoutine;
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         _ps = GetComponent<ParticleSystem>();
+    }
+
+    private void OnEnable()
+    {
+        _ps.Play();
+    }
+
+    private void OnDisable()
+    {
+        if (_particleLifeRoutine != null)
+        {
+            StopCoroutine(_particleLifeRoutine);
+        }
     }
 
     public void SetInfo(ParticleInfo info)
     {
         _info = info;
         SetPos(info);
-        if (_particleLifeRoutine != null)
-        {
-            StopCoroutine(_particleLifeRoutine);
-        }
+
         _particleLifeRoutine = StartCoroutine(CoDestroyParticle(info.Duration));
     }
 
@@ -44,9 +53,8 @@ public class ParticleController : MonoBehaviour
     }
     IEnumerator CoDestroyParticle(float duration)
     {
-        float coolTime = duration;
         float process = 0.0f;
-        while (process < coolTime)
+        while (process < duration)
         {
             process += Time.deltaTime;
             yield return null;

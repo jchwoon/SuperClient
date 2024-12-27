@@ -90,11 +90,11 @@ public class BaseSkill
         GameObject target = Managers.ObjectManager.FindById(effectTargetId);
         float effectDuration = SkillData.Duration == 0 ? SkillData.AnimTime - effectDelayTime : SkillData.Duration;
         ParticleInfo info = new ParticleInfo
-            (
-                SkillData.PrefabName,
-                target != null ? target.transform : Owner.transform,
-                effectDuration
-            );
+        (
+            SkillData.PrefabName,
+            target != null ? target.transform : Owner.transform,
+            effectDuration
+        );
         Managers.ObjectManager.SpawnParticle(info);
     }
 }

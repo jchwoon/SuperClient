@@ -18,13 +18,19 @@ MonoBehaviour:
   m_GUID: 023164d0084db754fa579c9811c2d4d0
   m_SerializeEntries:
   - m_GUID: a7b0f41e5d35f1349a3523c8aac8980a
-    m_Address: WarriorNormalSkill3
+    m_Address: GuardianNormalSkill3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b99922c2f59b1a542bdd06ae8bee47ae
+    m_Address: GuardianSkillAEffect
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ca6705a3f9070d14d819d179493bcfa0
-    m_Address: WarriorNormalSkill
+    m_Address: GuardianNormalSkill
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
@@ -36,7 +42,7 @@ MonoBehaviour:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f2924f23573d74945bdafe08fe1be36d
-    m_Address: WarriorNormalSkill2
+    m_Address: GuardianNormalSkill2
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad

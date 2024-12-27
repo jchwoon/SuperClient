@@ -12,7 +12,8 @@ public class CreatureHUD : BaseUI
     enum Sliders
     {
         HpBar,
-        MpBar
+        MpBar,
+        ShieldBar
     }
     enum Texts
     {
@@ -98,9 +99,29 @@ public class CreatureHUD : BaseUI
         gameObject.GetComponent<Canvas>().sortingOrder = (int)Enums.SortingOrderInHUD.HeroHUD;
 
         StatInfo statInfo = _owner.Stat.StatInfo;
-        float hpValue = (float)statInfo.Hp / (float)statInfo.MaxHp;
-        float mpValue = (float)statInfo.Mp / (float)statInfo.MaxMp;
+        int shieldValue = _owner.ShieldValue;
+        float d = shieldValue + statInfo.Hp;
 
+        float c = shieldValue / d;
+        float x = statInfo.Hp / d;
+
+        float hpValue;
+        float shield;
+        float mpValue = (float)statInfo.Mp / (float)statInfo.MaxMp;
+        if (statInfo.Hp + shieldValue >= statInfo.MaxHp)
+        {
+            hpValue = statInfo.Hp / d;
+            shield = d / d;
+        }
+        else
+        {
+            hpValue = (float)statInfo.Hp / (float)(statInfo.MaxHp);
+            shield = (float)(statInfo.Hp + shieldValue) / (float)(statInfo.MaxHp);
+        }
+
+
+
+        Get<Slider>((int)Sliders.ShieldBar).value = shield;
         Get<Slider>((int)Sliders.HpBar).value = hpValue;
         Get<Slider>((int)Sliders.MpBar).value = mpValue;
     }

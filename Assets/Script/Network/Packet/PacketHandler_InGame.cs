@@ -226,4 +226,48 @@ public partial class PacketHandler
             return;
     }
     
+    public static void ApplyEffectToCHandler(PacketSession session, IMessage packet)
+    {
+        ApplyEffectToC applyEffectPacket = (ApplyEffectToC)packet;
+
+        GameObject go = Managers.ObjectManager.FindById(applyEffectPacket.ObjectId);
+        if (go == null)
+            return;
+
+        Creature creature = go.GetComponent<Creature>();
+        if (creature == null)
+            return;
+
+        creature.HandleApplyEffect(applyEffectPacket.EffectId, applyEffectPacket.TemplateId);
+    }
+
+    public static void ReleaseEffectToCHandler(PacketSession session, IMessage packet)
+    {
+        ReleaseEffectToC releaseEffectPacket = (ReleaseEffectToC)packet;
+
+        GameObject go = Managers.ObjectManager.FindById(releaseEffectPacket.ObjectId);
+        if (go == null)
+            return;
+
+        Creature creature = go.GetComponent<Creature>();
+        if (creature == null)
+            return;
+
+        creature.HandleReleaseEffect(releaseEffectPacket.EffectId);
+    }
+
+    public static void ChangeShieldValueToCHandler(PacketSession session, IMessage packet)
+    {
+        ChangeShieldValueToC changeShieldPacket = (ChangeShieldValueToC)packet;
+
+        GameObject go = Managers.ObjectManager.FindById(changeShieldPacket.ObjectId);
+        if (go == null)
+            return;
+
+        Creature creature = go.GetComponent<Creature>();
+        if (creature == null)
+            return;
+
+        creature.HandleChangedShield(changeShieldPacket.ShieldValue);
+    }
 }

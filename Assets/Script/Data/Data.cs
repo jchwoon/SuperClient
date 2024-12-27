@@ -206,16 +206,19 @@ namespace Data
         public bool Multiplier;
     }
 
-    public class EffectData
+    public class EffectData : BaseData
     {
-        public int EffectId;
+        public int TemplateId;
         public float DamageRatio;
         public float HealthRatio;
         public float EntityRatio;
         public float GapPerLevel;
-        public List<AddStatInfo> AddStatValues;
         public float Duration;
-    }
+        public List<AddStatInfo> AddStatValues;
+        public EEffectType EffectType;
+        public EEffectDurationType EffectDurationType;
+        public EEffectScalingType EffectScalingType;
+    }   
 
     [Serializable]
     public class EffectDataLoader : ILoader<int, EffectData>
@@ -227,7 +230,7 @@ namespace Data
 
             foreach (EffectData effect in effects)
             {
-                dict.Add(effect.EffectId, effect);
+                dict.Add(effect.TemplateId, effect);
             }
 
             return dict;

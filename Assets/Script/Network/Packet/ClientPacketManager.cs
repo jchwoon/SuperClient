@@ -43,6 +43,9 @@ public enum PacketId
   UnEquipItemToS = 34,
   ChangeSlotTypeToC = 35,
   CreatePartyToS = 36,
+  ApplyEffectToC = 37,
+  ReleaseEffectToC = 38,
+  ChangeShieldValueToC = 39,
 
 }
 
@@ -119,6 +122,12 @@ class PacketManager
         _handler.Add((ushort)PacketId.UseItemToC, PacketHandler.UseItemToCHandler);
         _parseHandler.Add((ushort)PacketId.ChangeSlotTypeToC, ParsePacket<ChangeSlotTypeToC>);
         _handler.Add((ushort)PacketId.ChangeSlotTypeToC, PacketHandler.ChangeSlotTypeToCHandler);
+        _parseHandler.Add((ushort)PacketId.ApplyEffectToC, ParsePacket<ApplyEffectToC>);
+        _handler.Add((ushort)PacketId.ApplyEffectToC, PacketHandler.ApplyEffectToCHandler);
+        _parseHandler.Add((ushort)PacketId.ReleaseEffectToC, ParsePacket<ReleaseEffectToC>);
+        _handler.Add((ushort)PacketId.ReleaseEffectToC, PacketHandler.ReleaseEffectToCHandler);
+        _parseHandler.Add((ushort)PacketId.ChangeShieldValueToC, ParsePacket<ChangeShieldValueToC>);
+        _handler.Add((ushort)PacketId.ChangeShieldValueToC, PacketHandler.ChangeShieldValueToCHandler);
     
     }
 
