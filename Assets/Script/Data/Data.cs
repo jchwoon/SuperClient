@@ -166,6 +166,7 @@ namespace Data
         public bool CanCancel;
         public bool IsComboSkill;
         public bool IsMoveSkill;
+        public string SoundLabel;
         public string SkillName;
         public string AnimName;
         public string IconName;
@@ -214,6 +215,7 @@ namespace Data
         public float EntityRatio;
         public float GapPerLevel;
         public float Duration;
+        public string SoundLabel;
         public List<AddStatInfo> AddStatValues;
         public EEffectType EffectType;
         public EEffectDurationType EffectDurationType;

@@ -35,7 +35,10 @@ public class BaseSkill
     public virtual void UseSkill(string playAnimName)
     {
         Owner.Animator.Play(playAnimName);
-        
+        if (!string.IsNullOrEmpty(SkillData.SoundLabel))
+        {
+            Managers.SoundManager.PlaySFX(SkillData.SoundLabel);
+        }
         CoroutineHelper.Instance.StartHelperCoroutine(CoRunCoolTime());
         CoroutineHelper.Instance.StartHelperCoroutine(CoRunAnimTime());
         if (!string.IsNullOrEmpty(SkillData.PrefabName))

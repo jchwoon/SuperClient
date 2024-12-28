@@ -8,6 +8,14 @@ public class LoginScene : BaseScene
     {
         base.Awake();
 
+        Managers.ResourceManager.LoadAllAsync<Object>("title", (key, currentCount, totalCount) =>
+        {
+            if (currentCount == totalCount)
+            {
+                PlayBGM("TitleBGM");
+            }
+        });
+
     }
 
     protected override void OnApplicationQuit()

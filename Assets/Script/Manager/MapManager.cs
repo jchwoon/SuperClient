@@ -41,7 +41,6 @@ public class MapManager
         TextAsset text = Managers.ResourceManager.GetResource<TextAsset>($"{mapName}MapData");
         Stream s = new MemoryStream(text.bytes);
         ReadFile(new BinaryReader(s));
-        //CoroutineHelper.Instance.StartHelperCoroutine());
     }
     public bool CanGo(float z, float x)
     {
@@ -118,7 +117,6 @@ public class MapManager
                 float height = reader.ReadSingle();
                 _mapCollision[applyZ, applyX] = height;
             }
-            //_loadedMapAction?.Invoke();
         };
 
     }

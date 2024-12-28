@@ -14,6 +14,7 @@ public class LobbyScene : BaseScene
     {
         base.Awake();
         SendReqHeroListPacket();
+        PlayBGM("TitleBGM");
     }
 
     public void SendReqHeroListPacket()

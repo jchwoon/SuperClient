@@ -27,6 +27,7 @@ public class Managers : MonoBehaviour
     private ItemFactory _itemFactory = new ItemFactory();
     private PartyManager _partyManager = new PartyManager();
     private InputManager _inputManager = new InputManager();
+    private SoundManager _soundManager = new SoundManager();
 
     public static NetworkManager NetworkManager { get { return Instance._networkManager; } }
     public static SceneManagerEx SceneManagerEx { get { return Instance._sceneManager; } }
@@ -41,6 +42,7 @@ public class Managers : MonoBehaviour
     public static ItemFactory ItemFactory { get { return Instance._itemFactory; } }
     public static PartyManager PartyManager { get { return Instance._partyManager; } }
     public static InputManager InputManager { get { return Instance._inputManager; } }
+    public static SoundManager SoundManager { get { return Instance._soundManager; } }
 
 
     private void Awake()
@@ -62,6 +64,8 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(gameObject);
 
             _instance = gameObject.GetComponent<Managers>();
+
+            _instance._soundManager.SoundInit();
         }
     }
 

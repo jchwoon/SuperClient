@@ -106,4 +106,11 @@ public class Enums
         Position,
         Delta
     }
+
+    public enum ESoundsType
+    {
+        BGM,
+        BGM2,
+        SFX
+    }
 }

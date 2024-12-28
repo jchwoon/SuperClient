@@ -19,4 +19,9 @@ public class BaseScene : MonoBehaviour
         Managers.NetworkManager.Disconnect();
     }
 
+    protected void PlayBGM(string key)
+    {
+        Managers.SoundManager.PlayBGM(key);
+    }
+
 }

@@ -14,7 +14,6 @@ public class GameScene : BaseScene
 
         ReqEnterRoomToS reqEnterPacket = new ReqEnterRoomToS();
         reqEnterPacket.HeroIdx = Managers.GameManager.SelectHeroIdx;
-        Managers.MapManager.CreateMap();
         Managers.NetworkManager.Send(reqEnterPacket);
     }
 
@@ -31,6 +30,9 @@ public class GameScene : BaseScene
             });
         }
 
+        //Temp
+        PlayBGM("VillageBGM");
+        Managers.MapManager.CreateMap();
         Managers.UIManager.ShowFadeUI();
     }
 
