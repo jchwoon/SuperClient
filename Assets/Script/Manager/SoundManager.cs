@@ -8,21 +8,24 @@ using static Unity.VisualScripting.Member;
 
 public class SoundManager
 {
+    Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
+
     //BGM사운드가 서로 믹스 되면서 자연스럽게 변환하기 위해 2개
     AudioSource _bgmSource;
     AudioSource _bgmSource2;
 
+    AudioSource _sfxSource;
+
     Enums.ESoundsType _currentBgmSource;
     Coroutine _crossFadeRoutine;
-    AudioSource _sfxSource;
-    Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
+
+    const float CROSS_FADE_DURATION = 2.0f;
+    const int SFX_SIZE = 10;
 
     GameObject _soundRoot = null;
 
-    const int SFX_SIZE = 10;
-
-    public float bgmVolume = 0.1f;
-    public float effectVolume = 0.1f;
+    //public float bgmVolume = 0.1f;
+    //public float effectVolume = 0.1f;
 
 
 
@@ -65,25 +68,17 @@ public class SoundManager
         if (clip == null)
             return;
 
-        if (_bgmSource.clip == clip)
+        if (GetCurrentPlayingBgmSource().clip == clip)
             return;
 
-        if (_bgmSource.isPlaying)
-        {
-            _bgmSource.Stop();
-        }
         if (_crossFadeRoutine != null)
         {
             CoroutineHelper.Instance.StopHelperCoroutine(_crossFadeRoutine);
         }
-        _crossFadeRoutine = CoroutineHelper.Instance.StartHelperCoroutine(CoCrossFadeBGM());
-
-        ChangeCurrentBgmSource();
-
-        _bgmSource.clip = clip;
-        _bgmSource.Play();
+        _crossFadeRoutine = CoroutineHelper.Instance.StartHelperCoroutine(CoCrossFadeBGM(clip));
     }
 
+    //2D SFX
     public void PlaySFX(string key)
     {
         AudioClip clip = LoadAudioClip(key);
@@ -92,6 +87,29 @@ public class SoundManager
             return;
 
         _sfxSource.PlayOneShot(clip);
+    }
+    //3D SFX
+    public void PlaySFX(string key, Transform playPos = null)
+    {
+        AudioClip clip = LoadAudioClip(key);
+
+        if (clip == null)
+            return;
+
+        GameObject go = Managers.ResourceManager.Instantiate("SfxSource", isPool: true);
+
+        if (go == null)
+            return;
+
+        AudioSource audioSource = Utils.GetOrAddComponent<AudioSource>(go);
+
+        go.transform.position = playPos.position;
+        audioSource.clip = clip;
+        float clipLength = audioSource.clip.length;
+
+        audioSource.Play();
+
+        CoroutineHelper.Instance.StartHelperCoroutine(CoReserveDestroySource(go, clipLength));
     }
 
     private AudioClip LoadAudioClip(string key)
@@ -110,39 +128,69 @@ public class SoundManager
         return audioClip;
     }
 
-    private void ChangeCurrentBgmSource()
+    private AudioSource GetCurrentPlayingBgmSource()
     {
+        return _currentBgmSource == Enums.ESoundsType.BGM ? _bgmSource : _bgmSource2;
+    }
+
+    IEnumerator CoCrossFadeBGM(AudioClip newClip)
+    {
+        AudioSource currentBgmSource = null;
+        AudioSource changedBgmSource = null;
         if (_currentBgmSource == Enums.ESoundsType.BGM)
         {
+            currentBgmSource = _bgmSource;
+            changedBgmSource = _bgmSource2;
             _currentBgmSource = Enums.ESoundsType.BGM2;
         }
         else
         {
+            currentBgmSource = _bgmSource2;
+            changedBgmSource = _bgmSource;
             _currentBgmSource = Enums.ESoundsType.BGM;
+        }
+
+        changedBgmSource.clip = newClip;
+        changedBgmSource.volume = 0.0f;
+        changedBgmSource.Play();
+
+        float process = 0.0f;
+        float currentVolume = currentBgmSource.volume;
+        //Temp
+        float targetVolume = 1.0f;
+
+        try
+        {
+            while (process < CROSS_FADE_DURATION)
+            {
+                currentBgmSource.volume -= (currentVolume / CROSS_FADE_DURATION) * Time.deltaTime;
+                changedBgmSource.volume += (targetVolume / CROSS_FADE_DURATION) * Time.deltaTime;
+                process += Time.deltaTime;
+                yield return null;
+            }
+        }
+        finally
+        {
+            currentBgmSource.volume = 0.0f;
+            changedBgmSource.volume = targetVolume;
+            currentBgmSource.Stop();
         }
     }
 
-    IEnumerator CoCrossFadeBGM()
+    IEnumerator CoReserveDestroySource(GameObject go, float length)
     {
-        AudioSource currentBgmSource = null;
-        if (_currentBgmSource == Enums.ESoundsType.BGM)
-            currentBgmSource = _bgmSource2;
-        else
-            currentBgmSource = _bgmSource;
-
-
-
-        yield return null;
+        yield return new WaitForSeconds(length);
+        Managers.ResourceManager.Destroy(go, isPool: true);
     }
 
-    public void SetBGMVolume(float volume)
-    {
-        _bgmSource.volume = volume;
-        bgmVolume = volume;
-    }
+    //public void SetBGMVolume(float volume)
+    //{
+    //    _bgmSource.volume = volume;
+    //    bgmVolume = volume;
+    //}
 
-    public void SetEffectVolume(float volume)
-    {
-        effectVolume = volume;
-    }
+    //public void SetEffectVolume(float volume)
+    //{
+    //    effectVolume = volume;
+    //}
 }

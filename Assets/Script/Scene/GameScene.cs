@@ -18,7 +18,13 @@ public class GameScene : BaseScene
     }
 
     public void OnReceiveEnterRoom(ResEnterRoomToC packet)
-    {
+    {        
+        //Temp
+        PlayBGM("VillageBGM");
+        Managers.MapManager.CreateMap();
+        Managers.UIManager.ShowFadeUI();
+
+
         if (packet.IsChangeRoom == false)
         {
             Managers.UIManager.ShowSceneUI<GameSceneUI>();
@@ -29,11 +35,6 @@ public class GameScene : BaseScene
                 myHero.SkillComponent.InitSkill(packet.Skills.ToDictionary(kvp => kvp.SkillId, kvp => kvp.SkillLevel));
             });
         }
-
-        //Temp
-        PlayBGM("VillageBGM");
-        Managers.MapManager.CreateMap();
-        Managers.UIManager.ShowFadeUI();
     }
 
     protected override void OnApplicationQuit()

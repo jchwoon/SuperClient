@@ -7,8 +7,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using Data;
 using UnityEngine.InputSystem;
-using static UnityEngine.UI.GridLayoutGroup;
-using static UnityEngine.GraphicsBuffer;
 
 public class MyHero : Hero
 {
@@ -46,9 +44,10 @@ public class MyHero : Hero
     }
     protected override void Update()
     {
-        if (MyHeroStateMachine == null)
-            return;
-        MyHeroStateMachine.Update();
+        base.Update();
+        //if (MyHeroStateMachine == null)
+        //    return;
+        //MyHeroStateMachine.Update();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,6 +74,7 @@ public class MyHero : Hero
         MyHeroStat = new MyHeroStatComponent(this);
         GrowthInfo = new GrowthComponent(this);
         Inventory = new InventoryComponent(this);
+
 
         Stat = MyHeroStat;
         Machine = MyHeroStateMachine;

@@ -57,7 +57,7 @@ public class CharacterSlot : BaseUI
     {
         switch (classType)
         {
-            case EHeroClassType.Warrior:
+            case EHeroClassType.Guardian:
                 _classIcon.sprite = Managers.ResourceManager.GetResource<Sprite>("Warrior_sprite");
                 return;
             case EHeroClassType.Archer:

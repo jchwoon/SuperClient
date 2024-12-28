@@ -8,7 +8,7 @@ namespace MyHeroState
     public class BaseState : IState
     {
         protected MyHeroStateMachine _heroMachine;
-        protected Creature _owner;
+        protected MyHero _owner;
 
         public BaseState(MyHeroStateMachine heroMachine)
         {

@@ -36,8 +36,7 @@ public class Enums
     public enum Layers
     {
         Wall = 6,
-        Monster = 8,
-        DropItem
+        Floor
     }
 
     public enum AnimLayer

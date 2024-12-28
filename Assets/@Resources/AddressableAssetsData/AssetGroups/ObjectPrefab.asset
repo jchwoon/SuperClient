@@ -17,38 +17,14 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: be905cce12f85014aa17722544911499
   m_SerializeEntries:
-  - m_GUID: 2cf6690298568294cb6b655c0a3aeb87
-    m_Address: Small_ManaPotion
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7cafb89b5a0f61f479d0a748962abbbc
-    m_Address: Small_HealthPotion
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2c53fbdb3e9a9ce42b34631394511fb7
     m_Address: VornixMeat
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 949ce6572c25a5446b035cac76c74aa4
-    m_Address: NormalSword
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e3e60bddfb4b5b8448ae0d5ed6cac47b
-    m_Address: Second
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9dc75ccc202672a43b5704ad7bd6ee19
-    m_Address: Third
+  - m_GUID: 2cf6690298568294cb6b655c0a3aeb87
+    m_Address: Small_ManaPotion
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
@@ -59,14 +35,44 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b419e164ab53516438da636332342da9
-    m_Address: Warrior
+  - m_GUID: 4b9c221a890d41b44bada594439d11d4
+    m_Address: SfxSource
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 75f057b43e0a449dae5f6549f5107474
     m_Address: Vornix
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7cafb89b5a0f61f479d0a748962abbbc
+    m_Address: Small_HealthPotion
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 922e2c7dd4b6391469f907872e445e99
+    m_Address: Guardian
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 949ce6572c25a5446b035cac76c74aa4
+    m_Address: NormalSword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9dc75ccc202672a43b5704ad7bd6ee19
+    m_Address: Third
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3e60bddfb4b5b8448ae0d5ed6cac47b
+    m_Address: Second
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad

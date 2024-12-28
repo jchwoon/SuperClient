@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using Google.Protobuf.Enum;
 public class CreateHeroSceneUI : SceneUI
 {
     enum Buttons
@@ -48,10 +48,10 @@ public class CreateHeroSceneUI : SceneUI
 
     private void OnCreateBtnClicked(PointerEventData eventData)
     {
-
         ReqCreateHeroToS reqCreateHeroPacket = new ReqCreateHeroToS();
         reqCreateHeroPacket.Nickname = _nicknameField.text;
-        reqCreateHeroPacket.ClassType = Google.Protobuf.Enum.EHeroClassType.Warrior;
+        //Temp
+        reqCreateHeroPacket.ClassType = EHeroClassType.Guardian;
         Managers.NetworkManager.Send(reqCreateHeroPacket);
         Clear();
     }

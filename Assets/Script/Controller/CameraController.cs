@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
     [Header("Speed")]
     public float rotateSpeed = 15.0f;
     public float zoomSpeed = 3.0f;
-    public float smoothTime = 0.2f;
+    public float smoothTime = 0.1f;
 
     Vector3 _velocity = Vector3.zero;
     int _wallLayerMask;

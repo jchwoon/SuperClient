@@ -9,8 +9,6 @@ public class Hero : Creature
     public HeroData HeroData { get; protected set; }
     public HeroInfo HeroInfo { get; protected set; }
 
-    public int PartyId { get; set; }
-
     public int Level
     {
         get { return HeroInfo.LobbyHeroInfo.Level; }
@@ -20,7 +18,6 @@ public class Hero : Creature
     protected override void Awake()
     {
         base.Awake();
-        PartyId = -1;
     }
     protected override void Start()
     {
@@ -34,7 +31,6 @@ public class Hero : Creature
     protected override void Update()
     {
         base.Update();
-
     }
 
     public void Init(HeroInfo info, HeroData heroData)

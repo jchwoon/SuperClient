@@ -156,6 +156,7 @@
       "skillUsageTargetType": 0,
       "skillTargetingType": 0,
       "IsComboSkill": false,
+      "soundLabel": "HeroDash",
       "skillName": "영웅 대시",
       "animName": "HeroDash",
       "SectorAngle": 0,

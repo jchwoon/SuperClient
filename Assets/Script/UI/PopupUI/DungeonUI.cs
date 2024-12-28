@@ -171,8 +171,8 @@ public class DungeonUI : PopupUI
     {
         Hero hero = Managers.ObjectManager.MyHero;
 
-        if (hero.PartyId >= 0)
-            return;
+        //if (hero.PartyId >= 0)
+        //    return;
         
         GameObject partyTab = Managers.ResourceManager.Instantiate("PartyList", _partyContents.transform);
 
@@ -183,8 +183,8 @@ public class DungeonUI : PopupUI
     {
         Hero hero = Managers.ObjectManager.MyHero;
 
-        if (hero.PartyId >= 0)
-            return;
+        //if (hero.PartyId >= 0)
+        //    return;
 
         Managers.PartyManager.JoinParty(hero, partyId);
     }
@@ -193,15 +193,15 @@ public class DungeonUI : PopupUI
     {
         Hero hero = Managers.ObjectManager.MyHero;
 
-        if (hero.PartyId < 0)
-        {
-            return;
-        }
-        else
-        {
-            Managers.PartyManager.RemovePartyMember(hero, hero.PartyId);
-            hero.PartyId = -1;
-        }
+        //if (hero.PartyId < 0)
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    Managers.PartyManager.RemovePartyMember(hero, hero.PartyId);
+        //    hero.PartyId = -1;
+        //}
 
     }
 

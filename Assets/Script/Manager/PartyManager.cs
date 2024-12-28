@@ -86,7 +86,7 @@ public class PartyManager
 
         party.PartyMembers.Add(new PartyMember(name, level));
 
-        owner.PartyId = partyId;
+        //owner.PartyId = partyId;
     }
 
 

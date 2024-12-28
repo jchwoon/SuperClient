@@ -25,6 +25,7 @@ public class Creature : BaseObject
         AnimData = new AnimationData();
         FloatingTextController = GetComponent<FloatingTextController>();
         EffectComponent = new EffectComponent(this);
+
     }
     protected override void Start()
     {

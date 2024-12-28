@@ -37,7 +37,7 @@ public class BaseSkill
         Owner.Animator.Play(playAnimName);
         if (!string.IsNullOrEmpty(SkillData.SoundLabel))
         {
-            Managers.SoundManager.PlaySFX(SkillData.SoundLabel);
+            Managers.SoundManager.PlaySFX(SkillData.SoundLabel, Owner.transform);
         }
         CoroutineHelper.Instance.StartHelperCoroutine(CoRunCoolTime());
         CoroutineHelper.Instance.StartHelperCoroutine(CoRunAnimTime());
