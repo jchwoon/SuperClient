@@ -7,33 +7,24 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_pbr_gradient
+  m_Name: EmptyNormal
   m_Shader: {fileID: 4800000, guid: cda243e0bc6ebe54b862d28e5eeed200, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
-  - _ADD_PRECOMPUTED_VELOCITY
   - _DISABLE_SSR_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    MotionVector: User
+  m_CustomRenderQueue: 2225
+  stringTagMap: {}
   disabledShaderPasses:
   - TransparentBackface
   - MOTIONVECTORS
-  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BaseColor:
-        m_Texture: {fileID: 2800000, guid: 70c9529d91fe35349bd48d06513fb028, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseColorMap:
-        m_Texture: {fileID: 2800000, guid: 70c9529d91fe35349bd48d06513fb028, type: 3}
+        m_Texture: {fileID: 2800000, guid: 08bfe7972a9c2ed499414d8e9f3e4208, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission:
@@ -41,7 +32,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 70c9529d91fe35349bd48d06513fb028, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
@@ -49,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionRoughtMetal:
-        m_Texture: {fileID: 2800000, guid: c7a4a1e739c5046449e9e2e670c86b1d, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PanningMask:
@@ -74,9 +65,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AddPrecomputedVelocity: 1
-    - _AdditiveMaskEdge: 0
-    - _AlphaClipping: 1
+    - _AdditiveMaskEdge: 1
     - _AlphaCutoff: 0.5
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 0
@@ -84,33 +73,26 @@ Material:
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
     - _BlendMode: 0
-    - _ConservativeDepthOffsetEnable: 1
     - _CullMode: 2
     - _CullModeForward: 2
-    - _DepthOffsetEnable: 1
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 0
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
-    - _EnvironmentReflections: 1
     - _ExposureWeight: 0
-    - _Intensity: 0.05
-    - _MetallicScale: 0
-    - _NormalScale: 0
-    - _OcclusionScale: 1
+    - _Intensity: 0
+    - _MetallicScale: 1
+    - _NormalScale: 1
+    - _OcclusionScale: 0
     - _OpaqueCullMode: 2
-    - _PanningNoiseStrenght: 2
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _ReceiveShadows: 1
+    - _PanningNoiseStrenght: 0.5
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
-    - _SmoothnessScale: 0.228
-    - _SpecularHighlights: 1
+    - _SmoothnessScale: 1
     - _SrcBlend: 1
     - _StencilRef: 0
     - _StencilRefDepth: 8
@@ -128,7 +110,7 @@ Material:
     - _TransparentCullMode: 2
     - _TransparentSortPriority: 0
     - _TransparentWritingMotionVec: 0
-    - _TransparentZWrite: 1
+    - _TransparentZWrite: 0
     - _UseShadowThreshold: 0
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
@@ -136,9 +118,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
-    - _BaseColorTint: {r: 1, g: 1, b: 1, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveTint: {r: 0.397, g: 0.397, b: 0.397, a: 1}
-    - _PanningSpeed: {r: 0.05, g: 0.1, b: 0, a: 0}
+    - _EmissiveTint: {r: 1, g: 1, b: 1, a: 1}
+    - _PanningSpeed: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

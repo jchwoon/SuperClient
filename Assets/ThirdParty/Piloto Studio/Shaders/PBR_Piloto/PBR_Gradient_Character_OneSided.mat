@@ -7,24 +7,23 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_pbr_gradient
+  m_Name: PBR_Gradient_Character_OneSided
   m_Shader: {fileID: 4800000, guid: cda243e0bc6ebe54b862d28e5eeed200, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _DISABLE_SSR_TRANSPARENT
   m_InvalidKeywords:
   - _ADD_PRECOMPUTED_VELOCITY
-  - _DISABLE_SSR_TRANSPARENT
+  - _CONSERVATIVE_DEPTH_OFFSET
+  - _DEPTHOFFSET_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 2225
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
   - TransparentBackface
   - MOTIONVECTORS
-  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -37,10 +36,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
         m_Texture: {fileID: 2800000, guid: 70c9529d91fe35349bd48d06513fb028, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -76,7 +71,6 @@ Material:
     m_Floats:
     - _AddPrecomputedVelocity: 1
     - _AdditiveMaskEdge: 0
-    - _AlphaClipping: 1
     - _AlphaCutoff: 0.5
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 0
@@ -90,27 +84,22 @@ Material:
     - _DepthOffsetEnable: 1
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
-    - _DoubleSidedNormalMode: 2
+    - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
-    - _EnvironmentReflections: 1
     - _ExposureWeight: 0
-    - _Intensity: 0.05
+    - _Intensity: 0.15
     - _MetallicScale: 0
     - _NormalScale: 0
     - _OcclusionScale: 1
     - _OpaqueCullMode: 2
     - _PanningNoiseStrenght: 2
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _ReceiveShadows: 1
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _SmoothnessScale: 0.228
-    - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _StencilRef: 0
     - _StencilRefDepth: 8
@@ -135,10 +124,9 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColorTint: {r: 1, g: 1, b: 1, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveTint: {r: 0.397, g: 0.397, b: 0.397, a: 1}
+    - _EmissiveTint: {r: 1, g: 1, b: 1, a: 1}
     - _PanningSpeed: {r: 0.05, g: 0.1, b: 0, a: 0}
   m_BuildTextureStacks: []

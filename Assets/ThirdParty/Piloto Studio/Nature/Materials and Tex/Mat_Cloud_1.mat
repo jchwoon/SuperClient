@@ -38,22 +38,23 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Mat_Cloud_1
   m_Shader: {fileID: 4800000, guid: d985403ea514e7c46bf7c2fab31b9d95, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _ALPHATEST_ON
   - _USERAMP_ON
   m_InvalidKeywords:
   - _DOUBLESIDED_ON
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2475
+  m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
-    RenderType: TransparentCutout
   disabledShaderPasses:
   - DistortionVectors
   - MOTIONVECTORS
   - TransparentBackface
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -162,6 +163,7 @@ Material:
     - _Cull: 2
     - _CullMode: 0
     - _CullModeForward: 0
+    - _Culling: 0
     - _Cutoff: 0.591
     - _Desaturate: 0.412
     - _DetailAlbedoMapScale: 1
@@ -208,11 +210,13 @@ Material:
     - _IncludeIndirectLighting: 1
     - _Metallic: 0
     - _MiddlePointPos: 0.5
+    - _MiddlePointPos1: 0.5
     - _Mode: 0
     - _MultiplyNoiseDesaturation: 1
     - _OcclusionStrength: 1
     - _OpaqueCullMode: 2
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _ReceivesSSR: 1
@@ -251,6 +255,7 @@ Material:
     - _TransparentZWrite: 0
     - _UseAlphaOverride: 0
     - _UseEmissiveIntensity: 1
+    - _UsePixelation: 0
     - _UseRamp: 1
     - _UseShadowThreshold: 0
     - _UseSoftAlpha: 0
@@ -273,6 +278,7 @@ Material:
     - _DetailDistortionChannel: {r: 0, g: 0, b: 0, a: 1}
     - _DetailMultiplyChannel: {r: 1, g: 1, b: 1, a: 0}
     - _DetailNoisePanning: {r: 0.2, g: 0, b: 0, a: 0}
+    - _DetailVertexOffsetChannel: {r: 1, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0.23693143, g: 0.21921353, b: 0.1619594, a: 1}
@@ -283,6 +289,7 @@ Material:
     - _MainTextureChannel: {r: 1, g: 1, b: 1, a: 0}
     - _MainTexturePanning: {r: 0, g: 0, b: 0, a: 0}
     - _MidColor: {r: 1, g: 1, b: 1, a: 0}
+    - _Resolution: {r: 64, g: 64, b: 0, a: 0}
     - _RimColor: {r: 0, g: 0.5549643, b: 1, a: 0}
     - _RimFalloff: {r: 0, g: 0, b: 0, a: 0}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
