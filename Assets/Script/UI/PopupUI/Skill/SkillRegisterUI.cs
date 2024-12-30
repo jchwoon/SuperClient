@@ -44,9 +44,11 @@ public class SkillRegisterUI : BaseUI
         _slotClickEvent = slotClickEvent;
         SkillRegisterSlot[] slots = gameObject.GetComponentsInChildren<SkillRegisterSlot>();
         slots.CopyTo(_slots, 0);
-        foreach (SkillRegisterSlot slot in slots)
+        for (int i = 0; i < slots.Length; i++)
         {
-            slot.SetInfo(OnSlotClicked, CheckDuplicateSkill, OnSlotChanged);
+            SkillComponent skill = Utils.GetMySkillComponent();
+            slots[i].SetInfo(GameSettings.GetSkillSlotTemplateId(i));
+            slots[i].RegisterEvent(OnSlotClicked, CheckDuplicateSkill, OnSlotChanged);
         }
     }
 
@@ -75,6 +77,11 @@ public class SkillRegisterUI : BaseUI
 
     private void OnSlotChanged()
     {
+        for (int i = 0; i <  _slots.Length; i++)
+        {
+            GameSettings.SetSkillSlot(i, _slots[i].SkillData == null ? 0 : _slots[i].SkillData.TemplateId);
+        }
+
         Managers.EventBus.InvokeEvent<SkillRegisterSlot[]>(Enums.EventType.UpdateSkillSet, _slots);
     }
 

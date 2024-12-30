@@ -43,11 +43,13 @@ public class CreateHeroSceneUI : SceneUI
 
     private void OnBackBtnClicked(PointerEventData eventData)
     {
+        Managers.SoundManager.PlayClick();
         ShowAndClose();
     }
 
     private void OnCreateBtnClicked(PointerEventData eventData)
     {
+        Managers.SoundManager.PlayClick();
         ReqCreateHeroToS reqCreateHeroPacket = new ReqCreateHeroToS();
         reqCreateHeroPacket.Nickname = _nicknameField.text;
         //Temp

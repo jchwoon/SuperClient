@@ -26,15 +26,18 @@ public class MenuUI : PopupUI
 
     private void OnDungeonBtnClicked(PointerEventData eventData)
     {
+        Managers.SoundManager.PlayClick();
         ClosePopup();
         Managers.UIManager.ShowPopup<DungeonUI>();
     }
     private void OnCloseBtnClicked(PointerEventData eventData)
     {
+        Managers.SoundManager.PlayClick();
         ClosePopup();
     }
     private void OnToSelectSceneBtnClicked(PointerEventData eventData)
     {
+        Managers.SoundManager.PlayClick();
         Managers.UIManager.ShowAlertPopup("로비로 이동하시겠습니까?", Enums.AlertBtnNum.Two,
         () =>
         {
@@ -45,6 +48,7 @@ public class MenuUI : PopupUI
 
     private void OnSkillBtnClicked(PointerEventData eventData)
     {
+        Managers.SoundManager.PlayClick();
         ClosePopup();
         SkillUI skillUI = Managers.UIManager.ShowPopup<SkillUI>();
         skillUI.Refresh();

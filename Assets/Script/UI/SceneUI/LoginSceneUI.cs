@@ -53,7 +53,7 @@ public class LoginSceneUI : SceneUI
     {
         if (CheckStartState() == false)
             return;
-
+        Managers.SoundManager.PlayClick();
         Managers.ResourceManager.LoadAllAsync<Object>("preLoad", (key, currentCount, totalCount) =>
         {
             _stateTxt.text = $"데이타 로딩중... : {key} {currentCount} / {totalCount}";

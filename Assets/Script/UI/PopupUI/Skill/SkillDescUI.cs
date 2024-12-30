@@ -100,7 +100,7 @@ public class SkillDescUI : BaseUI
     {
         if (skillData == null) return false;
 
-        int skillLevel = Utils.GetSkillComponent().GetSkillLevelById(skillData.TemplateId);
+        int skillLevel = Utils.GetMySkillComponent().GetSkillLevelById(skillData.TemplateId);
         if (_skillData != null && _skillData.TemplateId == skillData.TemplateId && _skillLevel == skillLevel)
         {
             return false;

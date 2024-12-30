@@ -28,6 +28,11 @@ public class MyHero : Hero
         cameraController.transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z + 5);
     }
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();

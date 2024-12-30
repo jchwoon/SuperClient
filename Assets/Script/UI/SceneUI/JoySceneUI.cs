@@ -55,7 +55,13 @@ public class JoySceneUI : SceneUI
         //skill joystick layout
         InitJoySkillLayout(interactBtn.transform.localPosition);
         //skill joystic event Binding
-        InitJoySkillSlot();
+        BindingJoySkillSlot();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        LoadSavedSlot();
     }
     protected override void OnEnable()
     {
@@ -107,7 +113,7 @@ public class JoySceneUI : SceneUI
     }
 
     #region SkillJoystick
-    private void LayoutSkillUi(Vector2 pivot, float angle, Transform transform)
+    private void LayoutSkillUI(Vector2 pivot, float angle, Transform transform)
     {
         float radian = angle * Mathf.Deg2Rad;
         Vector2 offset = new Vector2(Mathf.Cos(radian), Mathf.Sin(radian)) * layoutSkillDist;
@@ -131,12 +137,7 @@ public class JoySceneUI : SceneUI
         slot.UseSkill();
     }
 
-    public void SetDashSkill(SkillData dashSkillData)
-    {
-        _joySkillSlots[0].SetInfo(dashSkillData);
-    }
-
-    private void InitJoySkillSlot()
+    private void BindingJoySkillSlot()
     {
         JoySkillSlot[] slots = transform.GetComponentsInChildren<JoySkillSlot>();
 
@@ -149,13 +150,31 @@ public class JoySceneUI : SceneUI
                 OnSkillBtnClicked(ed, _joySkillSlots[index]);
             });
         }
+
     }
 
     private void InitJoySkillLayout(Vector2 pivot)
     {
         for (int i = 0; i < layoutSkillTransform.Length; i++)
         {
-            LayoutSkillUi(pivot, layoutSkillAngles[i], layoutSkillTransform[i]);
+            LayoutSkillUI(pivot, layoutSkillAngles[i], layoutSkillTransform[i]);
+        }
+    }
+
+    private void LoadSavedSlot()
+    {
+        SkillComponent skill = Utils.GetMySkillComponent();
+
+        _joySkillSlots[0].SetInfo(skill.GetSkillDataById(skill.DashSkillId));
+
+        for (int i = 1; i < _joySkillSlots.Length; i++)
+        {
+            int templateId = GameSettings.GetSkillSlotTemplateId(i-1);
+            SkillData skillData = skill.GetSkillDataById(templateId);
+
+            if (skillData == null) continue;
+
+            _joySkillSlots[i].SetInfo(skillData);
         }
     }
     #endregion

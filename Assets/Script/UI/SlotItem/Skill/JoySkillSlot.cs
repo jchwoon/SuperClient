@@ -70,7 +70,7 @@ public class JoySkillSlot : BaseUI
     public void UseSkill()
     {
         MyHero hero = Managers.ObjectManager.MyHero;
-        if (hero != null)
+        if (hero != null && SkillData != null)
         {
             hero.UseSkill(SkillData.TemplateId);
         }
@@ -78,10 +78,11 @@ public class JoySkillSlot : BaseUI
 
     private void SetSkill(SkillData skillData)
     {
+        Debug.Log(_skillImage);
         _skillImage.sprite = Managers.ResourceManager.GetResource<Sprite>(skillData.IconName);
         _skillImage.gameObject.SetActive(true);
 
-        SkillComponent skillComponent = Utils.GetSkillComponent();
+        SkillComponent skillComponent = Utils.GetMySkillComponent();
         if (skillComponent != null)
         {
             _skill = skillComponent.GetSkillById(skillData.TemplateId);

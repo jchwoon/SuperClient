@@ -29,18 +29,29 @@ public class SkillRegisterSlot : BaseUI
         BindEvent(gameObject, OnDropSkill, Enums.TouchEvent.Drop);
     }
 
-    public void SetInfo(Action<SkillData, SkillRegisterSlot> slotClickEvent, Func<ESkillSlotType, bool> checkDuplicateEvent, Action slotChangeEvent)
+    public void RegisterEvent(Action<SkillData, SkillRegisterSlot> slotClickEvent, Func<ESkillSlotType, bool> checkDuplicateEvent, Action slotChangeEvent)
     {
         _slotClickEvent = slotClickEvent;
         _checkDuplicateEvent = checkDuplicateEvent;
         _slotChangeEvent = slotChangeEvent;
     }
 
+    public void SetInfo(int templateId)
+    {
+        Managers.DataManager.SkillDict.TryGetValue(templateId, out SkillData skillData);
+        SkillData = skillData;
+        if (skillData != null)
+        {
+            _skillImage.gameObject.SetActive(true);
+            _skillImage.sprite = Managers.ResourceManager.GetResource<Sprite>(SkillData.IconName);
+        }
+    }
+
     private void OnSlotClicked(PointerEventData eventData)
     {
         if (_slotClickEvent == null || SkillData == null)
             return;
-        
+
         _slotClickEvent.Invoke(SkillData, this);
     }
 
@@ -50,6 +61,7 @@ public class SkillRegisterSlot : BaseUI
 
         if (SkillData == null) return;
 
+        Managers.SoundManager.PlayDropped();
         _skillImage.gameObject.SetActive(true);
         _skillImage.sprite = Managers.ResourceManager.GetResource<Sprite>(SkillData.IconName);
         if (_slotChangeEvent != null)

@@ -24,15 +24,16 @@ public class GameScene : BaseScene
         Managers.MapManager.CreateMap();
         Managers.UIManager.ShowFadeUI();
 
-
+        //게임에 첫 입장
         if (packet.IsChangeRoom == false)
         {
-            Managers.UIManager.ShowSceneUI<GameSceneUI>();
-            Managers.UIManager.ShowSceneUI<JoySceneUI>();
             Managers.ObjectManager.Spawn(packet.MyHero, (MyHero myHero) =>
             {
                 myHero.Inventory.InitInventory(packet.Items.ToList());
                 myHero.SkillComponent.InitSkill(packet.Skills.ToDictionary(kvp => kvp.SkillId, kvp => kvp.SkillLevel));
+
+                Managers.UIManager.ShowSceneUI<GameSceneUI>();
+                Managers.UIManager.ShowSceneUI<JoySceneUI>();
             });
         }
     }

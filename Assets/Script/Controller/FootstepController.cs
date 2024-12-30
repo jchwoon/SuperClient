@@ -9,21 +9,22 @@ public class FootstepController : MonoBehaviour
     TerrainDetector _terrainDetector;
     [SerializeField]
     AudioClip[] _grassClips;
+    [SerializeField]
+    AudioClip[] _tileClips;
 
     Hero _hero;
 
     float _stepDelayTime = 2.0f;
     float _process = 0.0f;
 
+    private void OnEnable()
+    {
+        _hero = transform.parent.GetComponent<Hero>();
+    }
+
     private void Update()
     {
-        if (_hero == null)
-        {
-            _hero = GetComponent<Hero>();
-            return;
-        }    
-
-        if (_hero.Machine == null)
+        if (_hero == null || _hero.Machine == null)
             return;
 
         float currentSpeed = _hero.Stat.GetStat(EStatType.MoveSpeed);
@@ -50,7 +51,7 @@ public class FootstepController : MonoBehaviour
             case 0:
                 return _grassClips[Random.Range(0, _grassClips.Length)];
             case 1:
-                return null;
+                return _tileClips[Random.Range(0, _grassClips.Length)];
             case 2:
                 return null;
             default:
@@ -63,6 +64,6 @@ public class FootstepController : MonoBehaviour
         AudioClip clip = GetStepClipForTerrain();
         if (clip == null)
             return;
-        Managers.SoundManager.PlaySFX(clip.name, transform);
+        Managers.SoundManager.PlaySFX(clip, transform);
     }
 }

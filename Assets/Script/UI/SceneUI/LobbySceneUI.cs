@@ -114,6 +114,7 @@ public class LobbySceneUI : SceneUI
     private void OnBackBtnClicked(PointerEventData eventData)
     {
         Clear();
+        Managers.SoundManager.PlayClick();
         Managers.SceneManagerEx.ChangeScene(Enums.SceneType.Login);
         Managers.NetworkManager.Disconnect();
     }
@@ -121,6 +122,7 @@ public class LobbySceneUI : SceneUI
     //캐릭터 생성 창 띄우기
     private void OnCreateBtnClicked(PointerEventData eventData)
     {
+        Managers.SoundManager.PlayClick();
         if (MAX_SLOT_COUNT <= _heroInfos.Count)
         {
             Managers.UIManager.ShowAlertPopup("더 이상 영웅을 생성할 수 없습니다.", Enums.AlertBtnNum.One);
@@ -134,6 +136,7 @@ public class LobbySceneUI : SceneUI
 
     private void OnDeleteBtnClicked(PointerEventData eventData)
     {
+        Managers.SoundManager.PlayClick();
         if (_selectedSlot == null)
         {
             Managers.UIManager.ShowAlertPopup("선택된 영웅이 없습니다.", Enums.AlertBtnNum.One);
@@ -151,6 +154,7 @@ public class LobbySceneUI : SceneUI
 
     private void OnStartBtnClicked(PointerEventData eventData)
     {
+        Managers.SoundManager.PlayClick();
         if (_selectedSlot == null)
         {
             Managers.UIManager.ShowAlertPopup("선택된 영웅이 없습니다.", Enums.AlertBtnNum.One);

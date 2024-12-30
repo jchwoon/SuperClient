@@ -58,7 +58,7 @@ public class Utils
         return null;
     }
 
-    public static SkillComponent GetSkillComponent()
+    public static SkillComponent GetMySkillComponent()
     {
         MyHero hero = Managers.ObjectManager.MyHero;
         if (hero == null)

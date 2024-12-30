@@ -69,7 +69,7 @@ public class SkillSlot : BaseUI
 
     private void Refresh()
     {
-        SkillComponent skillComponent = Utils.GetSkillComponent();
+        SkillComponent skillComponent = Utils.GetMySkillComponent();
         if (skillComponent != null)
         {
             BaseSkill skill = skillComponent.GetSkillById(SkillData.TemplateId);
@@ -88,6 +88,7 @@ public class SkillSlot : BaseUI
 
     private void OnLevelUpBtnClicked(PointerEventData eventData)
     {
+        Managers.SoundManager.PlayClick();
         //Send Packet
     }
 

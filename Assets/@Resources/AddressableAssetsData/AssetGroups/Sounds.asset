@@ -29,44 +29,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a320b456693deca45b3448696d13cbdc
-    m_Address: GrassStep4
+  - m_GUID: 81652031b64c342cc8dbc59c138d77c5
+    m_Address: Dropped
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d7621548b09ce84499487f107ab98fe9
-    m_Address: GrassStep3
+  - m_GUID: b43d102aac6b145468dcaa94a5cccae1
+    m_Address: Clicked
     m_ReadOnly: 0
     m_SerializedLabels:
-    - preLoad
+    - title
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e43df86e0ec71cf47911584ca8d85268
-    m_Address: GrassStep6
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e50a366110f12594db55417871473f69
-    m_Address: GrassStep2
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f57b921be8c5218419fa234060619f32
-    m_Address: GrassStep5
+  - m_GUID: d4386377121f7c442b6281451cae8b24
+    m_Address: HeroDash
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f7c94b00546f2484ea827051a05081a4
     m_Address: VillageBGM
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: faf90150d02075f48a433021f040a930
-    m_Address: GrassStep1
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad

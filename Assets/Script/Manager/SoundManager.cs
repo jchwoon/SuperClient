@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Diagnostics;
+using UnityEngine.InputSystem;
 using static Unity.VisualScripting.Member;
 
 public class SoundManager
@@ -111,6 +112,30 @@ public class SoundManager
 
         CoroutineHelper.Instance.StartHelperCoroutine(CoReserveDestroySource(go, clipLength));
     }
+
+    public void PlaySFX(AudioClip clip, Transform playPos = null)
+    {
+        if (clip == null)
+            return;
+
+        GameObject go = Managers.ResourceManager.Instantiate("SfxSource", isPool: true);
+
+        if (go == null)
+            return;
+
+        AudioSource audioSource = Utils.GetOrAddComponent<AudioSource>(go);
+
+        go.transform.position = playPos.position;
+        audioSource.clip = clip;
+        float clipLength = audioSource.clip.length;
+
+        audioSource.Play();
+
+        CoroutineHelper.Instance.StartHelperCoroutine(CoReserveDestroySource(go, clipLength));
+    }
+
+    public void PlayClick() { PlaySFX("Clicked"); }
+    public void PlayDropped() { PlaySFX("Dropped"); }
 
     private AudioClip LoadAudioClip(string key)
     {

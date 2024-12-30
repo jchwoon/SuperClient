@@ -34,11 +34,7 @@ public class SkillComponent
                 if (skill.SkillData.SkillSlotType == ESkillSlotType.Normal)
                     NormalSkillId = skill.TemplateId;
                 else if (skill.SkillData.SkillSlotType == ESkillSlotType.Dash)
-                {
-                    JoySceneUI joy = Managers.UIManager.ShowSceneUI<JoySceneUI>();
-                    joy.SetDashSkill(skillData);
                     DashSkillId = skill.TemplateId;
-                }
             }
         }
         
@@ -66,6 +62,15 @@ public class SkillComponent
             return null;
 
         return skill;
+    }
+
+    public SkillData GetSkillDataById(int templateId)
+    {
+        BaseSkill skill = GetSkillById(templateId);
+        if (skill == null)
+            return null;
+
+        return skill.SkillData;
     }
 
     public int GetSkillLevelById(int templatedId)

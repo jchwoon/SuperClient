@@ -67,6 +67,6 @@ public class ParticleController : MonoBehaviour
         Vector3 euler = transform.localRotation.eulerAngles;
         euler.y = 0;
         transform.localRotation = Quaternion.Euler(euler);
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = new Vector3(0, transform.position.y, 0);
     }
 }

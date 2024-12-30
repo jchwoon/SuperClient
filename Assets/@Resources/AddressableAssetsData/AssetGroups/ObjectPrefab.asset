@@ -53,6 +53,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8fc236345663685468b64144bf24ac5c
+    m_Address: HeroParts
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 922e2c7dd4b6391469f907872e445e99
     m_Address: Guardian
     m_ReadOnly: 0

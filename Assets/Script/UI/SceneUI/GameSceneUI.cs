@@ -128,12 +128,14 @@ public class GameSceneUI : SceneUI
 
     private void OnInventoryBtnClicked(PointerEventData eventData)
     {
+        Managers.SoundManager.PlayClick();
         InventoryUI inventory = Managers.UIManager.ShowPopup<InventoryUI>();
         inventory.Refresh();
     }
 
     private void OnMenuBtnClicked(PointerEventData eventData)
     {
+        Managers.SoundManager.PlayClick();
         Managers.UIManager.ShowPopup<MenuUI>();
     }
 

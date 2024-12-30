@@ -95,35 +95,37 @@ public class CreatureHUD : BaseUI
     private void SetHeroBar()
     {
         if (_owner.ObjectId != Managers.ObjectManager.MyHero.ObjectId)
+        {
             Get<GameObject>((int)GameObjects.Bar).SetActive(false);
+        }
+
         gameObject.GetComponent<Canvas>().sortingOrder = (int)Enums.SortingOrderInHUD.HeroHUD;
 
-        StatInfo statInfo = _owner.Stat.StatInfo;
-        int shieldValue = _owner.ShieldValue;
-        float d = shieldValue + statInfo.Hp;
+        StatInfo currentStats = _owner.Stat.StatInfo;
+        int currentShieldValue = _owner.ShieldValue;
+        float totalHealthAndShield = currentShieldValue + currentStats.Hp;
 
-        float c = shieldValue / d;
-        float x = statInfo.Hp / d;
+        float shieldRatio = currentShieldValue / totalHealthAndShield;
+        float hpRatio = currentStats.Hp / totalHealthAndShield;
 
-        float hpValue;
-        float shield;
-        float mpValue = (float)statInfo.Mp / (float)statInfo.MaxMp;
-        if (statInfo.Hp + shieldValue >= statInfo.MaxHp)
+        float normalizedHpValue;
+        float normalizedShieldValue;
+        float normalizedMpValue = (float)currentStats.Mp / (float)currentStats.MaxMp;
+
+        if (currentStats.Hp + currentShieldValue >= currentStats.MaxHp)
         {
-            hpValue = statInfo.Hp / d;
-            shield = d / d;
+            normalizedHpValue = currentStats.Hp / totalHealthAndShield;
+            normalizedShieldValue = totalHealthAndShield / totalHealthAndShield;
         }
         else
         {
-            hpValue = (float)statInfo.Hp / (float)(statInfo.MaxHp);
-            shield = (float)(statInfo.Hp + shieldValue) / (float)(statInfo.MaxHp);
+            normalizedHpValue = (float)currentStats.Hp / (float)currentStats.MaxHp;
+            normalizedShieldValue = (float)(currentStats.Hp + currentShieldValue) / (float)currentStats.MaxHp;
         }
 
-
-
-        Get<Slider>((int)Sliders.ShieldBar).value = shield;
-        Get<Slider>((int)Sliders.HpBar).value = hpValue;
-        Get<Slider>((int)Sliders.MpBar).value = mpValue;
+        Get<Slider>((int)Sliders.ShieldBar).value = normalizedShieldValue;
+        Get<Slider>((int)Sliders.HpBar).value = normalizedHpValue;
+        Get<Slider>((int)Sliders.MpBar).value = normalizedMpValue;
     }
     private void SetMonsterBar()
     {

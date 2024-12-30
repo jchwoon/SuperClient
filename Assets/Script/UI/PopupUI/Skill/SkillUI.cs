@@ -35,7 +35,7 @@ public class SkillUI : PopupUI
         _draggingSlot = Get<GameObject>((int)GameObjects.DraggingSkill).GetComponent<DraggingSkillSlot>(); ;
 
         _skillListUI.RegisterEvent(OnSkillSlotClicked, OnSkillSlotBeginDrag, OnSkillSlotDrag, OnSkillRegisterEvent);
-        _skillRegisterUI.SetInfo(OnSkillSlotClicked);
+
 
         BindEvent(Get<GameObject>((int)GameObjects.CloseBtn), OnCloseBtnClicked);
     }
@@ -43,15 +43,18 @@ public class SkillUI : PopupUI
     public void Refresh()
     {
         _skillListUI.Refresh();
+        _skillRegisterUI.SetInfo(OnSkillSlotClicked);
     }
 
     private void OnCloseBtnClicked(PointerEventData eventData)
     {
+        Managers.SoundManager.PlayClick();
         ClosePopup<SkillUI>();
     }
 
     private void OnSkillSlotClicked(SkillData skillData)
     {
+        Managers.SoundManager.PlayClick();
         _skillDescUI.Refresh(skillData);
     }
 

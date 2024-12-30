@@ -18,6 +18,7 @@ public class Hero : Creature
     protected override void Awake()
     {
         base.Awake();
+        Managers.ResourceManager.Instantiate("HeroParts", transform);
     }
     protected override void Start()
     {
@@ -31,6 +32,12 @@ public class Hero : Creature
     protected override void Update()
     {
         base.Update();
+    }
+
+    protected override void OnRevival()
+    {
+        base.OnRevival();
+        AddHUD();
     }
 
     public void Init(HeroInfo info, HeroData heroData)

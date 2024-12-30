@@ -23,7 +23,7 @@ public class Creature : BaseObject
         base.Awake();
         Animator = transform.GetComponent<Animator>();
         AnimData = new AnimationData();
-        FloatingTextController = GetComponent<FloatingTextController>();
+        FloatingTextController = Utils.GetOrAddComponent<FloatingTextController>(gameObject);
         EffectComponent = new EffectComponent(this);
 
     }

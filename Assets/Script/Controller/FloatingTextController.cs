@@ -11,8 +11,6 @@ public struct TextInfo
 }
 public class FloatingTextController : MonoBehaviour
 {
-    [SerializeField]
-    GameObject FloatingTextPrefab;
     private Queue<TextInfo> _floatingQueue = new Queue<TextInfo>();
 
     public void OnEnable()
@@ -41,7 +39,7 @@ public class FloatingTextController : MonoBehaviour
 
     public void SpawnFloatingText(float value, Transform parent, EFontType fontType)
     {
-        GameObject go = Managers.ResourceManager.Instantiate(FloatingTextPrefab.name, parent, isPool:true);
+        GameObject go = Managers.ResourceManager.Instantiate("FloatingText", parent, isPool:true);
         FloatingText text = go.GetComponent<FloatingText>();
 
         text.SetInfo(value, fontType);

@@ -17,7 +17,13 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 023164d0084db754fa579c9811c2d4d0
   m_SerializeEntries:
-  - m_GUID: a7b0f41e5d35f1349a3523c8aac8980a
+  - m_GUID: 1567e4ef4a6c4ca498b6954f96fd22d3
+    m_Address: GuardianNormalSkill
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61bc0a28fb1847644918bd57c50e3d8d
     m_Address: GuardianNormalSkill3
     m_ReadOnly: 0
     m_SerializedLabels:
@@ -29,20 +35,14 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ca6705a3f9070d14d819d179493bcfa0
-    m_Address: GuardianNormalSkill
+  - m_GUID: c41595ab89449b9439791627b1ca1f8f
+    m_Address: GuardianNormalSkill2
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ea166b9c63ec28c4a9cae543eddd6f03
     m_Address: TargetMark
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f2924f23573d74945bdafe08fe1be36d
-    m_Address: GuardianNormalSkill2
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
