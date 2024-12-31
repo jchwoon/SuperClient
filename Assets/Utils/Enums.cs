@@ -110,6 +110,7 @@ public class Enums
     {
         BGM,
         BGM2,
-        SFX
+        Effect,
+        System
     }
 }

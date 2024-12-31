@@ -169,7 +169,7 @@ public class JoySceneUI : SceneUI
 
         for (int i = 1; i < _joySkillSlots.Length; i++)
         {
-            int templateId = GameSettings.GetSkillSlotTemplateId(i-1);
+            int templateId = GameSettings.GetSkillSlotById(i-1);
             SkillData skillData = skill.GetSkillDataById(templateId);
 
             if (skillData == null) continue;

@@ -1557,7 +1557,7 @@ GameObject:
   - component: {fileID: 4606378420948855154}
   - component: {fileID: 3168190754660450371}
   m_Layer: 0
-  m_Name: SettingBtn
+  m_Name: QuestBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2419,7 +2419,7 @@ GameObject:
   - component: {fileID: 3685122659188275311}
   - component: {fileID: 3515236974786003211}
   m_Layer: 0
-  m_Name: SettingBtn
+  m_Name: CharacterBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

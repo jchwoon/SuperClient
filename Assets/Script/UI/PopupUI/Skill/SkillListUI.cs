@@ -75,10 +75,10 @@ public class SkillListUI : BaseUI
 
     private void SetSkillByToggleType()
     {
+        Clear();
         if (_activeToggle.isOn)
         {
             _activeSkillTab.SetActive(true);
-            _passiveSkillTab.SetActive(false);
             int cnt = 0;
             foreach (SkillData skillData in _skillsSortBySlotType.Values)
             {
@@ -95,7 +95,6 @@ public class SkillListUI : BaseUI
 
         if (_passiveToggle.isOn)
         {
-            _activeSkillTab.SetActive(false);
             _passiveSkillTab.SetActive(true);
             return;
         }
@@ -132,5 +131,11 @@ public class SkillListUI : BaseUI
     private void OnToggleClicked(PointerEventData eventData)
     {
         Refresh();
+    }
+
+    private void Clear()
+    {
+        _activeSkillTab.SetActive(false);
+        _passiveSkillTab.SetActive(false);
     }
 }

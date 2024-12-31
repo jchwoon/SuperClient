@@ -83,6 +83,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e5317159ced1e74899ad7b90e8dfbcb
+    m_Address: SettingUI
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ace183888a379ec4996e031648491f09
     m_Address: FloatingText
     m_ReadOnly: 0
