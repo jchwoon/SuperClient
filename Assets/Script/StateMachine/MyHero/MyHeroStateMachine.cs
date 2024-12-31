@@ -18,8 +18,7 @@ public class MyHeroStateMachine : StateMachine
     public Vector2 MoveInput { get; private set; } = Vector2.zero;
     public MoveToS MovePacket { get; set; }
     public MyHero Owner { get; set; }
-    //스킬 요청에 대한 응답을 대기중인지
-    public bool isWaitSkillRes { get; set; } = false;
+
     public MyHeroStateMachine(MyHero myHero)
     {
         MovePacket = new MoveToS() { PosInfo = new PosInfo()};
