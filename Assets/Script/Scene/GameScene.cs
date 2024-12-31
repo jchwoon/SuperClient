@@ -32,7 +32,8 @@ public class GameScene : BaseScene
                 myHero.Inventory.InitInventory(packet.Items.ToList());
                 myHero.SkillComponent.InitSkill(packet.Skills.ToDictionary(kvp => kvp.SkillId, kvp => kvp.SkillLevel));
 
-                Managers.UIManager.ShowSceneUI<GameSceneUI>();
+                GameSceneUI gSceneUI = Managers.UIManager.ShowSceneUI<GameSceneUI>();
+                gSceneUI.Refresh();
                 Managers.UIManager.ShowSceneUI<JoySceneUI>();
             });
         }

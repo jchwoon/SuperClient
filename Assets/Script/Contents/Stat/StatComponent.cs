@@ -23,7 +23,6 @@ public class StatComponent
         {EStatType.MaxMp, (info, value) => { info.MaxMp =(int) value; } },
         {EStatType.Atk, (info, value) => { info.AtkDamage =(int) value; } },
         {EStatType.Defence, (info, value) => { info.Defence =(int) value; } },
-        {EStatType.AtkSpeed, (info, value) => { info.AtkSpeed = value; } },
         {EStatType.MoveSpeed, (info, value) => { info.MoveSpeed = value; } },
     };
     public static readonly Dictionary<EStatType, Func<StatInfo, float>> GetStatDict = new Dictionary<EStatType, Func<StatInfo, float>>()
@@ -34,7 +33,6 @@ public class StatComponent
         {EStatType.MaxMp, (info) => { return info.MaxMp; } },
         {EStatType.Atk, (info) => { return info.AtkDamage; } },
         {EStatType.Defence, (info) => { return info.Defence; } },
-        {EStatType.AtkSpeed, (info) => { return info.AtkSpeed; } },
         {EStatType.MoveSpeed, (info) => { return info.MoveSpeed; } },
     };
 
@@ -42,10 +40,9 @@ public class StatComponent
     {
         return GetStatDict[statType].Invoke(StatInfo);
     }
-    public virtual void InitStat(StatInfo statInfo)
+    public void InitStat(StatInfo statInfo)
     {
         StatInfo = statInfo;
-        UpdateStat();
     }
 
     public void SetStat(EStatType statType, float changedValue)
@@ -54,8 +51,11 @@ public class StatComponent
         UpdateStat();
     }
 
-    public virtual void UpdateStat()
+    public void UpdateStat()
     {
-        Owner.Animator.SetFloat(Owner.AnimData.AttackSpeedHash, StatInfo.AtkSpeed);
+        if (Owner.ObjectId == Managers.ObjectManager.MyHero.ObjectId)
+        {
+            Managers.EventBus.InvokeEvent(Enums.EventType.ChangeStat);
+        }
     }
 }

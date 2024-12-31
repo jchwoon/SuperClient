@@ -72,7 +72,14 @@ public class GameSceneUI : SceneUI
         Managers.EventBus.RemoveEvent(Enums.EventType.ChangeGrowth, UpdateGrowth);
     }
 
-    public void UpdateStat()
+    public void Refresh()
+    {
+        UpdateStat();
+        UpdateGold();
+        UpdateGrowth();
+    }
+
+    private void UpdateStat()
     {
         MyHero myHero = Managers.ObjectManager.MyHero;
         if (myHero == null)
@@ -96,7 +103,7 @@ public class GameSceneUI : SceneUI
         mpBar.value = statInfo.Mp ;
     }
 
-    public void UpdateGold()
+    private void UpdateGold()
     {
         MyHero hero = Managers.ObjectManager.MyHero;
         if (hero == null)
@@ -105,7 +112,7 @@ public class GameSceneUI : SceneUI
         Get<TMP_Text>((int)Texts.GoldTxt).text = hero.CurrencyComponent.Gold.ToString("N0");
     }
 
-    public void UpdateGrowth()
+    private void UpdateGrowth()
     {
         MyHero hero = Managers.ObjectManager.MyHero;
         if (hero == null)
@@ -139,7 +146,7 @@ public class GameSceneUI : SceneUI
         Managers.UIManager.ShowPopup<MenuUI>();
     }
 
-    IEnumerator CoSmoothChangeBar(Slider bar, float current, int target)
+    IEnumerator CoSmoothChangeBar(Slider bar, float current, long target)
     {
         float duration = 1.0f;
         float process = 0.0f;

@@ -6,9 +6,8 @@
       "maxMp": 100,
       "moveSpeed": 4,
       "atkDamage": 25,
-      "defence": 5,
+      "defence": 10,
       "baseAtkSpeed": 1,
-      "addAtkSpeedMultiplier": 0,
       "exp": 50
     },
     {
@@ -17,9 +16,8 @@
       "maxMp": 120,
       "moveSpeed": 4,
       "atkDamage": 30,
-      "defence": 6,
+      "defence": 15,
       "baseAtkSpeed": 1,
-      "addAtkSpeedMultiplier": 5,
       "exp": 100
     },
     {
@@ -28,9 +26,8 @@
       "maxMp": 150,
       "moveSpeed": 4,
       "atkDamage": 35,
-      "defence": 7,
+      "defence": 20,
       "baseAtkSpeed": 1,
-      "addAtkSpeedMultiplier": 10,
       "exp": 200
     },
     {
@@ -39,9 +36,8 @@
       "maxMp": 180,
       "moveSpeed": 4,
       "atkDamage": 40,
-      "defence": 8,
+      "defence": 25,
       "baseAtkSpeed": 1,
-      "addAtkSpeedMultiplier": 15,
       "exp": 400
     },
     {
@@ -50,10 +46,259 @@
       "maxMp": 210,
       "moveSpeed": 4,
       "atkDamage": 45,
-      "defence": 9,
+      "defence": 30,
       "baseAtkSpeed": 1,
-      "addAtkSpeedMultiplier": 20,
       "exp": 800
+    },
+    {
+      "level": 6,
+      "maxHp": 450,
+      "maxMp": 236,
+      "moveSpeed": 4,
+      "atkDamage": 50,
+      "defence": 35,
+      "baseAtkSpeed": 1,
+      "exp": 1600
+    },
+    {
+      "level": 7,
+      "maxHp": 500,
+      "maxMp": 264,
+      "moveSpeed": 4,
+      "atkDamage": 55,
+      "defence": 40,
+      "baseAtkSpeed": 1,
+      "exp": 3200
+    },
+    {
+      "level": 8,
+      "maxHp": 550,
+      "maxMp": 292,
+      "moveSpeed": 4,
+      "atkDamage": 60,
+      "defence": 45,
+      "baseAtkSpeed": 1,
+      "exp": 6400
+    },
+    {
+      "level": 9,
+      "maxHp": 600,
+      "maxMp": 320,
+      "moveSpeed": 4,
+      "atkDamage": 65,
+      "defence": 50,
+      "baseAtkSpeed": 1,
+      "exp": 12800
+    },
+    {
+      "level": 10,
+      "maxHp": 650,
+      "maxMp": 348,
+      "moveSpeed": 4,
+      "atkDamage": 70,
+      "defence": 55,
+      "baseAtkSpeed": 1,
+      "exp": 25600
+    },
+    {
+      "level": 11,
+      "maxHp": 700,
+      "maxMp": 376,
+      "moveSpeed": 4,
+      "atkDamage": 75,
+      "defence": 60,
+      "baseAtkSpeed": 1,
+      "exp": 51200
+    },
+    {
+      "level": 12,
+      "maxHp": 750,
+      "maxMp": 404,
+      "moveSpeed": 4,
+      "atkDamage": 80,
+      "defence": 65,
+      "baseAtkSpeed": 1,
+      "exp": 102400
+    },
+    {
+      "level": 13,
+      "maxHp": 800,
+      "maxMp": 432,
+      "moveSpeed": 4,
+      "atkDamage": 85,
+      "defence": 70,
+      "baseAtkSpeed": 1,
+      "exp": 204800
+    },
+    {
+      "level": 14,
+      "maxHp": 850,
+      "maxMp": 460,
+      "moveSpeed": 4,
+      "atkDamage": 90,
+      "defence": 75,
+      "baseAtkSpeed": 1,
+      "exp": 409600
+    },
+    {
+      "level": 15,
+      "maxHp": 900,
+      "maxMp": 488,
+      "moveSpeed": 4,
+      "atkDamage": 95,
+      "defence": 80,
+      "baseAtkSpeed": 1,
+      "exp": 819200
+    },
+    {
+      "level": 16,
+      "maxHp": 950,
+      "maxMp": 516,
+      "moveSpeed": 4,
+      "atkDamage": 100,
+      "defence": 85,
+      "baseAtkSpeed": 1,
+      "exp": 1638400
+    },
+    {
+      "level": 17,
+      "maxHp": 1000,
+      "maxMp": 544,
+      "moveSpeed": 4,
+      "atkDamage": 105,
+      "defence": 90,
+      "baseAtkSpeed": 1,
+      "exp": 3276800
+    },
+    {
+      "level": 18,
+      "maxHp": 1050,
+      "maxMp": 572,
+      "moveSpeed": 4,
+      "atkDamage": 110,
+      "defence": 95,
+      "baseAtkSpeed": 1,
+      "exp": 6553600
+    },
+    {
+      "level": 19,
+      "maxHp": 1100,
+      "maxMp": 600,
+      "moveSpeed": 4,
+      "atkDamage": 115,
+      "defence": 100,
+      "baseAtkSpeed": 1,
+      "exp": 13107200
+    },
+    {
+      "level": 20,
+      "maxHp": 1150,
+      "maxMp": 628,
+      "moveSpeed": 4,
+      "atkDamage": 120,
+      "defence": 105,
+      "baseAtkSpeed": 1,
+      "exp": 26214400
+    },
+    {
+      "level": 21,
+      "maxHp": 1200,
+      "maxMp": 656,
+      "moveSpeed": 4,
+      "atkDamage": 125,
+      "defence": 110,
+      "baseAtkSpeed": 1,
+      "exp": 52428800
+    },
+    {
+      "level": 22,
+      "maxHp": 1250,
+      "maxMp": 684,
+      "moveSpeed": 4,
+      "atkDamage": 130,
+      "defence": 115,
+      "baseAtkSpeed": 1,
+      "exp": 104857600
+    },
+    {
+      "level": 23,
+      "maxHp": 1300,
+      "maxMp": 712,
+      "moveSpeed": 4,
+      "atkDamage": 135,
+      "defence": 120,
+      "baseAtkSpeed": 1,
+      "exp": 209715200
+    },
+    {
+      "level": 24,
+      "maxHp": 1350,
+      "maxMp": 740,
+      "moveSpeed": 4,
+      "atkDamage": 140,
+      "defence": 125,
+      "baseAtkSpeed": 1,
+      "exp": 419430400
+    },
+    {
+      "level": 25,
+      "maxHp": 1400,
+      "maxMp": 768,
+      "moveSpeed": 4,
+      "atkDamage": 145,
+      "defence": 130,
+      "baseAtkSpeed": 1,
+      "exp": 838860800
+    },
+    {
+      "level": 26,
+      "maxHp": 1450,
+      "maxMp": 796,
+      "moveSpeed": 4,
+      "atkDamage": 150,
+      "defence": 135,
+      "baseAtkSpeed": 1,
+      "exp": 1677721600
+    },
+    {
+      "level": 27,
+      "maxHp": 1500,
+      "maxMp": 824,
+      "moveSpeed": 4,
+      "atkDamage": 155,
+      "defence": 140,
+      "baseAtkSpeed": 1,
+      "exp": 3355443200
+    },
+    {
+      "level": 28,
+      "maxHp": 1550,
+      "maxMp": 852,
+      "moveSpeed": 4,
+      "atkDamage": 160,
+      "defence": 145,
+      "baseAtkSpeed": 1,
+      "exp": 6710886400
+    },
+    {
+      "level": 29,
+      "maxHp": 1600,
+      "maxMp": 880,
+      "moveSpeed": 4,
+      "atkDamage": 165,
+      "defence": 150,
+      "baseAtkSpeed": 1,
+      "exp": 13421772800
+    },
+    {
+      "level": 30,
+      "maxHp": 1650,
+      "maxMp": 908,
+      "moveSpeed": 4,
+      "atkDamage": 170,
+      "defence": 155,
+      "baseAtkSpeed": 1,
+      "exp": 26843545600
     }
   ]
 }

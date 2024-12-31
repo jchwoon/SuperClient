@@ -20,10 +20,6 @@ public class CurrencyComponent
         Owner = owner;
     }
 
-    public void InitCurrency(int gold)
-    {
-        Gold = gold;
-    }
     public void AddGold(int gold)
     {
         Gold += gold;

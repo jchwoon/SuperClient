@@ -8,13 +8,11 @@ public class AnimationData
     private string moveParameterName = "IsMove";
     private string idleParameterName = "IsIdle";
     private string dieParameterName = "IsDie";
-    private string attackSpeedParameterName = "AttackSpeed";
     private string revivalParameterName = "Revival";
 
     private string hitStateName = "Base Layer.Hit";
 
     public int MoveSpeedHash { get; private set; }
-    public int AttackSpeedHash { get; private set; }
     public int IdleHash { get; private set; }
     public int MoveHash { get; private set; }
     public int DieHash { get; private set; }
@@ -24,7 +22,6 @@ public class AnimationData
     public AnimationData()
     {
         MoveSpeedHash = Animator.StringToHash(moveSpeedParameterName);
-        AttackSpeedHash = Animator.StringToHash(attackSpeedParameterName);
         IdleHash = Animator.StringToHash(idleParameterName);
         MoveHash = Animator.StringToHash(moveParameterName);
         DieHash = Animator.StringToHash(dieParameterName);

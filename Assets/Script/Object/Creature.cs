@@ -25,7 +25,7 @@ public class Creature : BaseObject
         AnimData = new AnimationData();
         FloatingTextController = Utils.GetOrAddComponent<FloatingTextController>(gameObject);
         EffectComponent = new EffectComponent(this);
-
+        Stat = new StatComponent(this);
     }
     protected override void Start()
     {

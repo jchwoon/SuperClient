@@ -36,14 +36,12 @@ namespace Data
     public class HeroStatData
     {
         public int Level;
-        public int Exp;
+        public long Exp;
         public int MaxHp;
         public int MaxMp;
         public float MoveSpeed;
         public int AtkDamage;
         public int Defence;
-        public float BaseAtkSpeed;
-        public int AddAtkSpeedMultiplier;
     }
 
     [Serializable]

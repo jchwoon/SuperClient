@@ -11,7 +11,6 @@ using UnityEngine.InputSystem;
 public class MyHero : Hero
 {
     public MyHeroStateMachine MyHeroStateMachine { get; private set; }
-    public MyHeroStatComponent MyHeroStat {  get; private set; }
     public SkillComponent SkillComponent { get; private set; }
     public CurrencyComponent CurrencyComponent { get; private set; }
     public GrowthComponent GrowthInfo { get; private set; }
@@ -76,18 +75,12 @@ public class MyHero : Hero
         MyHeroStateMachine = new MyHeroStateMachine(this);
         SkillComponent = new SkillComponent();
         CurrencyComponent = new CurrencyComponent(this);
-        MyHeroStat = new MyHeroStatComponent(this);
         GrowthInfo = new GrowthComponent(this);
         Inventory = new InventoryComponent(this);
 
-
-        Stat = MyHeroStat;
         Machine = MyHeroStateMachine;
         HeroData = heroData;
         Name = info.HeroInfo.LobbyHeroInfo.Nickname;
-
-        GrowthInfo.InitGrowth();
-        CurrencyComponent.InitCurrency(info.Gold);
         Stat.InitStat(info.HeroInfo.CreatureInfo.StatInfo);
 
         SetObjInfo(info.HeroInfo.CreatureInfo.ObjectInfo);
@@ -133,7 +126,7 @@ public class MyHero : Hero
     public override void HandleModifyStat(StatInfo statInfo)
     {
         base.HandleModifyStat(statInfo);
-        MyHeroStat.UpdateStat();
+        Stat.UpdateStat();
     }
 
     public override void HandleModifyOneStat(EStatType statType, float changedValue, float gapValue, EFontType fontType)
