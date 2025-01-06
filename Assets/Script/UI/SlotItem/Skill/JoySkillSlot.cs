@@ -78,7 +78,6 @@ public class JoySkillSlot : BaseUI
 
     private void SetSkill(SkillData skillData)
     {
-        Debug.Log(_skillImage);
         _skillImage.sprite = Managers.ResourceManager.GetResource<Sprite>(skillData.IconName);
         _skillImage.gameObject.SetActive(true);
 

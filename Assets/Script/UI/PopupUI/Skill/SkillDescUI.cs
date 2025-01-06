@@ -5,6 +5,7 @@ using System.Drawing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Mesh;
 
 public class SkillDescUI : BaseUI
 {
@@ -76,24 +77,44 @@ public class SkillDescUI : BaseUI
         _requiredLevelTxt.text = $"마스터 레벨 : {skillData.MaxLevel}Lv";
         //스킬 설명 표시
         //현재 스킬레벨 설명
-        Managers.DataManager.EffectDict.TryGetValue(skillData.EffectId, out EffectData effectData);
-        Managers.DataManager.DescriptionDict.TryGetValue(skillData.DescId, out DescriptionData descData);
-        _descTxt.text = descData.Text;
-        if (effectData != null && descData != null)
+
+        _currentLevelLabelTxt.text = $"[현재레벨] {_skillLevel}";
+        _detailDesctxt.text = $"{Fomatter.FormatSkillCost(skillData)}, \n";
+        _detailDesctxt.text += $"{make(skillData, _skillLevel)} \n";
+        _detailDesctxt.text += Fomatter.FormatSkillCool(skillData);
+
+        if (skillData.MaxLevel > _skillLevel)
         {
-            _currentLevelLabelTxt.text = $"[현재레벨] {_skillLevel}";
-            _detailDesctxt.text = Fomatter.FormatSkillDescription(skillData, descData, _skillLevel, effectData);
-            if (skillData.MaxLevel > _skillLevel)
-            {
-                _nextSkillDescPanel.SetActive(true);
-                _nextLevelLabelTxt.text = $"[다음레벨] {_skillLevel + 1}";
-                _nextLevelDetailDesctxt.text = Fomatter.FormatSkillDescription(skillData, descData, _skillLevel + 1, effectData);
-            }
-            else
-            {
-                _nextSkillDescPanel.SetActive(false);
-            }
+            _nextSkillDescPanel.SetActive(true);
+
+            _nextLevelLabelTxt.text = $"[다음레벨] {_skillLevel + 1}";
+            _nextLevelDetailDesctxt.text = $"{Fomatter.FormatSkillCost(skillData)}, \n";
+            _nextLevelDetailDesctxt.text += $"{make(skillData, _skillLevel+1)} \n";
+            _nextLevelDetailDesctxt.text += Fomatter.FormatSkillCool(skillData);
         }
+        else
+        {
+            _nextSkillDescPanel.SetActive(false);
+        }
+    }
+
+    private string make(SkillData skillData, int skillLevel)
+    {
+        string ret = "";
+        foreach (int id in skillData.EffectIds)
+        {
+            Managers.DataManager.SkillEffectDict.TryGetValue(id, out EffectData effectData);
+            Managers.DataManager.DescriptionDict.TryGetValue(effectData.DescId, out DescriptionData descData);
+            if (!string.IsNullOrEmpty(descData.Text))
+            {
+                _descTxt.text = descData.Text;
+            }
+            if (effectData != null && descData != null)
+            {
+                ret += $"{Fomatter.FormatSkillDescription(skillData, descData, skillLevel, effectData)}, ";
+            }
+        }   
+        return ret;
     }
 
     private bool IsValidSkillData(SkillData skillData)

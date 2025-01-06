@@ -163,15 +163,40 @@ public class ObjectManager
         return go;
     }
 
-    public List<Creature> GetAllCreatures()
+    public List<Creature> GetAllCreatures(bool includeMyHero = false)
     {
         List<Creature> creatures = new List<Creature>();
 
-        foreach(Creature creature in _monsters.Values)
-        {
-            creatures.Add(creature);
-        }
+        creatures.AddRange(GetAllMonsters());
+        creatures.AddRange(GetAllHeroes(includeMyHero));
+
         return creatures;
+    }
+
+    public List<Monster> GetAllMonsters()
+    {
+        List<Monster> monsters = new List<Monster>();
+
+        foreach (Monster monster in _monsters.Values)
+        {
+            monsters.Add(monster);
+        }
+        return monsters;
+    }
+
+    public List<Hero> GetAllHeroes(bool includeMyHero = false)
+    {
+        List<Hero> heroes = new List<Hero>();
+
+        foreach (Hero hero in _heroes.Values)
+        {
+            heroes.Add(hero);
+        }
+        if (includeMyHero)
+        {
+            heroes.Add(MyHero);
+        }
+        return heroes;
     }
 
     public List<DropItem> GetAllDropItem()

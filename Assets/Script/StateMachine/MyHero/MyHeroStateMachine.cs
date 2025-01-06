@@ -65,12 +65,12 @@ public class MyHeroStateMachine : StateMachine
         if (CreatureState == ECreatureState.Die)
             return null;
 
-        List<Creature> creatures = Managers.ObjectManager.GetAllCreatures();
+        List<Monster> creatures = Managers.ObjectManager.GetAllMonsters();
         Creature target = null;
         float closestDist = float.MaxValue;
         foreach(Creature creature in creatures)
         {
-            //if (obj.Machine.CurrentState == null) continue;
+            if (creature.Machine == null || creature.Machine.CreatureState == ECreatureState.Die) continue;
             float dist = (creature.gameObject.transform.position - Owner.transform.position).sqrMagnitude;
             if (dist < closestDist)
             {

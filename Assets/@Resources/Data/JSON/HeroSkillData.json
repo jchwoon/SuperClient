@@ -3,6 +3,11 @@
     {
       "templateId": 1,
       "nextSkillTemplateId": 2,
+      "effectIds": [
+        1
+      ],
+      "maxEntityCount": 0,
+      "maxLevel": 1,
       "classType": 1,
       "skillType": 1,
       "skillAreaType": 2,
@@ -17,17 +22,21 @@
       "SectorAngle": 70,
       "skillRange": 2.5,
       "costMp": 0,
-      "maxLevel": 1,
       "coolTime": 0,
       "animTime": 0.66,
-      "effectId": 1,
       "effectDelayRatio": 0.4,
       "comboTime": 1,
-      "prefabName": "GuardianNormalSkill"
+      "prefabName": "GuardianNormalSkill",
+      "hitPrefabName": "GuardianNormalSkillHit"
     },
     {
       "templateId": 2,
       "nextSkillTemplateId": 3,
+      "effectIds": [
+        1
+      ],
+      "maxEntityCount": 0,
+      "maxLevel": 1,
       "classType": 1,
       "skillType": 1,
       "skillAreaType": 2,
@@ -42,17 +51,21 @@
       "SectorAngle": 70,
       "skillRange": 2.5,
       "costMp": 0,
-      "maxLevel": 1,
       "coolTime": 0,
       "animTime": 0.66,
-      "effectId": 1,
       "effectDelayRatio": 0.4,
       "comboTime": 1,
-      "prefabName": "GuardianNormalSkill2"
+      "prefabName": "GuardianNormalSkill2",
+      "hitPrefabName": "GuardianNormalSkillHit"
     },
     {
       "templateId": 3,
       "nextSkillTemplateId": 1,
+      "effectIds": [
+        1
+      ],
+      "maxEntityCount": 0,
+      "maxLevel": 1,
       "classType": 1,
       "skillType": 1,
       "skillAreaType": 2,
@@ -67,16 +80,20 @@
       "SectorAngle": 70,
       "skillRange": 2.5,
       "costMp": 0,
-      "maxLevel": 1,
       "coolTime": 0,
       "animTime": 0.66,
-      "effectId": 1,
       "effectDelayRatio": 0.4,
       "comboTime": 1,
-      "prefabName": "GuardianNormalSkill3"
+      "prefabName": "GuardianNormalSkill3",
+      "hitPrefabName": "GuardianNormalSkillHit"
     },
     {
       "templateId": 100,
+      "effectIds": [
+        100
+      ],
+      "maxEntityCount": 0,
+      "maxLevel": 20,
       "classType": 1,
       "skillType": 1,
       "skillAreaType": 2,
@@ -88,43 +105,48 @@
       "skillName": "수호의 방패",
       "animName": "SkillA",
       "SectorAngle": 180,
-      "skillRange": 999,
+      "skillRange": 15,
       "costMp": 50,
-      "maxLevel": 20,
       "coolTime": 10,
       "animTime": 0.33,
-      "effectId": 100,
       "effectDelayRatio": 0,
       "comboTime": 0,
-      "iconName": "GuardianActiveA_sprite",
-      "descId": "수호의 방패"
+      "iconName": "GuardianActiveA_sprite"
     },
     {
       "templateId": 101,
+      "effectIds": [
+        101,
+        102
+      ],
+      "maxEntityCount": 10,
+      "maxLevel": 20,
       "classType": 1,
       "skillType": 1,
       "skillAreaType": 2,
       "skillProjectileType": 0,
       "skillSlotType": 4,
-      "skillUsageTargetType": 1,
+      "skillUsageTargetType": 2,
       "skillTargetingType": 0,
       "IsComboSkill": false,
       "skillName": "불굴의 함성",
       "animName": "SkillB",
       "SectorAngle": 180,
-      "skillRange": 15,
+      "skillRange": 50,
       "costMp": 100,
-      "maxLevel": 20,
       "coolTime": 15,
       "animTime": 0.66,
-      "effectId": 101,
       "effectDelayRatio": 0.5,
       "comboTime": 0,
-      "iconName": "GuardianActiveB_sprite",
-      "descId": "불굴의 함성"
+      "iconName": "GuardianActiveB_sprite"
     },
     {
       "templateId": 102,
+      "effectIds": [
+        103
+      ],
+      "maxEntityCount": 10,
+      "maxLevel": 20,
       "classType": 1,
       "skillType": 1,
       "skillAreaType": 1,
@@ -138,17 +160,49 @@
       "SectorAngle": 0,
       "skillRange": 3,
       "costMp": 200,
-      "maxLevel": 20,
       "coolTime": 20,
       "animTime": 0.66,
-      "effectId": 102,
       "effectDelayRatio": 0.5,
       "comboTime": 0,
-      "iconName": "GuardianActiveC_sprite",
-      "descId": "심판의 일격"
+      "iconName": "GuardianActiveC_sprite"
+    },
+    {
+      "templateId": 201,
+      "skillName": "위자드 기본공격"
+    },
+    {
+      "templateId": 202,
+      "skillName": "불비"
+    },
+    {
+      "templateId": 203,
+      "skillName": "빙결화"
+    },
+    {
+      "templateId": 204,
+      "skillName": "낙뢰"
+    },
+    {
+      "templateId": 401,
+      "skillName": "프리스트 기본공격"
+    },
+    {
+      "templateId": 402,
+      "skillName": "힐"
+    },
+    {
+      "templateId": 403,
+      "skillName": "파워 업"
+    },
+    {
+      "templateId": 404,
+      "skillName": "프레이"
     },
     {
       "templateId": 600,
+      "effectIds": [],
+      "maxEntityCount": 1,
+      "maxLevel": 1,
       "skillType": 1,
       "skillAreaType": 0,
       "skillProjectileType": 0,
@@ -162,10 +216,8 @@
       "SectorAngle": 0,
       "skillRange": 0,
       "costMp": 20,
-      "maxLevel": 1,
       "coolTime": 4,
       "animTime": 0.5,
-      "effectId": 0,
       "effectDelayRatio": 0.3,
       "comboTime": 0,
       "IsMoveSkill": true,

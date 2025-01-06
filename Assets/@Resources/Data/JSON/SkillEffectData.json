@@ -1,0 +1,68 @@
+﻿{
+  "effects": [
+    {
+      "templateId": 100,
+      "name": "가디언 수호의 방패 이펙트",
+      "prefabName": "GuardianSkillAEffect",
+      "stackable": false,
+      "feedbackEffect": false,
+      "ratio": [
+        0.15,
+        0.2
+      ],
+      "descId": "수호의 방패",
+      "effectScalingType": 4,
+      "effectType": 4,
+      "effectDurationType": 1,
+      "duration": 10
+    },
+    {
+      "templateId": 101,
+      "name": "가디언 불굴의 함성 이펙트",
+      "stackable": false,
+      "feedbackEffect": false,
+      "descId": "불굴의 함성",
+      "effectScalingType": 1,
+      "effectType": 5,
+      "effectDurationType": 1,
+      "duration": 3
+    },
+    {
+      "templateId": 102,
+      "name": "가디언 불굴의 함성 이펙트2",
+      "stackable": false,
+      "feedbackEffect": true,
+      "descId": "불굴의 함성2",
+      "effectScalingType": 3,
+      "effectType": 3,
+      "effectDurationType": 1,
+      "duration": 5,
+      "addStatValues": [
+        {
+          "statType": 6,
+          "addValue": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "templateId": 103,
+      "name": "가디언 심판의 일격 이펙트",
+      "feedbackEffect": false,
+      "ratio": [
+        6,
+        6.1
+      ],
+      "descId": "심판의 일격",
+      "effectScalingType": 1,
+      "effectType": 1,
+      "effectDurationType": 0,
+      "duration": 4
+    }
+  ]
+}

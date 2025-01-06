@@ -1,24 +1,34 @@
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class Fomatter 
 {
+
     public static string FormatSkillDescription(SkillData skillData, DescriptionData desc, int skillLevel, EffectData effect = null)
     {
-        string skillDesc = "";
-        skillDesc += FormatSkillCost(skillData);
-        skillDesc += ", ";
-        skillDesc += desc.DetailText
-            .Replace("{healthRatio}", ((effect.HealthRatio + (effect.GapPerLevel * (skillLevel - 1))) * 100).ToString())
-            .Replace("{duration}", effect.Duration.ToString())
-            .Replace("{entityRatio}", effect.EntityRatio.ToString("F1"))
-            .Replace("{damageRatio}", ((effect.DamageRatio + (effect.GapPerLevel * (skillLevel - 1))) * 100).ToString());
-        skillDesc += "\n";
-        skillDesc += FormatSkillCool(skillData);
+        var skillDescBuilder = new StringBuilder(desc.DetailText);
 
-        return skillDesc;
+        if (IsValidateOldValue(skillDescBuilder.ToString(), "{ratio}"))
+        {
+            skillDescBuilder.Replace("{ratio}", (effect.Ratio[skillLevel - 1] * 100).ToString());
+        }
+        if (IsValidateOldValue(skillDescBuilder.ToString(), "{duration}"))
+        {
+            skillDescBuilder.Replace("{duration}", effect.Duration.ToString());
+        }
+        if (IsValidateOldValue(skillDescBuilder.ToString(), "{maxEntityCount}"))
+        {
+            skillDescBuilder.Replace("{maxEntityCount}", skillData.MaxEntityCount.ToString());
+        }
+        if (IsValidateOldValue(skillDescBuilder.ToString(), "{addValue}"))
+        {
+            skillDescBuilder.Replace("{addValue}", FormatSkillEffectAddValues(effect, skillLevel));
+        }
+
+        return skillDescBuilder.ToString();
     }
 
     public static string FormatSkillCost(SkillData skillData)
@@ -28,5 +38,24 @@ public class Fomatter
     public static string FormatSkillCool(SkillData skillData)
     {
         return $"재사용 대기시간 {skillData.CoolTime}초";
+    }
+
+    public static string FormatSkillEffectAddValues(EffectData effect, int skillLevel)
+    {
+        string ret = "";
+        if (effect.AddStatValues != null)
+        {
+            foreach (var value in effect.AddStatValues)
+            {
+                ret += $"{value.addValue[skillLevel - 1]}, ";
+            }
+        }
+
+        return ret;
+    }
+
+    private static bool IsValidateOldValue(string text, string oldValue)
+    {
+        return text.Contains(oldValue);
     }
 }
