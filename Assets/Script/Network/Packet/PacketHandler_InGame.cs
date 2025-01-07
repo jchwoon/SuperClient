@@ -270,4 +270,15 @@ public partial class PacketHandler
 
         creature.HandleChangedShield(changeShieldPacket.ShieldValue);
     }
+    
+    public static void ResLevelUpSkillToCHandler(PacketSession session, IMessage packet)
+    {
+        ResLevelUpSkillToC levelUpSkillPacket = (ResLevelUpSkillToC)packet;
+
+        MyHero myHero = Managers.ObjectManager.MyHero;
+        if (myHero == null)
+            return;
+
+        myHero.SkillComponent.UpdateSkillLevel(levelUpSkillPacket.SkillId, levelUpSkillPacket.SkillLevel);
+    }
 }

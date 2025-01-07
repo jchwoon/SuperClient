@@ -52,10 +52,6 @@ public class ParticleController : MonoBehaviour
             _duration = info.Duration;
         }
         SetPos(info);
-        if (_info.PrefabName == "GuardianNormalSkillHit")
-        {
-            Debug.Log("HIt");
-        }
 
         _particleLifeRoutine = StartCoroutine(CoDestroyParticle(_duration));
     }
@@ -64,15 +60,22 @@ public class ParticleController : MonoBehaviour
     {
         InitTransform();
     }
+
     IEnumerator CoDestroyParticle(float duration)
     {
         float process = 0.0f;
-        while (process < duration)
+        try
         {
-            process += Time.deltaTime;
-            yield return null;
+            while (process < duration)
+            {
+                process += Time.deltaTime;
+                yield return null;
+            }
         }
-        Managers.ResourceManager.Destroy(gameObject, isPool : true);
+        finally
+        {
+            Managers.ResourceManager.Destroy(gameObject, isPool: true);
+        }
     }
 
     private void InitTransform()

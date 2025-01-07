@@ -130,7 +130,7 @@
       "skillTargetingType": 0,
       "IsComboSkill": false,
       "skillName": "불굴의 함성",
-      "animName": "SkillB",
+      "animName": "SkillA",
       "SectorAngle": 180,
       "skillRange": 50,
       "costMp": 100,

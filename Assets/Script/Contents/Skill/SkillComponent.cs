@@ -1,5 +1,6 @@
 using Data;
 using Google.Protobuf.Enum;
+using Google.Protobuf.Protocol;
 using Google.Protobuf.Struct;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,6 +39,17 @@ public class SkillComponent
             }
         }
         
+    }
+
+    public void UpdateSkillLevel(int templateId, int level)
+    {
+        BaseSkill skill = GetSkillById(templateId);
+        if (skill == null)
+            return;
+
+        skill.UpdateSkillLevel(level);
+
+        Managers.EventBus.InvokeEvent(Enums.EventType.UpdateSkill);
     }
 
     public bool CheckCanUseSkill(int templatedId)
@@ -81,5 +93,13 @@ public class SkillComponent
     public List<BaseSkill> GetAllSkill()
     {
         return _skills.Values.ToList();
+    }
+
+    public void SendLevelUpPacket(int templateId)
+    {
+        ReqLevelUpSkillToS levelUpPacket = new ReqLevelUpSkillToS();
+        levelUpPacket.SkillId = templateId;
+
+        Managers.NetworkManager.Send(levelUpPacket);
     }
 }

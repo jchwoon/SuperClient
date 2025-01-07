@@ -65,6 +65,18 @@ public class SkillDescUI : BaseUI
         _skillNameTxt = Get<TMP_Text>((int)Texts.SkillNameTxt);
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        Managers.EventBus.AddEvent(Enums.EventType.UpdateSkill, Refresh);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Managers.EventBus.RemoveEvent(Enums.EventType.UpdateSkill, Refresh);
+    }
+
     public void Refresh(SkillData skillData)
     {
         if (!IsValidSkillData(skillData)) return;
@@ -80,7 +92,7 @@ public class SkillDescUI : BaseUI
 
         _currentLevelLabelTxt.text = $"[현재레벨] {_skillLevel}";
         _detailDesctxt.text = $"{Fomatter.FormatSkillCost(skillData)}, \n";
-        _detailDesctxt.text += $"{make(skillData, _skillLevel)} \n";
+        _detailDesctxt.text += $"{MakeSkillDetailDesc(skillData, _skillLevel)} \n";
         _detailDesctxt.text += Fomatter.FormatSkillCool(skillData);
 
         if (skillData.MaxLevel > _skillLevel)
@@ -89,7 +101,7 @@ public class SkillDescUI : BaseUI
 
             _nextLevelLabelTxt.text = $"[다음레벨] {_skillLevel + 1}";
             _nextLevelDetailDesctxt.text = $"{Fomatter.FormatSkillCost(skillData)}, \n";
-            _nextLevelDetailDesctxt.text += $"{make(skillData, _skillLevel+1)} \n";
+            _nextLevelDetailDesctxt.text += $"{MakeSkillDetailDesc(skillData, _skillLevel+1)} \n";
             _nextLevelDetailDesctxt.text += Fomatter.FormatSkillCool(skillData);
         }
         else
@@ -98,7 +110,14 @@ public class SkillDescUI : BaseUI
         }
     }
 
-    private string make(SkillData skillData, int skillLevel)
+    private void Refresh()
+    {
+        if (_skillData == null)
+            return;
+        Refresh(_skillData);
+    }
+
+    private string MakeSkillDetailDesc(SkillData skillData, int skillLevel)
     {
         string ret = "";
         foreach (int id in skillData.EffectIds)

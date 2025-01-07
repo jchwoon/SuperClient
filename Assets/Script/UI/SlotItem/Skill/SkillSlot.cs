@@ -46,10 +46,21 @@ public class SkillSlot : BaseUI
 
         BindEvent(levelUpBtn, OnLevelUpBtnClicked);
         BindEvent(gameObject, OnSlotClicked);
-        //BindEvent(skillIcon, OnSlotClicked);
         BindEvent(gameObject, OnSlotBeginDrag, Enums.TouchEvent.BeginDrag);
         BindEvent(gameObject, OnSkillDrag, Enums.TouchEvent.Drag);
         BindEvent(gameObject, OnSkillPointerUp, Enums.TouchEvent.EndDrag);
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        Managers.EventBus.AddEvent(Enums.EventType.UpdateSkill, Refresh);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Managers.EventBus.RemoveEvent(Enums.EventType.UpdateSkill, Refresh);
     }
 
     public void SetInfo(SkillData skillData, Action<SkillData> slotClickAction, Action<Sprite> slotBeginDragEvent = null, Action<Vector2> slotDragEvent = null, Action skillRegisterAction = null)
@@ -65,9 +76,11 @@ public class SkillSlot : BaseUI
         _skillImage = Get<Image>((int)Images.SkillImage);
         _skillImage.sprite = Managers.ResourceManager.GetResource<Sprite>(skillData.IconName);
         _skillImage.gameObject.SetActive(true);
+
+        Refresh();
     }
 
-    private void Refresh()
+    public void Refresh()
     {
         SkillComponent skillComponent = Utils.GetMySkillComponent();
         if (skillComponent != null)
@@ -83,13 +96,14 @@ public class SkillSlot : BaseUI
                 _levelUpBtn.interactable = true;
             }
         }
-
     }
 
     private void OnLevelUpBtnClicked(PointerEventData eventData)
     {
         Managers.SoundManager.PlayClick();
-        //Send Packet
+
+        SkillComponent skillComponent = Utils.GetMySkillComponent();
+        skillComponent.SendLevelUpPacket(SkillData.TemplateId);
     }
 
     private void OnSlotClicked(PointerEventData eventData)

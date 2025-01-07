@@ -54,9 +54,9 @@ public class Enums
         ChangeCurrency,
         ChangeGrowth,
         ChangeHUDInfo,
-        PickUpBtnClick,
         UpdateInventory,
-        UpdateSkillSet
+        UpdateSkillSet,
+        UpdateSkill
     }
 
     public enum SortingOrderInHUD

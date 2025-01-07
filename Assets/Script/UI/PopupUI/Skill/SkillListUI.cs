@@ -65,6 +65,7 @@ public class SkillListUI : BaseUI
 
     public void Refresh()
     {
+        Clear();
         if (_activeSkills == null || _passiveSkills == null)
         {
             RegisterAllSkillByClassType();
@@ -75,7 +76,6 @@ public class SkillListUI : BaseUI
 
     private void SetSkillByToggleType()
     {
-        Clear();
         if (_activeToggle.isOn)
         {
             _activeSkillTab.SetActive(true);

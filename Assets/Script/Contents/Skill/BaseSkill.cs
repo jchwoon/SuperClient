@@ -84,6 +84,7 @@ public class BaseSkill
                 List<Creature> creatures = Managers.ObjectManager.GetAllCreatures();
                 foreach (Creature creature in creatures)
                 {
+                    if (creature.Machine == null || creature.Machine.CreatureState == ECreatureState.Die) continue;
                     //효과를 주는 최대 마릿 수 제한
                     if (maxEntityCount != 0 && currentCount >= maxEntityCount) break;
                     //피아식별 검사
@@ -109,6 +110,16 @@ public class BaseSkill
         return effectedCreatures;
     }
 
+    public float GetRemainCoolTime()
+    {
+        return _remainCoolTime;
+    }
+
+    public void UpdateSkillLevel(int level)
+    {
+        SkillLevel = level;
+    }
+
     private bool CheckSkillUsageType(Creature target, ESkillUsageTargetType usageType)
     {
         switch (usageType)
@@ -123,11 +134,6 @@ public class BaseSkill
             default:
                 return false;
         }
-    }
-
-    public float GetRemainCoolTime()
-    {
-        return _remainCoolTime;
     }
 
     IEnumerator CoRunCoolTime()
