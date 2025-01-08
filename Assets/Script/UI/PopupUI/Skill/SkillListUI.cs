@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,7 +16,15 @@ public class SkillListUI : BaseUI
         SkillType,
         ActiveSkillContent,
         ActiveTab,
-        PassiveTab
+        PassiveTab,
+        ActivePointInitialBtn,
+        PassivePointInitialBtn
+    }
+
+    enum Texts
+    {
+        ActiveSkillPointTxt,
+        PassiveSkillPointTxt
     }
 
     enum Toggles
@@ -51,6 +60,7 @@ public class SkillListUI : BaseUI
     {
         Bind<GameObject>(typeof(GameObjects));
         Bind<Toggle>(typeof(Toggles));
+        Bind<TMP_Text>(typeof(Texts));
 
         _activeToggle = Get<Toggle>((int)Toggles.ActiveToggle);
         _passiveToggle = Get<Toggle>((int)Toggles.PassiveToggle);
@@ -61,11 +71,26 @@ public class SkillListUI : BaseUI
 
         BindEvent(_activeToggle.gameObject, OnToggleClicked);
         BindEvent(_passiveToggle.gameObject, OnToggleClicked);
+        BindEvent(Get<GameObject>((int)GameObjects.ActivePointInitialBtn), (_) => { OnPointInitialClicked(ESkillType.Active); });
+        BindEvent(Get<GameObject>((int)GameObjects.PassivePointInitialBtn), (_) => { OnPointInitialClicked(ESkillType.Passive); });
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        Managers.EventBus.AddEvent(Enums.EventType.UpdateSkill, RefreshSkillPoint);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Managers.EventBus.RemoveEvent(Enums.EventType.UpdateSkill, RefreshSkillPoint);
     }
 
     public void Refresh()
     {
         Clear();
+        RefreshSkillPoint();
         if (_activeSkills == null || _passiveSkills == null)
         {
             RegisterAllSkillByClassType();
@@ -128,9 +153,31 @@ public class SkillListUI : BaseUI
         }
     }
 
+    private void RefreshSkillPoint()
+    {
+        SkillComponent skillComponent = Utils.GetMySkillComponent();
+        if (skillComponent == null)
+            return;
+
+        Get<TMP_Text>((int)Texts.ActiveSkillPointTxt).text = skillComponent.ActiveSkillPoint.ToString();
+        Get<TMP_Text>((int)Texts.PassiveSkillPointTxt).text = skillComponent.PassiveSkillPoint.ToString();
+    }
+
     private void OnToggleClicked(PointerEventData eventData)
     {
         Refresh();
+    }
+
+    private void OnPointInitialClicked(ESkillType skillType)
+    {
+        Managers.UIManager.ShowAlertPopup("정말로 초기화 하시겠습니까?", Enums.AlertBtnNum.Two,
+        () => 
+        {
+            SkillComponent skillComponent = Utils.GetMySkillComponent();
+            if (skillComponent == null)
+                return;
+            skillComponent.CheckAndSendResetPointPacket(skillType);
+        });
     }
 
     private void Clear()

@@ -86,8 +86,8 @@ public class SkillSlot : BaseUI
         if (skillComponent != null)
         {
             BaseSkill skill = skillComponent.GetSkillById(SkillData.TemplateId);
-            Get<TMP_Text>((int)Texts.SkillLvTxt).text = skill.SkillLevel.ToString();
-            if (SkillData.MaxLevel <= skill.SkillLevel)
+            Get<TMP_Text>((int)Texts.SkillLvTxt).text = skill.CurrentSkillLevel.ToString();
+            if (SkillData.MaxLevel <= skill.CurrentSkillLevel)
             {
                 _levelUpBtn.interactable = false;
             }
@@ -101,9 +101,8 @@ public class SkillSlot : BaseUI
     private void OnLevelUpBtnClicked(PointerEventData eventData)
     {
         Managers.SoundManager.PlayClick();
-
         SkillComponent skillComponent = Utils.GetMySkillComponent();
-        skillComponent.SendLevelUpPacket(SkillData.TemplateId);
+        skillComponent.CheckAndSendLevelUpPacket(SkillData.TemplateId);
     }
 
     private void OnSlotClicked(PointerEventData eventData)

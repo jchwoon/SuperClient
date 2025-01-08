@@ -1,3 +1,4 @@
+using Google.Protobuf.Enum;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,12 @@ public class CurrencyComponent
     public void RemoveGold(int gold)
     {
         Gold -= gold;
+    }
+
+    public bool CheckEnoughCurrency(ECurrencyType currencyType, int value)
+    {
+        //Temp 나중에 Currency가 추가 되면 수정
+        return Gold >= value;
     }
 
     private void UpdateCurrency()

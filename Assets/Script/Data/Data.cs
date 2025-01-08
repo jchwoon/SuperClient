@@ -132,6 +132,7 @@ namespace Data
         public EHeroClassType HeroClassId;
         public List<int> SkillIds;
         public float RespawnTime;
+        public int SkillInitId;
     }
     [Serializable]
     public class HeroDataLoader : ILoader<EHeroClassType, HeroData>
@@ -446,6 +447,30 @@ namespace Data
             foreach (DungeonData dungeonDatas in dungeons)
             {
                 dict.Add(dungeonDatas.RoomId, dungeonDatas);
+            }
+
+            return dict;
+        }
+    }
+
+    public class CostData
+    {
+        public int TemplateId;
+        public ECurrencyType CurrencyType;
+        public int CostValue;
+    }
+
+    [Serializable]
+    public class CostDataLoader : ILoader<int, CostData>
+    {
+        public List<CostData> costs = new List<CostData>();
+        public Dictionary<int, CostData> MakeDict()
+        {
+            Dictionary<int, CostData> dict = new Dictionary<int, CostData>();
+
+            foreach (CostData cost in costs)
+            {
+                dict.Add(cost.TemplateId, cost);
             }
 
             return dict;

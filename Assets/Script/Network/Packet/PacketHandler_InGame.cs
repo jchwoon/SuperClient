@@ -7,6 +7,7 @@ using UnityEngine;
 using Google.Protobuf.Struct;
 using Google.Protobuf.Enum;
 using Data;
+using System.Linq;
 
 public partial class PacketHandler
 {
@@ -271,14 +272,17 @@ public partial class PacketHandler
         creature.HandleChangedShield(changeShieldPacket.ShieldValue);
     }
     
-    public static void ResLevelUpSkillToCHandler(PacketSession session, IMessage packet)
+    public static void UpdateSkillLevelToCHandler(PacketSession session, IMessage packet)
     {
-        ResLevelUpSkillToC levelUpSkillPacket = (ResLevelUpSkillToC)packet;
+        UpdateSkillLevelToC levelUpSkillPacket = (UpdateSkillLevelToC)packet;
 
-        MyHero myHero = Managers.ObjectManager.MyHero;
-        if (myHero == null)
+        SkillComponent skillComponent = Utils.GetMySkillComponent();
+        if (skillComponent == null)
             return;
 
-        myHero.SkillComponent.UpdateSkillLevel(levelUpSkillPacket.SkillId, levelUpSkillPacket.SkillLevel);
+        skillComponent.HandleUpdateSkillLevelAndPoint(
+            levelUpSkillPacket.SkillLevelInfos.ToList(), 
+            levelUpSkillPacket.ActiveSkillPoint,
+            levelUpSkillPacket.PassiveSkillPoint);
     }
 }

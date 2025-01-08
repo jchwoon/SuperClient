@@ -116,10 +116,12 @@ namespace Google.Protobuf.Enum {
             "RVRJTkdfVFlQRV9UQVJHRVQQARImCiJFU0tJTExfVEFSR0VUSU5HX1RZUEVf",
             "U01BUlRfVEFSR0VUEAIqUQoRRU1vbnN0ZXJBZ2dyb1R5cGUSHgoaRU1PTlNU",
             "RVJfQUdHUk9fVFlQRV9NQU5VQUwQABIcChhFTU9OU1RFUl9BR0dST19UWVBF",
-            "X0FVVE8QAUIXqgIUR29vZ2xlLlByb3RvYnVmLkVudW1iBnByb3RvMw=="));
+            "X0FVVE8QASpBCg1FQ3VycmVuY3lUeXBlEhcKE0VDVVJSRU5DWV9UWVBFX05P",
+            "TkUQABIXChNFQ1VSUkVOQ1lfVFlQRV9HT0xEEAFCF6oCFEdvb2dsZS5Qcm90",
+            "b2J1Zi5FbnVtYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.EEffectScalingType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), typeof(global::Google.Protobuf.Enum.ENPCType), typeof(global::Google.Protobuf.Enum.EFontType), typeof(global::Google.Protobuf.Enum.ESkillSlotType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillUsageTargetType), typeof(global::Google.Protobuf.Enum.ESkillTargetingType), typeof(global::Google.Protobuf.Enum.EMonsterAggroType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.EEffectScalingType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), typeof(global::Google.Protobuf.Enum.ENPCType), typeof(global::Google.Protobuf.Enum.EFontType), typeof(global::Google.Protobuf.Enum.ESkillSlotType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillUsageTargetType), typeof(global::Google.Protobuf.Enum.ESkillTargetingType), typeof(global::Google.Protobuf.Enum.EMonsterAggroType), typeof(global::Google.Protobuf.Enum.ECurrencyType), }, null, null));
     }
     #endregion
 
@@ -345,6 +347,11 @@ namespace Google.Protobuf.Enum {
   public enum EMonsterAggroType {
     [pbr::OriginalName("EMONSTER_AGGRO_TYPE_MANUAL")] Manual = 0,
     [pbr::OriginalName("EMONSTER_AGGRO_TYPE_AUTO")] Auto = 1,
+  }
+
+  public enum ECurrencyType {
+    [pbr::OriginalName("ECURRENCY_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("ECURRENCY_TYPE_GOLD")] Gold = 1,
   }
 
   #endregion

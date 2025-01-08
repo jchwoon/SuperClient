@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public interface ILoader<Key, Value>
 {
@@ -31,6 +32,7 @@ public class DataManager
     public Dictionary<int, EtcData> EtcDict { get; private set; } = new Dictionary<int, EtcData>();
     public Dictionary<Enums.EConfigIds, ConfigData> ConfigDict { get; private set; } = new Dictionary<Enums.EConfigIds, ConfigData>();
     public Dictionary<int, NPCData> NpcDict { get; private set; } = new Dictionary<int, NPCData>();
+    public Dictionary<int, CostData> CostDict { get; private set; } = new Dictionary<int, CostData>();
     public Dictionary<int, DungeonData> DungeonDict { get; private set; } = new Dictionary<int, DungeonData>();
 
 
@@ -48,6 +50,7 @@ public class DataManager
         RewardTableDict = LoadJson<RewardTableDataLoadaer, int, RewardTableData>("RewardTableData").MakeDict();
         DescriptionDict = LoadJson<DescriptionDataLoader, string, DescriptionData>("DescriptionData").MakeDict();
         NpcDict = LoadJson<NPCDataLoader, int, NPCData>("NPCData").MakeDict();
+        CostDict = LoadJson<CostDataLoader, int, CostData>("CostData").MakeDict();
         DungeonDict = LoadJson<DungeonDataLoader, int, DungeonData>("DungeonData").MakeDict();
         //Effect
         EffectDict = LoadJson<EffectDataLoader, int, EffectData>("EffectData").MakeDict();

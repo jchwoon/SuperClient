@@ -101,6 +101,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c10f13455ba2c84468e609ab05a3d497
+    m_Address: CostData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c112c82db24aa0d4aae1064c864f81b4
     m_Address: EquipmentData
     m_ReadOnly: 0

@@ -14,7 +14,7 @@ public class BaseSkill
     public int TemplateId { get; protected set; }
     public SkillData SkillData { get; protected set; }
     public bool IsCoolTime {  get; protected set; }
-    public int SkillLevel { get; protected set; }
+    public int CurrentSkillLevel { get; protected set; }
 
     float _remainCoolTime;
 
@@ -23,7 +23,7 @@ public class BaseSkill
         TemplateId = templateId;
         Owner = owner;
         SkillData = skillData;
-        SkillLevel = skillLevel;
+        CurrentSkillLevel = skillLevel;
     }
 
     //서버에 보내기전 (SendUseSkill) 클라에서도 판단
@@ -33,6 +33,16 @@ public class BaseSkill
             return ESkillFailReason.Cool;
 
         return ESkillFailReason.None;
+    }
+
+    public bool CheckCanLevelUp(int point)
+    {
+        int maxLevel = SkillData.MaxLevel;
+
+        if (maxLevel < CurrentSkillLevel + point)
+            return false;
+
+        return true;
     }
 
     public virtual void UseSkill(string playAnimName)
@@ -117,7 +127,7 @@ public class BaseSkill
 
     public void UpdateSkillLevel(int level)
     {
-        SkillLevel = level;
+        CurrentSkillLevel = level;
     }
 
     private bool CheckSkillUsageType(Creature target, ESkillUsageTargetType usageType)

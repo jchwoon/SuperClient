@@ -30,10 +30,12 @@ public class GrowthComponent
         if (IsMaxLevel())
             return;
         Exp += exp;
+        int preveLevel = Level;
         bool isUp = CheckLevelUp();
         if (isUp == true)
         {
             SetMaxExp();
+            Owner.SkillComponent.LevelUp(preveLevel, Level);
         }
         UpdateGrowth();
     }
