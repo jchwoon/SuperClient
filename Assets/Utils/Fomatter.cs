@@ -54,6 +54,11 @@ public class Fomatter
         return ret;
     }
 
+    public static string FromatCurrency(int value)
+    {
+        return value.ToString("N0");
+    }
+
     private static bool IsValidateOldValue(string text, string oldValue)
     {
         return text.Contains(oldValue);

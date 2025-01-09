@@ -139,28 +139,14 @@ public class SkillComponent
         Managers.NetworkManager.Send(levelUpPacket);
     }
 
-    public void CheckAndSendResetPointPacket(ESkillType skillType)
-    {
-        MyHero hero = Managers.ObjectManager.MyHero;
-        if (hero == null)
-            return;
-
-        if (Managers.DataManager.CostDict.TryGetValue(hero.HeroData.SkillInitId, out CostData costData) == false)
-            return;
-
-        if (hero.CurrencyComponent.CheckEnoughCurrency(costData.CurrencyType, costData.CostValue) == false)
-            return;
-        
-        SendResetPointPacket(skillType);
-    }
-    private void SendResetPointPacket(ESkillType skillType)
+    public void SendResetPointPacket(ESkillType skillType)
     {
         ReqInitSkillPointToS initSkillPointPacket = new ReqInitSkillPointToS();
         initSkillPointPacket.SkillType = skillType;
         Managers.NetworkManager.Send(initSkillPointPacket);
     }
 
-    public void HandleUpdateSkillLevelAndPoint(List<SkillLevelInfo> levelInfos, int activePoint, int passivePoint)
+    public void HandleUpdateSkillLevelAndPoint(List<SkillLevelInfo> levelInfos, int activePoint, int passivePoint, int cost)
     {
         foreach (SkillLevelInfo levelInfo in levelInfos)
         {
@@ -171,6 +157,9 @@ public class SkillComponent
 
         SetSkillPoint(ESkillType.Active, activePoint);
         SetSkillPoint(ESkillType.Passive, passivePoint);
+
+        MyHero hero = Managers.ObjectManager.MyHero;
+        hero.CurrencyComponent.RemoveGold(cost);
 
         Managers.EventBus.InvokeEvent(Enums.EventType.UpdateSkill);
     }

@@ -170,14 +170,28 @@ public class SkillListUI : BaseUI
 
     private void OnPointInitialClicked(ESkillType skillType)
     {
-        Managers.UIManager.ShowAlertPopup("정말로 초기화 하시겠습니까?", Enums.AlertBtnNum.Two,
-        () => 
+        MyHero hero = Managers.ObjectManager.MyHero;
+        if (hero == null)
+            return;
+
+        if (Managers.DataManager.CostDict.TryGetValue(hero.HeroData.SkillInitId, out CostData costData) == false)
+            return;
+
+        if (hero.CurrencyComponent.CheckEnoughCurrency(costData.CurrencyType, costData.CostValue) == false)
         {
-            SkillComponent skillComponent = Utils.GetMySkillComponent();
-            if (skillComponent == null)
-                return;
-            skillComponent.CheckAndSendResetPointPacket(skillType);
-        });
+            Managers.UIManager.ShowAlertPopup("Gold가 부족합니다.", Enums.AlertBtnNum.One);
+        }
+        else
+        {
+            Managers.UIManager.ShowAlertPopup($"정말로 초기화 하시겠습니까?\n초기화 비용 : {Fomatter.FromatCurrency(costData.CostValue)} Gold", Enums.AlertBtnNum.Two,
+            () =>
+            {
+                SkillComponent skillComponent = Utils.GetMySkillComponent();
+                if (skillComponent == null)
+                    return;
+                skillComponent.SendResetPointPacket(skillType);
+            });
+        }
     }
 
     private void Clear()

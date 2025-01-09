@@ -80,10 +80,11 @@ namespace Google.Protobuf.Protocol {
             "ZVRvQxIQCghvYmplY3RJZBgBIAEoBRITCgtzaGllbGRWYWx1ZRgCIAEoBSIl",
             "ChJSZXFMZXZlbFVwU2tpbGxUb1MSDwoHc2tpbGxJZBgBIAEoBSI/ChRSZXFJ",
             "bml0U2tpbGxQb2ludFRvUxInCglza2lsbFR5cGUYASABKA4yFC5Qcm90b2Nv",
-            "bC5FU2tpbGxUeXBlIn0KE1VwZGF0ZVNraWxsTGV2ZWxUb0MSMQoPc2tpbGxM",
-            "ZXZlbEluZm9zGAEgAygLMhguUHJvdG9jb2wuU2tpbGxMZXZlbEluZm8SGAoQ",
-            "YWN0aXZlU2tpbGxQb2ludBgCIAEoBRIZChFwYXNzaXZlU2tpbGxQb2ludBgD",
-            "IAEoBUIbqgIYR29vZ2xlLlByb3RvYnVmLlByb3RvY29sYgZwcm90bzM="));
+            "bC5FU2tpbGxUeXBlIosBChNVcGRhdGVTa2lsbExldmVsVG9DEjEKD3NraWxs",
+            "TGV2ZWxJbmZvcxgBIAMoCzIYLlByb3RvY29sLlNraWxsTGV2ZWxJbmZvEhgK",
+            "EGFjdGl2ZVNraWxsUG9pbnQYAiABKAUSGQoRcGFzc2l2ZVNraWxsUG9pbnQY",
+            "AyABKAUSDAoEY29zdBgEIAEoBUIbqgIYR29vZ2xlLlByb3RvYnVmLlByb3Rv",
+            "Y29sYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, global::Google.Protobuf.Struct.StructReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -128,7 +129,7 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ChangeShieldValueToC), global::Google.Protobuf.Protocol.ChangeShieldValueToC.Parser, new[]{ "ObjectId", "ShieldValue" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ReqLevelUpSkillToS), global::Google.Protobuf.Protocol.ReqLevelUpSkillToS.Parser, new[]{ "SkillId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ReqInitSkillPointToS), global::Google.Protobuf.Protocol.ReqInitSkillPointToS.Parser, new[]{ "SkillType" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.UpdateSkillLevelToC), global::Google.Protobuf.Protocol.UpdateSkillLevelToC.Parser, new[]{ "SkillLevelInfos", "ActiveSkillPoint", "PassiveSkillPoint" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.UpdateSkillLevelToC), global::Google.Protobuf.Protocol.UpdateSkillLevelToC.Parser, new[]{ "SkillLevelInfos", "ActiveSkillPoint", "PassiveSkillPoint", "Cost" }, null, null, null, null)
           }));
     }
     #endregion
@@ -9203,6 +9204,7 @@ namespace Google.Protobuf.Protocol {
       skillLevelInfos_ = other.skillLevelInfos_.Clone();
       activeSkillPoint_ = other.activeSkillPoint_;
       passiveSkillPoint_ = other.passiveSkillPoint_;
+      cost_ = other.cost_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -9247,6 +9249,18 @@ namespace Google.Protobuf.Protocol {
       }
     }
 
+    /// <summary>Field number for the "cost" field.</summary>
+    public const int CostFieldNumber = 4;
+    private int cost_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Cost {
+      get { return cost_; }
+      set {
+        cost_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -9265,6 +9279,7 @@ namespace Google.Protobuf.Protocol {
       if(!skillLevelInfos_.Equals(other.skillLevelInfos_)) return false;
       if (ActiveSkillPoint != other.ActiveSkillPoint) return false;
       if (PassiveSkillPoint != other.PassiveSkillPoint) return false;
+      if (Cost != other.Cost) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -9275,6 +9290,7 @@ namespace Google.Protobuf.Protocol {
       hash ^= skillLevelInfos_.GetHashCode();
       if (ActiveSkillPoint != 0) hash ^= ActiveSkillPoint.GetHashCode();
       if (PassiveSkillPoint != 0) hash ^= PassiveSkillPoint.GetHashCode();
+      if (Cost != 0) hash ^= Cost.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -9302,6 +9318,10 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(24);
         output.WriteInt32(PassiveSkillPoint);
       }
+      if (Cost != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Cost);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -9321,6 +9341,10 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(24);
         output.WriteInt32(PassiveSkillPoint);
       }
+      if (Cost != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Cost);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -9337,6 +9361,9 @@ namespace Google.Protobuf.Protocol {
       }
       if (PassiveSkillPoint != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(PassiveSkillPoint);
+      }
+      if (Cost != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Cost);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -9356,6 +9383,9 @@ namespace Google.Protobuf.Protocol {
       }
       if (other.PassiveSkillPoint != 0) {
         PassiveSkillPoint = other.PassiveSkillPoint;
+      }
+      if (other.Cost != 0) {
+        Cost = other.Cost;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -9388,6 +9418,10 @@ namespace Google.Protobuf.Protocol {
             PassiveSkillPoint = input.ReadInt32();
             break;
           }
+          case 32: {
+            Cost = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -9417,6 +9451,10 @@ namespace Google.Protobuf.Protocol {
           }
           case 24: {
             PassiveSkillPoint = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Cost = input.ReadInt32();
             break;
           }
         }

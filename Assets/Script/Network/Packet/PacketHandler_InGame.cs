@@ -283,6 +283,7 @@ public partial class PacketHandler
         skillComponent.HandleUpdateSkillLevelAndPoint(
             levelUpSkillPacket.SkillLevelInfos.ToList(), 
             levelUpSkillPacket.ActiveSkillPoint,
-            levelUpSkillPacket.PassiveSkillPoint);
+            levelUpSkillPacket.PassiveSkillPoint,
+            levelUpSkillPacket.Cost);
     }
 }
