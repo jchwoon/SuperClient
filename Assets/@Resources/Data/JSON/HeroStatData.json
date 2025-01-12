@@ -8,7 +8,12 @@
       "atkDamage": 25,
       "defence": 10,
       "baseAtkSpeed": 1,
-      "exp": 50
+      "exp": 50,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 2,
@@ -18,7 +23,12 @@
       "atkDamage": 30,
       "defence": 15,
       "baseAtkSpeed": 1,
-      "exp": 100
+      "exp": 80,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 3,
@@ -28,7 +38,12 @@
       "atkDamage": 35,
       "defence": 20,
       "baseAtkSpeed": 1,
-      "exp": 200
+      "exp": 128,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 4,
@@ -38,7 +53,12 @@
       "atkDamage": 40,
       "defence": 25,
       "baseAtkSpeed": 1,
-      "exp": 400
+      "exp": 204,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 5,
@@ -48,7 +68,12 @@
       "atkDamage": 45,
       "defence": 30,
       "baseAtkSpeed": 1,
-      "exp": 800
+      "exp": 327,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 6,
@@ -58,7 +83,12 @@
       "atkDamage": 50,
       "defence": 35,
       "baseAtkSpeed": 1,
-      "exp": 1600
+      "exp": 524,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 7,
@@ -68,7 +98,12 @@
       "atkDamage": 55,
       "defence": 40,
       "baseAtkSpeed": 1,
-      "exp": 3200
+      "exp": 838,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 8,
@@ -78,7 +113,12 @@
       "atkDamage": 60,
       "defence": 45,
       "baseAtkSpeed": 1,
-      "exp": 6400
+      "exp": 1342,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 9,
@@ -88,7 +128,12 @@
       "atkDamage": 65,
       "defence": 50,
       "baseAtkSpeed": 1,
-      "exp": 12800
+      "exp": 2147,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 10,
@@ -98,7 +143,12 @@
       "atkDamage": 70,
       "defence": 55,
       "baseAtkSpeed": 1,
-      "exp": 25600
+      "exp": 3435,
+      "skillPoint": 2,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 11,
@@ -108,7 +158,12 @@
       "atkDamage": 75,
       "defence": 60,
       "baseAtkSpeed": 1,
-      "exp": 51200
+      "exp": 5497,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 12,
@@ -118,7 +173,12 @@
       "atkDamage": 80,
       "defence": 65,
       "baseAtkSpeed": 1,
-      "exp": 102400
+      "exp": 8796,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 13,
@@ -128,7 +188,12 @@
       "atkDamage": 85,
       "defence": 70,
       "baseAtkSpeed": 1,
-      "exp": 204800
+      "exp": 14073,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 14,
@@ -138,7 +203,12 @@
       "atkDamage": 90,
       "defence": 75,
       "baseAtkSpeed": 1,
-      "exp": 409600
+      "exp": 22517,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 15,
@@ -148,7 +218,12 @@
       "atkDamage": 95,
       "defence": 80,
       "baseAtkSpeed": 1,
-      "exp": 819200
+      "exp": 36028,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 16,
@@ -158,7 +233,12 @@
       "atkDamage": 100,
       "defence": 85,
       "baseAtkSpeed": 1,
-      "exp": 1638400
+      "exp": 57646,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 17,
@@ -168,7 +248,12 @@
       "atkDamage": 105,
       "defence": 90,
       "baseAtkSpeed": 1,
-      "exp": 3276800
+      "exp": 92233,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 18,
@@ -178,7 +263,12 @@
       "atkDamage": 110,
       "defence": 95,
       "baseAtkSpeed": 1,
-      "exp": 6553600
+      "exp": 147573,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 19,
@@ -188,7 +278,12 @@
       "atkDamage": 115,
       "defence": 100,
       "baseAtkSpeed": 1,
-      "exp": 13107200
+      "exp": 236118,
+      "skillPoint": 2,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 20,
@@ -198,7 +293,12 @@
       "atkDamage": 120,
       "defence": 105,
       "baseAtkSpeed": 1,
-      "exp": 26214400
+      "exp": 377789,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 21,
@@ -208,7 +308,12 @@
       "atkDamage": 125,
       "defence": 110,
       "baseAtkSpeed": 1,
-      "exp": 52428800
+      "exp": 604462,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 22,
@@ -218,7 +323,12 @@
       "atkDamage": 130,
       "defence": 115,
       "baseAtkSpeed": 1,
-      "exp": 104857600
+      "exp": 967140,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 23,
@@ -228,7 +338,12 @@
       "atkDamage": 135,
       "defence": 120,
       "baseAtkSpeed": 1,
-      "exp": 209715200
+      "exp": 1547425,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 24,
@@ -238,7 +353,12 @@
       "atkDamage": 140,
       "defence": 125,
       "baseAtkSpeed": 1,
-      "exp": 419430400
+      "exp": 2475880,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 25,
@@ -248,7 +368,12 @@
       "atkDamage": 145,
       "defence": 130,
       "baseAtkSpeed": 1,
-      "exp": 838860800
+      "exp": 3961408,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 26,
@@ -258,7 +383,12 @@
       "atkDamage": 150,
       "defence": 135,
       "baseAtkSpeed": 1,
-      "exp": 1677721600
+      "exp": 6338253,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 27,
@@ -268,7 +398,12 @@
       "atkDamage": 155,
       "defence": 140,
       "baseAtkSpeed": 1,
-      "exp": 3355443200
+      "exp": 10141204,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 28,
@@ -278,7 +413,12 @@
       "atkDamage": 160,
       "defence": 145,
       "baseAtkSpeed": 1,
-      "exp": 6710886400
+      "exp": 16225927,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 29,
@@ -288,7 +428,12 @@
       "atkDamage": 165,
       "defence": 150,
       "baseAtkSpeed": 1,
-      "exp": 13421772800
+      "exp": 25961484,
+      "skillPoint": 1,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     },
     {
       "level": 30,
@@ -298,7 +443,12 @@
       "atkDamage": 170,
       "defence": 155,
       "baseAtkSpeed": 1,
-      "exp": 26843545600
+      "exp": 41538374,
+      "skillPoint": 2,
+      "critical": 10,
+      "criticalDamage": 20,
+      "receiveShieldEfficiency": 0,
+      "giveHealEfficiency": 0
     }
   ]
 }

@@ -153,11 +153,19 @@ namespace Data
     public class SkillData : BaseData
     {
         public int TemplateId;
-        public int NextSkillTemplateId;
-        public EHeroClassType ClassType;
         public ESkillType SkillType;
-        public ESkillProjectileType SkillProjectileType;
         public ESkillSlotType SkillSlotType;
+        public EHeroClassType ClassType;
+        public string SkillName;
+        public string IconName;
+        public int MaxLevel;
+        public List<int> EffectIds;
+    }
+
+    public class ActiveSkillData : SkillData
+    {
+        public int NextSkillTemplateId;
+        public ESkillProjectileType SkillProjectileType;
         public ESkillAreaType SkillAreaType;
         public ESkillUsageTargetType SkillUsageTargetType;
         public ESkillTargetingType SkillTargetingType;
@@ -166,31 +174,53 @@ namespace Data
         public bool IsComboSkill;
         public bool IsMoveSkill;
         public string SoundLabel;
-        public string SkillName;
-        public string AnimName;
-        public string IconName;
         public string HitPrefabName;
+        public string AnimName;
         public float SkillRange;
         public int CostMp;
-        public int MaxLevel;
         public int MaxEntityCount;
         public float CoolTime;
         public float Speed;
         public float Dist;
         public float AnimTime;
-        public List<int> EffectIds;
         public float EffectDelayRatio;
         public float ComboTime;
+        public float Duration;
     }
 
     [Serializable]
-    public class SkillDataLoader : ILoader<int, SkillData>
+    public class ActiveSkillDataLoader : ILoader<int, ActiveSkillData>
     {
-        public List<SkillData> skills = new List<SkillData>();
-        public Dictionary<int, SkillData> MakeDict()
+        public List<ActiveSkillData> skills = new List<ActiveSkillData>();
+
+        public Dictionary<int, ActiveSkillData> MakeDict()
         {
-            Dictionary<int, SkillData> dict = new Dictionary<int, SkillData>();
-            foreach(SkillData skill in skills)
+            Dictionary<int, ActiveSkillData> dict = new Dictionary<int, ActiveSkillData>();
+
+            foreach (ActiveSkillData skill in skills)
+            {
+                dict.Add(skill.TemplateId, skill);
+            }
+
+            return dict;
+        }
+    }
+
+    public class PassiveSkillData : SkillData
+    {
+
+    }
+
+    [Serializable]
+    public class PassiveSkillDataLoader : ILoader<int, PassiveSkillData>
+    {
+        public List<PassiveSkillData> skills = new List<PassiveSkillData>();
+
+        public Dictionary<int, PassiveSkillData> MakeDict()
+        {
+            Dictionary<int, PassiveSkillData> dict = new Dictionary<int, PassiveSkillData>();
+
+            foreach (PassiveSkillData skill in skills)
             {
                 dict.Add(skill.TemplateId, skill);
             }

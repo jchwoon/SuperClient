@@ -77,6 +77,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b744ec334ced0734dbf04fc997e203ab
+    m_Address: HeroPassiveSkillData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b8b9da64b6d529d4ab7d62e0e724afcd
     m_Address: DescriptionData
     m_ReadOnly: 0
@@ -84,7 +90,7 @@ MonoBehaviour:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b8fa1e038027c934e97c287a5d661938
-    m_Address: HeroSkillData
+    m_Address: HeroActiveSkillData
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad

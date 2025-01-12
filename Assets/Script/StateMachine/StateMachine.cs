@@ -58,7 +58,7 @@ public class StateMachine
 
     }
 
-    public virtual void UseSkill(SkillData skillData, Creature target, ResUseSkillToC skillPacket)
+    public virtual void UseSkill(ActiveSkillData skillData, Creature target, ResUseSkillToC skillPacket)
     {
     }
     public virtual void OnDie()
@@ -75,7 +75,7 @@ public class StateMachine
     {
     }
 
-    protected IEnumerator CoMoveFromSkillData(Creature owner, SkillData skillData, Vector3 destPos)
+    protected IEnumerator CoMoveFromSkillData(Creature owner, ActiveSkillData skillData, Vector3 destPos)
     {
         float duration = skillData.AnimTime * skillData.EffectDelayRatio;
 

@@ -1,0 +1,43 @@
+{
+  "skills": [
+    {
+      "templateId": 110,
+      "effectIds": [
+        110
+      ],
+      "maxLevel": 10,
+      "skillType": 2,
+      "skillSlotType": 7,
+      "classType": 1,
+      "skillName": "강화갑옷",
+      "iconName": "GuardianPassiveA_sprite",
+      "InitLevel": 0
+    },
+    {
+      "templateId": 111,
+      "effectIds": [
+        111
+      ],
+      "maxLevel": 10,
+      "skillType": 2,
+      "skillSlotType": 8,
+      "classType": 1,
+      "skillName": "대지의 생명력",
+      "iconName": "GuardianPassiveB_sprite",
+      "InitLevel": 0
+    },
+    {
+      "templateId": 112,
+      "effectIds": [
+        112
+      ],
+      "maxLevel": 10,
+      "skillType": 2,
+      "skillSlotType": 9,
+      "classType": 1,
+      "skillName": "수호의 힘",
+      "iconName": "GuardianPassiveC_sprite",
+      "InitLevel": 0
+    }
+  ]
+}

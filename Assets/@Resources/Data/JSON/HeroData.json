@@ -10,10 +10,21 @@
         600,
         100,
         101,
-        102
+        102,
+        110,
+        111,
+        112
       ],
       "respawnTime": 5,
       "skillInitId": 1
+    },
+    {
+      "heroClassId": 2,
+      "prefabName": "Wizard"
+    },
+    {
+      "heroClassId": 3,
+      "prefabName": "Priest"
     }
   ]
 }

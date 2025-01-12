@@ -45,13 +45,10 @@ namespace Google.Protobuf.Struct {
             "b29tSWQYBCABKAUSIgoHcG9zSW5mbxgFIAEoCzIRLlByb3RvY29sLlBvc0lu",
             "Zm8iZgoISXRlbUluZm8SEAoIaXRlbURiSWQYASABKAMSEgoKdGVtcGxhdGVJ",
             "ZBgCIAEoBRINCgVjb3VudBgDIAEoBRIlCghzbG90VHlwZRgEIAEoDjITLlBy",
-            "b3RvY29sLkVTbG90VHlwZSJdCglTa2lsbEluZm8SDwoHc2tpbGxJZBgBIAEo",
-            "BRIVCg1za2lsbFRhcmdldElkGAIgASgFEhIKCnNraWxsTGV2ZWwYAyABKAUS",
-            "FAoMcGxheUFuaW1OYW1lGAQgASgJIjUKDlNraWxsTGV2ZWxJbmZvEg8KB3Nr",
-            "aWxsSWQYASABKAUSEgoKc2tpbGxMZXZlbBgCIAEoBSJFCg5Ta2lsbFBvaW50",
-            "SW5mbxIYChBhY3RpdmVTa2lsbFBvaW50GAEgASgFEhkKEXBhc3NpdmVTa2ls",
-            "bFBvaW50GAIgASgFQhmqAhZHb29nbGUuUHJvdG9idWYuU3RydWN0YgZwcm90",
-            "bzM="));
+            "b3RvY29sLkVTbG90VHlwZSJHCglTa2lsbEluZm8SDwoHc2tpbGxJZBgBIAEo",
+            "BRIVCg1za2lsbFRhcmdldElkGAIgASgFEhIKCnNraWxsTGV2ZWwYAyABKAUi",
+            "NQoOU2tpbGxMZXZlbEluZm8SDwoHc2tpbGxJZBgBIAEoBRISCgpza2lsbExl",
+            "dmVsGAIgASgFQhmqAhZHb29nbGUuUHJvdG9idWYuU3RydWN0YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -63,9 +60,8 @@ namespace Google.Protobuf.Struct {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.PosInfo), global::Google.Protobuf.Struct.PosInfo.Parser, new[]{ "PosX", "PosY", "PosZ", "RotY" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ObjectInfo), global::Google.Protobuf.Struct.ObjectInfo.Parser, new[]{ "ObjectId", "TemplateId", "ObjectType", "RoomId", "PosInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ItemInfo), global::Google.Protobuf.Struct.ItemInfo.Parser, new[]{ "ItemDbId", "TemplateId", "Count", "SlotType" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillInfo), global::Google.Protobuf.Struct.SkillInfo.Parser, new[]{ "SkillId", "SkillTargetId", "SkillLevel", "PlayAnimName" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillLevelInfo), global::Google.Protobuf.Struct.SkillLevelInfo.Parser, new[]{ "SkillId", "SkillLevel" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillPointInfo), global::Google.Protobuf.Struct.SkillPointInfo.Parser, new[]{ "ActiveSkillPoint", "PassiveSkillPoint" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillInfo), global::Google.Protobuf.Struct.SkillInfo.Parser, new[]{ "SkillId", "SkillTargetId", "SkillLevel" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillLevelInfo), global::Google.Protobuf.Struct.SkillLevelInfo.Parser, new[]{ "SkillId", "SkillLevel" }, null, null, null, null)
           }));
     }
     #endregion
@@ -2710,7 +2706,6 @@ namespace Google.Protobuf.Struct {
       skillId_ = other.skillId_;
       skillTargetId_ = other.skillTargetId_;
       skillLevel_ = other.skillLevel_;
-      playAnimName_ = other.playAnimName_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2756,18 +2751,6 @@ namespace Google.Protobuf.Struct {
       }
     }
 
-    /// <summary>Field number for the "playAnimName" field.</summary>
-    public const int PlayAnimNameFieldNumber = 4;
-    private string playAnimName_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string PlayAnimName {
-      get { return playAnimName_; }
-      set {
-        playAnimName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2786,7 +2769,6 @@ namespace Google.Protobuf.Struct {
       if (SkillId != other.SkillId) return false;
       if (SkillTargetId != other.SkillTargetId) return false;
       if (SkillLevel != other.SkillLevel) return false;
-      if (PlayAnimName != other.PlayAnimName) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2797,7 +2779,6 @@ namespace Google.Protobuf.Struct {
       if (SkillId != 0) hash ^= SkillId.GetHashCode();
       if (SkillTargetId != 0) hash ^= SkillTargetId.GetHashCode();
       if (SkillLevel != 0) hash ^= SkillLevel.GetHashCode();
-      if (PlayAnimName.Length != 0) hash ^= PlayAnimName.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2828,10 +2809,6 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(24);
         output.WriteInt32(SkillLevel);
       }
-      if (PlayAnimName.Length != 0) {
-        output.WriteRawTag(34);
-        output.WriteString(PlayAnimName);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2854,10 +2831,6 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(24);
         output.WriteInt32(SkillLevel);
       }
-      if (PlayAnimName.Length != 0) {
-        output.WriteRawTag(34);
-        output.WriteString(PlayAnimName);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2876,9 +2849,6 @@ namespace Google.Protobuf.Struct {
       }
       if (SkillLevel != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(SkillLevel);
-      }
-      if (PlayAnimName.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayAnimName);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2900,9 +2870,6 @@ namespace Google.Protobuf.Struct {
       }
       if (other.SkillLevel != 0) {
         SkillLevel = other.SkillLevel;
-      }
-      if (other.PlayAnimName.Length != 0) {
-        PlayAnimName = other.PlayAnimName;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2935,10 +2902,6 @@ namespace Google.Protobuf.Struct {
             SkillLevel = input.ReadInt32();
             break;
           }
-          case 34: {
-            PlayAnimName = input.ReadString();
-            break;
-          }
         }
       }
     #endif
@@ -2968,10 +2931,6 @@ namespace Google.Protobuf.Struct {
           }
           case 24: {
             SkillLevel = input.ReadInt32();
-            break;
-          }
-          case 34: {
-            PlayAnimName = input.ReadString();
             break;
           }
         }
@@ -3207,241 +3166,6 @@ namespace Google.Protobuf.Struct {
           }
           case 16: {
             SkillLevel = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class SkillPointInfo : pb::IMessage<SkillPointInfo>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<SkillPointInfo> _parser = new pb::MessageParser<SkillPointInfo>(() => new SkillPointInfo());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<SkillPointInfo> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Google.Protobuf.Struct.StructReflection.Descriptor.MessageTypes[10]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SkillPointInfo() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SkillPointInfo(SkillPointInfo other) : this() {
-      activeSkillPoint_ = other.activeSkillPoint_;
-      passiveSkillPoint_ = other.passiveSkillPoint_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public SkillPointInfo Clone() {
-      return new SkillPointInfo(this);
-    }
-
-    /// <summary>Field number for the "activeSkillPoint" field.</summary>
-    public const int ActiveSkillPointFieldNumber = 1;
-    private int activeSkillPoint_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int ActiveSkillPoint {
-      get { return activeSkillPoint_; }
-      set {
-        activeSkillPoint_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "passiveSkillPoint" field.</summary>
-    public const int PassiveSkillPointFieldNumber = 2;
-    private int passiveSkillPoint_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int PassiveSkillPoint {
-      get { return passiveSkillPoint_; }
-      set {
-        passiveSkillPoint_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as SkillPointInfo);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(SkillPointInfo other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (ActiveSkillPoint != other.ActiveSkillPoint) return false;
-      if (PassiveSkillPoint != other.PassiveSkillPoint) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (ActiveSkillPoint != 0) hash ^= ActiveSkillPoint.GetHashCode();
-      if (PassiveSkillPoint != 0) hash ^= PassiveSkillPoint.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (ActiveSkillPoint != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(ActiveSkillPoint);
-      }
-      if (PassiveSkillPoint != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(PassiveSkillPoint);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ActiveSkillPoint != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(ActiveSkillPoint);
-      }
-      if (PassiveSkillPoint != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(PassiveSkillPoint);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (ActiveSkillPoint != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ActiveSkillPoint);
-      }
-      if (PassiveSkillPoint != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PassiveSkillPoint);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(SkillPointInfo other) {
-      if (other == null) {
-        return;
-      }
-      if (other.ActiveSkillPoint != 0) {
-        ActiveSkillPoint = other.ActiveSkillPoint;
-      }
-      if (other.PassiveSkillPoint != 0) {
-        PassiveSkillPoint = other.PassiveSkillPoint;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            ActiveSkillPoint = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            PassiveSkillPoint = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            ActiveSkillPoint = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            PassiveSkillPoint = input.ReadInt32();
             break;
           }
         }

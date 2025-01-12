@@ -27,7 +27,8 @@
       "effectDelayRatio": 0.4,
       "comboTime": 1,
       "prefabName": "GuardianNormalSkill",
-      "hitPrefabName": "GuardianNormalSkillHit"
+      "hitPrefabName": "GuardianNormalSkillHit",
+      "InitLevel": 1
     },
     {
       "templateId": 2,
@@ -56,7 +57,8 @@
       "effectDelayRatio": 0.4,
       "comboTime": 1,
       "prefabName": "GuardianNormalSkill2",
-      "hitPrefabName": "GuardianNormalSkillHit"
+      "hitPrefabName": "GuardianNormalSkillHit",
+      "InitLevel": 1
     },
     {
       "templateId": 3,
@@ -85,7 +87,8 @@
       "effectDelayRatio": 0.4,
       "comboTime": 1,
       "prefabName": "GuardianNormalSkill3",
-      "hitPrefabName": "GuardianNormalSkillHit"
+      "hitPrefabName": "GuardianNormalSkillHit",
+      "InitLevel": 1
     },
     {
       "templateId": 100,
@@ -111,6 +114,7 @@
       "animTime": 0.33,
       "effectDelayRatio": 0,
       "comboTime": 0,
+      "InitLevel": 1,
       "iconName": "GuardianActiveA_sprite"
     },
     {
@@ -138,6 +142,7 @@
       "animTime": 0.66,
       "effectDelayRatio": 0.5,
       "comboTime": 0,
+      "InitLevel": 1,
       "iconName": "GuardianActiveB_sprite"
     },
     {
@@ -164,39 +169,48 @@
       "animTime": 0.66,
       "effectDelayRatio": 0.5,
       "comboTime": 0,
+      "InitLevel": 1,
       "iconName": "GuardianActiveC_sprite"
     },
     {
       "templateId": 201,
-      "skillName": "위자드 기본공격"
+      "skillName": "위자드 기본공격",
+      "InitLevel": 1
     },
     {
       "templateId": 202,
-      "skillName": "불비"
+      "skillName": "불비",
+      "InitLevel": 1
     },
     {
       "templateId": 203,
-      "skillName": "빙결화"
+      "skillName": "빙결화",
+      "InitLevel": 1
     },
     {
       "templateId": 204,
-      "skillName": "낙뢰"
+      "skillName": "낙뢰",
+      "InitLevel": 1
     },
     {
       "templateId": 401,
-      "skillName": "프리스트 기본공격"
+      "skillName": "프리스트 기본공격",
+      "InitLevel": 1
     },
     {
       "templateId": 402,
-      "skillName": "힐"
+      "skillName": "힐",
+      "InitLevel": 1
     },
     {
       "templateId": 403,
-      "skillName": "파워 업"
+      "skillName": "파워 업",
+      "InitLevel": 1
     },
     {
       "templateId": 404,
-      "skillName": "프레이"
+      "skillName": "프레이",
+      "InitLevel": 1
     },
     {
       "templateId": 600,
@@ -222,6 +236,7 @@
       "comboTime": 0,
       "IsMoveSkill": true,
       "CanCancel": true,
+      "InitLevel": 1,
       "dist": 4,
       "iconName": "HeroDash_sprite"
     }

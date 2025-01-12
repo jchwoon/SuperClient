@@ -18,7 +18,7 @@ public class SkillRegisterSlot : BaseUI
     Action<SkillData, SkillRegisterSlot> _slotClickEvent;
     Action _slotChangeEvent;
     Func<ESkillSlotType, bool> _checkDuplicateEvent;
-    public SkillData SkillData { get; private set; }
+    public ActiveSkillData SkillData { get; private set; }
     protected override void Awake()
     {
         Bind<Image>(typeof(Images));
@@ -38,7 +38,7 @@ public class SkillRegisterSlot : BaseUI
 
     public void SetInfo(int templateId)
     {
-        Managers.DataManager.SkillDict.TryGetValue(templateId, out SkillData skillData);
+        Managers.DataManager.ActiveSkillDict.TryGetValue(templateId, out ActiveSkillData skillData);
         SkillData = skillData;
         if (skillData != null)
         {
@@ -70,7 +70,7 @@ public class SkillRegisterSlot : BaseUI
         }
     }
 
-    private SkillData CheckValidAndGetSkillData(PointerEventData eventData)
+    private ActiveSkillData CheckValidAndGetSkillData(PointerEventData eventData)
     {
         if (eventData.pointerDrag == null)
             return null;
@@ -82,7 +82,11 @@ public class SkillRegisterSlot : BaseUI
         if (_checkDuplicateEvent.Invoke(slot.SkillData.SkillSlotType))
             return null;
 
-        return slot.SkillData;
+        ActiveSkillData activeSkillData = slot.SkillData as ActiveSkillData;
+        if (activeSkillData == null)
+            return null;
+
+        return activeSkillData;
     }
 
     public void Clear()

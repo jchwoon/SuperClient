@@ -7,16 +7,16 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public class SkillComponent
 {
     Dictionary<int, BaseSkill> _skills = new Dictionary<int, BaseSkill>();
+    Dictionary<int, ActiveSkill> _activeSkills = new Dictionary<int, ActiveSkill>();
+    Dictionary<int, PassiveSkill> _passiveSkills = new Dictionary<int, PassiveSkill>();
     public int NormalSkillId { get; private set; }
     public int DashSkillId { get; private set; }
     public bool isUsingSkill { get; set; }
-    public int ActiveSkillPoint { get; private set; }
-    public int PassiveSkillPoint { get; private set; }
+    public int SkillPoint { get; private set; }
 
     public void InitSkill(Dictionary<int, int> skills)
     {
@@ -28,35 +28,47 @@ public class SkillComponent
                     continue;
 
                 BaseSkill skill = null;
-                switch (skillData.SkillProjectileType)
+                switch (skillData.SkillType)
                 {
-                    case ESkillProjectileType.None:
-                        skill = new NonProjectileSkill(s.Key, Managers.ObjectManager.MyHero, skillData, s.Value);
+                    case ESkillType.Active:
+                        ActiveSkillData activeSkillData = (ActiveSkillData)skillData;
+                        if (activeSkillData.SkillProjectileType == ESkillProjectileType.None)
+                        {
+                            skill = new NonProjectileSkill(s.Key, Managers.ObjectManager.MyHero, activeSkillData, s.Value);
+                        }
+                        //ToDo Projectile
+                        _activeSkills.Add(s.Key, (ActiveSkill)skill);
+                        if (skill.SkillData.SkillSlotType == ESkillSlotType.Normal)
+                            NormalSkillId = skill.TemplateId;
+                        if (skill.SkillData.SkillSlotType == ESkillSlotType.Dash)
+                            DashSkillId = skill.TemplateId;
+                        break;
+                    case ESkillType.Passive:
+                        PassiveSkillData passiveSkillData = (PassiveSkillData)skillData;
+                        skill = new PassiveSkill(s.Key, Managers.ObjectManager.MyHero, passiveSkillData, s.Value);
+                        _passiveSkills.Add(s.Key, (PassiveSkill)skill);
                         break;
                 }
                 if (skill != null)
+                {
                     _skills.Add(s.Key, skill);
-                if (skill.SkillData.SkillSlotType == ESkillSlotType.Normal)
-                    NormalSkillId = skill.TemplateId;
-                else if (skill.SkillData.SkillSlotType == ESkillSlotType.Dash)
-                    DashSkillId = skill.TemplateId;
+                }
             }
         }
     }
 
-    public void InitSkillPoint(int activePoint, int passivePoint)
+    public void InitSkillPoint(int point)
     {
-        SetSkillPoint(ESkillType.Active, activePoint);
-        SetSkillPoint(ESkillType.Passive, passivePoint);
+        SetSkillPoint(point);
     }
 
     public bool CheckCanUseSkill(int templatedId)
     {
-        BaseSkill skill = GetSkillById(templatedId);
+        ActiveSkill skill = GetActiveSkillById(templatedId);
         if (skill == null)
             return false;
 
-        if (skill.SkillData.CanCancel == false && isUsingSkill)
+        if (skill.ActiveSkillData.CanCancel == false && isUsingSkill)
             return false;
 
         if (skill.CheckCanUseSkill() != ESkillFailReason.None)
@@ -69,21 +81,31 @@ public class SkillComponent
     public void LevelUp(int prevLevel, int currentLevel)
     {
         int increasePoint = currentLevel - prevLevel;
-        ESkillType active = ESkillType.Active;
-        ESkillType passive = ESkillType.Passive;
 
-        SetSkillPoint(active, GetSkillPointBySkillType(active) + increasePoint);
-        SetSkillPoint(passive, GetSkillPointBySkillType(passive) + increasePoint);
+        SetSkillPoint(increasePoint);
 
         Managers.EventBus.InvokeEvent(Enums.EventType.UpdateSkill);
     }
 
     #region Get / Set
 
+    public List<BaseSkill> GetAllSkills()
+    {
+        return _skills.Values.ToList();
+    }
     public BaseSkill GetSkillById(int templateId)
     {
         BaseSkill skill;
         if (_skills.TryGetValue(templateId, out skill) == false)
+            return null;
+
+        return skill;
+    }
+
+    public ActiveSkill GetActiveSkillById(int templateId)
+    {
+        ActiveSkill skill;
+        if (_activeSkills.TryGetValue(templateId, out skill) == false)
             return null;
 
         return skill;
@@ -103,17 +125,9 @@ public class SkillComponent
         return GetSkillById(templatedId).CurrentSkillLevel;
     }
 
-    public int GetSkillPointBySkillType(ESkillType skillType)
+    public void SetSkillPoint(int point)
     {
-        return skillType == ESkillType.Active ? ActiveSkillPoint : PassiveSkillPoint;
-    }
-
-    public void SetSkillPoint(ESkillType skillType, int point)
-    {
-        if (skillType == ESkillType.Active)
-            ActiveSkillPoint = point;
-        if (skillType == ESkillType.Passive)
-            PassiveSkillPoint = point;
+        SkillPoint = point;
     }
     #endregion
 
@@ -126,7 +140,7 @@ public class SkillComponent
         if (skill.CheckCanLevelUp(usePoint) == false)
             return;
         //스킬 포인트가 유효한지
-        if (GetSkillPointBySkillType(skill.SkillData.SkillType) < usePoint)
+        if (SkillPoint < usePoint)
             return;
 
         SendLevelUpPacket(templatedId);
@@ -139,14 +153,13 @@ public class SkillComponent
         Managers.NetworkManager.Send(levelUpPacket);
     }
 
-    public void SendResetPointPacket(ESkillType skillType)
+    public void SendResetPointPacket()
     {
         ReqInitSkillPointToS initSkillPointPacket = new ReqInitSkillPointToS();
-        initSkillPointPacket.SkillType = skillType;
         Managers.NetworkManager.Send(initSkillPointPacket);
     }
 
-    public void HandleUpdateSkillLevelAndPoint(List<SkillLevelInfo> levelInfos, int activePoint, int passivePoint, int cost)
+    public void HandleUpdateSkillLevelAndPoint(List<SkillLevelInfo> levelInfos, int point, int cost)
     {
         foreach (SkillLevelInfo levelInfo in levelInfos)
         {
@@ -155,8 +168,7 @@ public class SkillComponent
             skill.UpdateSkillLevel(levelInfo.SkillLevel);
         }
 
-        SetSkillPoint(ESkillType.Active, activePoint);
-        SetSkillPoint(ESkillType.Passive, passivePoint);
+        SetSkillPoint(point);
 
         MyHero hero = Managers.ObjectManager.MyHero;
         hero.CurrencyComponent.RemoveGold(cost);

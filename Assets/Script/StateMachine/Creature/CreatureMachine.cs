@@ -28,7 +28,7 @@ public class CreatureMachine : StateMachine
         CheckAndSetState();
     }
 
-    public override void UseSkill(SkillData skillData, Creature target, ResUseSkillToC skillPacket)
+    public override void UseSkill(ActiveSkillData skillData, Creature target, ResUseSkillToC skillPacket)
     {
         if (skillData == null || target == null)
             return;
@@ -40,7 +40,7 @@ public class CreatureMachine : StateMachine
             Vector3 destPos = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);
             CoroutineHelper.Instance.StartHelperCoroutine(CoMoveFromSkillData(Owner, skillData, destPos));
         }
-        Owner.Animator.Play(skillPacket.SkillInfo.PlayAnimName);
+        Owner.Animator.Play(skillData.AnimName);
         //스킬을 썻을 때 위치가 변하는 스킬이면 위치 동기화 처리
         CreatureState = ECreatureState.Skill;
     }

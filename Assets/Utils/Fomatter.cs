@@ -21,7 +21,8 @@ public class Fomatter
         }
         if (IsValidateOldValue(skillDescBuilder.ToString(), "{maxEntityCount}"))
         {
-            skillDescBuilder.Replace("{maxEntityCount}", skillData.MaxEntityCount.ToString());
+            ActiveSkillData activeSkillData = (ActiveSkillData)skillData;
+            skillDescBuilder.Replace("{maxEntityCount}", activeSkillData.MaxEntityCount.ToString());
         }
         if (IsValidateOldValue(skillDescBuilder.ToString(), "{addValue}"))
         {
@@ -31,11 +32,11 @@ public class Fomatter
         return skillDescBuilder.ToString();
     }
 
-    public static string FormatSkillCost(SkillData skillData)
+    public static string FormatSkillCost(ActiveSkillData skillData)
     {
         return $"MP {skillData.CostMp}소비";
     }
-    public static string FormatSkillCool(SkillData skillData)
+    public static string FormatSkillCool(ActiveSkillData skillData)
     {
         return $"재사용 대기시간 {skillData.CoolTime}초";
     }

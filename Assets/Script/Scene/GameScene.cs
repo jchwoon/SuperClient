@@ -31,7 +31,7 @@ public class GameScene : BaseScene
             {
                 myHero.Inventory.InitInventory(packet.Items.ToList());
                 myHero.SkillComponent.InitSkill(packet.Skills.ToDictionary(kvp => kvp.SkillId, kvp => kvp.SkillLevel));
-                myHero.SkillComponent.InitSkillPoint(packet.SkillPointInfo.ActiveSkillPoint, packet.SkillPointInfo.PassiveSkillPoint);
+                myHero.SkillComponent.InitSkillPoint(packet.SkillPoint);
 
                 GameSceneUI gSceneUI = Managers.UIManager.ShowSceneUI<GameSceneUI>();
                 gSceneUI.Refresh();

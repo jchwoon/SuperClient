@@ -13,66 +13,30 @@ public class SkillListUI : BaseUI
 {
     enum GameObjects
     {
-        SkillType,
-        ActiveSkillContent,
-        ActiveTab,
-        PassiveTab,
-        ActivePointInitialBtn,
-        PassivePointInitialBtn
+        SkillContent,
+        PointInitialBtn,
     }
 
     enum Texts
     {
-        ActiveSkillPointTxt,
-        PassiveSkillPointTxt
+        SkillPointTxt,
     }
 
-    enum Toggles
-    {
-        ActiveToggle,
-        PassiveToggle
-    }
-
-    GameObject _activeSkillContent;
-    GameObject _activeSkillTab;
-    GameObject _passiveSkillTab;
-
-    Toggle _activeToggle;
-    Toggle _passiveToggle;
-
-    List<SkillData> _activeSkills;
-    List<SkillData> _passiveSkills;
+    GameObject _skillContent;
 
     Action<SkillData> _slotClickEvent;
     Action _skillRegisterEvent;
     Action<Sprite> _slotBeginDragEvent;
     Action<Vector2> _slotDragEvent;
 
-    Dictionary<ESkillSlotType, SkillData> _skillsSortBySlotType = new Dictionary<ESkillSlotType, SkillData>(3)
-    {
-        {ESkillSlotType.Active1, null },
-        {ESkillSlotType.Active2, null },
-        {ESkillSlotType.Active3, null },
-        {ESkillSlotType.Active4, null },
-    };
-
     protected override void Awake()
     {
         Bind<GameObject>(typeof(GameObjects));
-        Bind<Toggle>(typeof(Toggles));
         Bind<TMP_Text>(typeof(Texts));
 
-        _activeToggle = Get<Toggle>((int)Toggles.ActiveToggle);
-        _passiveToggle = Get<Toggle>((int)Toggles.PassiveToggle);
+        _skillContent = Get<GameObject>((int)GameObjects.SkillContent);
 
-        _activeSkillContent = Get<GameObject>((int)GameObjects.ActiveSkillContent);
-        _activeSkillTab = Get<GameObject>((int)GameObjects.ActiveTab);
-        _passiveSkillTab = Get<GameObject>((int)GameObjects.PassiveTab);
-
-        BindEvent(_activeToggle.gameObject, OnToggleClicked);
-        BindEvent(_passiveToggle.gameObject, OnToggleClicked);
-        BindEvent(Get<GameObject>((int)GameObjects.ActivePointInitialBtn), (_) => { OnPointInitialClicked(ESkillType.Active); });
-        BindEvent(Get<GameObject>((int)GameObjects.PassivePointInitialBtn), (_) => { OnPointInitialClicked(ESkillType.Passive); });
+        BindEvent(Get<GameObject>((int)GameObjects.PointInitialBtn), (_) => { OnPointInitialClicked(); });
     }
 
     protected override void OnEnable()
@@ -89,40 +53,29 @@ public class SkillListUI : BaseUI
 
     public void Refresh()
     {
-        Clear();
         RefreshSkillPoint();
-        if (_activeSkills == null || _passiveSkills == null)
-        {
-            RegisterAllSkillByClassType();
-        }
-
-        SetSkillByToggleType();
+        RefreshSkillInfo();
     }
 
-    private void SetSkillByToggleType()
+    private void RefreshSkillInfo()
     {
-        if (_activeToggle.isOn)
-        {
-            _activeSkillTab.SetActive(true);
-            int cnt = 0;
-            foreach (SkillData skillData in _skillsSortBySlotType.Values)
-            {
-                if (skillData == null) continue;
-                GameObject go = _activeSkillContent.transform.GetChild(cnt).gameObject;
-                go.SetActive(true);
-                SkillSlot slot = go.GetComponent<SkillSlot>();
-                slot.SetInfo(skillData, _slotClickEvent, _slotBeginDragEvent, _slotDragEvent, _skillRegisterEvent);
-                cnt++;
-            }
-
+        SkillComponent skillComponent = Utils.GetMySkillComponent();
+        if (skillComponent == null)
             return;
+        List<BaseSkill> skills = skillComponent.GetAllSkills();
+        int cnt = 0;
+        foreach (BaseSkill skill in skills)
+        {
+            if ((int)skill.SkillData.SkillSlotType <= (int)ESkillSlotType.Dash) continue;
+
+            GameObject go = _skillContent.transform.GetChild(cnt).gameObject;
+            go.SetActive(true);
+            SkillSlot slot = go.GetComponent<SkillSlot>();
+            slot.SetInfo(skill.SkillData, _slotClickEvent, _slotBeginDragEvent, _slotDragEvent, _skillRegisterEvent);
+            cnt++;
         }
 
-        if (_passiveToggle.isOn)
-        {
-            _passiveSkillTab.SetActive(true);
-            return;
-        }
+        return;
     }
 
     public void RegisterEvent(Action<SkillData> slotClickEvent, Action<Sprite> slotBeginDragEvent, Action<Vector2> slotDragEvent, Action skillRegisterEvent)
@@ -133,34 +86,13 @@ public class SkillListUI : BaseUI
         _skillRegisterEvent = skillRegisterEvent;
     }
 
-    private void RegisterAllSkillByClassType()
-    {
-        MyHero hero = Managers.ObjectManager.MyHero;
-        if (hero == null)
-            return;
-
-        EHeroClassType classType = hero.HeroInfo.LobbyHeroInfo.ClassType;
-        List<SkillData> skills = Managers.DataManager.HeroSkillDict.Values.Where(s => s.ClassType == classType).ToList();
-        _activeSkills = skills.Where(s => s.SkillType == ESkillType.Active).ToList();
-        _passiveSkills = skills.Where(s => s.SkillType == ESkillType.Passive).ToList();
-
-        foreach (SkillData skillData in _activeSkills)
-        {
-            if (_skillsSortBySlotType.ContainsKey(skillData.SkillSlotType))
-            {
-                _skillsSortBySlotType[skillData.SkillSlotType] = skillData;
-            }
-        }
-    }
-
     private void RefreshSkillPoint()
     {
         SkillComponent skillComponent = Utils.GetMySkillComponent();
         if (skillComponent == null)
             return;
 
-        Get<TMP_Text>((int)Texts.ActiveSkillPointTxt).text = skillComponent.ActiveSkillPoint.ToString();
-        Get<TMP_Text>((int)Texts.PassiveSkillPointTxt).text = skillComponent.PassiveSkillPoint.ToString();
+        Get<TMP_Text>((int)Texts.SkillPointTxt).text = skillComponent.SkillPoint.ToString();
     }
 
     private void OnToggleClicked(PointerEventData eventData)
@@ -168,7 +100,7 @@ public class SkillListUI : BaseUI
         Refresh();
     }
 
-    private void OnPointInitialClicked(ESkillType skillType)
+    private void OnPointInitialClicked()
     {
         MyHero hero = Managers.ObjectManager.MyHero;
         if (hero == null)
@@ -189,14 +121,8 @@ public class SkillListUI : BaseUI
                 SkillComponent skillComponent = Utils.GetMySkillComponent();
                 if (skillComponent == null)
                     return;
-                skillComponent.SendResetPointPacket(skillType);
+                skillComponent.SendResetPointPacket();
             });
         }
-    }
-
-    private void Clear()
-    {
-        _activeSkillTab.SetActive(false);
-        _passiveSkillTab.SetActive(false);
     }
 }

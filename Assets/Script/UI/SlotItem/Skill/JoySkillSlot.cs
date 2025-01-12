@@ -19,11 +19,11 @@ public class JoySkillSlot : BaseUI
     {
         CoolTimeTxt
     }
-    public SkillData SkillData { get; private set; }
+    public ActiveSkillData SkillData { get; private set; }
     Image _skillImage;
     Image _skillCoolImage;
     TMP_Text _coolTimeTxt;
-    BaseSkill _skill;
+    ActiveSkill _skill;
     protected override void Awake()
     {
         Bind<Image>(typeof(Images));
@@ -54,7 +54,7 @@ public class JoySkillSlot : BaseUI
         }
     }
 
-    public void SetInfo(SkillData skillData)
+    public void SetInfo(ActiveSkillData skillData)
     {
         if (skillData == null)
         {
@@ -84,7 +84,7 @@ public class JoySkillSlot : BaseUI
         SkillComponent skillComponent = Utils.GetMySkillComponent();
         if (skillComponent != null)
         {
-            _skill = skillComponent.GetSkillById(skillData.TemplateId);
+            _skill = skillComponent.GetActiveSkillById(skillData.TemplateId);
         }
     }
 

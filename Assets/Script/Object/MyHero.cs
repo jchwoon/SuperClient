@@ -93,7 +93,7 @@ public class MyHero : Hero
     {
         if (SkillComponent.isUsingSkill)
             return;
-        BaseSkill normalSkill = SkillComponent.GetSkillById(SkillComponent.NormalSkillId);
+        ActiveSkill normalSkill = SkillComponent.GetActiveSkillById(SkillComponent.NormalSkillId);
         if (normalSkill.CheckCanUseSkill() == ESkillFailReason.None)
         {
             BaseObject target = MyHeroStateMachine.Target;

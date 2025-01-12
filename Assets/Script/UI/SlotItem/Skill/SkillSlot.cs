@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Google.Protobuf.Enum;
 
 public class SkillSlot : BaseUI
 {
@@ -15,7 +16,6 @@ public class SkillSlot : BaseUI
     }
     enum GameObjects
     {
-        SkillIcon,
         LevelUpBtn
     }
     enum Texts
@@ -40,7 +40,6 @@ public class SkillSlot : BaseUI
         Bind<GameObject>(typeof(GameObjects));
         Bind<TMP_Text>(typeof(Texts));
 
-        GameObject skillIcon = Get<GameObject>((int)GameObjects.SkillIcon);
         GameObject levelUpBtn = Get<GameObject>((int)GameObjects.LevelUpBtn);
         _levelUpBtn = levelUpBtn.GetComponent<Button>();
 
@@ -112,7 +111,7 @@ public class SkillSlot : BaseUI
 
     private void OnSlotBeginDrag(PointerEventData eventData)
     {
-        if (_slotBeginDragEvent != null)
+        if (_slotBeginDragEvent != null && SkillData.SkillType == ESkillType.Active)
         {
             _slotBeginDragEvent.Invoke(_skillImage.sprite);
         }
@@ -120,7 +119,7 @@ public class SkillSlot : BaseUI
 
     private void OnSkillDrag(PointerEventData eventData)
     {
-        if (_slotDragEvent != null)
+        if (_slotDragEvent != null && SkillData.SkillType == ESkillType.Active)
         {
             _slotDragEvent.Invoke(eventData.position);
         }
@@ -128,7 +127,7 @@ public class SkillSlot : BaseUI
 
     private void OnSkillPointerUp(PointerEventData eventData)
     {
-        if (_skillRegisterAction != null)
+        if (_skillRegisterAction != null && SkillData.SkillType == ESkillType.Active)
         {
             _skillRegisterAction.Invoke();
         }

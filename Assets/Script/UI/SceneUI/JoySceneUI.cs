@@ -165,12 +165,12 @@ public class JoySceneUI : SceneUI
     {
         SkillComponent skill = Utils.GetMySkillComponent();
 
-        _joySkillSlots[0].SetInfo(skill.GetSkillDataById(skill.DashSkillId));
+        _joySkillSlots[0].SetInfo(skill.GetActiveSkillById(skill.DashSkillId).ActiveSkillData);
 
         for (int i = 1; i < _joySkillSlots.Length; i++)
         {
             int templateId = GameSettings.GetSkillSlotById(i-1);
-            SkillData skillData = skill.GetSkillDataById(templateId);
+            ActiveSkillData skillData = skill.GetActiveSkillById(templateId)?.ActiveSkillData;
 
             if (skillData == null) continue;
 
