@@ -15,21 +15,19 @@ public class SoundManager
     AudioSource _bgmSource;
     AudioSource _bgmSource2;
 
-    AudioSource _sfxSource;
+    AudioSource _systemSource;
 
     Enums.ESoundsType _currentBgmSource;
     Coroutine _crossFadeRoutine;
 
     const float CROSS_FADE_DURATION = 2.0f;
-    const int SFX_SIZE = 10;
+    public static readonly float MAX_VOLUME_VALUE = 100.0f;
 
     GameObject _soundRoot = null;
 
-    //public float bgmVolume = 0.1f;
-    //public float effectVolume = 0.1f;
+    float _effectVolume = 0.1f;
 
-
-
+    #region Init
     public void SoundInit()
     {
         if (_soundRoot == null)
@@ -54,14 +52,23 @@ public class SoundManager
 
                 _currentBgmSource = Enums.ESoundsType.BGM;
 
-                //SFX
-                GameObject sfxGo = new GameObject($"SFX");
-                sfxGo.transform.parent = _soundRoot.transform;
-                _sfxSource = sfxGo.AddComponent<AudioSource>();
+                float bgmVolume = GameSettings.GetSound(Enums.ESoundsType.BGM);
+                _bgmSource.volume = bgmVolume;
+                _bgmSource2.volume = bgmVolume;
+
+                //Effect
+                GameObject systemGo = new GameObject($"SystemEffect");
+                systemGo.transform.parent = _soundRoot.transform;
+                _systemSource = systemGo.AddComponent<AudioSource>();
+                _systemSource.volume = GameSettings.GetSound(Enums.ESoundsType.System);
+                SetEffectVolume(GameSettings.GetSound(Enums.ESoundsType.Effect));
             }
         }
     }
+    #endregion
 
+
+    #region BGM
     public void PlayBGM(string key)
     {
         AudioClip clip = LoadAudioClip(key);
@@ -78,8 +85,10 @@ public class SoundManager
         }
         _crossFadeRoutine = CoroutineHelper.Instance.StartHelperCoroutine(CoCrossFadeBGM(clip));
     }
+    #endregion
 
-    //2D SFX
+    #region SystemEffect 
+    //2D Effect
     public void PlaySFX(string key)
     {
         AudioClip clip = LoadAudioClip(key);
@@ -87,34 +96,25 @@ public class SoundManager
         if (clip == null)
             return;
 
-        _sfxSource.PlayOneShot(clip);
+        _systemSource.PlayOneShot(clip);
     }
-    //3D SFX
+    #endregion
+
+    #region Effect 3D Sound
+    //3D Effect
     public void PlaySFX(string key, Transform playPos = null)
     {
         AudioClip clip = LoadAudioClip(key);
-
-        if (clip == null)
-            return;
-
-        GameObject go = Managers.ResourceManager.Instantiate("SfxSource", isPool: true);
-
-        if (go == null)
-            return;
-
-        AudioSource audioSource = Utils.GetOrAddComponent<AudioSource>(go);
-
-        go.transform.position = playPos.position;
-        audioSource.clip = clip;
-        float clipLength = audioSource.clip.length;
-
-        audioSource.Play();
-
-        CoroutineHelper.Instance.StartHelperCoroutine(CoReserveDestroySource(go, clipLength));
+        Play3DEffect(clip, playPos);
     }
 
     public void PlaySFX(AudioClip clip, Transform playPos = null)
     {
+        Play3DEffect(clip, playPos);
+    }
+
+    private void Play3DEffect(AudioClip clip, Transform playPos = null)
+    {
         if (clip == null)
             return;
 
@@ -127,12 +127,15 @@ public class SoundManager
 
         go.transform.position = playPos.position;
         audioSource.clip = clip;
+        audioSource.volume = _effectVolume;
         float clipLength = audioSource.clip.length;
 
         audioSource.Play();
 
         CoroutineHelper.Instance.StartHelperCoroutine(CoReserveDestroySource(go, clipLength));
     }
+
+    #endregion
 
     public void PlayClick() { PlaySFX("Clicked"); }
     public void PlayDropped() { PlaySFX("Dropped"); }
@@ -181,15 +184,13 @@ public class SoundManager
 
         float process = 0.0f;
         float currentVolume = currentBgmSource.volume;
-        //Temp
-        float targetVolume = 1.0f;
 
         try
         {
             while (process < CROSS_FADE_DURATION)
             {
                 currentBgmSource.volume -= (currentVolume / CROSS_FADE_DURATION) * Time.deltaTime;
-                changedBgmSource.volume += (targetVolume / CROSS_FADE_DURATION) * Time.deltaTime;
+                changedBgmSource.volume += (currentVolume / CROSS_FADE_DURATION) * Time.deltaTime;
                 process += Time.deltaTime;
                 yield return null;
             }
@@ -197,7 +198,7 @@ public class SoundManager
         finally
         {
             currentBgmSource.volume = 0.0f;
-            changedBgmSource.volume = targetVolume;
+            changedBgmSource.volume = currentVolume;
             currentBgmSource.Stop();
         }
     }
@@ -208,14 +209,36 @@ public class SoundManager
         Managers.ResourceManager.Destroy(go, isPool: true);
     }
 
-    //public void SetBGMVolume(float volume)
-    //{
-    //    _bgmSource.volume = volume;
-    //    bgmVolume = volume;
-    //}
+    #region Get / Set
+    public void SetBGMVolume(float volume)
+    {
+        _bgmSource.volume = volume;
+        _bgmSource2.volume = volume;
+    }
 
-    //public void SetEffectVolume(float volume)
-    //{
-    //    effectVolume = volume;
-    //}
+    public void SetEffectVolume(float volume)
+    {
+        _effectVolume = volume;
+    }
+
+    public void SetSystemVolume(float volume)
+    {
+        _systemSource.volume = volume;
+    }
+
+    public int GetBGMVolume()
+    {
+        return (int)(_bgmSource.volume * MAX_VOLUME_VALUE);
+    }
+
+    public int GetEffectVolume()
+    {
+        return (int)(_effectVolume * MAX_VOLUME_VALUE);
+    }
+
+    public int GetSystemVolume()
+    {
+        return  (int)(_systemSource.volume * MAX_VOLUME_VALUE);
+    }
+    #endregion
 }

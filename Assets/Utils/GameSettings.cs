@@ -6,7 +6,8 @@ using System;
 
 public class GameSettings
 {
-    public static int GetSkillSlotTemplateId(int slotIndex)
+    #region Skill
+    public static int GetSkillSlotById(int slotIndex)
     {
         MyHero hero = Managers.ObjectManager.MyHero;
         if (hero == null)
@@ -24,4 +25,19 @@ public class GameSettings
         PlayerPrefs.SetInt($"{hero.Name}_SkillSlot_{slotIndex}", templateId);
         PlayerPrefs.Save();
     }
+    #endregion
+
+    #region Sound
+    public static float GetSound(Enums.ESoundsType soundType)
+    {
+        float ret = PlayerPrefs.GetInt($"Sound_{soundType}", 50) / SoundManager.MAX_VOLUME_VALUE;
+        return ret;
+    }
+
+    public static void SetSound(Enums.ESoundsType soundType, int volume)
+    {
+        PlayerPrefs.SetInt($"Sound_{soundType}", volume);
+        PlayerPrefs.Save();
+    }
+    #endregion
 }

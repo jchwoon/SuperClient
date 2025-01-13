@@ -25,7 +25,7 @@ public class Creature : BaseObject
         AnimData = new AnimationData();
         FloatingTextController = Utils.GetOrAddComponent<FloatingTextController>(gameObject);
         EffectComponent = new EffectComponent(this);
-
+        Stat = new StatComponent(this);
     }
     protected override void Start()
     {
@@ -105,8 +105,8 @@ public class Creature : BaseObject
     #region Network Receive
     public void HandleUseSkill(Creature owner, ResUseSkillToC skillPacket)
     {
-        SkillData skillData;
-        if (Managers.DataManager.SkillDict.TryGetValue(skillPacket.SkillInfo.SkillId, out skillData) == false)
+        ActiveSkillData skillData;
+        if (Managers.DataManager.ActiveSkillDict.TryGetValue(skillPacket.SkillInfo.SkillId, out skillData) == false)
             return;
 
         GameObject go = Managers.ObjectManager.FindById(skillPacket.SkillInfo.SkillTargetId);

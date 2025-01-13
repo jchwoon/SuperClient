@@ -133,9 +133,9 @@ public class ItemInfoTooltipUI : PopupUI
             foreach (AddStatInfo info in effect.AddStatValues)
             {
 
-                string valueTxt = info.Value > 0 ? $"+{info.Value}" : $"{info.Value}";
-                if (info.Multiplier == true)
-                    valueTxt = $"{info.Value}%";
+                string valueTxt = info.addValue[0] > 0 ? $"+{info.addValue[0]}" : $"{info.addValue[0]}";
+                //if (info.Multiplier == true)
+                //    valueTxt = $"{info.Value}%";
                 string builtTxt = $"{Utils.GetStatTypeText(info.StatType)} {valueTxt}";
                 _infoBox.transform.GetChild(count).GetComponent<DescSlot>().SetInfo(builtTxt);
                 count++;

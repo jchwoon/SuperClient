@@ -21,6 +21,7 @@ public class ParticleController : MonoBehaviour
     ParticleSystem _ps;
     ParticleInfo _info;
     Coroutine _particleLifeRoutine;
+    float _duration;
     private void Awake()
     {
         _ps = GetComponent<ParticleSystem>();
@@ -42,24 +43,39 @@ public class ParticleController : MonoBehaviour
     public void SetInfo(ParticleInfo info)
     {
         _info = info;
+        if (info.Duration == 0)
+        {
+            _duration = _ps.main.duration;
+        }
+        else
+        {
+            _duration = info.Duration;
+        }
         SetPos(info);
 
-        _particleLifeRoutine = StartCoroutine(CoDestroyParticle(info.Duration));
+        _particleLifeRoutine = StartCoroutine(CoDestroyParticle(_duration));
     }
 
     private void SetPos(ParticleInfo info)
     {
         InitTransform();
     }
+
     IEnumerator CoDestroyParticle(float duration)
     {
         float process = 0.0f;
-        while (process < duration)
+        try
         {
-            process += Time.deltaTime;
-            yield return null;
+            while (process < duration)
+            {
+                process += Time.deltaTime;
+                yield return null;
+            }
         }
-        Managers.ResourceManager.Destroy(gameObject, isPool : true);
+        finally
+        {
+            Managers.ResourceManager.Destroy(gameObject, isPool: true);
+        }
     }
 
     private void InitTransform()

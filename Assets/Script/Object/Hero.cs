@@ -44,7 +44,6 @@ public class Hero : Creature
     {
         HeroData = heroData;
         HeroInfo = info;
-        Stat = new StatComponent(this);
         Stat.InitStat(info.CreatureInfo.StatInfo);
         Name = info.LobbyHeroInfo.Nickname;
         SetObjInfo(info.CreatureInfo.ObjectInfo);

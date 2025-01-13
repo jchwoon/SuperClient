@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Google.Protobuf.Enum;
 
 public class SkillSlot : BaseUI
 {
@@ -15,7 +16,6 @@ public class SkillSlot : BaseUI
     }
     enum GameObjects
     {
-        SkillIcon,
         LevelUpBtn
     }
     enum Texts
@@ -40,16 +40,26 @@ public class SkillSlot : BaseUI
         Bind<GameObject>(typeof(GameObjects));
         Bind<TMP_Text>(typeof(Texts));
 
-        GameObject skillIcon = Get<GameObject>((int)GameObjects.SkillIcon);
         GameObject levelUpBtn = Get<GameObject>((int)GameObjects.LevelUpBtn);
         _levelUpBtn = levelUpBtn.GetComponent<Button>();
 
         BindEvent(levelUpBtn, OnLevelUpBtnClicked);
         BindEvent(gameObject, OnSlotClicked);
-        //BindEvent(skillIcon, OnSlotClicked);
         BindEvent(gameObject, OnSlotBeginDrag, Enums.TouchEvent.BeginDrag);
         BindEvent(gameObject, OnSkillDrag, Enums.TouchEvent.Drag);
         BindEvent(gameObject, OnSkillPointerUp, Enums.TouchEvent.EndDrag);
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        Managers.EventBus.AddEvent(Enums.EventType.UpdateSkill, Refresh);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Managers.EventBus.RemoveEvent(Enums.EventType.UpdateSkill, Refresh);
     }
 
     public void SetInfo(SkillData skillData, Action<SkillData> slotClickAction, Action<Sprite> slotBeginDragEvent = null, Action<Vector2> slotDragEvent = null, Action skillRegisterAction = null)
@@ -65,16 +75,18 @@ public class SkillSlot : BaseUI
         _skillImage = Get<Image>((int)Images.SkillImage);
         _skillImage.sprite = Managers.ResourceManager.GetResource<Sprite>(skillData.IconName);
         _skillImage.gameObject.SetActive(true);
+
+        Refresh();
     }
 
-    private void Refresh()
+    public void Refresh()
     {
         SkillComponent skillComponent = Utils.GetMySkillComponent();
         if (skillComponent != null)
         {
             BaseSkill skill = skillComponent.GetSkillById(SkillData.TemplateId);
-            Get<TMP_Text>((int)Texts.SkillLvTxt).text = skill.SkillLevel.ToString();
-            if (SkillData.MaxLevel <= skill.SkillLevel)
+            Get<TMP_Text>((int)Texts.SkillLvTxt).text = skill.CurrentSkillLevel.ToString();
+            if (SkillData.MaxLevel <= skill.CurrentSkillLevel)
             {
                 _levelUpBtn.interactable = false;
             }
@@ -83,13 +95,13 @@ public class SkillSlot : BaseUI
                 _levelUpBtn.interactable = true;
             }
         }
-
     }
 
     private void OnLevelUpBtnClicked(PointerEventData eventData)
     {
         Managers.SoundManager.PlayClick();
-        //Send Packet
+        SkillComponent skillComponent = Utils.GetMySkillComponent();
+        skillComponent.CheckAndSendLevelUpPacket(SkillData.TemplateId);
     }
 
     private void OnSlotClicked(PointerEventData eventData)
@@ -99,7 +111,7 @@ public class SkillSlot : BaseUI
 
     private void OnSlotBeginDrag(PointerEventData eventData)
     {
-        if (_slotBeginDragEvent != null)
+        if (_slotBeginDragEvent != null && SkillData.SkillType == ESkillType.Active)
         {
             _slotBeginDragEvent.Invoke(_skillImage.sprite);
         }
@@ -107,7 +119,7 @@ public class SkillSlot : BaseUI
 
     private void OnSkillDrag(PointerEventData eventData)
     {
-        if (_slotDragEvent != null)
+        if (_slotDragEvent != null && SkillData.SkillType == ESkillType.Active)
         {
             _slotDragEvent.Invoke(eventData.position);
         }
@@ -115,7 +127,7 @@ public class SkillSlot : BaseUI
 
     private void OnSkillPointerUp(PointerEventData eventData)
     {
-        if (_skillRegisterAction != null)
+        if (_skillRegisterAction != null && SkillData.SkillType == ESkillType.Active)
         {
             _skillRegisterAction.Invoke();
         }

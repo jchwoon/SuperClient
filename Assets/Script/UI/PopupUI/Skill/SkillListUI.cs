@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,93 +13,69 @@ public class SkillListUI : BaseUI
 {
     enum GameObjects
     {
-        SkillType,
-        ActiveSkillContent,
-        ActiveTab,
-        PassiveTab
+        SkillContent,
+        PointInitialBtn,
     }
 
-    enum Toggles
+    enum Texts
     {
-        ActiveToggle,
-        PassiveToggle
+        SkillPointTxt,
     }
 
-    GameObject _activeSkillContent;
-    GameObject _activeSkillTab;
-    GameObject _passiveSkillTab;
-
-    Toggle _activeToggle;
-    Toggle _passiveToggle;
-
-    List<SkillData> _activeSkills;
-    List<SkillData> _passiveSkills;
+    GameObject _skillContent;
 
     Action<SkillData> _slotClickEvent;
     Action _skillRegisterEvent;
     Action<Sprite> _slotBeginDragEvent;
     Action<Vector2> _slotDragEvent;
 
-    Dictionary<ESkillSlotType, SkillData> _skillsSortBySlotType = new Dictionary<ESkillSlotType, SkillData>(3)
-    {
-        {ESkillSlotType.Active1, null },
-        {ESkillSlotType.Active2, null },
-        {ESkillSlotType.Active3, null },
-        {ESkillSlotType.Active4, null },
-    };
-
     protected override void Awake()
     {
         Bind<GameObject>(typeof(GameObjects));
-        Bind<Toggle>(typeof(Toggles));
+        Bind<TMP_Text>(typeof(Texts));
 
-        _activeToggle = Get<Toggle>((int)Toggles.ActiveToggle);
-        _passiveToggle = Get<Toggle>((int)Toggles.PassiveToggle);
+        _skillContent = Get<GameObject>((int)GameObjects.SkillContent);
 
-        _activeSkillContent = Get<GameObject>((int)GameObjects.ActiveSkillContent);
-        _activeSkillTab = Get<GameObject>((int)GameObjects.ActiveTab);
-        _passiveSkillTab = Get<GameObject>((int)GameObjects.PassiveTab);
+        BindEvent(Get<GameObject>((int)GameObjects.PointInitialBtn), (_) => { OnPointInitialClicked(); });
+    }
 
-        BindEvent(_activeToggle.gameObject, OnToggleClicked);
-        BindEvent(_passiveToggle.gameObject, OnToggleClicked);
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        Managers.EventBus.AddEvent(Enums.EventType.UpdateSkill, RefreshSkillPoint);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Managers.EventBus.RemoveEvent(Enums.EventType.UpdateSkill, RefreshSkillPoint);
     }
 
     public void Refresh()
     {
-        if (_activeSkills == null || _passiveSkills == null)
-        {
-            RegisterAllSkillByClassType();
-        }
-
-        SetSkillByToggleType();
+        RefreshSkillPoint();
+        RefreshSkillInfo();
     }
 
-    private void SetSkillByToggleType()
+    private void RefreshSkillInfo()
     {
-        if (_activeToggle.isOn)
-        {
-            _activeSkillTab.SetActive(true);
-            _passiveSkillTab.SetActive(false);
-            int cnt = 0;
-            foreach (SkillData skillData in _skillsSortBySlotType.Values)
-            {
-                if (skillData == null) continue;
-                GameObject go = _activeSkillContent.transform.GetChild(cnt).gameObject;
-                go.SetActive(true);
-                SkillSlot slot = go.GetComponent<SkillSlot>();
-                slot.SetInfo(skillData, _slotClickEvent, _slotBeginDragEvent, _slotDragEvent, _skillRegisterEvent);
-                cnt++;
-            }
-
+        SkillComponent skillComponent = Utils.GetMySkillComponent();
+        if (skillComponent == null)
             return;
+        List<BaseSkill> skills = skillComponent.GetAllSkills();
+        int cnt = 0;
+        foreach (BaseSkill skill in skills)
+        {
+            if ((int)skill.SkillData.SkillSlotType <= (int)ESkillSlotType.Dash) continue;
+
+            GameObject go = _skillContent.transform.GetChild(cnt).gameObject;
+            go.SetActive(true);
+            SkillSlot slot = go.GetComponent<SkillSlot>();
+            slot.SetInfo(skill.SkillData, _slotClickEvent, _slotBeginDragEvent, _slotDragEvent, _skillRegisterEvent);
+            cnt++;
         }
 
-        if (_passiveToggle.isOn)
-        {
-            _activeSkillTab.SetActive(false);
-            _passiveSkillTab.SetActive(true);
-            return;
-        }
+        return;
     }
 
     public void RegisterEvent(Action<SkillData> slotClickEvent, Action<Sprite> slotBeginDragEvent, Action<Vector2> slotDragEvent, Action skillRegisterEvent)
@@ -109,28 +86,43 @@ public class SkillListUI : BaseUI
         _skillRegisterEvent = skillRegisterEvent;
     }
 
-    private void RegisterAllSkillByClassType()
+    private void RefreshSkillPoint()
     {
-        MyHero hero = Managers.ObjectManager.MyHero;
-        if (hero == null)
+        SkillComponent skillComponent = Utils.GetMySkillComponent();
+        if (skillComponent == null)
             return;
 
-        EHeroClassType classType = hero.HeroInfo.LobbyHeroInfo.ClassType;
-        List<SkillData> skills = Managers.DataManager.HeroSkillDict.Values.Where(s => s.ClassType == classType).ToList();
-        _activeSkills = skills.Where(s => s.SkillType == ESkillType.Active).ToList();
-        _passiveSkills = skills.Where(s => s.SkillType == ESkillType.Passive).ToList();
-
-        foreach (SkillData skillData in _activeSkills)
-        {
-            if (_skillsSortBySlotType.ContainsKey(skillData.SkillSlotType))
-            {
-                _skillsSortBySlotType[skillData.SkillSlotType] = skillData;
-            }
-        }
+        Get<TMP_Text>((int)Texts.SkillPointTxt).text = skillComponent.SkillPoint.ToString();
     }
 
     private void OnToggleClicked(PointerEventData eventData)
     {
         Refresh();
+    }
+
+    private void OnPointInitialClicked()
+    {
+        MyHero hero = Managers.ObjectManager.MyHero;
+        if (hero == null)
+            return;
+
+        if (Managers.DataManager.CostDict.TryGetValue(hero.HeroData.SkillInitId, out CostData costData) == false)
+            return;
+
+        if (hero.CurrencyComponent.CheckEnoughCurrency(costData.CurrencyType, costData.CostValue) == false)
+        {
+            Managers.UIManager.ShowAlertPopup("Gold가 부족합니다.", Enums.AlertBtnNum.One);
+        }
+        else
+        {
+            Managers.UIManager.ShowAlertPopup($"정말로 초기화 하시겠습니까?\n초기화 비용 : {Fomatter.FromatCurrency(costData.CostValue)} Gold", Enums.AlertBtnNum.Two,
+            () =>
+            {
+                SkillComponent skillComponent = Utils.GetMySkillComponent();
+                if (skillComponent == null)
+                    return;
+                skillComponent.SendResetPointPacket();
+            });
+        }
     }
 }

@@ -33,11 +33,6 @@ public class EffectComponent
 
         ParticleController controller = Managers.ObjectManager.SpawnParticle(particleInfo);
         _effectParticles.Add(effectId, controller.gameObject);
-
-        //if (effectData.EffectDurationType == EEffectDurationType.Temporary)
-        //{
-
-        //}
     }
 
     public void ReleaseEffect(long effectId)

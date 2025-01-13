@@ -47,7 +47,7 @@ public class SkillRegisterUI : BaseUI
         for (int i = 0; i < slots.Length; i++)
         {
             SkillComponent skill = Utils.GetMySkillComponent();
-            slots[i].SetInfo(GameSettings.GetSkillSlotTemplateId(i));
+            slots[i].SetInfo(GameSettings.GetSkillSlotById(i));
             slots[i].RegisterEvent(OnSlotClicked, CheckDuplicateSkill, OnSlotChanged);
         }
     }

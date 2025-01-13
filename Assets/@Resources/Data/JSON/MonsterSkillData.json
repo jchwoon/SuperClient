@@ -14,7 +14,9 @@
       "coolTime": 0,
       "animTime": 1,
       "animParamName": "SkillA",
-      "effectId": 1001,
+      "effectIds": [
+        1001
+      ],
       "effectDelayRatio": 0.6,
       "comboTime": 0
     }

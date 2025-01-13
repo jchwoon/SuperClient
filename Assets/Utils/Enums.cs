@@ -47,20 +47,16 @@ public class Enums
 
     public enum EventType
     {
-        None,
         //Temp
         AtkBtnClick,
-        //Temp
-        DashBtnClick,
-
 
         ChangeStat,
         ChangeCurrency,
         ChangeGrowth,
         ChangeHUDInfo,
-        PickUpBtnClick,
         UpdateInventory,
-        UpdateSkillSet
+        UpdateSkillSet,
+        UpdateSkill
     }
 
     public enum SortingOrderInHUD
@@ -110,6 +106,7 @@ public class Enums
     {
         BGM,
         BGM2,
-        SFX
+        Effect,
+        System
     }
 }

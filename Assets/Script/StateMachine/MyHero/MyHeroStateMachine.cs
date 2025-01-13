@@ -18,8 +18,7 @@ public class MyHeroStateMachine : StateMachine
     public Vector2 MoveInput { get; private set; } = Vector2.zero;
     public MoveToS MovePacket { get; set; }
     public MyHero Owner { get; set; }
-    //스킬 요청에 대한 응답을 대기중인지
-    public bool isWaitSkillRes { get; set; } = false;
+
     public MyHeroStateMachine(MyHero myHero)
     {
         MovePacket = new MoveToS() { PosInfo = new PosInfo()};
@@ -66,12 +65,12 @@ public class MyHeroStateMachine : StateMachine
         if (CreatureState == ECreatureState.Die)
             return null;
 
-        List<Creature> creatures = Managers.ObjectManager.GetAllCreatures();
+        List<Monster> creatures = Managers.ObjectManager.GetAllMonsters();
         Creature target = null;
         float closestDist = float.MaxValue;
         foreach(Creature creature in creatures)
         {
-            //if (obj.Machine.CurrentState == null) continue;
+            if (creature.Machine == null || creature.Machine.CreatureState == ECreatureState.Die) continue;
             float dist = (creature.gameObject.transform.position - Owner.transform.position).sqrMagnitude;
             if (dist < closestDist)
             {
@@ -89,12 +88,12 @@ public class MyHeroStateMachine : StateMachine
     }
 
     //기본공격 포함
-    public override void UseSkill(SkillData skillData, Creature target, ResUseSkillToC skillPacket)
+    public override void UseSkill(ActiveSkillData skillData, Creature target, ResUseSkillToC skillPacket)
     {
         if (skillData == null)
             return;
 
-        BaseSkill skill = Owner.SkillComponent.GetSkillById(skillPacket.SkillInfo.SkillId);
+        ActiveSkill skill = Owner.SkillComponent.GetActiveSkillById(skillPacket.SkillInfo.SkillId);
         if (target != null)
             Owner.transform.LookAt(target.transform);
 
@@ -104,7 +103,7 @@ public class MyHeroStateMachine : StateMachine
             Vector3 destPos = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);
             CoroutineHelper.Instance.StartHelperCoroutine(CoMoveFromSkillData(Owner, skillData, destPos));
         }
-        skill.UseSkill(skillPacket.SkillInfo.PlayAnimName);
+        skill.UseSkill(skillData.AnimName);
 
 
         ChangeState(SkillState);

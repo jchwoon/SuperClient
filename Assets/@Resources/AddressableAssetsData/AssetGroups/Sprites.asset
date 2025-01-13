@@ -29,6 +29,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 498f84560c1f9f84aa58687338bc7229
+    m_Address: GuardianPassiveC_sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4a39cb4b272639541b7bd5ac0649acf7
     m_Address: VornixMeat_sprite
     m_ReadOnly: 0
@@ -59,6 +65,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88a9b762bcea7a14dbc38d3caa60a343
+    m_Address: GuardianPassiveA_sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a2563f2b8dbc4044b9a50537d3a29962
     m_Address: GuardianActiveB_sprite
     m_ReadOnly: 0
@@ -67,6 +79,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a29a5b7116853654498b2c631da445b6
     m_Address: Archer_sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc66cf3c55d63ed46af8b1d82cf84e34
+    m_Address: GuardianPassiveB_sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad

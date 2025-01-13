@@ -40,6 +40,18 @@ public class SkillUI : PopupUI
         BindEvent(Get<GameObject>((int)GameObjects.CloseBtn), OnCloseBtnClicked);
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        Managers.EventBus.AddEvent(Enums.EventType.UpdateSkill, Refresh);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Managers.EventBus.RemoveEvent(Enums.EventType.UpdateSkill, Refresh);
+    }
+
     public void Refresh()
     {
         _skillListUI.Refresh();

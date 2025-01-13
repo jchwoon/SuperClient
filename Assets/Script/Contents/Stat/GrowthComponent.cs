@@ -1,4 +1,5 @@
 using Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +11,12 @@ public class GrowthComponent
         get { return Owner.MyHeroInfo.HeroInfo.LobbyHeroInfo.Level; }
         set { Owner.MyHeroInfo.HeroInfo.LobbyHeroInfo.Level = value; }
     }
-    public int Exp
+    public long Exp
     {
         get { return Owner.MyHeroInfo.Exp; }
         set { Owner.MyHeroInfo.Exp = value; }
     }
-    public int MaxExp { get; private set; }
+    public long MaxExp { get; private set; }
 
     public MyHero Owner { get; private set; }
     public GrowthComponent(MyHero owner)
@@ -24,20 +25,17 @@ public class GrowthComponent
         SetMaxExp();
     }
 
-    public void InitGrowth()
-    {
-        UpdateGrowth();
-    }
-
     public void AddExp(int exp)
     {
         if (IsMaxLevel())
             return;
         Exp += exp;
+        int preveLevel = Level;
         bool isUp = CheckLevelUp();
         if (isUp == true)
         {
             SetMaxExp();
+            Owner.SkillComponent.LevelUp(preveLevel, Level);
         }
         UpdateGrowth();
     }
@@ -59,7 +57,7 @@ public class GrowthComponent
             if (Exp < GetExpAmountForNextLevel(Level))
                 break;
 
-            Exp = Mathf.Max(0, Exp - GetExpAmountForNextLevel(Level));
+            Exp = Math.Max(0, Exp - GetExpAmountForNextLevel(Level));
             Level++;
             isUp = true;
         }
@@ -67,7 +65,7 @@ public class GrowthComponent
         return isUp;
     }
 
-    public int GetExpAmountForNextLevel(int level)
+    public long GetExpAmountForNextLevel(int level)
     {
         HeroStatData statData;
         if (Managers.DataManager.HeroStatDict.TryGetValue(level, out statData) == false)

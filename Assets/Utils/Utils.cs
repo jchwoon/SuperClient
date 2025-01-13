@@ -76,8 +76,6 @@ public class Utils
         { EStatType.Atk, "공격력" },
         { EStatType.Defence, "방어력" },
         { EStatType.MoveSpeed, "이동속도" },
-        { EStatType.AtkSpeed, "공격속도" },
-        { EStatType.AddAtkSpeedMultiplier, "추가 공격속도" }
     };
 
     public static string GetStatTypeText(EStatType statType)

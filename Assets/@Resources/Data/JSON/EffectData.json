@@ -4,48 +4,20 @@
       "templateId": 1,
       "name": "가디언 기본공격 이펙트",
       "prefabName": "GuardianNormalEffect",
-      "damageRatio": 1,
+      "ratio": [
+        1
+      ],
       "effectScalingType": 1,
       "effectType": 1,
       "effectDurationType": 0,
       "duration": 0
     },
     {
-      "templateId": 100,
-      "name": "가디언 수호의 방패 이펙트",
-      "prefabName": "GuardianSkillAEffect",
-      "isStackable": false,
-      "effectScalingType": 4,
-      "effectType": 4,
-      "effectDurationType": 1,
-      "duration": 10,
-      "healthRatio": 0.1,
-      "gapPerLevel": 0.05
-    },
-    {
-      "templateId": 101,
-      "name": "가디언 불굴의 함성 이펙트",
-      "effectScalingType": 3,
-      "effectType": 5,
-      "effectDurationType": 1,
-      "duration": 5,
-      "entityRatio": 1,
-      "gapPerLevel": 0.1
-    },
-    {
-      "templateId": 102,
-      "name": "가디언 심판의 일격 이펙트",
-      "damageRatio": 6,
-      "effectScalingType": 1,
-      "effectType": 1,
-      "effectDurationType": 0,
-      "duration": 4,
-      "gapPerLevel": 0.1
-    },
-    {
       "templateId": 1001,
       "name": "Vornix 기본공격 이펙트",
-      "damageRatio": 1,
+      "ratio": [
+        1
+      ],
       "effectScalingType": 1,
       "effectType": 1,
       "effectDurationType": 0,
@@ -60,12 +32,9 @@
       "addStatValues": [
         {
           "statType": 5,
-          "value": 10
-        },
-        {
-          "statType": 9,
-          "value": 20,
-          "multiplier": true
+          "addValue": [
+            10
+          ]
         }
       ]
     },
@@ -78,7 +47,9 @@
       "addStatValues": [
         {
           "statType": 3,
-          "value": 30
+          "addValue": [
+            30
+          ]
         }
       ]
     },
@@ -91,9 +62,27 @@
       "addStatValues": [
         {
           "statType": 4,
-          "value": 15
+          "addValue": [
+            15
+          ]
         }
       ]
+    },
+    {
+      "templateId": 11003,
+      "name": "빨간 포션(중) 이펙트"
+    },
+    {
+      "templateId": 11004,
+      "name": "파란 포션(중) 이펙트"
+    },
+    {
+      "templateId": 11005,
+      "name": "빨간 포션(대) 이펙트"
+    },
+    {
+      "templateId": 11006,
+      "name": "파란 포션(대) 이펙트"
     }
   ]
 }

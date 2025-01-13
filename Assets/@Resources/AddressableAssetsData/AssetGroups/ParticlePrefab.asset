@@ -23,8 +23,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 354b6251e950209409c75ab984acf000
+    m_Address: GuardianSkillBEffect
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 61bc0a28fb1847644918bd57c50e3d8d
     m_Address: GuardianNormalSkill3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97c43495f80a3244fad1301dfafbe252
+    m_Address: GuardianSkillBEffect2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b21333b068a5084ba09535839bee3c8
+    m_Address: GuardianNormalSkillHit
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad

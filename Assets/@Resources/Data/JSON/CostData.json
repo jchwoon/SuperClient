@@ -1,0 +1,10 @@
+﻿{
+  "costs": [
+    {
+      "templateId": 1,
+      "name": "스킬 초기화",
+      "currencyType": 1,
+      "costValue": 500
+    }
+  ]
+}
