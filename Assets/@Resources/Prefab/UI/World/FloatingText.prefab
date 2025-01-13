@@ -190,6 +190,7 @@ MonoBehaviour:
   _goldFontColor: {r: 0.85490197, g: 0.64705884, b: 0.1254902, a: 1}
   _expFontColor: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
   _missFontColor: {r: 0.593087, g: 0.07662869, b: 0.7735849, a: 1}
+  _criticalFontColor: {r: 1, g: 0.64705884, b: 0, a: 1}
 --- !u!95 &5459506163755454089
 Animator:
   serializedVersion: 5

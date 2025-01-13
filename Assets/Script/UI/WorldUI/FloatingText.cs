@@ -18,6 +18,8 @@ public class FloatingText : MonoBehaviour
     Color _expFontColor;
     [SerializeField]
     Color _missFontColor;
+    [SerializeField]
+    Color _criticalFontColor;
 
     private void Update()
     {
@@ -43,26 +45,31 @@ public class FloatingText : MonoBehaviour
                 _text.color = _normalHitFontColor;
                 _text.text = $"{Mathf.Abs((int)value)}";
                 break;
+            case EFontType.CriticalHit:
+                _text.fontSize = 5;
+                _text.text = $"{Mathf.Abs((int)value)}";
+                _text.color = _criticalFontColor;
+                break;
             case EFontType.Heal:
                 _text.fontSize = 5;
                 _text.color = _healFontColor;
                 _text.text = $"{Mathf.Abs((int)value)}";
-                break;
-            case EFontType.Gold:
-                _text.fontSize = 5;
-                _text.text = $"Gold +{(int)value}";
-                _text.color = _goldFontColor;
-                break;
-            case EFontType.Exp:
-                _text.fontSize = 5;
-                _text.text = $"Exp +{(int)value}";
-                _text.color = _expFontColor;
                 break;
             case EFontType.Miss:
                 _text.fontSize = 5;
                 _text.text = $"Miss";
                 _text.color = _missFontColor;
                 break;
+            //case EFontType.Gold:
+            //    _text.fontSize = 5;
+            //    _text.text = $"Gold +{(int)value}";
+            //    _text.color = _goldFontColor;
+            //    break;
+            //case EFontType.Exp:
+            //    _text.fontSize = 5;
+            //    _text.text = $"Exp +{(int)value}";
+            //    _text.color = _expFontColor;
+            //    break;
             default:
                 Debug.Log("Non Type Floating Text");
                 break;

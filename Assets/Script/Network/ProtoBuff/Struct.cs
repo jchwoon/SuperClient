@@ -35,20 +35,23 @@ namespace Google.Protobuf.Struct {
             "GAEgASgLMhIuUHJvdG9jb2wuSGVyb0luZm8SCwoDZXhwGAIgASgDEgwKBGdv",
             "bGQYAyABKAUSGwoTZXF1aXBJbnZlblNsb3RDb3VudBgEIAEoBRIdChVjb25z",
             "dW1lSW52ZW5TbG90Q291bnQYBSABKAUSGQoRZXRjSW52ZW5TbG90Q291bnQY",
-            "BiABKAUiiwEKCFN0YXRJbmZvEgoKAmhwGAEgASgFEg0KBW1heEhwGAIgASgF",
+            "BiABKAUi5wEKCFN0YXRJbmZvEgoKAmhwGAEgASgFEg0KBW1heEhwGAIgASgF",
             "EhEKCW1vdmVTcGVlZBgDIAEoAhISCgpjaGFzZVNwZWVkGAQgASgCEhEKCWF0",
             "a0RhbWFnZRgFIAEoBRIPCgdkZWZlbmNlGAYgASgFEgoKAm1wGAcgASgFEg0K",
-            "BW1heE1wGAggASgFIkEKB1Bvc0luZm8SDAoEcG9zWBgBIAEoAhIMCgRwb3NZ",
-            "GAIgASgCEgwKBHBvc1oYAyABKAISDAoEcm90WRgEIAEoAiKRAQoKT2JqZWN0",
-            "SW5mbxIQCghvYmplY3RJZBgBIAEoBRISCgp0ZW1wbGF0ZUlkGAIgASgFEikK",
-            "Cm9iamVjdFR5cGUYAyABKA4yFS5Qcm90b2NvbC5FT2JqZWN0VHlwZRIOCgZy",
-            "b29tSWQYBCABKAUSIgoHcG9zSW5mbxgFIAEoCzIRLlByb3RvY29sLlBvc0lu",
-            "Zm8iZgoISXRlbUluZm8SEAoIaXRlbURiSWQYASABKAMSEgoKdGVtcGxhdGVJ",
-            "ZBgCIAEoBRINCgVjb3VudBgDIAEoBRIlCghzbG90VHlwZRgEIAEoDjITLlBy",
-            "b3RvY29sLkVTbG90VHlwZSJHCglTa2lsbEluZm8SDwoHc2tpbGxJZBgBIAEo",
-            "BRIVCg1za2lsbFRhcmdldElkGAIgASgFEhIKCnNraWxsTGV2ZWwYAyABKAUi",
-            "NQoOU2tpbGxMZXZlbEluZm8SDwoHc2tpbGxJZBgBIAEoBRISCgpza2lsbExl",
-            "dmVsGAIgASgFQhmqAhZHb29nbGUuUHJvdG9idWYuU3RydWN0YgZwcm90bzM="));
+            "BW1heE1wGAggASgFEhAKCGNyaXRpY2FsGAkgASgCEhYKDmNyaXRpY2FsRGFt",
+            "YWdlGAogASgCEhgKEHNoaWVsZEVmZmljaWVuY3kYCyABKAISFgoOaGVhbEVm",
+            "ZmljaWVuY3kYDCABKAIiQQoHUG9zSW5mbxIMCgRwb3NYGAEgASgCEgwKBHBv",
+            "c1kYAiABKAISDAoEcG9zWhgDIAEoAhIMCgRyb3RZGAQgASgCIpEBCgpPYmpl",
+            "Y3RJbmZvEhAKCG9iamVjdElkGAEgASgFEhIKCnRlbXBsYXRlSWQYAiABKAUS",
+            "KQoKb2JqZWN0VHlwZRgDIAEoDjIVLlByb3RvY29sLkVPYmplY3RUeXBlEg4K",
+            "BnJvb21JZBgEIAEoBRIiCgdwb3NJbmZvGAUgASgLMhEuUHJvdG9jb2wuUG9z",
+            "SW5mbyJmCghJdGVtSW5mbxIQCghpdGVtRGJJZBgBIAEoAxISCgp0ZW1wbGF0",
+            "ZUlkGAIgASgFEg0KBWNvdW50GAMgASgFEiUKCHNsb3RUeXBlGAQgASgOMhMu",
+            "UHJvdG9jb2wuRVNsb3RUeXBlIkcKCVNraWxsSW5mbxIPCgdza2lsbElkGAEg",
+            "ASgFEhUKDXNraWxsVGFyZ2V0SWQYAiABKAUSEgoKc2tpbGxMZXZlbBgDIAEo",
+            "BSI1Cg5Ta2lsbExldmVsSW5mbxIPCgdza2lsbElkGAEgASgFEhIKCnNraWxs",
+            "TGV2ZWwYAiABKAVCGaoCFkdvb2dsZS5Qcm90b2J1Zi5TdHJ1Y3RiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -56,7 +59,7 @@ namespace Google.Protobuf.Struct {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.HeroInfo), global::Google.Protobuf.Struct.HeroInfo.Parser, new[]{ "LobbyHeroInfo", "CreatureInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.CreatureInfo), global::Google.Protobuf.Struct.CreatureInfo.Parser, new[]{ "ObjectInfo", "StatInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.MyHeroInfo), global::Google.Protobuf.Struct.MyHeroInfo.Parser, new[]{ "HeroInfo", "Exp", "Gold", "EquipInvenSlotCount", "ConsumeInvenSlotCount", "EtcInvenSlotCount" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.StatInfo), global::Google.Protobuf.Struct.StatInfo.Parser, new[]{ "Hp", "MaxHp", "MoveSpeed", "ChaseSpeed", "AtkDamage", "Defence", "Mp", "MaxMp" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.StatInfo), global::Google.Protobuf.Struct.StatInfo.Parser, new[]{ "Hp", "MaxHp", "MoveSpeed", "ChaseSpeed", "AtkDamage", "Defence", "Mp", "MaxMp", "Critical", "CriticalDamage", "ShieldEfficiency", "HealEfficiency" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.PosInfo), global::Google.Protobuf.Struct.PosInfo.Parser, new[]{ "PosX", "PosY", "PosZ", "RotY" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ObjectInfo), global::Google.Protobuf.Struct.ObjectInfo.Parser, new[]{ "ObjectId", "TemplateId", "ObjectType", "RoomId", "PosInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ItemInfo), global::Google.Protobuf.Struct.ItemInfo.Parser, new[]{ "ItemDbId", "TemplateId", "Count", "SlotType" }, null, null, null, null),
@@ -1281,6 +1284,10 @@ namespace Google.Protobuf.Struct {
       defence_ = other.defence_;
       mp_ = other.mp_;
       maxMp_ = other.maxMp_;
+      critical_ = other.critical_;
+      criticalDamage_ = other.criticalDamage_;
+      shieldEfficiency_ = other.shieldEfficiency_;
+      healEfficiency_ = other.healEfficiency_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1386,6 +1393,54 @@ namespace Google.Protobuf.Struct {
       }
     }
 
+    /// <summary>Field number for the "critical" field.</summary>
+    public const int CriticalFieldNumber = 9;
+    private float critical_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float Critical {
+      get { return critical_; }
+      set {
+        critical_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "criticalDamage" field.</summary>
+    public const int CriticalDamageFieldNumber = 10;
+    private float criticalDamage_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float CriticalDamage {
+      get { return criticalDamage_; }
+      set {
+        criticalDamage_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "shieldEfficiency" field.</summary>
+    public const int ShieldEfficiencyFieldNumber = 11;
+    private float shieldEfficiency_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float ShieldEfficiency {
+      get { return shieldEfficiency_; }
+      set {
+        shieldEfficiency_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "healEfficiency" field.</summary>
+    public const int HealEfficiencyFieldNumber = 12;
+    private float healEfficiency_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float HealEfficiency {
+      get { return healEfficiency_; }
+      set {
+        healEfficiency_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1409,6 +1464,10 @@ namespace Google.Protobuf.Struct {
       if (Defence != other.Defence) return false;
       if (Mp != other.Mp) return false;
       if (MaxMp != other.MaxMp) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Critical, other.Critical)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(CriticalDamage, other.CriticalDamage)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(ShieldEfficiency, other.ShieldEfficiency)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(HealEfficiency, other.HealEfficiency)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1424,6 +1483,10 @@ namespace Google.Protobuf.Struct {
       if (Defence != 0) hash ^= Defence.GetHashCode();
       if (Mp != 0) hash ^= Mp.GetHashCode();
       if (MaxMp != 0) hash ^= MaxMp.GetHashCode();
+      if (Critical != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Critical);
+      if (CriticalDamage != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(CriticalDamage);
+      if (ShieldEfficiency != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(ShieldEfficiency);
+      if (HealEfficiency != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(HealEfficiency);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1474,6 +1537,22 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(64);
         output.WriteInt32(MaxMp);
       }
+      if (Critical != 0F) {
+        output.WriteRawTag(77);
+        output.WriteFloat(Critical);
+      }
+      if (CriticalDamage != 0F) {
+        output.WriteRawTag(85);
+        output.WriteFloat(CriticalDamage);
+      }
+      if (ShieldEfficiency != 0F) {
+        output.WriteRawTag(93);
+        output.WriteFloat(ShieldEfficiency);
+      }
+      if (HealEfficiency != 0F) {
+        output.WriteRawTag(101);
+        output.WriteFloat(HealEfficiency);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1516,6 +1595,22 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(64);
         output.WriteInt32(MaxMp);
       }
+      if (Critical != 0F) {
+        output.WriteRawTag(77);
+        output.WriteFloat(Critical);
+      }
+      if (CriticalDamage != 0F) {
+        output.WriteRawTag(85);
+        output.WriteFloat(CriticalDamage);
+      }
+      if (ShieldEfficiency != 0F) {
+        output.WriteRawTag(93);
+        output.WriteFloat(ShieldEfficiency);
+      }
+      if (HealEfficiency != 0F) {
+        output.WriteRawTag(101);
+        output.WriteFloat(HealEfficiency);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1549,6 +1644,18 @@ namespace Google.Protobuf.Struct {
       }
       if (MaxMp != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxMp);
+      }
+      if (Critical != 0F) {
+        size += 1 + 4;
+      }
+      if (CriticalDamage != 0F) {
+        size += 1 + 4;
+      }
+      if (ShieldEfficiency != 0F) {
+        size += 1 + 4;
+      }
+      if (HealEfficiency != 0F) {
+        size += 1 + 4;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1585,6 +1692,18 @@ namespace Google.Protobuf.Struct {
       }
       if (other.MaxMp != 0) {
         MaxMp = other.MaxMp;
+      }
+      if (other.Critical != 0F) {
+        Critical = other.Critical;
+      }
+      if (other.CriticalDamage != 0F) {
+        CriticalDamage = other.CriticalDamage;
+      }
+      if (other.ShieldEfficiency != 0F) {
+        ShieldEfficiency = other.ShieldEfficiency;
+      }
+      if (other.HealEfficiency != 0F) {
+        HealEfficiency = other.HealEfficiency;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1637,6 +1756,22 @@ namespace Google.Protobuf.Struct {
             MaxMp = input.ReadInt32();
             break;
           }
+          case 77: {
+            Critical = input.ReadFloat();
+            break;
+          }
+          case 85: {
+            CriticalDamage = input.ReadFloat();
+            break;
+          }
+          case 93: {
+            ShieldEfficiency = input.ReadFloat();
+            break;
+          }
+          case 101: {
+            HealEfficiency = input.ReadFloat();
+            break;
+          }
         }
       }
     #endif
@@ -1686,6 +1821,22 @@ namespace Google.Protobuf.Struct {
           }
           case 64: {
             MaxMp = input.ReadInt32();
+            break;
+          }
+          case 77: {
+            Critical = input.ReadFloat();
+            break;
+          }
+          case 85: {
+            CriticalDamage = input.ReadFloat();
+            break;
+          }
+          case 93: {
+            ShieldEfficiency = input.ReadFloat();
+            break;
+          }
+          case 101: {
+            HealEfficiency = input.ReadFloat();
             break;
           }
         }

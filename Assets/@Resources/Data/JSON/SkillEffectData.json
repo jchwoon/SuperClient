@@ -12,21 +12,7 @@
         0.25,
         0.3,
         0.35,
-        0.4,
-        0.45,
-        0.5,
-        0.55,
-        0.6,
-        0.65,
-        0.7,
-        0.75,
-        0.8,
-        0.85,
-        0.9,
-        0.95,
-        1,
-        1.05,
-        1.1
+        0.4
       ],
       "descId": "수호의 방패",
       "effectScalingType": 4,
@@ -83,6 +69,90 @@
       "effectType": 1,
       "effectDurationType": 0,
       "duration": 4
+    },
+    {
+      "templateId": 110,
+      "name": "강화갑옷 이펙트",
+      "stackable": false,
+      "feedbackEffect": false,
+      "descId": "강화갑옷",
+      "effectScalingType": 0,
+      "effectType": 3,
+      "effectDurationType": 2,
+      "duration": 0,
+      "addStatValues": [
+        {
+          "statType": 6,
+          "addValue": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "templateId": 111,
+      "name": "대지의 생명력 이펙트",
+      "stackable": false,
+      "feedbackEffect": false,
+      "descId": "대지의 생명력",
+      "effectScalingType": 0,
+      "effectType": 3,
+      "effectDurationType": 2,
+      "duration": 0,
+      "addStatValues": [
+        {
+          "statType": 1,
+          "addValue": [
+            50,
+            100,
+            150,
+            200,
+            250,
+            300,
+            350,
+            400,
+            450,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "templateId": 112,
+      "name": "수호의 힘 이펙트",
+      "stackable": false,
+      "feedbackEffect": false,
+      "descId": "수호의 힘",
+      "effectScalingType": 0,
+      "effectType": 3,
+      "effectDurationType": 2,
+      "duration": 0,
+      "addStatValues": [
+        {
+          "statType": 11,
+          "addValue": [
+            5,
+            10,
+            15,
+            20,
+            25,
+            30,
+            35,
+            40,
+            45,
+            50
+          ]
+        }
+      ]
     }
   ]
 }

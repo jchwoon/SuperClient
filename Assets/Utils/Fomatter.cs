@@ -48,7 +48,7 @@ public class Fomatter
         {
             foreach (var value in effect.AddStatValues)
             {
-                ret += $"{value.addValue[skillLevel - 1]}, ";
+                ret += $"{value.addValue[skillLevel - 1]}";
             }
         }
 

@@ -9,6 +9,11 @@ using Google.Protobuf.Enum;
 
 public class SkillDescUI : BaseUI
 {
+    enum GameObjects
+    {
+        CurrentSkillDescPanel,
+        NextSkillDescPanel
+    }
     enum Images
     {
         SkillImage
@@ -34,6 +39,9 @@ public class SkillDescUI : BaseUI
     SkillData _skillData;
     int _skillLevel;
 
+    GameObject _currentLevelDesc;
+    GameObject _nextLevelDesc;
+
     Image _skillImage;
 
     TMP_Text _masterLevelTxt;
@@ -52,8 +60,12 @@ public class SkillDescUI : BaseUI
 
     protected override void Awake()
     {
+        Bind<GameObject>(typeof(GameObjects));
         Bind<Image>(typeof(Images));
         Bind<TMP_Text>(typeof(Texts));
+
+        _currentLevelDesc = Get<GameObject>((int)GameObjects.CurrentSkillDescPanel);
+        _nextLevelDesc = Get<GameObject>((int)GameObjects.NextSkillDescPanel);
 
         _skillImage = Get<Image>((int)Images.SkillImage);
 
@@ -125,29 +137,43 @@ public class SkillDescUI : BaseUI
 
     private void DisplayCurrentLevel(SkillData skillData)
     {
-        _currentLevelLabelTxt.text = $"[현재레벨] {_skillLevel}";
-        if (skillData.SkillType == ESkillType.Active)
+        if (_skillLevel <= 0)
         {
-            ActiveSkillData activeSkillData = (ActiveSkillData)skillData;
-            _costDescTxt.text = Fomatter.FormatSkillCost(activeSkillData);
-            _coolTimeDescTxt.text = Fomatter.FormatSkillCool(activeSkillData);
+            _currentLevelDesc.SetActive(false);
         }
-        _detailDesctxt.text = MakeSkillDetailDesc(skillData, _skillLevel);
+        else
+        {
+            _currentLevelDesc.SetActive(true);
+            _currentLevelLabelTxt.text = $"[현재레벨] {_skillLevel}";
+            if (skillData.SkillType == ESkillType.Active)
+            {
+                ActiveSkillData activeSkillData = (ActiveSkillData)skillData;
+                _costDescTxt.text = Fomatter.FormatSkillCost(activeSkillData);
+                _coolTimeDescTxt.text = Fomatter.FormatSkillCool(activeSkillData);
+            }
+            _detailDesctxt.text = MakeSkillDetailDesc(skillData, _skillLevel);
+        }
     }
 
     private void DisplayNextLevelDetails(SkillData skillData)
     {
-        if (skillData.MaxLevel <= _skillLevel) return;
-
-        _nextLevelLabelTxt.text = $"[다음레벨] {_skillLevel + 1}";
-
-        if (skillData.SkillType == ESkillType.Active)
+        if (skillData.MaxLevel <= _skillLevel)
         {
-            ActiveSkillData activeSkillData = (ActiveSkillData)skillData;
-            _nextCostDescTxt.text = Fomatter.FormatSkillCost(activeSkillData);
-            _nextCoolTimeDescTxt.text = Fomatter.FormatSkillCool(activeSkillData);
+            _nextLevelDesc.SetActive(false);
         }
-        _nextLevelDetailDesctxt.text = MakeSkillDetailDesc(skillData, _skillLevel + 1);
+        else
+        {
+            _nextLevelDesc.SetActive(true);
+            _nextLevelLabelTxt.text = $"[다음레벨] {_skillLevel + 1}";
+
+            if (skillData.SkillType == ESkillType.Active)
+            {
+                ActiveSkillData activeSkillData = (ActiveSkillData)skillData;
+                _nextCostDescTxt.text = Fomatter.FormatSkillCost(activeSkillData);
+                _nextCoolTimeDescTxt.text = Fomatter.FormatSkillCool(activeSkillData);
+            }
+            _nextLevelDetailDesctxt.text = MakeSkillDetailDesc(skillData, _skillLevel + 1);
+        }
     }
 
     private string MakeSkillDetailDesc(SkillData skillData, int skillLevel)
@@ -163,7 +189,7 @@ public class SkillDescUI : BaseUI
             }
             if (effectData != null && descData != null)
             {
-                ret += $"{Fomatter.FormatSkillDescription(skillData, descData, skillLevel, effectData)}, ";
+                ret += $"{Fomatter.FormatSkillDescription(skillData, descData, skillLevel, effectData)}";
             }
         }   
         return ret;
