@@ -36,7 +36,6 @@ public class DataManager
     public Dictionary<Enums.EConfigIds, ConfigData> ConfigDict { get; private set; } = new Dictionary<Enums.EConfigIds, ConfigData>();
     public Dictionary<int, NPCData> NpcDict { get; private set; } = new Dictionary<int, NPCData>();
     public Dictionary<int, CostData> CostDict { get; private set; } = new Dictionary<int, CostData>();
-    public Dictionary<int, DungeonData> DungeonDict { get; private set; } = new Dictionary<int, DungeonData>();
 
 
     public  void Init()
@@ -54,7 +53,6 @@ public class DataManager
         DescriptionDict = LoadJson<DescriptionDataLoader, string, DescriptionData>("DescriptionData").MakeDict();
         NpcDict = LoadJson<NPCDataLoader, int, NPCData>("NPCData").MakeDict();
         CostDict = LoadJson<CostDataLoader, int, CostData>("CostData").MakeDict();
-        DungeonDict = LoadJson<DungeonDataLoader, int, DungeonData>("DungeonData").MakeDict();
         //Effect
         EffectDict = LoadJson<EffectDataLoader, int, EffectData>("EffectData").MakeDict();
         SkillEffectDict = LoadJson<EffectDataLoader, int, EffectData>("SkillEffectData").MakeDict();

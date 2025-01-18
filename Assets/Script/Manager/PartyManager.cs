@@ -1,10 +1,12 @@
 using Data;
 using Google.Protobuf.Protocol;
+using Google.Protobuf.Struct;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Enums;
 
 public struct PartyMember
 {
@@ -20,120 +22,74 @@ public struct PartyMember
 
 public class PartyManager
 {
-    private List<Party> parties = new List<Party>();
-    private HashSet<int> usedPartyIds = new HashSet<int>(); // 사용 중인 파티 ID를 추적
-    private int nextPartyId = 0; // 새로운 파티 ID를 생성할 때 사용할 기준값
+    public Party MyParty { get; private set; }
+    public List<PartyInfo> PartyInfos = new List<PartyInfo>();
 
-
-    public DungeonData DungeonData { get; private set; }
-
-    public event Action OnPartyUpdated;
-
-    public Transform Parent
+    //파티 가입 요청
+    public void ReqJoinParty(long partyId)
     {
-        get
-        {
-            GameObject party = GameObject.Find("Party");
-            if (party == false)
-                party = new GameObject("Party");
-            return party.transform;
-        }
+        ReqJoinPartyToS reqJoinPartyPacket = new ReqJoinPartyToS();
+        reqJoinPartyPacket.PartyId = partyId;
+
+        Managers.NetworkManager.Send(reqJoinPartyPacket);
+    }
+    //파티 가입 요청에 대한 핸들링
+    public void HandleReqJoinApproval(Hero applier)
+    {
+        if (applier == null)
+            return;
+
+        //UI에알림 띄우기
+        //Managers.UIManager.ShowPopup();
+        //applyer.MapName
     }
 
-    public void MakeParty(Hero owner,GameObject partyTab, DungeonData dungeonData = null)
+    #region 파티 생성
+    //파티 생성 요청
+    public EFailReasonCreateParty CheckAndSendReqCreateParty(int roomId)
     {
-        int newPartyId = GenerateNewPartyId();
-        Party newParty = new Party { PartyId = newPartyId };
-        newParty.PartyTab = partyTab;
+        EFailReasonCreateParty failReason = CheckCreatePart();
 
-        if (partyTab.TryGetComponent(out PartySlot partySlot))
+        if (failReason == EFailReasonCreateParty.None)
         {
-            partySlot.PartyId = newPartyId;
+            SendReqCreateParty(roomId);
         }
 
-        parties.Add(newParty);
+        return failReason;
+    }
 
-        AddPartyMember(owner, newPartyId);
+    private EFailReasonCreateParty CheckCreatePart()
+    {
+        if (MyParty != null)
+            return EFailReasonCreateParty.PartyAlreadyExist;
 
+        return EFailReasonCreateParty.None;
+    }
+
+    private void SendReqCreateParty(int roomId)
+    {
         CreatePartyToS createPartyPacket = new CreatePartyToS();
-
+        createPartyPacket.RoomId = roomId;
 
         Managers.NetworkManager.Send(createPartyPacket);
-
-        OnPartyUpdated?.Invoke();
     }
 
-    public void JoinParty(Hero hero, int partyId)
+    public void HandleResCreateParty()
     {
-        AddPartyMember(hero, partyId);
-        OnPartyUpdated?.Invoke();
+        MyParty = new Party();
     }
+    #endregion
 
-    public void AddPartyMember(Hero owner, int partyId)
+    public void SendReqAllPartyInfos(int roomId)
     {
-        Party party = GetParty(partyId);
-        if (party == null)
-            return; // 파티가 존재하지 않으면 종료
-
-        string name = owner.Name;
-        int level = owner.Level;
-
-        if (party.PartyMembers.Count >= 4)
-            return;
-
-        if (party.PartyMembers.Exists(m => m.Name == name))
-            return;
-
-        party.PartyMembers.Add(new PartyMember(name, level));
-
-        //owner.PartyId = partyId;
+        ReqAllPartyInfoToS reqAllPartyInfoPacket = new ReqAllPartyInfoToS();
+        reqAllPartyInfoPacket.RoomId = roomId;
+        Managers.NetworkManager.Send(reqAllPartyInfoPacket);
     }
 
-
-    public void RemovePartyMember(Hero hero, int partyId)
+    public void HandleResAllPartyInfos(List<PartyInfo> partyInfos)
     {
-        Party party = GetParty(partyId);
-        if (party == null)
-            return; // 파티가 존재하지 않으면 종료
-
-        string name = hero.Name;
-
-        var member = party.PartyMembers.Find(m => m.Name == name);
-        if (!string.IsNullOrEmpty(member.Name))
-        {
-            party.PartyMembers.Remove(member);
-
-            if (party.PartyMembers.Count == 0)
-            {
-                GameObject partyTabObject = party.PartyTab.gameObject;                
-                UnityEngine.Object.Destroy(partyTabObject);
-                
-                parties.Remove(party);
-                usedPartyIds.Remove(partyId); // 사용된 ID 반환
-            }
-
-            OnPartyUpdated?.Invoke();
-        }
+        PartyInfos = partyInfos;
+        Managers.EventBus.InvokeEvent(Enums.EventType.UpdatePartyInfos);
     }
-
-    private int GenerateNewPartyId()
-    {
-        while (usedPartyIds.Contains(nextPartyId))
-        {
-            nextPartyId++;
-        }
-        usedPartyIds.Add(nextPartyId);
-        return nextPartyId;
-    }
-
-    private bool IsPartyIdValid(int partyId)
-    {
-        return parties.Any(p => p.PartyId == partyId);
-    }
-
-    public Party GetParty(int partyId)
-    {
-        return parties.FirstOrDefault(p => p.PartyId == partyId);
-    }
-
 }

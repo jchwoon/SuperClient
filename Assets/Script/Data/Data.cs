@@ -66,6 +66,15 @@ namespace Data
     {
         public int RoomId;
         public string Name;
+        public string MapName;
+        public float StartPosX;
+        public float StartPosY;
+        public float StartPosZ;
+        public List<int> Npcs;
+        public ERoomType RoomType;
+        public EDungeonType DungeonType;
+        public int MinRequiredLevel;
+        public int MaxRequiredLevel;
     }
 
     [Serializable]

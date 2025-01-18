@@ -32,7 +32,7 @@ public class MapManager
         DestroyMap();
         _loadedMapAction = action;
 
-        string mapName = roomData.Name;
+        string mapName = roomData.MapName;
         GameObject map = Managers.ResourceManager.GetResource<GameObject>(mapName);
         map.name = mapName;
         LoadedMap = map;

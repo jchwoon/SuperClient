@@ -42,13 +42,18 @@ public enum PacketId
   EquipItemToS = 33,
   UnEquipItemToS = 34,
   ChangeSlotTypeToC = 35,
-  CreatePartyToS = 36,
-  ApplyEffectToC = 37,
-  ReleaseEffectToC = 38,
-  ChangeShieldValueToC = 39,
-  ReqLevelUpSkillToS = 40,
-  ReqInitSkillPointToS = 41,
-  UpdateSkillLevelToC = 42,
+  ApplyEffectToC = 36,
+  ReleaseEffectToC = 37,
+  ChangeShieldValueToC = 38,
+  ReqLevelUpSkillToS = 39,
+  ReqInitSkillPointToS = 40,
+  UpdateSkillLevelToC = 41,
+  CreatePartyToS = 42,
+  ReqJoinPartyToS = 43,
+  ResJoinPartyToC = 44,
+  ReqPartyJoinApprovalToC = 45,
+  ReqAllPartyInfoToS = 46,
+  ResAllPartyInfoToC = 47,
 
 }
 
@@ -133,6 +138,12 @@ class PacketManager
         _handler.Add((ushort)PacketId.ChangeShieldValueToC, PacketHandler.ChangeShieldValueToCHandler);
         _parseHandler.Add((ushort)PacketId.UpdateSkillLevelToC, ParsePacket<UpdateSkillLevelToC>);
         _handler.Add((ushort)PacketId.UpdateSkillLevelToC, PacketHandler.UpdateSkillLevelToCHandler);
+        _parseHandler.Add((ushort)PacketId.ResJoinPartyToC, ParsePacket<ResJoinPartyToC>);
+        _handler.Add((ushort)PacketId.ResJoinPartyToC, PacketHandler.ResJoinPartyToCHandler);
+        _parseHandler.Add((ushort)PacketId.ReqPartyJoinApprovalToC, ParsePacket<ReqPartyJoinApprovalToC>);
+        _handler.Add((ushort)PacketId.ReqPartyJoinApprovalToC, PacketHandler.ReqPartyJoinApprovalToCHandler);
+        _parseHandler.Add((ushort)PacketId.ResAllPartyInfoToC, ParsePacket<ResAllPartyInfoToC>);
+        _handler.Add((ushort)PacketId.ResAllPartyInfoToC, PacketHandler.ResAllPartyInfoToCHandler);
     
     }
 

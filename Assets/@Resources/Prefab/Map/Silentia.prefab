@@ -303,7 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4456375597575215812}
   m_Layer: 0
-  m_Name: TestVillage
+  m_Name: Silentia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 829985682121252112}
   - component: {fileID: 4936589532392557923}
   - component: {fileID: 7394224362081475071}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -703,6 +703,7 @@ Terrain:
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
+  m_HeightmapMinimumLODSimplification: 0
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 0
   m_DrawHeightmap: 1

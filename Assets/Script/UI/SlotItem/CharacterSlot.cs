@@ -55,19 +55,9 @@ public class CharacterSlot : BaseUI
 
     private void SetClassIcon(EHeroClassType classType)
     {
-        switch (classType)
-        {
-            case EHeroClassType.Guardian:
-                _classIcon.sprite = Managers.ResourceManager.GetResource<Sprite>("Warrior_sprite");
-                return;
-            case EHeroClassType.Archer:
-                _classIcon.sprite = Managers.ResourceManager.GetResource<Sprite>("Archer_sprite");
-                return;
-            case EHeroClassType.Mage:
-                _classIcon.sprite = Managers.ResourceManager.GetResource<Sprite>("Mage_sprite");
-                return;
-            default:
-                return;
-        }
+        if (classType == EHeroClassType.None)
+            return;
+
+        _classIcon.sprite = Managers.ResourceManager.GetResource<Sprite>($"{classType}_sprite");
     }
 }

@@ -29,30 +29,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ba786c4717fd07d43a75071d45122a2c
-    m_Address: TestVillage
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f05c90fc054c08344ad1bac9b46f6b53
-    m_Address: TestVillageMapData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 82e8dab061fb9a347955c6a25e775534
-    m_Address: TestDungeon
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 25b30dd8b1581884782505050255cc42
-    m_Address: TestDungeonMapData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ddddc73012247774a97359e9af8f24c1, type: 2}
   m_SchemaSet:

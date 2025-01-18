@@ -1,116 +1,184 @@
 using Data;
 using Google.Protobuf.Enum;
+using Google.Protobuf.Struct;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static Enums;
 
 public class DungeonUI : PopupUI
 {
     enum GameObjects
     {
         CloseBtn,
-        NormalDungeonBtn,
-        NormalDungeonList,
-        BossDungeonBtn,
-        BossDungeonList,
-        PartyBtns,
-        PartyListTab,
-        DungeonSlot,
-        PartySlot,
-        PartyContents
+        CreatePartyBtn,
+        DungeonSlotContent,
+        PartySlotContent,
+        DungeonTab,
+        PartyTab
     }
 
-    enum Buttons
+    enum Toggles
     {
-        SoloPartyBtn,
-        PartyBtn,
-        PartyMakeBtn,
-        PartyJoinBtn,
-        PartyExitBtn,
+        DungeonToggle,
+        PartyToggle,
+        NormalToggle,
+        BossToggle
     }
 
-    GameObject _normalDungeonList;
-    GameObject _bossDungeonList;
+    [SerializeField]
+    public Color SelectedColor;
+    [SerializeField]
+    public Color NormalColor;
 
-    GameObject _partyBtns;
-    GameObject _partyListTab;
-    GameObject _dungeonSlot;
-    GameObject _partySlot;
+    GameObject _dungeonTab;
+    GameObject _partyTab;
 
-    GameObject _normalTab;
-    GameObject _bossTab;
+    GameObject _dungeonSlotContent;
+    GameObject _partySlotContent;
 
-    GameObject _currentDungeonTab;
-    GameObject _currentDungeonList;
+    //MainTab
+    Toggle _dungeonToggle;
+    Toggle _partyToggle;
+    Toggle _prevMainToggle;
 
-    GameObject _partyContents;
+    //DungeonTypeTab
+    Toggle _normalToggle;
+    Toggle _bossToggle;
+    Toggle _prevDungeonTypeToggle;
 
-    Color _activeColor = Color.gray;
-    Color _deActiveColor = Color.white;
+    List<RoomData> _normalDungeonDatas;
+    List<RoomData> _bossDungeonDatas;
 
-    //TODO 던전, 파티 클릭시 정보 받아오기
-    [HideInInspector] public int dungeonId;
-    [HideInInspector] public int partyId;
-    [HideInInspector] public DungeonData dungeonData;
+    int _dungeonCount;
+    int _selectedDungeonRoomId;
 
     protected override void Awake()
     {
         base.Awake();
 
         Bind<GameObject>(typeof(GameObjects));
-        Bind<Button>(typeof(Buttons));
+        Bind<Toggle>(typeof(Toggles));
 
-        _normalTab = Get<GameObject>((int)GameObjects.NormalDungeonBtn);
-        _normalDungeonList = Get<GameObject>((int)GameObjects.NormalDungeonList);
-        _bossTab = Get<GameObject>((int)GameObjects.BossDungeonBtn);
-        _bossDungeonList = Get<GameObject>((int)GameObjects.BossDungeonList);
+        _dungeonTab = Get<GameObject>((int)GameObjects.DungeonTab);
+        _partyTab = Get<GameObject>((int)GameObjects.PartyTab);
 
-        _partyBtns = Get<GameObject>((int)GameObjects.PartyBtns);
-        _partyListTab = Get<GameObject>((int)GameObjects.PartyListTab);
-        _dungeonSlot = Get<GameObject>((int)GameObjects.DungeonSlot);
-        _partySlot = Get<GameObject>((int)GameObjects.PartySlot);
+        _dungeonSlotContent = Get<GameObject>((int)GameObjects.DungeonSlotContent);
+        _partySlotContent = Get<GameObject>((int)GameObjects.PartySlotContent);
 
-        _partyContents = Get<GameObject>((int)GameObjects.PartyContents);
+        _dungeonToggle = Get<Toggle>((int)Toggles.DungeonToggle);
+        _partyToggle = Get<Toggle>((int)Toggles.PartyToggle);
+        _normalToggle = Get<Toggle>((int)Toggles.NormalToggle);
+        _bossToggle = Get<Toggle>((int)Toggles.BossToggle);
 
-        BindEvent(Get<Button>((int)Buttons.SoloPartyBtn).gameObject, OnSinglePartyBtnClicked);
-        BindEvent(Get<Button>((int)Buttons.PartyBtn).gameObject, OnPartyBtnClicked);
+        _normalDungeonDatas = Managers.DataManager.RoomDict.Values.Where(r => r.DungeonType == EDungeonType.Normal).ToList();
+        _bossDungeonDatas = Managers.DataManager.RoomDict.Values.Where(r => r.DungeonType == EDungeonType.Boss).ToList();
 
-        BindEvent(Get<Button>((int)Buttons.PartyMakeBtn).gameObject, OnPartyMakeBtnClicked);
-        BindEvent(Get<Button>((int)Buttons.PartyJoinBtn).gameObject, OnPartyJoinBtnClicked);
-        BindEvent(Get<Button>((int)Buttons.PartyExitBtn).gameObject, OnPartyExitBtnClicked);
-        
+        BindEvent(_dungeonToggle.gameObject, (_) => OnChangedMainTab());
+        BindEvent(_partyToggle.gameObject, (_) => OnChangedMainTab());
+        BindEvent(_normalToggle.gameObject, (_) => OnChangedDungeonTypeTab());
+        BindEvent(_bossToggle.gameObject, (_) => OnChangedDungeonTypeTab());
+        BindEvent(Get<GameObject>((int)GameObjects.CreatePartyBtn), OnCreatePartyBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.CloseBtn), OnCloseBtnClicked);
-        BindEvent(Get<GameObject>((int)GameObjects.DungeonSlot), OnClickDungeonSlot);
-        BindEvent(_normalTab, (eventData) => { OnChangeTab(eventData, _normalTab, _normalDungeonList); });
-        BindEvent(_bossTab, (eventData) => { OnChangeTab(eventData, _bossTab, _bossDungeonList); });
-
     }
 
-    protected override void Start()
-    {
-        base.Start();
-    }
     protected override void OnEnable()
     {
         base.OnEnable();
-        Initial();
+        Managers.EventBus.AddEvent(Enums.EventType.UpdatePartyInfos, RefreshPartyListByDungeon);
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
+        Managers.EventBus.RemoveEvent(Enums.EventType.UpdatePartyInfos, RefreshPartyListByDungeon);
     }
 
-    private void Initial()
+    public void Refresh()
     {
-        _normalDungeonList.SetActive(false);
-        _bossDungeonList.SetActive(false);
-        _partyBtns.SetActive(false);
-        _partyListTab.SetActive(false);
+        ClearMainTabs();
+        RefreshByMainTab();
+    }
+
+    private void RefreshByMainTab()
+    {
+        if (_dungeonToggle.isOn)
+        {
+            _dungeonTab.SetActive(true);
+            RefreshByDungeonType();
+            UpdateToggleColors(_prevMainToggle, _dungeonToggle);
+            _prevMainToggle = _dungeonToggle;
+            return;
+        }
+
+        if (_partyToggle.isOn)
+        {
+            _partyTab.SetActive(true);
+            UpdateToggleColors(_prevMainToggle, _partyToggle);
+            _prevMainToggle = _partyToggle;
+            return;
+        }
+    }
+
+    private void RefreshByDungeonType()
+    {
+        ClearDungeonList();
+
+        if (_normalToggle.isOn)
+        {
+            for (int i = 0; i < _normalDungeonDatas.Count; i++)
+            {
+                GameObject go = _dungeonSlotContent.transform.GetChild(i).gameObject;
+                go.SetActive(true);
+                Utils.GetOrAddComponent<DungeonSlot>(go).SetInfo(_normalDungeonDatas[i], UpdateSelectedDungeonRoomId);
+            }
+            _dungeonCount = _normalDungeonDatas.Count;
+            UpdateToggleColors(_prevDungeonTypeToggle, _normalToggle);
+            _prevDungeonTypeToggle = _normalToggle;
+            return;
+        }
+
+        if (_bossToggle.isOn)
+        {
+            for (int i = 0; i < _bossDungeonDatas.Count; i++)
+            {
+                GameObject go = _dungeonSlotContent.transform.GetChild(i).gameObject;
+                go.SetActive(true);
+                Utils.GetOrAddComponent<DungeonSlot>(go).SetInfo(_bossDungeonDatas[i], UpdateSelectedDungeonRoomId);
+            }
+            _dungeonCount = _bossDungeonDatas.Count;
+            UpdateToggleColors(_prevDungeonTypeToggle, _bossToggle);
+            _prevDungeonTypeToggle = _bossToggle;
+            return;
+        }
+    }
+    //선택한 던전에 따라 파티 리스트를 리프레쉬
+    private void RefreshPartyListByDungeon()
+    {
+        ClearPartyList();
+        List<PartyInfo> partyInfos = Managers.PartyManager.PartyInfos;
+        for (int i = 0; i < partyInfos.Count; i++)
+        {
+            PartySlot slot = Managers.UIManager.GenerateSlot<PartySlot>(_partySlotContent.transform);
+            slot.SetInfo(partyInfos[i]);
+        }
+    }
+
+    private void OnCreatePartyBtnClicked(PointerEventData eventData)
+    {
+        EFailReasonCreateParty failReason = Managers.PartyManager.CheckAndSendReqCreateParty(_selectedDungeonRoomId);
+        switch (failReason)
+        {
+            case EFailReasonCreateParty.PartyAlreadyExist:
+                Managers.UIManager.ShowAlertPopup("이미 파티가 존재합니다.", AlertBtnNum.One);
+                break;
+        }
     }
 
     private void OnCloseBtnClicked(PointerEventData eventData)
@@ -118,106 +186,51 @@ public class DungeonUI : PopupUI
         ClosePopup<DungeonUI>();
     }
 
-    private void OnChangeTab(PointerEventData eventData, GameObject changedTab, GameObject changedDungeonList)
+    private void OnChangedMainTab()
     {
-        if (changedTab == _currentDungeonTab)
-            return;
-
-        ChangeTabColor(changedTab);
-        ChangeDungeonList(changedDungeonList);
+        Refresh();
     }
 
-    private void ChangeTabColor(GameObject changedTab)
+    private void OnChangedDungeonTypeTab()
     {
-        if (_currentDungeonTab != null)
-            _currentDungeonTab.GetComponent<Image>().color = _deActiveColor;
-
-        changedTab.GetComponent<Image>().color = _activeColor;
-        _currentDungeonTab = changedTab;
+        RefreshByDungeonType();
     }
 
-    private void ChangeDungeonList(GameObject changedDungeonList)
+    private void ClearMainTabs()
     {
-        _partyBtns.SetActive(false);
-        _partyListTab.SetActive(false);
-
-        if (_currentDungeonList != null)
-            _currentDungeonList.SetActive(false);
-
-        changedDungeonList.SetActive(true);
-
-        //TODO 현재 던전탭에 있는 파티들 동기화
-        //GetDungeonInfo(changedDungeonList);
-
-        _currentDungeonList = changedDungeonList;
+        _dungeonTab.SetActive(false);
+        _partyTab.SetActive(false);
     }
 
-    private void OnSinglePartyBtnClicked(PointerEventData eventData)
+    private void ClearDungeonList()
     {
-        Managers.MapManager.ChangeMap(3);
-    }
-
-    private void OnPartyBtnClicked(PointerEventData eventData)
-    {
-        PartyTabOn(true);
-    }
-
-    private void OnClickDungeonSlot(PointerEventData eventData)
-    {
-        PartyTabOn(false);
-    }
-
-    private void OnPartyMakeBtnClicked(PointerEventData eventData)
-    {
-        Hero hero = Managers.ObjectManager.MyHero;
-
-        //if (hero.PartyId >= 0)
-        //    return;
-        
-        GameObject partyTab = Managers.ResourceManager.Instantiate("PartyList", _partyContents.transform);
-
-        Managers.PartyManager.MakeParty(hero, partyTab);
-    }
-
-    private void OnPartyJoinBtnClicked(PointerEventData eventData)
-    {
-        Hero hero = Managers.ObjectManager.MyHero;
-
-        //if (hero.PartyId >= 0)
-        //    return;
-
-        Managers.PartyManager.JoinParty(hero, partyId);
-    }
-
-    private void OnPartyExitBtnClicked(PointerEventData eventData)
-    {
-        Hero hero = Managers.ObjectManager.MyHero;
-
-        //if (hero.PartyId < 0)
-        //{
-        //    return;
-        //}
-        //else
-        //{
-        //    Managers.PartyManager.RemovePartyMember(hero, hero.PartyId);
-        //    hero.PartyId = -1;
-        //}
-
-    }
-
-    private void PartyTabOn(bool isPartyTabOpen)
-    {
-        _partyBtns.SetActive(!isPartyTabOpen);
-        _partyListTab.SetActive(isPartyTabOpen);
-    }
-
-
-    private void GetDungeonInfo(GameObject changedDungeonList)
-    {
-        if (changedDungeonList.TryGetComponent(out DungeonSlot dungeonSlot))
+        for (int i = 0; i < _dungeonCount; i++)
         {
-
+            Transform child = _dungeonSlotContent.transform.GetChild(i);
+            child.gameObject.SetActive(false);
         }
     }
 
+    private void ClearPartyList()
+    {
+        for (int i = 0; i < _partySlotContent.transform.childCount; i++)
+        {
+            GameObject go = _partySlotContent.transform.GetChild(i).gameObject;
+            Managers.ResourceManager.Destroy(go, isPool: true);
+        }
+    }
+
+    private void UpdateSelectedDungeonRoomId(int roomId)
+    {
+        _selectedDungeonRoomId = roomId;
+    }
+
+    private void UpdateToggleColors(Toggle prevToggle, Toggle currentToggle)
+    {
+        if (prevToggle != null)
+        {
+            prevToggle.gameObject.GetComponent<Image>().color = NormalColor;
+        }
+        currentToggle.gameObject.GetComponent<Image>().color = SelectedColor;
+    }
 }

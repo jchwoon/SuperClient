@@ -56,7 +56,8 @@ public class Enums
         ChangeHUDInfo,
         UpdateInventory,
         UpdateSkillSet,
-        UpdateSkill
+        UpdateSkill,
+        UpdatePartyInfos
     }
 
     public enum SortingOrderInHUD
@@ -108,5 +109,11 @@ public class Enums
         BGM2,
         Effect,
         System
+    }
+
+    public enum EFailReasonCreateParty
+    {
+        None,
+        PartyAlreadyExist
     }
 }

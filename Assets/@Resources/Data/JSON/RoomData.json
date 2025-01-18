@@ -2,7 +2,8 @@
   "rooms": [
     {
       "roomId": 1,
-      "name": "Village",
+      "name": "실렌티아",
+      "mapName": "Silentia",
       "startPosX": 0,
       "startPosY": 0,
       "startPosZ": -10,
@@ -10,28 +11,32 @@
         1,
         2,
         3
-      ]
+      ],
+      "roomType": 0
     },
     {
-      "roomId": 2,
-      "name": "TestVillage",
+      "roomId": 100,
+      "name": "속삭이는 숲",
+      "mapName": "WhisperingForest",
+      "minRequiredLevel": 1,
+      "maxRequiredLevel": 5,
       "startPosX": 0,
       "startPosY": 0,
       "startPosZ": -10,
-      "npcs": [
-        1,
-        2,
-        3
-      ]
+      "roomType": 1,
+      "dungeonType": 1
     },
     {
-      "roomId": 3,
-      "name": "TestDungeon",
+      "roomId": 101,
+      "name": "생명의 숲",
+      "mapName": "ForestLife",
+      "minRequiredLevel": 6,
+      "maxRequiredLevel": 10,
       "startPosX": 0,
       "startPosY": 0,
       "startPosZ": -10,
-      "npcs": [
-      ]
+      "roomType": 1,
+      "dungeonType": 1
     }
   ]
 }

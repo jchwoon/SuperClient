@@ -22,7 +22,7 @@ public class UIManager
 
     public T ShowPopup<T>(string name = null) where T : PopupUI
     {
-        if (name == null)
+        if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
         PopupUI popup;
@@ -41,7 +41,7 @@ public class UIManager
 
     public T ClosePopupUI<T>(string name = null) where T : PopupUI
     {
-        if (name == null)
+        if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
         T popupUI = Parent.Find(name).gameObject.GetComponent<T>();
@@ -52,7 +52,7 @@ public class UIManager
 
     public T GetPopupUI<T>(string name = null) where T : PopupUI
     {
-        if (name == null)
+        if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
         PopupUI popup;
@@ -64,7 +64,7 @@ public class UIManager
 
     public T ShowSceneUI<T>(string name = null) where T : SceneUI
     {
-        if (name == null)
+        if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
         T sceneUI = Parent.Find(name).gameObject.GetComponent<T>();
@@ -75,13 +75,25 @@ public class UIManager
 
     public T CloseSceneUI<T>(string name = null) where T : SceneUI
     {
-        if (name == null)
+        if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
         T sceneUI = Parent.Find(name).gameObject.GetComponent<T>();
         sceneUI.gameObject.SetActive(false);
 
         return sceneUI;
+    }
+
+    public T GenerateSlot<T>(Transform parent, string name = null) where T : BaseUI
+    {
+        if (parent == null)
+            return null;
+
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject go = Managers.ResourceManager.Instantiate(name, parent);
+        return Utils.GetOrAddComponent<T>(go);
     }
 
     public void ShowFadeUI(float fadeTime = 2.0f, bool isFadeIn = true)

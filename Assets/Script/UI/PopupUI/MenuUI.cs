@@ -30,7 +30,8 @@ public class MenuUI : PopupUI
     {
         Managers.SoundManager.PlayClick();
         ClosePopup();
-        Managers.UIManager.ShowPopup<DungeonUI>();
+        DungeonUI ui = Managers.UIManager.ShowPopup<DungeonUI>();
+        ui.Refresh();
     }
     private void OnCloseBtnClicked(PointerEventData eventData)
     {

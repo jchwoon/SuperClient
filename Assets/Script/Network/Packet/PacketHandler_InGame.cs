@@ -226,7 +226,7 @@ public partial class PacketHandler
         if (myHero == null)
             return;
     }
-    
+
     public static void ApplyEffectToCHandler(PacketSession session, IMessage packet)
     {
         ApplyEffectToC applyEffectPacket = (ApplyEffectToC)packet;
@@ -271,7 +271,7 @@ public partial class PacketHandler
 
         creature.HandleChangedShield(changeShieldPacket.ShieldValue);
     }
-    
+
     public static void UpdateSkillLevelToCHandler(PacketSession session, IMessage packet)
     {
         UpdateSkillLevelToC levelUpSkillPacket = (UpdateSkillLevelToC)packet;
@@ -281,8 +281,35 @@ public partial class PacketHandler
             return;
 
         skillComponent.HandleUpdateSkillLevelAndPoint(
-            levelUpSkillPacket.SkillLevelInfos.ToList(), 
+            levelUpSkillPacket.SkillLevelInfos.ToList(),
             levelUpSkillPacket.SkillPoint,
             levelUpSkillPacket.Cost);
+    }
+
+    public static void ReqPartyJoinApprovalToCHandler(PacketSession session, IMessage packet)
+    {
+        ReqPartyJoinApprovalToC joinApprovalPacket = (ReqPartyJoinApprovalToC)packet;
+
+        GameObject go = Managers.ObjectManager.FindById(joinApprovalPacket.JoinerId);
+        if (go == null)
+            return;
+
+        Hero applier = go.GetComponent<Hero>();
+        if (applier == null)
+            return;
+
+        Managers.PartyManager.HandleReqJoinApproval(applier);
+    }
+    //참가 요청에 대한 응답
+    public static void ResJoinPartyToCHandler(PacketSession session, IMessage packet)
+    {
+
+    }
+
+    public static void ResAllPartyInfoToCHandler(PacketSession session, IMessage packet)
+    {
+        ResAllPartyInfoToC allPartyInfos = (ResAllPartyInfoToC)packet;
+
+        Managers.PartyManager.HandleResAllPartyInfos(allPartyInfos.PartyInfos.ToList());
     }
 }
