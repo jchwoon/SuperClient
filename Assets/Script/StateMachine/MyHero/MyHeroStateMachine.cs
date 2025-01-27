@@ -88,14 +88,12 @@ public class MyHeroStateMachine : StateMachine
     }
 
     //기본공격 포함
-    public override void UseSkill(ActiveSkillData skillData, Creature target, ResUseSkillToC skillPacket)
+    public override void UseSkill(ActiveSkillData skillData, ResUseSkillToC skillPacket)
     {
         if (skillData == null)
             return;
 
         ActiveSkill skill = Owner.SkillComponent.GetActiveSkillById(skillPacket.SkillInfo.SkillId);
-        if (target != null)
-            Owner.transform.LookAt(target.transform);
 
         if (skillData.IsMoveSkill)
         {
@@ -103,9 +101,8 @@ public class MyHeroStateMachine : StateMachine
             Vector3 destPos = new Vector3(posInfo.PosX, posInfo.PosY, posInfo.PosZ);
             CoroutineHelper.Instance.StartHelperCoroutine(CoMoveFromSkillData(Owner, skillData, destPos));
         }
-        skill.UseSkill(skillData.AnimName);
 
-
+        skill.UseSkill();
         ChangeState(SkillState);
     }
 

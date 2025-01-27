@@ -58,8 +58,9 @@ public class StateMachine
 
     }
 
-    public virtual void UseSkill(ActiveSkillData skillData, Creature target, ResUseSkillToC skillPacket)
+    public virtual void UseSkill(ActiveSkillData skillData, ResUseSkillToC skillPacket)
     {
+
     }
     public virtual void OnDie()
     {

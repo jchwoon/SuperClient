@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using Google.Protobuf.Enum;
 using System;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class Creature : BaseObject
 {
@@ -103,6 +105,8 @@ public class Creature : BaseObject
     #endregion
 
     #region Network Receive
+
+    #region Skill
     public void HandleUseSkill(Creature owner, ResUseSkillToC skillPacket)
     {
         ActiveSkillData skillData;
@@ -110,14 +114,59 @@ public class Creature : BaseObject
             return;
 
         GameObject go = Managers.ObjectManager.FindById(skillPacket.SkillInfo.SkillTargetId);
-        if (go == null)
-            owner.Machine?.UseSkill(skillData, null, skillPacket);
-        else
+        if (go != null)
+            owner.transform.LookAt(go.transform);
+
+        owner.Animator.Play(skillData.AnimName);
+        owner.Machine.UseSkill(skillData, skillPacket);
+
+        //사운드
+        if (!string.IsNullOrEmpty(skillData.SoundLabel))
         {
-            Creature target = go.GetComponent<Creature>();
-            owner.Machine?.UseSkill(skillData, target, skillPacket);
+            Managers.SoundManager.PlaySFX(skillData.SoundLabel, owner.transform);
+        }
+        //스킬 이펙트
+        if (!string.IsNullOrEmpty(skillData.PrefabName))
+        {
+            ParticleInfo info = new ParticleInfo
+            (
+                skillData.PrefabName,
+                owner.transform,
+                0
+            );
+            CoroutineHelper.Instance.StartHelperCoroutine(CoRunEffectTime(skillData, info));
+        }
+        //스킬 Hit 이펙트
+        if (!string.IsNullOrEmpty(skillData.HitPrefabName))
+        {
+            Vector2 skillCastDir = new Vector2(owner.transform.forward.x, owner.transform.forward.z).normalized;
+            List<Creature> targets = SkillComponent.GetSkillEffectedTargets(owner, skillData, owner.transform.position, skillCastDir);
+            foreach (Creature target in targets)
+            {
+                ParticleInfo info = new ParticleInfo
+                (
+                    skillData.HitPrefabName,
+                    target.transform,
+                    0
+                );
+                CoroutineHelper.Instance.StartHelperCoroutine(CoRunEffectTime(skillData, info));
+            }
         }
     }
+
+    IEnumerator CoRunEffectTime(ActiveSkillData skillData, ParticleInfo info)
+    {
+        float effectDelayTime = skillData.EffectDelayRatio * skillData.AnimTime;
+        float process = 0.0f;
+        while (process < effectDelayTime)
+        {
+            process += Time.deltaTime;
+            yield return null;
+        }
+
+        Managers.ObjectManager.SpawnParticle(info);
+    }
+    #endregion
 
     public virtual void HandleModifyStat(StatInfo statInfo)
     {

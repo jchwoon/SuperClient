@@ -57,7 +57,10 @@ public class Enums
         UpdateInventory,
         UpdateSkillSet,
         UpdateSkill,
-        UpdatePartyInfos
+        //해당 던전의 파티 리스트 정보가 업데이트 될 때
+        UpdatePartyInfos,
+        //내 파티의 멤버가 업데이트 될 때
+        UpdatePartyMembers
     }
 
     public enum SortingOrderInHUD
@@ -109,11 +112,5 @@ public class Enums
         BGM2,
         Effect,
         System
-    }
-
-    public enum EFailReasonCreateParty
-    {
-        None,
-        PartyAlreadyExist
     }
 }

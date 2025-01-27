@@ -123,11 +123,19 @@ namespace Google.Protobuf.Enum {
             "UkVOQ1lfVFlQRV9HT0xEEAEqOwoJRVJvb21UeXBlEhYKEkVST09NX1RZUEVf",
             "VklMTEFHRRAAEhYKEkVST09NX1RZUEVfRFVOR0VPThABKlgKDEVEdW5nZW9u",
             "VHlwZRIWChJFRFVOR0VPTl9UWVBFX05PTkUQABIYChRFRFVOR0VPTl9UWVBF",
-            "X05PUk1BTBABEhYKEkVEVU5HRU9OX1RZUEVfQk9TUxACQheqAhRHb29nbGUu",
-            "UHJvdG9idWYuRW51bWIGcHJvdG8z"));
+            "X05PUk1BTBABEhYKEkVEVU5HRU9OX1RZUEVfQk9TUxACKrQBChZFRmFpbFJl",
+            "YXNvbkNyZWF0ZVBhcnR5EiIKHkVGQUlMX1JFQVNPTl9DUkVBVEVfUEFSVFlf",
+            "Tk9ORRAAEiMKH0VGQUlMX1JFQVNPTl9DUkVBVEVfUEFSVFlfRVhJU1QQARIl",
+            "CiFFRkFJTF9SRUFTT05fQ1JFQVRFX1BBUlRZX1VOS05PV04QAhIqCiZFRkFJ",
+            "TF9SRUFTT05fQ1JFQVRFX1BBUlRZX05PVF9TRUxFQ1RFRBADKsYBChRFUGFy",
+            "dHlNZW1iZXJTbG90VHlwZRIgChxFUEFSVFlfTUVNQkVSX1NMT1RfVFlQRV9O",
+            "T05FEAASIQodRVBBUlRZX01FTUJFUl9TTE9UX1RZUEVfRklSU1QQARIiCh5F",
+            "UEFSVFlfTUVNQkVSX1NMT1RfVFlQRV9TRUNPTkQQAhIhCh1FUEFSVFlfTUVN",
+            "QkVSX1NMT1RfVFlQRV9USElSRBADEiIKHkVQQVJUWV9NRU1CRVJfU0xPVF9U",
+            "WVBFX0ZPVVJUSBAEQheqAhRHb29nbGUuUHJvdG9idWYuRW51bWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.EEffectScalingType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), typeof(global::Google.Protobuf.Enum.ENPCType), typeof(global::Google.Protobuf.Enum.EFontType), typeof(global::Google.Protobuf.Enum.ESkillSlotType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillUsageTargetType), typeof(global::Google.Protobuf.Enum.ESkillTargetingType), typeof(global::Google.Protobuf.Enum.EMonsterAggroType), typeof(global::Google.Protobuf.Enum.ECurrencyType), typeof(global::Google.Protobuf.Enum.ERoomType), typeof(global::Google.Protobuf.Enum.EDungeonType), }, null, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Enum.EHeroClassType), typeof(global::Google.Protobuf.Enum.ECreateHeroResult), typeof(global::Google.Protobuf.Enum.EObjectType), typeof(global::Google.Protobuf.Enum.ECreatureState), typeof(global::Google.Protobuf.Enum.EMoveDir), typeof(global::Google.Protobuf.Enum.ESkillFailReason), typeof(global::Google.Protobuf.Enum.EStatType), typeof(global::Google.Protobuf.Enum.EMoveType), typeof(global::Google.Protobuf.Enum.EMonsterGrade), typeof(global::Google.Protobuf.Enum.ETeleportType), typeof(global::Google.Protobuf.Enum.EItemType), typeof(global::Google.Protobuf.Enum.EEquipItemType), typeof(global::Google.Protobuf.Enum.ESlotType), typeof(global::Google.Protobuf.Enum.EPickupFailReason), typeof(global::Google.Protobuf.Enum.EAddItemType), typeof(global::Google.Protobuf.Enum.EItemStatus), typeof(global::Google.Protobuf.Enum.EConsumableType), typeof(global::Google.Protobuf.Enum.EEffectType), typeof(global::Google.Protobuf.Enum.EEffectDurationType), typeof(global::Google.Protobuf.Enum.EEffectScalingType), typeof(global::Google.Protobuf.Enum.ESkillType), typeof(global::Google.Protobuf.Enum.ESkillProjectileType), typeof(global::Google.Protobuf.Enum.ENPCType), typeof(global::Google.Protobuf.Enum.EFontType), typeof(global::Google.Protobuf.Enum.ESkillSlotType), typeof(global::Google.Protobuf.Enum.ESkillAreaType), typeof(global::Google.Protobuf.Enum.ESkillUsageTargetType), typeof(global::Google.Protobuf.Enum.ESkillTargetingType), typeof(global::Google.Protobuf.Enum.EMonsterAggroType), typeof(global::Google.Protobuf.Enum.ECurrencyType), typeof(global::Google.Protobuf.Enum.ERoomType), typeof(global::Google.Protobuf.Enum.EDungeonType), typeof(global::Google.Protobuf.Enum.EFailReasonCreateParty), typeof(global::Google.Protobuf.Enum.EPartyMemberSlotType), }, null, null));
     }
     #endregion
 
@@ -373,6 +381,21 @@ namespace Google.Protobuf.Enum {
     [pbr::OriginalName("EDUNGEON_TYPE_NONE")] None = 0,
     [pbr::OriginalName("EDUNGEON_TYPE_NORMAL")] Normal = 1,
     [pbr::OriginalName("EDUNGEON_TYPE_BOSS")] Boss = 2,
+  }
+
+  public enum EFailReasonCreateParty {
+    [pbr::OriginalName("EFAIL_REASON_CREATE_PARTY_NONE")] None = 0,
+    [pbr::OriginalName("EFAIL_REASON_CREATE_PARTY_EXIST")] Exist = 1,
+    [pbr::OriginalName("EFAIL_REASON_CREATE_PARTY_UNKNOWN")] Unknown = 2,
+    [pbr::OriginalName("EFAIL_REASON_CREATE_PARTY_NOT_SELECTED")] NotSelected = 3,
+  }
+
+  public enum EPartyMemberSlotType {
+    [pbr::OriginalName("EPARTY_MEMBER_SLOT_TYPE_NONE")] None = 0,
+    [pbr::OriginalName("EPARTY_MEMBER_SLOT_TYPE_FIRST")] First = 1,
+    [pbr::OriginalName("EPARTY_MEMBER_SLOT_TYPE_SECOND")] Second = 2,
+    [pbr::OriginalName("EPARTY_MEMBER_SLOT_TYPE_THIRD")] Third = 3,
+    [pbr::OriginalName("EPARTY_MEMBER_SLOT_TYPE_FOURTH")] Fourth = 4,
   }
 
   #endregion

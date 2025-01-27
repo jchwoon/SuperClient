@@ -94,5 +94,6 @@ public class Managers : MonoBehaviour
         ObjectManager.Clear();
         PoolManager.Clear();
         UIManager.Clear();
+        PartyManager.Clear();
     }
 }

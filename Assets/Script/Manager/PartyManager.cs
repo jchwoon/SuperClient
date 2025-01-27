@@ -1,4 +1,5 @@
 using Data;
+using Google.Protobuf.Enum;
 using Google.Protobuf.Protocol;
 using Google.Protobuf.Struct;
 using System;
@@ -46,37 +47,43 @@ public class PartyManager
 
     #region 파티 생성
     //파티 생성 요청
-    public EFailReasonCreateParty CheckAndSendReqCreateParty(int roomId)
+    public EFailReasonCreateParty CheckAndSendReqCreateParty(int? roomId)
     {
-        EFailReasonCreateParty failReason = CheckCreatePart();
+        EFailReasonCreateParty failReason = CheckCreateParty(roomId);
 
         if (failReason == EFailReasonCreateParty.None)
         {
-            SendReqCreateParty(roomId);
+            SendReqCreateParty(roomId.Value);
         }
 
         return failReason;
     }
 
-    private EFailReasonCreateParty CheckCreatePart()
+    private EFailReasonCreateParty CheckCreateParty(int? roomId)
     {
         if (MyParty != null)
-            return EFailReasonCreateParty.PartyAlreadyExist;
+            return EFailReasonCreateParty.Exist;
+        if (roomId == null)
+            return EFailReasonCreateParty.NotSelected;
+
 
         return EFailReasonCreateParty.None;
     }
 
     private void SendReqCreateParty(int roomId)
     {
-        CreatePartyToS createPartyPacket = new CreatePartyToS();
+        ReqCreatePartyToS createPartyPacket = new ReqCreatePartyToS();
         createPartyPacket.RoomId = roomId;
 
         Managers.NetworkManager.Send(createPartyPacket);
     }
 
-    public void HandleResCreateParty()
+    public void HandleResCreateParty(int roomId, long partyId)
     {
-        MyParty = new Party();
+        //파티 생성시엔 leader는 자기 자신
+        MyHero hero = Managers.ObjectManager.MyHero;
+        MyParty = new Party(hero, roomId, partyId);
+        SendReqAllPartyInfos(roomId);
     }
     #endregion
 
@@ -91,5 +98,10 @@ public class PartyManager
     {
         PartyInfos = partyInfos;
         Managers.EventBus.InvokeEvent(Enums.EventType.UpdatePartyInfos);
+    }
+
+    public void Clear()
+    {
+        MyParty = null;
     }
 }

@@ -18,10 +18,13 @@ public class DungeonUI : PopupUI
     {
         CloseBtn,
         CreatePartyBtn,
-        DungeonSlotContent,
+        NormalDungeonSlotContent,
+        BossDungeonSlotContent,
         PartySlotContent,
         DungeonTab,
-        PartyTab
+        PartyTab,
+        NormalDungeonView,
+        BossDungeonView
     }
 
     enum Toggles
@@ -33,14 +36,18 @@ public class DungeonUI : PopupUI
     }
 
     [SerializeField]
-    public Color SelectedColor;
+    public Color SelectedToggleColor;
     [SerializeField]
-    public Color NormalColor;
+    public Color NormalToggleColor;
 
     GameObject _dungeonTab;
     GameObject _partyTab;
 
-    GameObject _dungeonSlotContent;
+    GameObject _normalDungeonView;
+    GameObject _bossDungeonView;
+
+    GameObject _normalDungeonSlotContent;
+    GameObject _bossDungeonSlotContent;
     GameObject _partySlotContent;
 
     //MainTab
@@ -57,7 +64,7 @@ public class DungeonUI : PopupUI
     List<RoomData> _bossDungeonDatas;
 
     int _dungeonCount;
-    int _selectedDungeonRoomId;
+    int? _selectedDungeonRoomId = null;
 
     protected override void Awake()
     {
@@ -69,7 +76,11 @@ public class DungeonUI : PopupUI
         _dungeonTab = Get<GameObject>((int)GameObjects.DungeonTab);
         _partyTab = Get<GameObject>((int)GameObjects.PartyTab);
 
-        _dungeonSlotContent = Get<GameObject>((int)GameObjects.DungeonSlotContent);
+        _normalDungeonView = Get<GameObject>((int)GameObjects.NormalDungeonView);
+        _bossDungeonView = Get<GameObject>((int)GameObjects.BossDungeonView);
+
+        _normalDungeonSlotContent = Get<GameObject>((int)GameObjects.NormalDungeonSlotContent);
+        _bossDungeonSlotContent = Get<GameObject>((int)GameObjects.BossDungeonSlotContent);
         _partySlotContent = Get<GameObject>((int)GameObjects.PartySlotContent);
 
         _dungeonToggle = Get<Toggle>((int)Toggles.DungeonToggle);
@@ -80,10 +91,24 @@ public class DungeonUI : PopupUI
         _normalDungeonDatas = Managers.DataManager.RoomDict.Values.Where(r => r.DungeonType == EDungeonType.Normal).ToList();
         _bossDungeonDatas = Managers.DataManager.RoomDict.Values.Where(r => r.DungeonType == EDungeonType.Boss).ToList();
 
-        BindEvent(_dungeonToggle.gameObject, (_) => OnChangedMainTab());
-        BindEvent(_partyToggle.gameObject, (_) => OnChangedMainTab());
-        BindEvent(_normalToggle.gameObject, (_) => OnChangedDungeonTypeTab());
-        BindEvent(_bossToggle.gameObject, (_) => OnChangedDungeonTypeTab());
+        for (int i = 0; i < _normalDungeonDatas.Count; i++)
+        {
+            GameObject go = _normalDungeonSlotContent.transform.GetChild(i).gameObject;
+            Utils.GetOrAddComponent<Toggle>(go).group = _normalDungeonSlotContent.GetComponent<ToggleGroup>();
+        }
+
+
+        for (int i = 0; i < _bossDungeonDatas.Count; i++)
+        {
+            GameObject go = _bossDungeonSlotContent.transform.GetChild(i).gameObject;
+            Utils.GetOrAddComponent<Toggle>(go).group = _bossDungeonSlotContent.GetComponent<ToggleGroup>();
+        }
+
+
+        BindEvent(_dungeonToggle.gameObject, OnChangedMainTab);
+        BindEvent(_partyToggle.gameObject, OnChangedMainTab);
+        BindEvent(_normalToggle.gameObject, OnChangedDungeonTypeTab);
+        BindEvent(_bossToggle.gameObject, OnChangedDungeonTypeTab);
         BindEvent(Get<GameObject>((int)GameObjects.CreatePartyBtn), OnCreatePartyBtnClicked);
         BindEvent(Get<GameObject>((int)GameObjects.CloseBtn), OnCloseBtnClicked);
     }
@@ -120,6 +145,7 @@ public class DungeonUI : PopupUI
         if (_partyToggle.isOn)
         {
             _partyTab.SetActive(true);
+            _partyTab.GetComponent<PartyTabUI>().Refresh();
             UpdateToggleColors(_prevMainToggle, _partyToggle);
             _prevMainToggle = _partyToggle;
             return;
@@ -129,14 +155,17 @@ public class DungeonUI : PopupUI
     private void RefreshByDungeonType()
     {
         ClearDungeonList();
+        ClearPartyList();
 
         if (_normalToggle.isOn)
         {
+            _normalDungeonView.SetActive(true);
             for (int i = 0; i < _normalDungeonDatas.Count; i++)
             {
-                GameObject go = _dungeonSlotContent.transform.GetChild(i).gameObject;
+                GameObject go = _normalDungeonSlotContent.transform.GetChild(i).gameObject;
                 go.SetActive(true);
-                Utils.GetOrAddComponent<DungeonSlot>(go).SetInfo(_normalDungeonDatas[i], UpdateSelectedDungeonRoomId);
+                DungeonSlot slot = Utils.GetOrAddComponent<DungeonSlot>(go);
+                slot.SetInfo(_normalDungeonDatas[i], UpdateSelectedDungeonRoomId);
             }
             _dungeonCount = _normalDungeonDatas.Count;
             UpdateToggleColors(_prevDungeonTypeToggle, _normalToggle);
@@ -146,11 +175,13 @@ public class DungeonUI : PopupUI
 
         if (_bossToggle.isOn)
         {
+            _bossDungeonView.SetActive(true);
             for (int i = 0; i < _bossDungeonDatas.Count; i++)
             {
-                GameObject go = _dungeonSlotContent.transform.GetChild(i).gameObject;
+                GameObject go = _bossDungeonSlotContent.transform.GetChild(i).gameObject;
                 go.SetActive(true);
-                Utils.GetOrAddComponent<DungeonSlot>(go).SetInfo(_bossDungeonDatas[i], UpdateSelectedDungeonRoomId);
+                DungeonSlot slot = Utils.GetOrAddComponent<DungeonSlot>(go);
+                slot.SetInfo(_bossDungeonDatas[i], UpdateSelectedDungeonRoomId);
             }
             _dungeonCount = _bossDungeonDatas.Count;
             UpdateToggleColors(_prevDungeonTypeToggle, _bossToggle);
@@ -175,8 +206,11 @@ public class DungeonUI : PopupUI
         EFailReasonCreateParty failReason = Managers.PartyManager.CheckAndSendReqCreateParty(_selectedDungeonRoomId);
         switch (failReason)
         {
-            case EFailReasonCreateParty.PartyAlreadyExist:
+            case EFailReasonCreateParty.Exist:
                 Managers.UIManager.ShowAlertPopup("이미 파티가 존재합니다.", AlertBtnNum.One);
+                break;
+            case EFailReasonCreateParty.NotSelected:
+                Managers.UIManager.ShowAlertPopup("선택된 던전이 없습니다.", AlertBtnNum.One);
                 break;
         }
     }
@@ -186,13 +220,19 @@ public class DungeonUI : PopupUI
         ClosePopup<DungeonUI>();
     }
 
-    private void OnChangedMainTab()
+    private void OnChangedMainTab(PointerEventData eventData)
     {
+        if (eventData.pointerClick.gameObject == _prevMainToggle.gameObject)
+            return;
+
         Refresh();
     }
 
-    private void OnChangedDungeonTypeTab()
+    private void OnChangedDungeonTypeTab(PointerEventData eventData)
     {
+        if (eventData.pointerClick.gameObject == _prevDungeonTypeToggle.gameObject)
+            return;
+
         RefreshByDungeonType();
     }
 
@@ -204,11 +244,8 @@ public class DungeonUI : PopupUI
 
     private void ClearDungeonList()
     {
-        for (int i = 0; i < _dungeonCount; i++)
-        {
-            Transform child = _dungeonSlotContent.transform.GetChild(i);
-            child.gameObject.SetActive(false);
-        }
+        _normalDungeonView.SetActive(false);
+        _bossDungeonView.SetActive(false);
     }
 
     private void ClearPartyList()
@@ -229,8 +266,8 @@ public class DungeonUI : PopupUI
     {
         if (prevToggle != null)
         {
-            prevToggle.gameObject.GetComponent<Image>().color = NormalColor;
+            prevToggle.gameObject.GetComponent<Image>().color = NormalToggleColor;
         }
-        currentToggle.gameObject.GetComponent<Image>().color = SelectedColor;
+        currentToggle.gameObject.GetComponent<Image>().color = SelectedToggleColor;
     }
 }

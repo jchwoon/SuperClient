@@ -2,11 +2,13 @@ using Data;
 using Google.Protobuf.Enum;
 using Google.Protobuf.Protocol;
 using Google.Protobuf.Struct;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class SkillComponent
 {
@@ -176,4 +178,58 @@ public class SkillComponent
         Managers.EventBus.InvokeEvent(Enums.EventType.UpdateSkill);
     }
     #endregion
+
+    public static List<Creature> GetSkillEffectedTargets(Creature owner, ActiveSkillData skilldata, Vector3 skillPos, Vector2 skillCastDir)
+    {
+        List<Creature> effectedCreatures = new List<Creature>();
+        int maxEntityCount = skilldata.MaxEntityCount;
+        int currentCount = 0;
+
+        switch (skilldata.SkillAreaType)
+        {
+            case ESkillAreaType.Area:
+                List<Creature> creatures = Managers.ObjectManager.GetAllCreatures();
+                foreach (Creature creature in creatures)
+                {
+                    if (creature.Machine == null || creature.Machine.CreatureState == ECreatureState.Die) continue;
+                    //효과를 주는 최대 마릿 수 제한
+                    if (maxEntityCount != 0 && currentCount >= maxEntityCount) break;
+                    //피아식별 검사
+                    if (CheckSkillUsageType(owner, creature, skilldata.SkillUsageTargetType) == false) continue;
+                    //거리 검사
+                    float dist = Vector3.Distance(creature.transform.position, skillPos);
+                    if (dist > skilldata.SkillRange) continue;
+                    //Sector 검사
+                    Vector3 dir = (creature.transform.position - skillPos).normalized;
+                    float dotValue = Vector2.Dot(
+                        new Vector2(dir.x, dir.z),
+                        new Vector2(skillCastDir.x, skillCastDir.y));
+
+                    float skillSectorValue = MathF.Cos(skilldata.SectorAngle * Mathf.Deg2Rad);
+                    if (skillSectorValue <= dotValue)
+                        effectedCreatures.Add(creature);
+                }
+                break;
+            default:
+                return effectedCreatures;
+        }
+
+        return effectedCreatures;
+    }
+
+    private static bool CheckSkillUsageType(Creature owner, Creature target, ESkillUsageTargetType usageType)
+    {
+        switch (usageType)
+        {
+            case ESkillUsageTargetType.Self:
+                return target.ObjectId == owner.ObjectId;
+            //나중에 파티시스템 만들면 수정
+            case ESkillUsageTargetType.Ally:
+                return target.ObjectType == owner.ObjectType;
+            case ESkillUsageTargetType.Enemy:
+                return target.ObjectType != owner.ObjectType;
+            default:
+                return false;
+        }
+    }
 }

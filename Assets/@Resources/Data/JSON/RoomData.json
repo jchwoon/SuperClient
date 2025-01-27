@@ -37,6 +37,18 @@
       "startPosZ": -10,
       "roomType": 1,
       "dungeonType": 1
+    },
+    {
+      "roomId": 1000,
+      "name": "대의지 숲",
+      "mapName": "boss",
+      "minRequiredLevel": 6,
+      "maxRequiredLevel": 10,
+      "startPosX": 0,
+      "startPosY": 0,
+      "startPosZ": -10,
+      "roomType": 1,
+      "dungeonType": 2
     }
   ]
 }

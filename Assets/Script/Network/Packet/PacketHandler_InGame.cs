@@ -286,19 +286,26 @@ public partial class PacketHandler
             levelUpSkillPacket.Cost);
     }
 
+    public static void ResCreatePartyToCHandler(PacketSession session, IMessage packet)
+    {
+        ResCreatePartyToC resCreatePartyPacket = (ResCreatePartyToC)packet;
+
+        Managers.PartyManager.HandleResCreateParty(resCreatePartyPacket.RoomId, resCreatePartyPacket.PartyId);
+    }
+
     public static void ReqPartyJoinApprovalToCHandler(PacketSession session, IMessage packet)
     {
         ReqPartyJoinApprovalToC joinApprovalPacket = (ReqPartyJoinApprovalToC)packet;
 
-        GameObject go = Managers.ObjectManager.FindById(joinApprovalPacket.JoinerId);
-        if (go == null)
-            return;
+        //GameObject go = Managers.ObjectManager.FindById(joinApprovalPacket.JoinerId);
+        //if (go == null)
+        //    return;
 
-        Hero applier = go.GetComponent<Hero>();
-        if (applier == null)
-            return;
+        //Hero applier = go.GetComponent<Hero>();
+        //if (applier == null)
+        //    return;
 
-        Managers.PartyManager.HandleReqJoinApproval(applier);
+        //Managers.PartyManager.HandleReqJoinApproval(applier);
     }
     //참가 요청에 대한 응답
     public static void ResJoinPartyToCHandler(PacketSession session, IMessage packet)

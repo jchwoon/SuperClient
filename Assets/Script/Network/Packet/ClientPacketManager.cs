@@ -48,12 +48,13 @@ public enum PacketId
   ReqLevelUpSkillToS = 39,
   ReqInitSkillPointToS = 40,
   UpdateSkillLevelToC = 41,
-  CreatePartyToS = 42,
-  ReqJoinPartyToS = 43,
-  ResJoinPartyToC = 44,
-  ReqPartyJoinApprovalToC = 45,
-  ReqAllPartyInfoToS = 46,
-  ResAllPartyInfoToC = 47,
+  ReqCreatePartyToS = 42,
+  ResCreatePartyToC = 43,
+  ReqJoinPartyToS = 44,
+  ResJoinPartyToC = 45,
+  ReqPartyJoinApprovalToC = 46,
+  ReqAllPartyInfoToS = 47,
+  ResAllPartyInfoToC = 48,
 
 }
 
@@ -138,6 +139,8 @@ class PacketManager
         _handler.Add((ushort)PacketId.ChangeShieldValueToC, PacketHandler.ChangeShieldValueToCHandler);
         _parseHandler.Add((ushort)PacketId.UpdateSkillLevelToC, ParsePacket<UpdateSkillLevelToC>);
         _handler.Add((ushort)PacketId.UpdateSkillLevelToC, PacketHandler.UpdateSkillLevelToCHandler);
+        _parseHandler.Add((ushort)PacketId.ResCreatePartyToC, ParsePacket<ResCreatePartyToC>);
+        _handler.Add((ushort)PacketId.ResCreatePartyToC, PacketHandler.ResCreatePartyToCHandler);
         _parseHandler.Add((ushort)PacketId.ResJoinPartyToC, ParsePacket<ResJoinPartyToC>);
         _handler.Add((ushort)PacketId.ResJoinPartyToC, PacketHandler.ResJoinPartyToCHandler);
         _parseHandler.Add((ushort)PacketId.ReqPartyJoinApprovalToC, ParsePacket<ReqPartyJoinApprovalToC>);

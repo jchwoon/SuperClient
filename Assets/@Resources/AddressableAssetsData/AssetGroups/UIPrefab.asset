@@ -47,12 +47,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - preLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 75577213f70c4514eb441419c2322cc4
-    m_Address: PartyList
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - preLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 769ad1845a1a8bf449b72771c0df98bf
     m_Address: CharacterSlot
     m_ReadOnly: 0
@@ -109,6 +103,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ea770ae95245bd2479a986b2f0fa5098
     m_Address: CreatureHUD
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - preLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f201a6ae100803a48bfdbd199a34ec3d
+    m_Address: PartySlot
     m_ReadOnly: 0
     m_SerializedLabels:
     - preLoad
