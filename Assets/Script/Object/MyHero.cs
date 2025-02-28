@@ -152,8 +152,8 @@ public class MyHero : Hero
         GrowthInfo.AddExp(exp);
         CurrencyComponent.AddGold(gold);
 
-        FloatingTextController.RegisterOrSpawnText(exp, transform, EFontType.Exp, isReward:true);
-        FloatingTextController.RegisterOrSpawnText(gold, transform, EFontType.Gold, isReward: true);
+        //FloatingTextController.RegisterOrSpawnText(exp, transform, EFontType.Exp, isReward:true);
+        //FloatingTextController.RegisterOrSpawnText(gold, transform, EFontType.Gold, isReward: true);
     }
 
     #region PickupItem

@@ -69,9 +69,9 @@ public class MemberSlot : BaseUI
         if (info != null)
         {
             //Temp Combat
-            _levelAndCombatTxt.text = $"{info.Level}\n 5657";
-            _nicknameTxt.text = info.Name;
-            _classMarkImage.sprite = Managers.ResourceManager.GetResource<Sprite>($"{info.Class}_sprite");
+            _levelAndCombatTxt.text = $"{info.Info.Level}\n 5657";
+            _nicknameTxt.text = info.Info.Nickname;
+            _classMarkImage.sprite = Managers.ResourceManager.GetResource<Sprite>($"{info.Info.ClassType}_sprite");
             _leaderMarkImage.gameObject.SetActive(info.IsLeader ? true : false);
         }
         else
@@ -108,6 +108,6 @@ public class MemberSlot : BaseUI
         if (myParty == null)
             return false;
 
-        return myParty.CheckLeader();
+        return myParty.IsPartyLeader();
     }
 }

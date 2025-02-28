@@ -28,6 +28,7 @@ public class Managers : MonoBehaviour
     private PartyManager _partyManager = new PartyManager();
     private InputManager _inputManager = new InputManager();
     private SoundManager _soundManager = new SoundManager();
+    private AuthManager _authManager = new AuthManager();
 
     public static NetworkManager NetworkManager { get { return Instance._networkManager; } }
     public static SceneManagerEx SceneManagerEx { get { return Instance._sceneManager; } }
@@ -43,6 +44,7 @@ public class Managers : MonoBehaviour
     public static PartyManager PartyManager { get { return Instance._partyManager; } }
     public static InputManager InputManager { get { return Instance._inputManager; } }
     public static SoundManager SoundManager { get { return Instance._soundManager; } }
+    public static AuthManager AuthManager { get { return Instance._authManager; } }
 
 
     private void Awake()

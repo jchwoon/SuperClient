@@ -50,11 +50,14 @@ public enum PacketId
   UpdateSkillLevelToC = 41,
   ReqCreatePartyToS = 42,
   ResCreatePartyToC = 43,
-  ReqJoinPartyToS = 44,
-  ResJoinPartyToC = 45,
-  ReqPartyJoinApprovalToC = 46,
-  ReqAllPartyInfoToS = 47,
-  ResAllPartyInfoToC = 48,
+  ReqApplyPartyToS = 44,
+  ResApplyPartyToC = 45,
+  ReqAllPartyInfoToS = 46,
+  ResAllPartyInfoToC = 47,
+  ReqLeavePartyToS = 48,
+  ResLeavePartyToC = 49,
+  UpdatePartyMemberToC = 50,
+  UpdatePartyApplierToC = 51,
 
 }
 
@@ -141,12 +144,16 @@ class PacketManager
         _handler.Add((ushort)PacketId.UpdateSkillLevelToC, PacketHandler.UpdateSkillLevelToCHandler);
         _parseHandler.Add((ushort)PacketId.ResCreatePartyToC, ParsePacket<ResCreatePartyToC>);
         _handler.Add((ushort)PacketId.ResCreatePartyToC, PacketHandler.ResCreatePartyToCHandler);
-        _parseHandler.Add((ushort)PacketId.ResJoinPartyToC, ParsePacket<ResJoinPartyToC>);
-        _handler.Add((ushort)PacketId.ResJoinPartyToC, PacketHandler.ResJoinPartyToCHandler);
-        _parseHandler.Add((ushort)PacketId.ReqPartyJoinApprovalToC, ParsePacket<ReqPartyJoinApprovalToC>);
-        _handler.Add((ushort)PacketId.ReqPartyJoinApprovalToC, PacketHandler.ReqPartyJoinApprovalToCHandler);
+        _parseHandler.Add((ushort)PacketId.ResApplyPartyToC, ParsePacket<ResApplyPartyToC>);
+        _handler.Add((ushort)PacketId.ResApplyPartyToC, PacketHandler.ResApplyPartyToCHandler);
         _parseHandler.Add((ushort)PacketId.ResAllPartyInfoToC, ParsePacket<ResAllPartyInfoToC>);
         _handler.Add((ushort)PacketId.ResAllPartyInfoToC, PacketHandler.ResAllPartyInfoToCHandler);
+        _parseHandler.Add((ushort)PacketId.ResLeavePartyToC, ParsePacket<ResLeavePartyToC>);
+        _handler.Add((ushort)PacketId.ResLeavePartyToC, PacketHandler.ResLeavePartyToCHandler);
+        _parseHandler.Add((ushort)PacketId.UpdatePartyMemberToC, ParsePacket<UpdatePartyMemberToC>);
+        _handler.Add((ushort)PacketId.UpdatePartyMemberToC, PacketHandler.UpdatePartyMemberToCHandler);
+        _parseHandler.Add((ushort)PacketId.UpdatePartyApplierToC, ParsePacket<UpdatePartyApplierToC>);
+        _handler.Add((ushort)PacketId.UpdatePartyApplierToC, PacketHandler.UpdatePartyApplierToCHandler);
     
     }
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "698118185373",
+    "project_id": "superworld-f6e3a",
+    "storage_bucket": "superworld-f6e3a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698118185373:android:d4d61ebd16521eaa524f74",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.SuperCrack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdV60l8f5KkPbc3JveqrAhL_zRQuillko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

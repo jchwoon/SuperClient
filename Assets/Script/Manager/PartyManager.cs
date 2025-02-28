@@ -27,22 +27,42 @@ public class PartyManager
     public List<PartyInfo> PartyInfos = new List<PartyInfo>();
 
     //파티 가입 요청
-    public void ReqJoinParty(long partyId)
+    public void ReqApplyParty(long partyId)
     {
-        ReqJoinPartyToS reqJoinPartyPacket = new ReqJoinPartyToS();
-        reqJoinPartyPacket.PartyId = partyId;
+        ReqApplyPartyToS applyPartyPacket = new ReqApplyPartyToS();
+        applyPartyPacket.PartyId = partyId;
 
-        Managers.NetworkManager.Send(reqJoinPartyPacket);
+        Managers.NetworkManager.Send(applyPartyPacket);
     }
-    //파티 가입 요청에 대한 핸들링
-    public void HandleReqJoinApproval(Hero applier)
+
+    //파티 지원자들의 정보가 업데이트 됐을때 핸들링
+    public void HandleUpdateApplierInfos(List<ApplierInfo> applierInfos)
     {
-        if (applier == null)
+        if (applierInfos == null)
             return;
 
-        //UI에알림 띄우기
-        //Managers.UIManager.ShowPopup();
-        //applyer.MapName
+        MyParty.UpdateApplier(applierInfos);
+    }
+
+    public void HandleUpdateMemberInfos(List<MemberInfo> memberInfos)
+    {
+        if (memberInfos == null)
+            return;
+
+        MyParty.UpdateMember(memberInfos);
+    }
+
+    public void SendReqAllPartyInfos(int roomId)
+    {
+        ReqAllPartyInfoToS reqAllPartyInfoPacket = new ReqAllPartyInfoToS();
+        reqAllPartyInfoPacket.RoomId = roomId;
+        Managers.NetworkManager.Send(reqAllPartyInfoPacket);
+    }
+
+    public void HandleResAllPartyInfos(List<PartyInfo> partyInfos)
+    {
+        PartyInfos = partyInfos;
+        Managers.EventBus.InvokeEvent(Enums.EventType.UpdatePartyInfos);
     }
 
     #region 파티 생성
@@ -87,18 +107,15 @@ public class PartyManager
     }
     #endregion
 
-    public void SendReqAllPartyInfos(int roomId)
+    #region 파티 탈퇴
+    public void LeaveParty()
     {
-        ReqAllPartyInfoToS reqAllPartyInfoPacket = new ReqAllPartyInfoToS();
-        reqAllPartyInfoPacket.RoomId = roomId;
-        Managers.NetworkManager.Send(reqAllPartyInfoPacket);
+        if (MyParty == null)
+            return;
+        ReqLeavePartyToS leavePartyPacket = new ReqLeavePartyToS();
+        Managers.NetworkManager.Send(leavePartyPacket);
     }
-
-    public void HandleResAllPartyInfos(List<PartyInfo> partyInfos)
-    {
-        PartyInfos = partyInfos;
-        Managers.EventBus.InvokeEvent(Enums.EventType.UpdatePartyInfos);
-    }
+    #endregion
 
     public void Clear()
     {

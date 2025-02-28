@@ -76,7 +76,7 @@ public class PartySlot : BaseUI
             Managers.UIManager.ShowToasUI($"해당 파티에 {Mathf.Round(applyCooltime - applyElapsedTime)}초 후에 지원할 수 있습니다.");
             return;
         }
-        Managers.PartyManager.ReqJoinParty(PartyInfo.PartyId);
+        Managers.PartyManager.ReqApplyParty(PartyInfo.PartyId);
         StartCoroutine(CoCooltimeSendApply());
     }
 
@@ -133,9 +133,9 @@ public class MemberInfoSlot : BaseUI
         }
         else
         {
-            levelText.text = $"Lv. {memberInfo.Level}";
-            nicknameText.text = memberInfo.Name;
-            classImage.sprite = Managers.ResourceManager.GetResource<Sprite>($"{memberInfo.Class}_sprite");
+            levelText.text = $"Lv. {memberInfo.Info.Level}";
+            nicknameText.text = memberInfo.Info.Nickname;
+            classImage.sprite = Managers.ResourceManager.GetResource<Sprite>($"{memberInfo.Info.ClassType}_sprite");
             classImage.color = Color.white;
         }
     }

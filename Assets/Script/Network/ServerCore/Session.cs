@@ -99,7 +99,7 @@ namespace ServerCore
                 _socket.Shutdown(SocketShutdown.Both);
             }
             catch (Exception e) { Debug.Log(e); }
-            _socket.Close();
+            _socket?.Close();
             Clear();
             OnDisconnected();
         }

@@ -60,7 +60,8 @@ public class Enums
         //해당 던전의 파티 리스트 정보가 업데이트 될 때
         UpdatePartyInfos,
         //내 파티의 멤버가 업데이트 될 때
-        UpdatePartyMembers
+        UpdatePartyMembers,
+        UpdatePartyApplier
     }
 
     public enum SortingOrderInHUD

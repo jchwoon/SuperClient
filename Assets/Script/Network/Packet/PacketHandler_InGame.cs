@@ -293,23 +293,10 @@ public partial class PacketHandler
         Managers.PartyManager.HandleResCreateParty(resCreatePartyPacket.RoomId, resCreatePartyPacket.PartyId);
     }
 
-    public static void ReqPartyJoinApprovalToCHandler(PacketSession session, IMessage packet)
+    //파티 지원에 대한 응답
+    public static void ResApplyPartyToCHandler(PacketSession session, IMessage packet)
     {
-        ReqPartyJoinApprovalToC joinApprovalPacket = (ReqPartyJoinApprovalToC)packet;
-
-        //GameObject go = Managers.ObjectManager.FindById(joinApprovalPacket.JoinerId);
-        //if (go == null)
-        //    return;
-
-        //Hero applier = go.GetComponent<Hero>();
-        //if (applier == null)
-        //    return;
-
-        //Managers.PartyManager.HandleReqJoinApproval(applier);
-    }
-    //참가 요청에 대한 응답
-    public static void ResJoinPartyToCHandler(PacketSession session, IMessage packet)
-    {
+        ResApplyPartyToC applyPartyPacket = (ResApplyPartyToC)packet;
 
     }
 
@@ -318,5 +305,22 @@ public partial class PacketHandler
         ResAllPartyInfoToC allPartyInfos = (ResAllPartyInfoToC)packet;
 
         Managers.PartyManager.HandleResAllPartyInfos(allPartyInfos.PartyInfos.ToList());
+    }
+    //나중에
+    public static void ResLeavePartyToCHandler(PacketSession session, IMessage packet)
+    {
+
+    }
+    public static void UpdatePartyMemberToCHandler(PacketSession session, IMessage packet)
+    {
+        UpdatePartyMemberToC updateMemberPacket = (UpdatePartyMemberToC)packet;
+
+        Managers.PartyManager.HandleUpdateMemberInfos(updateMemberPacket.PartyInfo.MemberInfos.ToList());
+    }
+    public static void UpdatePartyApplierToCHandler(PacketSession session, IMessage packet)
+    {
+        UpdatePartyApplierToC updateApplierPacket = (UpdatePartyApplierToC)packet;
+
+        Managers.PartyManager.HandleUpdateApplierInfos(updateApplierPacket.ApplierInfos.ToList());
     }
 }

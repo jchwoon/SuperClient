@@ -82,7 +82,21 @@ public class Utils
     {
         if (_statToTextMap.TryGetValue(statType, out string text) == true)
             return text;
-        return null;
+        return string.Empty;
+    }
+
+    private static readonly Dictionary<EHeroClassType, string> _classToTextMap = new Dictionary<EHeroClassType, string>
+    {
+        { EHeroClassType.Guardian, "가디언" },
+        { EHeroClassType.Wizard, "위자드" },
+        { EHeroClassType.Priest, "프리스트" },
+    };
+
+    public static string GetClassTypeText(EHeroClassType classType)
+    {
+        if (_classToTextMap.TryGetValue(classType, out string text) == true)
+            return text;
+        return string.Empty;
     }
 
     public static float GetAngleFromDir(Vector2 dir)

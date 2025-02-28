@@ -50,13 +50,13 @@ namespace Google.Protobuf.Struct {
             "UHJvdG9jb2wuRVNsb3RUeXBlIkcKCVNraWxsSW5mbxIPCgdza2lsbElkGAEg",
             "ASgFEhUKDXNraWxsVGFyZ2V0SWQYAiABKAUSEgoKc2tpbGxMZXZlbBgDIAEo",
             "BSI1Cg5Ta2lsbExldmVsSW5mbxIPCgdza2lsbElkGAEgASgFEhIKCnNraWxs",
-            "TGV2ZWwYAiABKAUinAEKCk1lbWJlckluZm8SEAoIaXNMZWFkZXIYASABKAgS",
-            "DAoEbmFtZRgCIAEoCRINCgVsZXZlbBgDIAEoBRInCgVjbGFzcxgEIAEoDjIY",
-            "LlByb3RvY29sLkVIZXJvQ2xhc3NUeXBlEjYKDm1lbWJlclNsb3RUeXBlGAUg",
-            "ASgOMh4uUHJvdG9jb2wuRVBhcnR5TWVtYmVyU2xvdFR5cGUiRwoJUGFydHlJ",
-            "bmZvEikKC21lbWJlckluZm9zGAEgAygLMhQuUHJvdG9jb2wuTWVtYmVySW5m",
-            "bxIPCgdwYXJ0eUlkGAIgASgDQhmqAhZHb29nbGUuUHJvdG9idWYuU3RydWN0",
-            "YgZwcm90bzM="));
+            "TGV2ZWwYAiABKAUiVwoKTWVtYmVySW5mbxIQCghpc0xlYWRlchgBIAEoCBIl",
+            "CgRpbmZvGAIgASgLMhcuUHJvdG9jb2wuTG9iYnlIZXJvSW5mbxIQCghvYmpl",
+            "Y3RJZBgDIAEoBSJGCgtBcHBsaWVySW5mbxIlCgRpbmZvGAEgASgLMhcuUHJv",
+            "dG9jb2wuTG9iYnlIZXJvSW5mbxIQCghvYmplY3RJZBgCIAEoBSJHCglQYXJ0",
+            "eUluZm8SKQoLbWVtYmVySW5mb3MYASADKAsyFC5Qcm90b2NvbC5NZW1iZXJJ",
+            "bmZvEg8KB3BhcnR5SWQYAiABKANCGaoCFkdvb2dsZS5Qcm90b2J1Zi5TdHJ1",
+            "Y3RiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Enum.EnumReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -70,7 +70,8 @@ namespace Google.Protobuf.Struct {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ItemInfo), global::Google.Protobuf.Struct.ItemInfo.Parser, new[]{ "ItemDbId", "TemplateId", "Count", "SlotType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillInfo), global::Google.Protobuf.Struct.SkillInfo.Parser, new[]{ "SkillId", "SkillTargetId", "SkillLevel" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.SkillLevelInfo), global::Google.Protobuf.Struct.SkillLevelInfo.Parser, new[]{ "SkillId", "SkillLevel" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.MemberInfo), global::Google.Protobuf.Struct.MemberInfo.Parser, new[]{ "IsLeader", "Name", "Level", "Class", "MemberSlotType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.MemberInfo), global::Google.Protobuf.Struct.MemberInfo.Parser, new[]{ "IsLeader", "Info", "ObjectId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.ApplierInfo), global::Google.Protobuf.Struct.ApplierInfo.Parser, new[]{ "Info", "ObjectId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Struct.PartyInfo), global::Google.Protobuf.Struct.PartyInfo.Parser, new[]{ "MemberInfos", "PartyId" }, null, null, null, null)
           }));
     }
@@ -3369,10 +3370,8 @@ namespace Google.Protobuf.Struct {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public MemberInfo(MemberInfo other) : this() {
       isLeader_ = other.isLeader_;
-      name_ = other.name_;
-      level_ = other.level_;
-      class_ = other.class_;
-      memberSlotType_ = other.memberSlotType_;
+      info_ = other.info_ != null ? other.info_.Clone() : null;
+      objectId_ = other.objectId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3394,51 +3393,27 @@ namespace Google.Protobuf.Struct {
       }
     }
 
-    /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 2;
-    private string name_ = "";
+    /// <summary>Field number for the "info" field.</summary>
+    public const int InfoFieldNumber = 2;
+    private global::Google.Protobuf.Struct.LobbyHeroInfo info_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public string Name {
-      get { return name_; }
+    public global::Google.Protobuf.Struct.LobbyHeroInfo Info {
+      get { return info_; }
       set {
-        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        info_ = value;
       }
     }
 
-    /// <summary>Field number for the "level" field.</summary>
-    public const int LevelFieldNumber = 3;
-    private int level_;
+    /// <summary>Field number for the "objectId" field.</summary>
+    public const int ObjectIdFieldNumber = 3;
+    private int objectId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Level {
-      get { return level_; }
+    public int ObjectId {
+      get { return objectId_; }
       set {
-        level_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "class" field.</summary>
-    public const int ClassFieldNumber = 4;
-    private global::Google.Protobuf.Enum.EHeroClassType class_ = global::Google.Protobuf.Enum.EHeroClassType.None;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Google.Protobuf.Enum.EHeroClassType Class {
-      get { return class_; }
-      set {
-        class_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "memberSlotType" field.</summary>
-    public const int MemberSlotTypeFieldNumber = 5;
-    private global::Google.Protobuf.Enum.EPartyMemberSlotType memberSlotType_ = global::Google.Protobuf.Enum.EPartyMemberSlotType.None;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Google.Protobuf.Enum.EPartyMemberSlotType MemberSlotType {
-      get { return memberSlotType_; }
-      set {
-        memberSlotType_ = value;
+        objectId_ = value;
       }
     }
 
@@ -3458,10 +3433,8 @@ namespace Google.Protobuf.Struct {
         return true;
       }
       if (IsLeader != other.IsLeader) return false;
-      if (Name != other.Name) return false;
-      if (Level != other.Level) return false;
-      if (Class != other.Class) return false;
-      if (MemberSlotType != other.MemberSlotType) return false;
+      if (!object.Equals(Info, other.Info)) return false;
+      if (ObjectId != other.ObjectId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3470,10 +3443,8 @@ namespace Google.Protobuf.Struct {
     public override int GetHashCode() {
       int hash = 1;
       if (IsLeader != false) hash ^= IsLeader.GetHashCode();
-      if (Name.Length != 0) hash ^= Name.GetHashCode();
-      if (Level != 0) hash ^= Level.GetHashCode();
-      if (Class != global::Google.Protobuf.Enum.EHeroClassType.None) hash ^= Class.GetHashCode();
-      if (MemberSlotType != global::Google.Protobuf.Enum.EPartyMemberSlotType.None) hash ^= MemberSlotType.GetHashCode();
+      if (info_ != null) hash ^= Info.GetHashCode();
+      if (ObjectId != 0) hash ^= ObjectId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3496,21 +3467,13 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(8);
         output.WriteBool(IsLeader);
       }
-      if (Name.Length != 0) {
+      if (info_ != null) {
         output.WriteRawTag(18);
-        output.WriteString(Name);
+        output.WriteMessage(Info);
       }
-      if (Level != 0) {
+      if (ObjectId != 0) {
         output.WriteRawTag(24);
-        output.WriteInt32(Level);
-      }
-      if (Class != global::Google.Protobuf.Enum.EHeroClassType.None) {
-        output.WriteRawTag(32);
-        output.WriteEnum((int) Class);
-      }
-      if (MemberSlotType != global::Google.Protobuf.Enum.EPartyMemberSlotType.None) {
-        output.WriteRawTag(40);
-        output.WriteEnum((int) MemberSlotType);
+        output.WriteInt32(ObjectId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -3526,21 +3489,13 @@ namespace Google.Protobuf.Struct {
         output.WriteRawTag(8);
         output.WriteBool(IsLeader);
       }
-      if (Name.Length != 0) {
+      if (info_ != null) {
         output.WriteRawTag(18);
-        output.WriteString(Name);
+        output.WriteMessage(Info);
       }
-      if (Level != 0) {
+      if (ObjectId != 0) {
         output.WriteRawTag(24);
-        output.WriteInt32(Level);
-      }
-      if (Class != global::Google.Protobuf.Enum.EHeroClassType.None) {
-        output.WriteRawTag(32);
-        output.WriteEnum((int) Class);
-      }
-      if (MemberSlotType != global::Google.Protobuf.Enum.EPartyMemberSlotType.None) {
-        output.WriteRawTag(40);
-        output.WriteEnum((int) MemberSlotType);
+        output.WriteInt32(ObjectId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -3555,17 +3510,11 @@ namespace Google.Protobuf.Struct {
       if (IsLeader != false) {
         size += 1 + 1;
       }
-      if (Name.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      if (info_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Info);
       }
-      if (Level != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
-      }
-      if (Class != global::Google.Protobuf.Enum.EHeroClassType.None) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Class);
-      }
-      if (MemberSlotType != global::Google.Protobuf.Enum.EPartyMemberSlotType.None) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) MemberSlotType);
+      if (ObjectId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ObjectId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3582,17 +3531,14 @@ namespace Google.Protobuf.Struct {
       if (other.IsLeader != false) {
         IsLeader = other.IsLeader;
       }
-      if (other.Name.Length != 0) {
-        Name = other.Name;
+      if (other.info_ != null) {
+        if (info_ == null) {
+          Info = new global::Google.Protobuf.Struct.LobbyHeroInfo();
+        }
+        Info.MergeFrom(other.Info);
       }
-      if (other.Level != 0) {
-        Level = other.Level;
-      }
-      if (other.Class != global::Google.Protobuf.Enum.EHeroClassType.None) {
-        Class = other.Class;
-      }
-      if (other.MemberSlotType != global::Google.Protobuf.Enum.EPartyMemberSlotType.None) {
-        MemberSlotType = other.MemberSlotType;
+      if (other.ObjectId != 0) {
+        ObjectId = other.ObjectId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3618,19 +3564,14 @@ namespace Google.Protobuf.Struct {
             break;
           }
           case 18: {
-            Name = input.ReadString();
+            if (info_ == null) {
+              Info = new global::Google.Protobuf.Struct.LobbyHeroInfo();
+            }
+            input.ReadMessage(Info);
             break;
           }
           case 24: {
-            Level = input.ReadInt32();
-            break;
-          }
-          case 32: {
-            Class = (global::Google.Protobuf.Enum.EHeroClassType) input.ReadEnum();
-            break;
-          }
-          case 40: {
-            MemberSlotType = (global::Google.Protobuf.Enum.EPartyMemberSlotType) input.ReadEnum();
+            ObjectId = input.ReadInt32();
             break;
           }
         }
@@ -3657,19 +3598,258 @@ namespace Google.Protobuf.Struct {
             break;
           }
           case 18: {
-            Name = input.ReadString();
+            if (info_ == null) {
+              Info = new global::Google.Protobuf.Struct.LobbyHeroInfo();
+            }
+            input.ReadMessage(Info);
             break;
           }
           case 24: {
-            Level = input.ReadInt32();
+            ObjectId = input.ReadInt32();
             break;
           }
-          case 32: {
-            Class = (global::Google.Protobuf.Enum.EHeroClassType) input.ReadEnum();
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class ApplierInfo : pb::IMessage<ApplierInfo>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ApplierInfo> _parser = new pb::MessageParser<ApplierInfo>(() => new ApplierInfo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<ApplierInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Google.Protobuf.Struct.StructReflection.Descriptor.MessageTypes[11]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ApplierInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ApplierInfo(ApplierInfo other) : this() {
+      info_ = other.info_ != null ? other.info_.Clone() : null;
+      objectId_ = other.objectId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ApplierInfo Clone() {
+      return new ApplierInfo(this);
+    }
+
+    /// <summary>Field number for the "info" field.</summary>
+    public const int InfoFieldNumber = 1;
+    private global::Google.Protobuf.Struct.LobbyHeroInfo info_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.Struct.LobbyHeroInfo Info {
+      get { return info_; }
+      set {
+        info_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "objectId" field.</summary>
+    public const int ObjectIdFieldNumber = 2;
+    private int objectId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ObjectId {
+      get { return objectId_; }
+      set {
+        objectId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as ApplierInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(ApplierInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Info, other.Info)) return false;
+      if (ObjectId != other.ObjectId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (info_ != null) hash ^= Info.GetHashCode();
+      if (ObjectId != 0) hash ^= ObjectId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (info_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Info);
+      }
+      if (ObjectId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(ObjectId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (info_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Info);
+      }
+      if (ObjectId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(ObjectId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (info_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Info);
+      }
+      if (ObjectId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ObjectId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(ApplierInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.info_ != null) {
+        if (info_ == null) {
+          Info = new global::Google.Protobuf.Struct.LobbyHeroInfo();
+        }
+        Info.MergeFrom(other.Info);
+      }
+      if (other.ObjectId != 0) {
+        ObjectId = other.ObjectId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (info_ == null) {
+              Info = new global::Google.Protobuf.Struct.LobbyHeroInfo();
+            }
+            input.ReadMessage(Info);
             break;
           }
-          case 40: {
-            MemberSlotType = (global::Google.Protobuf.Enum.EPartyMemberSlotType) input.ReadEnum();
+          case 16: {
+            ObjectId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (info_ == null) {
+              Info = new global::Google.Protobuf.Struct.LobbyHeroInfo();
+            }
+            input.ReadMessage(Info);
+            break;
+          }
+          case 16: {
+            ObjectId = input.ReadInt32();
             break;
           }
         }
@@ -3694,7 +3874,7 @@ namespace Google.Protobuf.Struct {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Google.Protobuf.Struct.StructReflection.Descriptor.MessageTypes[11]; }
+      get { return global::Google.Protobuf.Struct.StructReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
